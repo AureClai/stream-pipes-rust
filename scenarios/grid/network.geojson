@@ -1,0 +1,488 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "id": 0,
+        "type": "Entry",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          500.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1000.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0,
+          -500.0
+        ]
+      },
+      "properties": {
+        "id": 3,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          500.0,
+          -500.0
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1000.0,
+          -500.0
+        ]
+      },
+      "properties": {
+        "id": 5,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0,
+          -1000.0
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          500.0,
+          -1000.0
+        ]
+      },
+      "properties": {
+        "id": 7,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1000.0,
+          -1000.0
+        ]
+      },
+      "properties": {
+        "id": 8,
+        "type": "Exit",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            500.0,
+            0.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 0,
+        "node_up": 0,
+        "node_down": 1,
+        "length": 500.0,
+        "speed": 15.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 15.0,
+        "fd_w": 4.285714285714286,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -500.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "node_up": 0,
+        "node_down": 3,
+        "length": 500.0,
+        "speed": 15.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 15.0,
+        "fd_w": 4.285714285714286,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            500.0,
+            0.0
+          ],
+          [
+            1000.0,
+            0.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "node_up": 1,
+        "node_down": 2,
+        "length": 500.0,
+        "speed": 15.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 15.0,
+        "fd_w": 4.285714285714286,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            500.0,
+            0.0
+          ],
+          [
+            500.0,
+            -500.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 3,
+        "node_up": 1,
+        "node_down": 4,
+        "length": 500.0,
+        "speed": 15.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 15.0,
+        "fd_w": 4.285714285714286,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1000.0,
+            0.0
+          ],
+          [
+            1000.0,
+            -500.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "node_up": 2,
+        "node_down": 5,
+        "length": 500.0,
+        "speed": 15.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 15.0,
+        "fd_w": 4.285714285714286,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.0,
+            -500.0
+          ],
+          [
+            500.0,
+            -500.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 5,
+        "node_up": 3,
+        "node_down": 4,
+        "length": 500.0,
+        "speed": 15.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 15.0,
+        "fd_w": 4.285714285714286,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.0,
+            -500.0
+          ],
+          [
+            0.0,
+            -1000.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "node_up": 3,
+        "node_down": 6,
+        "length": 500.0,
+        "speed": 15.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 15.0,
+        "fd_w": 4.285714285714286,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            500.0,
+            -500.0
+          ],
+          [
+            1000.0,
+            -500.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 7,
+        "node_up": 4,
+        "node_down": 5,
+        "length": 500.0,
+        "speed": 15.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 15.0,
+        "fd_w": 4.285714285714286,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            500.0,
+            -500.0
+          ],
+          [
+            500.0,
+            -1000.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 8,
+        "node_up": 4,
+        "node_down": 7,
+        "length": 500.0,
+        "speed": 15.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 15.0,
+        "fd_w": 4.285714285714286,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1000.0,
+            -500.0
+          ],
+          [
+            1000.0,
+            -1000.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 9,
+        "node_up": 5,
+        "node_down": 8,
+        "length": 500.0,
+        "speed": 15.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 15.0,
+        "fd_w": 4.285714285714286,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.0,
+            -1000.0
+          ],
+          [
+            500.0,
+            -1000.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 10,
+        "node_up": 6,
+        "node_down": 7,
+        "length": 500.0,
+        "speed": 15.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 15.0,
+        "fd_w": 4.285714285714286,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            500.0,
+            -1000.0
+          ],
+          [
+            1000.0,
+            -1000.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "node_up": 7,
+        "node_down": 8,
+        "length": 500.0,
+        "speed": 15.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 15.0,
+        "fd_w": 4.285714285714286,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    }
+  ]
+}

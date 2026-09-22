@@ -1,0 +1,160 @@
+{
+  "location": "us-101",
+  "periods": 4,
+  "vehicles": 6101,
+  "n1_lane_flow_shares": {
+    "period0_station100m": {
+      "lane1": 0.186,
+      "lane2": 0.208,
+      "lane3": 0.202,
+      "lane4": 0.2,
+      "lane5": 0.204
+    },
+    "period0_station300m": {
+      "lane1": 0.178,
+      "lane2": 0.195,
+      "lane3": 0.193,
+      "lane4": 0.188,
+      "lane5": 0.193,
+      "lane6": 0.054
+    },
+    "period0_station500m": {
+      "lane1": 0.182,
+      "lane2": 0.216,
+      "lane3": 0.203,
+      "lane4": 0.202,
+      "lane5": 0.197
+    },
+    "period1_station100m": {
+      "lane1": 0.193,
+      "lane2": 0.208,
+      "lane3": 0.194,
+      "lane4": 0.202,
+      "lane5": 0.203
+    },
+    "period1_station300m": {
+      "lane1": 0.183,
+      "lane2": 0.196,
+      "lane3": 0.184,
+      "lane4": 0.19,
+      "lane5": 0.189,
+      "lane6": 0.057
+    },
+    "period1_station500m": {
+      "lane1": 0.19,
+      "lane2": 0.21,
+      "lane3": 0.196,
+      "lane4": 0.204,
+      "lane5": 0.199
+    },
+    "period2_station100m": {
+      "lane1": 0.192,
+      "lane2": 0.207,
+      "lane3": 0.192,
+      "lane4": 0.195,
+      "lane5": 0.214
+    },
+    "period2_station300m": {
+      "lane1": 0.183,
+      "lane2": 0.191,
+      "lane3": 0.181,
+      "lane4": 0.181,
+      "lane5": 0.196,
+      "lane6": 0.067
+    },
+    "period2_station500m": {
+      "lane1": 0.192,
+      "lane2": 0.21,
+      "lane3": 0.198,
+      "lane4": 0.199,
+      "lane5": 0.202
+    },
+    "period3_station100m": {
+      "lane2": 0.25,
+      "lane3": 0.25,
+      "lane4": 0.25,
+      "lane5": 0.25
+    },
+    "period3_station300m": {
+      "lane1": 0.2,
+      "lane2": 0.2,
+      "lane3": 0.218,
+      "lane4": 0.127,
+      "lane5": 0.218,
+      "lane6": 0.036
+    },
+    "period3_station500m": {
+      "lane1": 0.186,
+      "lane2": 0.206,
+      "lane3": 0.196,
+      "lane4": 0.216,
+      "lane5": 0.196
+    }
+  },
+  "n2_n3_commitment": {
+    "status": "run",
+    "n_exit_vehicles": 84,
+    "gore_y_m_est": 411.4,
+    "commitment_distance_m": {
+      "median": 200.7,
+      "p25": 161.3,
+      "p75": 212.2,
+      "p90": 247.9
+    },
+    "late_insertion_share": 0.214,
+    "late_threshold_m": 150.0
+  },
+  "n4_lane_change_intensity": [
+    {
+      "period": 0,
+      "duration_min": 15.0,
+      "lc_per_km_min_by_100m_bin": {
+        "0-100m": 30.0,
+        "100-200m": 70.7,
+        "200-300m": 115.3,
+        "300-400m": 84.0,
+        "400-500m": 71.3,
+        "500-600m": 86.0,
+        "600-700m": 20.0
+      }
+    },
+    {
+      "period": 1,
+      "duration_min": 15.0,
+      "lc_per_km_min_by_100m_bin": {
+        "0-100m": 25.3,
+        "100-200m": 36.7,
+        "200-300m": 124.0,
+        "300-400m": 82.0,
+        "400-500m": 59.3,
+        "500-600m": 47.3,
+        "600-700m": 16.0
+      }
+    },
+    {
+      "period": 2,
+      "duration_min": 15.0,
+      "lc_per_km_min_by_100m_bin": {
+        "0-100m": 22.7,
+        "100-200m": 43.3,
+        "200-300m": 102.0,
+        "300-400m": 92.7,
+        "400-500m": 70.7,
+        "500-600m": 49.3,
+        "600-700m": 21.3
+      }
+    },
+    {
+      "period": 3,
+      "duration_min": 1.2,
+      "lc_per_km_min_by_100m_bin": {
+        "200-300m": 33.1,
+        "300-400m": 41.4,
+        "400-500m": 16.6,
+        "500-600m": 24.8,
+        "600-700m": 16.6
+      }
+    }
+  ],
+  "debounce_s": 2.0
+}

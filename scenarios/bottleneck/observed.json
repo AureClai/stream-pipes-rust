@@ -1,0 +1,17 @@
+[
+  {
+    "link_id": 0,
+    "t_start": 600,
+    "t_end": 1200,
+    "flow_veh_h": 1750,
+    "speed_kmh": 11.5,
+    "label": "Detector D1 — upstream approach (synthetic sample)"
+  },
+  {
+    "link_id": 1,
+    "t_start": 600,
+    "t_end": 1200,
+    "flow_veh_h": 1800,
+    "label": "Detector D2 — bottleneck section (synthetic sample)"
+  }
+]

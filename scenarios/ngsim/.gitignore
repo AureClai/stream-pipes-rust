@@ -1,0 +1,5 @@
+# Raw NGSIM pages are large and regenerable from the open API.
+data/raw/*.csv
+data/raw/*.part
+# Derived outputs regenerate from analyze_trajectories.py.
+data/out/*.csv

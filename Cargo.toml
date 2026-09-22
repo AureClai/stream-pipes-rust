@@ -1,0 +1,49 @@
+[package]
+# Fork of stream-core-rust: pipe-stream (meso-per-lane) prototype.
+# The lib name stays `stream_core_rust` so module imports are unchanged.
+name = "stream-pipes-rust"
+version = "0.1.0"
+edition = "2021"
+description = "Event-based mesoscopic LWR traffic model with per-lane pipes, class-restricted lanes and built-in verification"
+license = "MIT OR Apache-2.0"
+authors = ["Aurélien Clairais <aureclai.dev@gmail.com>"]
+repository = "https://github.com/AureClai/stream-pipes-rust"
+readme = "README.md"
+keywords = ["traffic", "simulation", "kinematic-wave", "lwr", "mesoscopic"]
+categories = ["science", "simulation"]
+
+[lib]
+name = "stream_core_rust"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "stream-cli"
+path = "src/main.rs"
+
+[[bin]]
+name = "stream-server"
+path = "src/server.rs"
+required-features = ["server"]
+
+[dependencies]
+pyo3 = { version = "0.22.0", features = ["extension-module"], optional = true }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+petgraph = "0.6"
+geo-types = "0.7"
+geojson = "0.24"
+thiserror = "1.0"
+anyhow = "1.0"
+clap = { version = "4.4", features = ["derive"] }
+rayon = "1.10"
+
+# Server dependencies
+axum = { version = "0.7", optional = true }
+tokio = { version = "1.0", features = ["full"], optional = true }
+tower-http = { version = "0.5", features = ["cors"], optional = true }
+tower = { version = "0.4", optional = true }
+
+[features]
+default = ["python"]
+python = ["dep:pyo3"]
+server = ["dep:axum", "dep:tokio", "dep:tower-http", "dep:tower"]

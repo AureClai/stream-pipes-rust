@@ -1,0 +1,150 @@
+{
+ "name": "gate",
+ "description": "Boundary conditions from measured discharge: A7-junction constraint on the Lyon branch (69.A2 minus A7-Sud when 69.A2 < 58 km/h) and downstream-of-9.31 constraint vers St-Etienne (< 75 km/h). Cerema AVATAR 2026-06-10.",
+ "ops": [
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 23400.0,
+   "until": 24300.0,
+   "set": {
+    "capacity": 0.6098
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 24300.0,
+   "until": 25200.0,
+   "set": {
+    "capacity": 0.4867
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 25200.0,
+   "until": 26100.0,
+   "set": {
+    "capacity": 0.4948
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 26100.0,
+   "until": 27000.0,
+   "set": {
+    "capacity": 0.4369
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 27000.0,
+   "until": 27900.0,
+   "set": {
+    "capacity": 0.4475
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 27900.0,
+   "until": 28800.0,
+   "set": {
+    "capacity": 0.4379
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 28800.0,
+   "until": 29700.0,
+   "set": {
+    "capacity": 0.4819
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 29700.0,
+   "until": 30600.0,
+   "set": {
+    "capacity": 0.5072
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 18,
+   "from": 55800.0,
+   "until": 56700.0,
+   "set": {
+    "capacity": 0.2944
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 18,
+   "from": 56700.0,
+   "until": 57600.0,
+   "set": {
+    "capacity": 0.2764
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 18,
+   "from": 57600.0,
+   "until": 58500.0,
+   "set": {
+    "capacity": 0.312
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 18,
+   "from": 58500.0,
+   "until": 59400.0,
+   "set": {
+    "capacity": 0.4
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 18,
+   "from": 59400.0,
+   "until": 60300.0,
+   "set": {
+    "capacity": 0.4472
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 18,
+   "from": 60300.0,
+   "until": 61200.0,
+   "set": {
+    "capacity": 0.4958
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 18,
+   "from": 61200.0,
+   "until": 62100.0,
+   "set": {
+    "capacity": 0.4037
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 18,
+   "from": 62100.0,
+   "until": 63000.0,
+   "set": {
+    "capacity": 0.6819
+   }
+  }
+ ]
+}

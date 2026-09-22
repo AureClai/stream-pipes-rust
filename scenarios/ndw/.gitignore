@@ -1,0 +1,5 @@
+# Raw Dexter exports are large and licensed data — never committed.
+data/raw/*
+!data/raw/.gitkeep
+# Screened series are regenerated; keep only the checksummed report.
+data/screened/*.csv

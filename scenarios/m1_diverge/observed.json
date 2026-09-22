@@ -1,0 +1,1634 @@
+[
+ {
+  "link_id": 0,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 544.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 500.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 40.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 760.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 680.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 60.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 66.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 888.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 764.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 132.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 0,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 852.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 700.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 152.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 1284.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 1088.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 160.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 1824.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 1524.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 268.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 1820.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 1564.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 256.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 2012.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1704.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 348.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 2180.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 1888.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 324.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 2416.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1988.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 452.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 2552.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 2032.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 500.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 0,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 2416.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 2044.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 400.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 0,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 2248.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 1908.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 340.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 2436.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1988.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 408.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 2348.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 1948.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 460.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 2076.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1752.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 324.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 0,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 2224.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 1924.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 300.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 2284.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1976.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 304.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 2480.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 2228.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 296.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 2352.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 2172.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 220.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 2556.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 2228.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 300.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 3108.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 2756.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 336.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 0,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 2948.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 2592.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 364.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 2984.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 2776.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 228.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 3136.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 2840.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 336.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 2996.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 2696.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 292.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 3104.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 2744.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 356.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 0,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 2944.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 2644.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 372.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 2108.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 1936.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 224.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 3648.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 3264.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 360.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 4104.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 3768.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 392.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 3528.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 3208.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 352.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 78.9
+ },
+ {
+  "link_id": 0,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 3632.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 3140.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 456.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 3716.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 3388.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 388.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 3916.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 3460.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 464.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 4096.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 3592.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 516.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 64.4
+ },
+ {
+  "link_id": 0,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 3820.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 3392.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 440.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 4368.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 3888.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 524.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 4084.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3588.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 512.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 4280.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 3776.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 504.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 3652.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 3232.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 468.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 3804.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 3432.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 424.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 3424.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 3016.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 109.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 428.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 3672.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 3076.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 111.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 584.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 3356.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 2872.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 109.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 548.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 0,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3600.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3052.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 111.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 596.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 3708.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 3108.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 111.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 576.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 3248.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 2732.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 111.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 552.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 3316.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 2848.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 111.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 516.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 3088.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 2644.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 111.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 468.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 3124.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 2680.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 109.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 488.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2928.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2536.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 111.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 436.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 3048.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 2540.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 109.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 496.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2864.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2440.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 408.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 2560.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 2268.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 109.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 376.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2580.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2208.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 364.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 2312.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 2096.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 272.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2364.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2152.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 228.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 0,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 2408.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 2192.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 111.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 280.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 2464.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 2228.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 220.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 2276.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 2064.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 236.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 0,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 2112.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1864.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 216.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1952.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1844.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 164.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 0,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1948.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1836.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 152.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 82.1
+ },
+ {
+  "link_id": 0,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 1656.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 1460.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 109.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 148.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 1852.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 1748.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 172.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 1736.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 1552.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 168.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 1460.0,
+  "label": "M1/3374A upstream",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 1288.0,
+  "label": "M1/3379A downstream",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 140.0,
+  "label": "M1/3378J off-slip",
+  "speed_kmh": 74.0
+ }
+]

@@ -1,0 +1,34 @@
+pipe-stream (stream-pipes-rust)
+Copyright (c) 2026 Aurélien Clairais
+
+Licensed under either of the Apache License, Version 2.0 (LICENSE-APACHE)
+or the MIT license (LICENSE-MIT), at your option.
+
+---
+
+## Attribution: the Stream model
+
+This software is derived from Stream, an event-based mesoscopic
+implementation of the LWR kinematic wave model, distributed under the
+CeCILL-B free software license (https://cecill.info/licences/Licence_CeCILL-B_V1-en.html).
+
+Stream authors: Cerema Centre-Est, Aurélien Clairais, Etienne Hans, Aurélien Duret
+Stream location: https://gitlab.cerema.fr/centre-est/mobilite/Stream/stream-python
+
+The single-stream core of this engine (one pipe per link) is a port of the
+Stream model and reproduces it; the pipe partition, class permissions,
+movement restrictions, friction coupling, dynamic patches and the
+verification apparatus are new in this work.
+
+In accordance with the CeCILL-B license, any redistribution of this software
+or of software derived from it must keep this notice, including the
+reference to the Stream authors and the location of Stream.
+
+---
+
+## Third-party data
+
+Datasets under scenarios/ keep their own licences; see the Data section of
+README.md. In particular, WebTRIS-derived data:
+"Contains National Highways data © National Highways" (Open Government
+Licence v3.0).

@@ -1,0 +1,20 @@
+{
+ "name": "friction",
+ "description": "Rubbernecking coupling phi=0.95 on the A7-junction approach (links 5,6) - calibrated on 2026-06-10 (sweep 0.80-1.00, flat optimum 0.85-0.95).",
+ "ops": [
+  {
+   "op": "set_link",
+   "link": 5,
+   "set": {
+    "friction": 0.95
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 6,
+   "set": {
+    "friction": 0.95
+   }
+  }
+ ]
+}

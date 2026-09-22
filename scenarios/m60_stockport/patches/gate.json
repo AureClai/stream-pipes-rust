@@ -1,0 +1,51 @@
+{
+ "name": "gate",
+ "description": "Downstream boundary condition: measured 9531A discharge imposed as gate capacity during observed breakdown (M60 CW 2026-03-03 evening).",
+ "ops": [
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 59400.0,
+   "until": 60300.0,
+   "set": {
+    "capacity": 1.1111
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 60300.0,
+   "until": 61200.0,
+   "set": {
+    "capacity": 0.9844
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 61200.0,
+   "until": 62100.0,
+   "set": {
+    "capacity": 1.11
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 62100.0,
+   "until": 63000.0,
+   "set": {
+    "capacity": 0.9711
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 8,
+   "from": 63000.0,
+   "until": 63900.0,
+   "set": {
+    "capacity": 1.1356
+   }
+  }
+ ]
+}

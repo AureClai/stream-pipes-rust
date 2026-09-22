@@ -1,0 +1,17 @@
+{
+  "demand": [
+    {
+      "count": 2500,
+      "destination": 2,
+      "flow": 2500,
+      "origin": 0,
+      "period_end": 3600,
+      "period_start": 0
+    }
+  ],
+  "config": {
+    "duration": 3600,
+    "start_time": 0
+  },
+  "patches": []
+}

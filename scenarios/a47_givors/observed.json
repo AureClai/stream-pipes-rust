@@ -1,0 +1,5918 @@
+[
+ {
+  "link_id": 1,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 560.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 105.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 556.3,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 4,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 547.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 98.6
+ },
+ {
+  "link_id": 5,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 612.7,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 89.1
+ },
+ {
+  "link_id": 6,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 552.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 101.9
+ },
+ {
+  "link_id": 7,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 210.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 306.7,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 83.6
+ },
+ {
+  "link_id": 12,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 312.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 82.7
+ },
+ {
+  "link_id": 14,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 273.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 86.2
+ },
+ {
+  "link_id": 16,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 268.7,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 87.3
+ },
+ {
+  "link_id": 17,
+  "t_start": 18000.0,
+  "t_end": 18900.0,
+  "flow_veh_h": 329.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 646.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 104.7
+ },
+ {
+  "link_id": 2,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 609.5,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 97.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 620.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 98.3
+ },
+ {
+  "link_id": 5,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 798.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 88.4
+ },
+ {
+  "link_id": 6,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 747.5,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 99.7
+ },
+ {
+  "link_id": 7,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 230.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 401.5,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 12,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 422.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 81.5
+ },
+ {
+  "link_id": 14,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 357.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 86.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 340.5,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 87.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 18900.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 375.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.5
+ },
+ {
+  "link_id": 1,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 953.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 104.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 862.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 97.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 909.7,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 97.7
+ },
+ {
+  "link_id": 5,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 1178.7,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 87.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 1140.3,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 220.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 422.7,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 12,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 441.3,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 14,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 392.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 85.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 370.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 87.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 19800.0,
+  "t_end": 20700.0,
+  "flow_veh_h": 465.3,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.5
+ },
+ {
+  "link_id": 1,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 1374.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 102.9
+ },
+ {
+  "link_id": 2,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 1252.5,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 1343.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 96.4
+ },
+ {
+  "link_id": 5,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 1646.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 85.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 1573.5,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 95.1
+ },
+ {
+  "link_id": 7,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 260.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 521.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 83.8
+ },
+ {
+  "link_id": 12,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 522.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 79.9
+ },
+ {
+  "link_id": 14,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 440.5,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 84.9
+ },
+ {
+  "link_id": 16,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 420.5,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 86.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 20700.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 504.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 1713.3,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 1652.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 95.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 1671.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 95.3
+ },
+ {
+  "link_id": 5,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 2343.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 82.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 2157.7,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 89.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 276.7,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 631.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 12,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 648.3,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 79.2
+ },
+ {
+  "link_id": 14,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 527.3,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 84.7
+ },
+ {
+  "link_id": 16,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 500.7,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 86.6
+ },
+ {
+  "link_id": 17,
+  "t_start": 21600.0,
+  "t_end": 22500.0,
+  "flow_veh_h": 591.7,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.5
+ },
+ {
+  "link_id": 1,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 2441.5,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 100.1
+ },
+ {
+  "link_id": 2,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 2315.5,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.1
+ },
+ {
+  "link_id": 4,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 2272.5,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 89.4
+ },
+ {
+  "link_id": 5,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 3039.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 58.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 2910.5,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 58.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 380.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 816.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 83.2
+ },
+ {
+  "link_id": 12,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 830.5,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 77.7
+ },
+ {
+  "link_id": 14,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 632.5,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 84.7
+ },
+ {
+  "link_id": 16,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 631.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 86.4
+ },
+ {
+  "link_id": 17,
+  "t_start": 22500.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 742.5,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 2742.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 76.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 2622.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 64.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 2526.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 60.7
+ },
+ {
+  "link_id": 5,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 2547.3,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 32.8
+ },
+ {
+  "link_id": 6,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 2565.3,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 34.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 370.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 991.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 83.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 1066.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 77.0
+ },
+ {
+  "link_id": 14,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 813.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 83.9
+ },
+ {
+  "link_id": 16,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 791.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 86.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 23400.0,
+  "t_end": 24300.0,
+  "flow_veh_h": 902.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 1,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1759.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 43.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1749.5,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 35.9
+ },
+ {
+  "link_id": 4,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1593.5,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 28.4
+ },
+ {
+  "link_id": 5,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 2359.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 27.4
+ },
+ {
+  "link_id": 6,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 2357.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 31.7
+ },
+ {
+  "link_id": 7,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 605.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1181.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 82.7
+ },
+ {
+  "link_id": 12,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1241.5,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 76.7
+ },
+ {
+  "link_id": 14,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 932.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 83.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1001.5,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 86.7
+ },
+ {
+  "link_id": 17,
+  "t_start": 24300.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 983.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 1323.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 38.7
+ },
+ {
+  "link_id": 2,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 1314.3,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 30.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 1066.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 27.1
+ },
+ {
+  "link_id": 5,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 2385.7,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 30.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 2368.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 34.3
+ },
+ {
+  "link_id": 7,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 586.7,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 1508.7,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 81.8
+ },
+ {
+  "link_id": 12,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 1566.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 74.8
+ },
+ {
+  "link_id": 14,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 1036.7,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 83.3
+ },
+ {
+  "link_id": 16,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 1155.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 86.1
+ },
+ {
+  "link_id": 17,
+  "t_start": 25200.0,
+  "t_end": 26100.0,
+  "flow_veh_h": 1113.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.1
+ },
+ {
+  "link_id": 1,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1276.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 38.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1261.5,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 30.1
+ },
+ {
+  "link_id": 4,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 981.5,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 28.7
+ },
+ {
+  "link_id": 5,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 2420.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 32.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 2413.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 35.6
+ },
+ {
+  "link_id": 7,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 840.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1814.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 81.1
+ },
+ {
+  "link_id": 12,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1888.5,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 74.4
+ },
+ {
+  "link_id": 14,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1240.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.9
+ },
+ {
+  "link_id": 16,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1380.5,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 86.1
+ },
+ {
+  "link_id": 17,
+  "t_start": 26100.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1460.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 1296.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 41.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 1307.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 32.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 1006.7,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 32.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 2470.7,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 36.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 2461.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 39.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 850.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 1967.3,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 79.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 2038.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 73.5
+ },
+ {
+  "link_id": 14,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 1541.7,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 83.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 1712.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 86.1
+ },
+ {
+  "link_id": 17,
+  "t_start": 27000.0,
+  "t_end": 27900.0,
+  "flow_veh_h": 1710.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.1
+ },
+ {
+  "link_id": 1,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1356.5,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 47.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1284.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 34.1
+ },
+ {
+  "link_id": 4,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1030.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 34.2
+ },
+ {
+  "link_id": 5,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 2559.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 40.4
+ },
+ {
+  "link_id": 6,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 2551.5,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 41.1
+ },
+ {
+  "link_id": 7,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 975.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1963.5,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.8
+ },
+ {
+  "link_id": 12,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 2051.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 73.0
+ },
+ {
+  "link_id": 14,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1636.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.9
+ },
+ {
+  "link_id": 16,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1805.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.6
+ },
+ {
+  "link_id": 17,
+  "t_start": 27900.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1858.5,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.1
+ },
+ {
+  "link_id": 1,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 1387.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 55.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 1385.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 40.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 1165.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 42.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 2584.7,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 44.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 2581.7,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 50.6
+ },
+ {
+  "link_id": 7,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 846.7,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 1980.7,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 78.3
+ },
+ {
+  "link_id": 12,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 2081.7,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 73.4
+ },
+ {
+  "link_id": 14,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 1648.7,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.9
+ },
+ {
+  "link_id": 16,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 1787.7,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.7
+ },
+ {
+  "link_id": 17,
+  "t_start": 28800.0,
+  "t_end": 29700.0,
+  "flow_veh_h": 1892.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 1,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1542.5,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 62.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1532.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 55.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1373.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 52.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 2617.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 54.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 2596.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 56.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 770.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 2000.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 78.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 2118.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 73.3
+ },
+ {
+  "link_id": 14,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1732.5,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1828.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.6
+ },
+ {
+  "link_id": 17,
+  "t_start": 29700.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1943.5,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 1653.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 75.3
+ },
+ {
+  "link_id": 2,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 1720.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 68.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 1668.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 67.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 2543.3,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 60.8
+ },
+ {
+  "link_id": 6,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 2521.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 63.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 800.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 1958.3,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.9
+ },
+ {
+  "link_id": 12,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 2068.3,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 72.7
+ },
+ {
+  "link_id": 14,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 1787.7,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.1
+ },
+ {
+  "link_id": 16,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 1820.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.3
+ },
+ {
+  "link_id": 17,
+  "t_start": 30600.0,
+  "t_end": 31500.0,
+  "flow_veh_h": 1938.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 92.9
+ },
+ {
+  "link_id": 1,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1735.5,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 80.3
+ },
+ {
+  "link_id": 2,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1868.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 74.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1793.5,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 74.2
+ },
+ {
+  "link_id": 5,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 2447.5,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 64.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 2337.5,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 750.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1850.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1936.5,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 14,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1757.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 81.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1719.5,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 84.7
+ },
+ {
+  "link_id": 17,
+  "t_start": 31500.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1860.5,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 92.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 1771.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 86.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 1880.3,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 1841.7,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 79.4
+ },
+ {
+  "link_id": 5,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 2208.7,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 71.5
+ },
+ {
+  "link_id": 6,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 2065.3,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 76.9
+ },
+ {
+  "link_id": 7,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 613.3,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 1850.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.9
+ },
+ {
+  "link_id": 12,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 1918.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 72.0
+ },
+ {
+  "link_id": 14,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 1587.7,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 81.2
+ },
+ {
+  "link_id": 16,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 1595.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 84.4
+ },
+ {
+  "link_id": 17,
+  "t_start": 32400.0,
+  "t_end": 33300.0,
+  "flow_veh_h": 1744.7,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 92.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1754.5,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 93.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1839.5,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 85.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1859.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 84.4
+ },
+ {
+  "link_id": 5,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 2177.5,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 75.9
+ },
+ {
+  "link_id": 6,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 2006.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 82.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 645.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1851.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 78.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1926.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 71.5
+ },
+ {
+  "link_id": 14,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1576.5,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1589.5,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 83.6
+ },
+ {
+  "link_id": 17,
+  "t_start": 33300.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1743.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 92.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 1798.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 91.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 1845.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 88.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 1869.7,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 5,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 2171.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 75.9
+ },
+ {
+  "link_id": 6,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 2004.7,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 81.9
+ },
+ {
+  "link_id": 7,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 563.3,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 1852.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.9
+ },
+ {
+  "link_id": 12,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 1935.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 71.0
+ },
+ {
+  "link_id": 14,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 1577.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 79.9
+ },
+ {
+  "link_id": 16,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 1574.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 83.1
+ },
+ {
+  "link_id": 17,
+  "t_start": 34200.0,
+  "t_end": 35100.0,
+  "flow_veh_h": 1744.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1745.5,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 91.1
+ },
+ {
+  "link_id": 2,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1791.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 89.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1816.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 87.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 2129.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 76.1
+ },
+ {
+  "link_id": 6,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1979.5,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 82.1
+ },
+ {
+  "link_id": 7,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 570.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1851.5,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.8
+ },
+ {
+  "link_id": 12,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1937.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.7
+ },
+ {
+  "link_id": 14,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1560.5,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 79.6
+ },
+ {
+  "link_id": 16,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1540.5,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 82.9
+ },
+ {
+  "link_id": 17,
+  "t_start": 35100.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1719.5,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 1689.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 97.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 1700.7,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 88.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 1722.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 88.2
+ },
+ {
+  "link_id": 5,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 2075.3,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 76.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 1928.3,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 82.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 553.3,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 1851.3,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.8
+ },
+ {
+  "link_id": 12,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 1937.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.7
+ },
+ {
+  "link_id": 14,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 1542.3,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 79.3
+ },
+ {
+  "link_id": 16,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 1523.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 82.8
+ },
+ {
+  "link_id": 17,
+  "t_start": 36000.0,
+  "t_end": 36900.0,
+  "flow_veh_h": 1711.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.1
+ },
+ {
+  "link_id": 1,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1663.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1635.5,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 88.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1673.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 89.4
+ },
+ {
+  "link_id": 5,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 2088.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 75.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1931.5,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 82.1
+ },
+ {
+  "link_id": 7,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 595.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1864.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1958.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.6
+ },
+ {
+  "link_id": 14,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1539.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 79.2
+ },
+ {
+  "link_id": 16,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1525.5,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 82.7
+ },
+ {
+  "link_id": 17,
+  "t_start": 36900.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1703.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 1666.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 97.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 1635.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 89.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 1677.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 88.9
+ },
+ {
+  "link_id": 5,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 2108.3,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 75.9
+ },
+ {
+  "link_id": 6,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 1938.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 82.3
+ },
+ {
+  "link_id": 7,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 617.7,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 1871.3,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 1989.7,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.3
+ },
+ {
+  "link_id": 14,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 1575.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 79.1
+ },
+ {
+  "link_id": 16,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 1553.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 82.8
+ },
+ {
+  "link_id": 17,
+  "t_start": 37800.0,
+  "t_end": 38700.0,
+  "flow_veh_h": 1726.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1667.5,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 97.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1642.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 88.9
+ },
+ {
+  "link_id": 4,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1679.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 88.6
+ },
+ {
+  "link_id": 5,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 2108.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1938.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 81.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 560.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1875.5,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1994.5,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.3
+ },
+ {
+  "link_id": 14,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1602.5,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 79.2
+ },
+ {
+  "link_id": 16,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1594.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 82.9
+ },
+ {
+  "link_id": 17,
+  "t_start": 38700.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1742.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 1641.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 96.7
+ },
+ {
+  "link_id": 2,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 1628.7,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 88.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 1645.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 87.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 2106.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 75.4
+ },
+ {
+  "link_id": 6,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 1945.7,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 80.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 606.7,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 1880.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 2000.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.3
+ },
+ {
+  "link_id": 14,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 1602.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 79.4
+ },
+ {
+  "link_id": 16,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 1608.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 82.9
+ },
+ {
+  "link_id": 17,
+  "t_start": 39600.0,
+  "t_end": 40500.0,
+  "flow_veh_h": 1742.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.3
+ },
+ {
+  "link_id": 1,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1651.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 96.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1634.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 88.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1639.5,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 5,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 2132.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1972.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 81.1
+ },
+ {
+  "link_id": 7,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 575.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1916.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 2040.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.3
+ },
+ {
+  "link_id": 14,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1642.5,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 79.4
+ },
+ {
+  "link_id": 16,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1614.5,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 82.9
+ },
+ {
+  "link_id": 17,
+  "t_start": 40500.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1755.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.3
+ },
+ {
+  "link_id": 1,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 1671.3,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 96.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 1655.7,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 88.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 1653.7,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 5,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 2148.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 1978.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 81.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 620.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 1963.7,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.7
+ },
+ {
+  "link_id": 12,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 2040.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.4
+ },
+ {
+  "link_id": 14,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 1674.7,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 79.8
+ },
+ {
+  "link_id": 16,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 1633.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 83.1
+ },
+ {
+  "link_id": 17,
+  "t_start": 41400.0,
+  "t_end": 42300.0,
+  "flow_veh_h": 1777.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.5
+ },
+ {
+  "link_id": 1,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1670.5,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1669.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 89.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1672.5,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 87.1
+ },
+ {
+  "link_id": 5,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 2118.5,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 76.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1931.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 81.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 750.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1966.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 78.1
+ },
+ {
+  "link_id": 12,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 2039.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 71.0
+ },
+ {
+  "link_id": 14,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1675.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 80.4
+ },
+ {
+  "link_id": 16,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1651.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 83.6
+ },
+ {
+  "link_id": 17,
+  "t_start": 42300.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1792.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 92.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 1631.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 97.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 1612.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 89.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 1635.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 87.8
+ },
+ {
+  "link_id": 5,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 2090.7,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 77.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 1918.3,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 733.3,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 1992.3,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.8
+ },
+ {
+  "link_id": 12,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 2099.7,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 71.2
+ },
+ {
+  "link_id": 14,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 1678.7,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 81.1
+ },
+ {
+  "link_id": 16,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 1663.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 84.4
+ },
+ {
+  "link_id": 17,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 1795.7,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 92.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1604.5,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 97.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1576.5,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1612.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 88.7
+ },
+ {
+  "link_id": 5,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 2058.5,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 78.1
+ },
+ {
+  "link_id": 6,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1897.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 84.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 705.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 2011.5,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 78.1
+ },
+ {
+  "link_id": 12,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 2146.5,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 71.3
+ },
+ {
+  "link_id": 14,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1691.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.1
+ },
+ {
+  "link_id": 16,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1687.5,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.2
+ },
+ {
+  "link_id": 17,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1816.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 92.9
+ },
+ {
+  "link_id": 1,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 1570.3,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 98.1
+ },
+ {
+  "link_id": 2,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 1557.3,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 1579.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 90.4
+ },
+ {
+  "link_id": 5,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 2031.3,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 79.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 1851.7,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 7,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 690.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 1980.7,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 78.7
+ },
+ {
+  "link_id": 12,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 2072.7,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 71.5
+ },
+ {
+  "link_id": 14,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 1687.7,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.2
+ },
+ {
+  "link_id": 16,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 1678.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 1829.3,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1545.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 98.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1536.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1542.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 90.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 2011.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 79.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1836.5,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 7,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 585.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1984.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 79.4
+ },
+ {
+  "link_id": 12,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 2043.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 72.1
+ },
+ {
+  "link_id": 14,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1674.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.4
+ },
+ {
+  "link_id": 16,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1683.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.6
+ },
+ {
+  "link_id": 17,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1827.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 1,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 1507.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 98.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 1504.3,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 1509.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 90.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 1986.3,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 79.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 1829.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 7,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 613.3,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 1988.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 79.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 2053.7,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 72.2
+ },
+ {
+  "link_id": 14,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 1673.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 1681.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.7
+ },
+ {
+  "link_id": 17,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 1822.3,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 1,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1511.5,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 98.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1518.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1515.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 90.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 2027.5,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 78.9
+ },
+ {
+  "link_id": 6,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1851.5,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 7,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 625.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 2015.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 79.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 2101.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 72.2
+ },
+ {
+  "link_id": 14,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1700.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1700.5,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.7
+ },
+ {
+  "link_id": 17,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1854.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 1,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 1538.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 98.3
+ },
+ {
+  "link_id": 2,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 1543.3,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 1542.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 90.2
+ },
+ {
+  "link_id": 5,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 2036.3,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 78.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 1857.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 86.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 740.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 2021.7,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 78.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 2123.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 72.1
+ },
+ {
+  "link_id": 14,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 1716.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.4
+ },
+ {
+  "link_id": 16,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 1698.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.6
+ },
+ {
+  "link_id": 17,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 1896.3,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 1,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1555.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 98.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1548.5,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.2
+ },
+ {
+  "link_id": 4,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1559.5,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 90.1
+ },
+ {
+  "link_id": 5,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 2030.5,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 77.8
+ },
+ {
+  "link_id": 6,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1853.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 85.9
+ },
+ {
+  "link_id": 7,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 865.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 2021.5,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.7
+ },
+ {
+  "link_id": 12,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 2152.5,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 72.0
+ },
+ {
+  "link_id": 14,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1713.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.2
+ },
+ {
+  "link_id": 16,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1687.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1898.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 1610.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 97.3
+ },
+ {
+  "link_id": 2,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 1553.3,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 1533.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 90.3
+ },
+ {
+  "link_id": 5,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 1933.3,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 77.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 1690.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 81.7
+ },
+ {
+  "link_id": 7,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 680.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 1990.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 76.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 2140.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 71.7
+ },
+ {
+  "link_id": 14,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 1593.3,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.3
+ },
+ {
+  "link_id": 16,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 1623.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 84.7
+ },
+ {
+  "link_id": 17,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 2023.3,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1610.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 96.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1670.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 89.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1645.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 88.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 2050.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 76.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1830.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 739.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 2230.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 78.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 2405.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 71.0
+ },
+ {
+  "link_id": 14,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1830.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1900.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 2090.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 94.5
+ },
+ {
+  "link_id": 1,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 1570.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 98.3
+ },
+ {
+  "link_id": 2,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 1536.7,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 1516.7,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 5,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 2063.3,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 79.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 1833.3,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 83.3
+ },
+ {
+  "link_id": 7,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 800.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 2090.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 79.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 2196.7,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.9
+ },
+ {
+  "link_id": 14,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 1683.3,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 83.3
+ },
+ {
+  "link_id": 16,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 1673.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 86.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 2033.3,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1595.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 97.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1605.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1570.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 90.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2135.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 77.5
+ },
+ {
+  "link_id": 6,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1925.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 665.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2450.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2570.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.9
+ },
+ {
+  "link_id": 14,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1990.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2005.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 84.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2250.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 1673.3,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 95.3
+ },
+ {
+  "link_id": 2,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 1646.7,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 89.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 1633.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 88.3
+ },
+ {
+  "link_id": 5,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 2110.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 77.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 1846.7,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 80.7
+ },
+ {
+  "link_id": 7,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 690.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 2426.7,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 77.3
+ },
+ {
+  "link_id": 12,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 2580.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.9
+ },
+ {
+  "link_id": 14,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 1993.3,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.3
+ },
+ {
+  "link_id": 16,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 1990.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 17,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 2266.7,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.7
+ },
+ {
+  "link_id": 1,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 1775.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 95.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 1625.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 1525.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 90.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2140.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 78.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 1900.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 82.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 830.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2475.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 78.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2650.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.6
+ },
+ {
+  "link_id": 14,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2035.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 83.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2055.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 84.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2085.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 77.5
+ },
+ {
+  "link_id": 1,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 1550.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 2,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 1550.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 88.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 1590.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 88.7
+ },
+ {
+  "link_id": 5,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 2060.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 76.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 1856.7,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 80.3
+ },
+ {
+  "link_id": 7,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 855.3,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 2470.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 74.3
+ },
+ {
+  "link_id": 12,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 2540.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.3
+ },
+ {
+  "link_id": 14,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 1073.3,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 29.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 846.7,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 15.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 1060.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 31.7
+ },
+ {
+  "link_id": 1,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 1605.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 92.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 1580.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 87.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 1545.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 89.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 2030.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 77.5
+ },
+ {
+  "link_id": 6,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 1825.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 81.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 880.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 1765.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 16.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 1930.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.3
+ },
+ {
+  "link_id": 14,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 795.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 13.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 945.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 13.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 995.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 62.5
+ },
+ {
+  "link_id": 1,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 1713.3,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 92.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 1750.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 88.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 1733.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 89.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 2216.7,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 76.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 1983.3,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 80.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 850.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 2530.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 53.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 2693.3,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.3
+ },
+ {
+  "link_id": 14,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 1246.7,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 24.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 1080.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 16.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 1123.3,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 59.7
+ },
+ {
+  "link_id": 1,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 1700.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 1685.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 89.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 1795.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 89.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 2235.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 75.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 1990.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 77.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 830.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 2325.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 29.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 2480.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.3
+ },
+ {
+  "link_id": 14,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 1175.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 19.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 1215.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 18.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 1440.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 56.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 1746.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 93.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 1763.3,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 89.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 1743.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 88.3
+ },
+ {
+  "link_id": 5,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 2316.7,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 75.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 1993.3,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 79.3
+ },
+ {
+  "link_id": 7,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 800.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 2320.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 47.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 2516.7,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.3
+ },
+ {
+  "link_id": 14,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 1653.3,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 29.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 1600.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 21.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 1610.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 56.7
+ },
+ {
+  "link_id": 1,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 1740.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 96.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 1765.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 1755.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 91.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 2170.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 79.5
+ },
+ {
+  "link_id": 6,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 1935.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 815.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 2785.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 73.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 3060.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.3
+ },
+ {
+  "link_id": 14,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 1465.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 27.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 1510.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 18.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 1785.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 54.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 1826.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 95.3
+ },
+ {
+  "link_id": 2,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 1846.7,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 91.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 1886.7,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 90.3
+ },
+ {
+  "link_id": 5,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 2326.7,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 77.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 2080.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 79.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 770.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 2696.7,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 60.7
+ },
+ {
+  "link_id": 12,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 2893.3,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.4
+ },
+ {
+  "link_id": 14,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 1540.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 30.3
+ },
+ {
+  "link_id": 16,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 1570.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 19.7
+ },
+ {
+  "link_id": 17,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 1453.3,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 56.7
+ },
+ {
+  "link_id": 1,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 1860.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 98.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 1895.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 92.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 1905.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 92.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 2450.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 76.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 2150.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 78.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 735.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 2415.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 27.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 2670.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.4
+ },
+ {
+  "link_id": 14,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 1550.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 32.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 1845.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 32.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 2455.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 67.5
+ },
+ {
+  "link_id": 1,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 1906.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 99.3
+ },
+ {
+  "link_id": 2,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 1876.7,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 92.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 1863.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 92.3
+ },
+ {
+  "link_id": 5,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 2310.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 77.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 2066.7,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 80.7
+ },
+ {
+  "link_id": 7,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 823.3,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 2803.3,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 70.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 3146.7,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.4
+ },
+ {
+  "link_id": 14,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 2580.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 81.7
+ },
+ {
+  "link_id": 16,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 2603.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.3
+ },
+ {
+  "link_id": 17,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 2906.7,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 1,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 1915.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 100.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 1940.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 93.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 1905.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 92.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2415.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 78.5
+ },
+ {
+  "link_id": 6,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2255.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 750.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2815.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 71.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 3120.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.4
+ },
+ {
+  "link_id": 14,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2635.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2570.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2950.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.5
+ },
+ {
+  "link_id": 1,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 1806.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 98.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 1820.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 1796.7,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 90.7
+ },
+ {
+  "link_id": 5,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 2286.7,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 77.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 2003.3,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 82.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 876.7,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 2606.7,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 74.3
+ },
+ {
+  "link_id": 12,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 2876.7,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.9
+ },
+ {
+  "link_id": 14,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 2476.7,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 81.7
+ },
+ {
+  "link_id": 16,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 2490.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 83.3
+ },
+ {
+  "link_id": 17,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 2793.3,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 90.7
+ },
+ {
+  "link_id": 1,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 1865.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 100.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 1905.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 90.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 1855.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 92.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2220.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 79.5
+ },
+ {
+  "link_id": 6,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 1900.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 84.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 790.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2690.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 76.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2960.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 70.9
+ },
+ {
+  "link_id": 14,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2440.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2450.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 86.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2875.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 1866.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 100.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 1796.7,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 92.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 1810.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 92.3
+ },
+ {
+  "link_id": 5,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 2363.3,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 77.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 2173.3,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 81.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 746.7,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 2860.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 73.7
+ },
+ {
+  "link_id": 12,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 3080.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 71.4
+ },
+ {
+  "link_id": 14,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 2563.3,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 83.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 2540.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 2940.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 1,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 1745.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 100.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 1710.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 94.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 1800.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 93.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2265.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 6,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2040.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 715.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2670.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 74.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2790.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 72.5
+ },
+ {
+  "link_id": 14,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2370.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2325.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2845.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 1646.7,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 100.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 1603.3,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 1550.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 93.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 2040.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 80.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 1773.3,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 84.7
+ },
+ {
+  "link_id": 7,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 843.3,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 2673.3,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 75.3
+ },
+ {
+  "link_id": 12,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 2840.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 73.4
+ },
+ {
+  "link_id": 14,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 2463.3,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 16,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 2380.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 86.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 2740.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1335.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 105.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1330.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 99.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1360.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 97.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1830.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 81.5
+ },
+ {
+  "link_id": 6,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1595.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 740.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2595.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2720.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 74.8
+ },
+ {
+  "link_id": 14,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2425.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 83.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2480.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2910.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 91.5
+ },
+ {
+  "link_id": 1,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 1210.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 102.3
+ },
+ {
+  "link_id": 2,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 1203.3,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 96.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 1266.7,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 96.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 1590.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 82.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 1423.3,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 86.7
+ },
+ {
+  "link_id": 7,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 610.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 1890.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 81.7
+ },
+ {
+  "link_id": 12,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 2033.3,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 75.9
+ },
+ {
+  "link_id": 14,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 1930.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 84.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 1946.7,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 2310.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 92.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1175.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 104.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1145.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 99.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1165.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 98.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1515.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1290.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 90.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 555.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1695.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 85.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1830.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 76.7
+ },
+ {
+  "link_id": 14,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1570.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 90.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1525.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 91.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1960.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 95.5
+ },
+ {
+  "link_id": 1,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1090.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1083.3,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 96.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1116.7,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 97.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1370.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 83.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1226.7,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 88.7
+ },
+ {
+  "link_id": 7,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 446.7,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1446.7,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 85.3
+ },
+ {
+  "link_id": 12,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1546.7,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 77.7
+ },
+ {
+  "link_id": 14,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1440.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 89.3
+ },
+ {
+  "link_id": 16,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1393.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 91.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1776.7,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 96.7
+ },
+ {
+  "link_id": 1,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1075.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 105.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1035.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 99.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1060.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 99.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1380.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 83.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1185.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 89.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 535.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1200.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 84.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1285.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 79.1
+ },
+ {
+  "link_id": 14,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1025.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 87.5
+ },
+ {
+  "link_id": 16,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1065.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 90.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1410.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 850.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 105.3
+ },
+ {
+  "link_id": 2,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 816.7,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 100.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 810.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 100.3
+ },
+ {
+  "link_id": 5,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1053.3,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 86.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 920.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 90.7
+ },
+ {
+  "link_id": 7,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 510.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1186.7,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 86.0
+ },
+ {
+  "link_id": 12,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1243.3,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 79.6
+ },
+ {
+  "link_id": 14,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1020.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 89.3
+ },
+ {
+  "link_id": 16,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 973.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 91.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1363.3,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 94.7
+ },
+ {
+  "link_id": 1,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 795.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 102.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 780.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 97.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 745.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 97.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1070.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 79.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 955.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 85.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 400.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1090.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 84.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1140.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 79.7
+ },
+ {
+  "link_id": 14,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1060.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 89.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1115.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 92.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1385.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 96.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 623.3,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 104.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 633.3,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 98.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 636.7,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 98.3
+ },
+ {
+  "link_id": 5,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 810.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 716.7,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 86.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 540.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 940.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 83.3
+ },
+ {
+  "link_id": 12,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 1006.7,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 79.8
+ },
+ {
+  "link_id": 14,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 930.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 89.3
+ },
+ {
+  "link_id": 16,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 893.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 90.3
+ },
+ {
+  "link_id": 17,
+  "t_start": 75600.0,
+  "t_end": 76500.0,
+  "flow_veh_h": 1130.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 98.3
+ },
+ {
+  "link_id": 1,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 590.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 105.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 600.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 98.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 630.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 98.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 705.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 565.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 90.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 465.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 915.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 86.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 985.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 79.8
+ },
+ {
+  "link_id": 14,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 870.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 91.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 875.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 93.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 76500.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 1125.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 96.5
+ },
+ {
+  "link_id": 1,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 540.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 105.7
+ },
+ {
+  "link_id": 2,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 510.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 98.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 533.3,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 97.0
+ },
+ {
+  "link_id": 5,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 630.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 87.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 506.7,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 7,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 476.7,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 963.3,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 83.3
+ },
+ {
+  "link_id": 12,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 983.3,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 79.8
+ },
+ {
+  "link_id": 14,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 880.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 88.3
+ },
+ {
+  "link_id": 16,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 863.3,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 90.0
+ },
+ {
+  "link_id": 17,
+  "t_start": 77400.0,
+  "t_end": 78300.0,
+  "flow_veh_h": 1120.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 95.3
+ },
+ {
+  "link_id": 1,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 520.0,
+  "label": "A47 9.32 vers Lyon",
+  "speed_kmh": 105.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 470.0,
+  "label": "A47 9.52 vers Lyon",
+  "speed_kmh": 96.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 445.0,
+  "label": "A47 9.42 vers Lyon",
+  "speed_kmh": 95.5
+ },
+ {
+  "link_id": 5,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 570.0,
+  "label": "A47 9.62 vers Lyon",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 6,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 460.0,
+  "label": "A47 9.A2 vers Lyon",
+  "speed_kmh": 90.5
+ },
+ {
+  "link_id": 7,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 495.0,
+  "label": "Bretelle A7 Sud (2973)"
+ },
+ {
+  "link_id": 11,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 805.0,
+  "label": "A47 9.A1 vers StE",
+  "speed_kmh": 82.5
+ },
+ {
+  "link_id": 12,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 855.0,
+  "label": "A47 9.61 vers StE",
+  "speed_kmh": 79.8
+ },
+ {
+  "link_id": 14,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 770.0,
+  "label": "A47 9.41 vers StE",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 16,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 760.0,
+  "label": "A47 9.51 vers StE",
+  "speed_kmh": 87.5
+ },
+ {
+  "link_id": 17,
+  "t_start": 78300.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 975.0,
+  "label": "A47 9.31 vers StE",
+  "speed_kmh": 93.5
+ }
+]

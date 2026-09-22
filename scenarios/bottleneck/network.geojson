@@ -1,0 +1,108 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "id": 0,
+        "type": "Entry",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1000.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2000.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "type": "Exit",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1000.0,
+            0.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 0,
+        "node_up": 0,
+        "node_down": 1,
+        "length": 1000.0,
+        "speed": 25.0,
+        "lanes": 2,
+        "capacity": 1.0,
+        "fd_u": 25.0,
+        "fd_w": 3.846153846153846,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1000.0,
+            0.0
+          ],
+          [
+            2000.0,
+            0.0
+          ]
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "node_up": 1,
+        "node_down": 2,
+        "length": 1000.0,
+        "speed": 25.0,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 25.0,
+        "fd_w": 3.846153846153846,
+        "fd_kx": 0.15,
+        "fd_c": 0.5
+      }
+    }
+  ]
+}

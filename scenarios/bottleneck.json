@@ -1,0 +1,112 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "node_type": "Entry",
+      "incoming_links": [],
+      "outgoing_links": [
+        0
+      ],
+      "points": [
+        0.0,
+        0.0
+      ],
+      "signals": []
+    },
+    {
+      "id": 1,
+      "node_type": "Internal",
+      "incoming_links": [
+        0
+      ],
+      "outgoing_links": [
+        1
+      ],
+      "points": [
+        1000.0,
+        0.0
+      ],
+      "signals": []
+    },
+    {
+      "id": 2,
+      "node_type": "Exit",
+      "incoming_links": [
+        1
+      ],
+      "outgoing_links": [],
+      "points": [
+        2000.0,
+        0.0
+      ],
+      "signals": []
+    }
+  ],
+  "links": [
+    {
+      "id": 0,
+      "node_up": 0,
+      "node_down": 1,
+      "length": 1000.0,
+      "speed": 25.0,
+      "num_lanes": 2,
+      "capacity": 1.0,
+      "fd": {
+        "u": 25.0,
+        "w": 3.846153846153846,
+        "kx": 0.15,
+        "c": 0.5
+      },
+      "points": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1000.0,
+          0.0
+        ]
+      ],
+      "priority": 1.0
+    },
+    {
+      "id": 1,
+      "node_up": 1,
+      "node_down": 2,
+      "length": 1000.0,
+      "speed": 25.0,
+      "num_lanes": 1,
+      "capacity": 0.5,
+      "fd": {
+        "u": 25.0,
+        "w": 3.846153846153846,
+        "kx": 0.15,
+        "c": 0.5
+      },
+      "points": [
+        [
+          1000.0,
+          0.0
+        ],
+        [
+          2000.0,
+          0.0
+        ]
+      ],
+      "priority": 1.0
+    }
+  ],
+  "vehicles": [],
+  "demand": [
+    {
+      "period_start": 0.0,
+      "period_end": 3600.0,
+      "origin": 0,
+      "destination": 2,
+      "flow": 2500.0,
+      "count": 2500.0
+    }
+  ],
+  "start_time": 0.0,
+  "duration": 3600.0
+}

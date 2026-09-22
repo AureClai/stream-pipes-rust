@@ -1,0 +1,1131 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.736981515245848,
+     45.580811277965324
+    ]
+   },
+   "properties": {
+    "id": 0,
+    "type": "Internal",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.748218163384423,
+     45.584496263708346
+    ]
+   },
+   "properties": {
+    "id": 1,
+    "type": "Internal",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.753842421674179,
+     45.585954524567775
+    ]
+   },
+   "properties": {
+    "id": 2,
+    "type": "Internal",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.758842421674179,
+     45.58795452456777
+    ]
+   },
+   "properties": {
+    "id": 3,
+    "type": "Internal",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.770224301492356,
+     45.590187954450506
+    ]
+   },
+   "properties": {
+    "id": 4,
+    "type": "Internal",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.773738220701302,
+     45.59017348073705
+    ]
+   },
+   "properties": {
+    "id": 5,
+    "type": "Internal",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7767382207013025,
+     45.59317348073705
+    ]
+   },
+   "properties": {
+    "id": 6,
+    "type": "Exit",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.758842421674179,
+     45.58495452456777
+    ]
+   },
+   "properties": {
+    "id": 7,
+    "type": "Entry",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.775738220701302,
+     45.58817348073705
+    ]
+   },
+   "properties": {
+    "id": 8,
+    "type": "Exit",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.778355272491688,
+     45.59207852514847
+    ]
+   },
+   "properties": {
+    "id": 9,
+    "type": "Internal",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.771355272491689,
+     45.58957852514847
+    ]
+   },
+   "properties": {
+    "id": 10,
+    "type": "Internal",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.764773910827714,
+     45.58883885995847
+    ]
+   },
+   "properties": {
+    "id": 11,
+    "type": "Internal",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.753803261659078,
+     45.5860276969219
+    ]
+   },
+   "properties": {
+    "id": 12,
+    "type": "Internal",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.748168778725663,
+     45.58456855918221
+    ]
+   },
+   "properties": {
+    "id": 13,
+    "type": "Internal",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.73794261082924,
+     45.58088573405925
+    ]
+   },
+   "properties": {
+    "id": 14,
+    "type": "Exit",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.771355272491689,
+     45.59207852514847
+    ]
+   },
+   "properties": {
+    "id": 15,
+    "type": "Entry",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.764773910827714,
+     45.59183885995847
+    ]
+   },
+   "properties": {
+    "id": 16,
+    "type": "Exit",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.748168778725663,
+     45.58756855918221
+    ]
+   },
+   "properties": {
+    "id": 17,
+    "type": "Entry",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.73994261082924,
+     45.581885734059256
+    ]
+   },
+   "properties": {
+    "id": 18,
+    "type": "Internal",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.697981515245848,
+     45.567811277965326
+    ]
+   },
+   "properties": {
+    "id": 19,
+    "type": "Entry",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.8083552724916885,
+     45.60207852514847
+    ]
+   },
+   "properties": {
+    "id": 20,
+    "type": "Entry",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.752218163384423,
+     45.58349626370834
+    ]
+   },
+   "properties": {
+    "id": 21,
+    "type": "Exit",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.771224301492356,
+     45.587787954450505
+    ]
+   },
+   "properties": {
+    "id": 22,
+    "type": "Exit",
+    "signals": []
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.697981515245848,
+      45.567811277965326
+     ],
+     [
+      4.736981515245848,
+      45.580811277965324
+     ]
+    ]
+   },
+   "properties": {
+    "id": 0,
+    "node_up": 19,
+    "node_down": 0,
+    "length": 4000.0,
+    "speed": 28.889,
+    "lanes": 2,
+    "capacity": 0.9,
+    "fd_u": 28.889,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.45,
+    "pipes": [
+     {
+      "lanes": 1
+     },
+     {
+      "lanes": 1
+     }
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.736981515245848,
+      45.580811277965324
+     ],
+     [
+      4.742981515245848,
+      45.58281127796533
+     ],
+     [
+      4.748218163384423,
+      45.584496263708346
+     ]
+    ]
+   },
+   "properties": {
+    "id": 1,
+    "node_up": 0,
+    "node_down": 1,
+    "length": 889.3,
+    "speed": 28.889,
+    "lanes": 2,
+    "capacity": 0.9,
+    "fd_u": 28.889,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.45,
+    "pipes": [
+     {
+      "lanes": 1
+     },
+     {
+      "lanes": 1
+     }
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.748218163384423,
+      45.584496263708346
+     ],
+     [
+      4.751218163384423,
+      45.58549626370834
+     ],
+     [
+      4.753842421674179,
+      45.585954524567775
+     ]
+    ]
+   },
+   "properties": {
+    "id": 2,
+    "node_up": 1,
+    "node_down": 2,
+    "length": 555.6,
+    "speed": 27.083,
+    "lanes": 2,
+    "capacity": 0.9,
+    "fd_u": 27.083,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.45,
+    "pipes": [
+     {
+      "lanes": 1
+     },
+     {
+      "lanes": 1
+     }
+    ],
+    "moves": {
+     "19": [
+      0
+     ],
+     "4": [
+      0,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.758842421674179,
+      45.58495452456777
+     ],
+     [
+      4.758842421674179,
+      45.58795452456777
+     ]
+    ]
+   },
+   "properties": {
+    "id": 3,
+    "node_up": 7,
+    "node_down": 3,
+    "length": 350.0,
+    "speed": 16.7,
+    "lanes": 1,
+    "capacity": 0.4363,
+    "fd_u": 16.7,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.4363
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.753842421674179,
+      45.585954524567775
+     ],
+     [
+      4.755842421674179,
+      45.58695452456777
+     ],
+     [
+      4.758842421674179,
+      45.58795452456777
+     ]
+    ]
+   },
+   "properties": {
+    "id": 4,
+    "node_up": 2,
+    "node_down": 3,
+    "length": 430.3,
+    "speed": 26.944,
+    "lanes": 2,
+    "capacity": 0.9,
+    "fd_u": 26.944,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.45,
+    "pipes": [
+     {
+      "lanes": 1
+     },
+     {
+      "lanes": 1
+     }
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.758842421674179,
+      45.58795452456777
+     ],
+     [
+      4.769224301492356,
+      45.58978795445051
+     ],
+     [
+      4.770224301492356,
+      45.590187954450506
+     ]
+    ]
+   },
+   "properties": {
+    "id": 5,
+    "node_up": 3,
+    "node_down": 4,
+    "length": 891.5,
+    "speed": 23.148,
+    "lanes": 2,
+    "capacity": 0.9,
+    "fd_u": 23.148,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.45,
+    "pipes": [
+     {
+      "lanes": 1
+     },
+     {
+      "lanes": 1
+     }
+    ],
+    "moves": {
+     "20": [
+      0
+     ],
+     "6": [
+      0,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.770224301492356,
+      45.590187954450506
+     ],
+     [
+      4.772409727063732,
+      45.58996544791226
+     ],
+     [
+      4.773738220701302,
+      45.59017348073705
+     ]
+    ]
+   },
+   "properties": {
+    "id": 6,
+    "node_up": 4,
+    "node_down": 5,
+    "length": 280.3,
+    "speed": 24.938,
+    "lanes": 2,
+    "capacity": 0.9,
+    "fd_u": 24.938,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.45,
+    "pipes": [
+     {
+      "lanes": 1
+     },
+     {
+      "lanes": 1
+     }
+    ],
+    "moves": {
+     "7": [
+      0
+     ],
+     "8": [
+      0,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.773738220701302,
+      45.59017348073705
+     ],
+     [
+      4.775738220701302,
+      45.58817348073705
+     ]
+    ]
+   },
+   "properties": {
+    "id": 7,
+    "node_up": 5,
+    "node_down": 8,
+    "length": 300.0,
+    "speed": 16.7,
+    "lanes": 1,
+    "capacity": 0.4,
+    "fd_u": 16.7,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.4
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.773738220701302,
+      45.59017348073705
+     ],
+     [
+      4.7767382207013025,
+      45.59317348073705
+     ]
+    ]
+   },
+   "properties": {
+    "id": 8,
+    "node_up": 5,
+    "node_down": 6,
+    "length": 250.0,
+    "speed": 24.938,
+    "lanes": 2,
+    "capacity": 0.9,
+    "fd_u": 24.938,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.45
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.8083552724916885,
+      45.60207852514847
+     ],
+     [
+      4.778355272491688,
+      45.59207852514847
+     ]
+    ]
+   },
+   "properties": {
+    "id": 9,
+    "node_up": 20,
+    "node_down": 9,
+    "length": 3000.0,
+    "speed": 23.23,
+    "lanes": 2,
+    "capacity": 0.92,
+    "fd_u": 23.23,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.46,
+    "pipes": [
+     {
+      "lanes": 1
+     },
+     {
+      "lanes": 1
+     }
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.771355272491689,
+      45.59207852514847
+     ],
+     [
+      4.771355272491689,
+      45.58957852514847
+     ]
+    ]
+   },
+   "properties": {
+    "id": 10,
+    "node_up": 15,
+    "node_down": 10,
+    "length": 300.0,
+    "speed": 13.9,
+    "lanes": 1,
+    "capacity": 0.4193,
+    "fd_u": 13.9,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.4193
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.778355272491688,
+      45.59207852514847
+     ],
+     [
+      4.773355272491688,
+      45.59007852514847
+     ],
+     [
+      4.771355272491689,
+      45.58957852514847
+     ]
+    ]
+   },
+   "properties": {
+    "id": 11,
+    "node_up": 9,
+    "node_down": 10,
+    "length": 543.2,
+    "speed": 23.23,
+    "lanes": 2,
+    "capacity": 0.92,
+    "fd_u": 23.23,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.46,
+    "pipes": [
+     {
+      "lanes": 1
+     },
+     {
+      "lanes": 1
+     }
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.771355272491689,
+      45.58957852514847
+     ],
+     [
+      4.768773910827713,
+      45.58983885995847
+     ],
+     [
+      4.764773910827714,
+      45.58883885995847
+     ]
+    ]
+   },
+   "properties": {
+    "id": 12,
+    "node_up": 10,
+    "node_down": 11,
+    "length": 532.1,
+    "speed": 22.12,
+    "lanes": 2,
+    "capacity": 0.9177,
+    "fd_u": 22.12,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.4589,
+    "pipes": [
+     {
+      "lanes": 1
+     },
+     {
+      "lanes": 1
+     }
+    ],
+    "moves": {
+     "13": [
+      0
+     ],
+     "14": [
+      0,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.764773910827714,
+      45.58883885995847
+     ],
+     [
+      4.764773910827714,
+      45.59183885995847
+     ]
+    ]
+   },
+   "properties": {
+    "id": 13,
+    "node_up": 11,
+    "node_down": 16,
+    "length": 250.0,
+    "speed": 13.9,
+    "lanes": 1,
+    "capacity": 0.4193,
+    "fd_u": 13.9,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.4193
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.764773910827714,
+      45.58883885995847
+     ],
+     [
+      4.755803261659078,
+      45.5870276969219
+     ],
+     [
+      4.753803261659078,
+      45.5860276969219
+     ]
+    ]
+   },
+   "properties": {
+    "id": 14,
+    "node_up": 11,
+    "node_down": 12,
+    "length": 938.4,
+    "speed": 23.869,
+    "lanes": 2,
+    "capacity": 0.92,
+    "fd_u": 23.869,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.46,
+    "pipes": [
+     {
+      "lanes": 1
+     },
+     {
+      "lanes": 1
+     }
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.748168778725663,
+      45.58756855918221
+     ],
+     [
+      4.748168778725663,
+      45.58456855918221
+     ]
+    ]
+   },
+   "properties": {
+    "id": 15,
+    "node_up": 17,
+    "node_down": 13,
+    "length": 300.0,
+    "speed": 13.9,
+    "lanes": 1,
+    "capacity": 0.4193,
+    "fd_u": 13.9,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.4193
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.753803261659078,
+      45.5860276969219
+     ],
+     [
+      4.751168778725663,
+      45.58556855918221
+     ],
+     [
+      4.748168778725663,
+      45.58456855918221
+     ]
+    ]
+   },
+   "properties": {
+    "id": 16,
+    "node_up": 12,
+    "node_down": 13,
+    "length": 410.0,
+    "speed": 24.233,
+    "lanes": 2,
+    "capacity": 0.92,
+    "fd_u": 24.233,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.46,
+    "pipes": [
+     {
+      "lanes": 1
+     },
+     {
+      "lanes": 1
+     }
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.748168778725663,
+      45.58456855918221
+     ],
+     [
+      4.74294261082924,
+      45.58288573405925
+     ],
+     [
+      4.73994261082924,
+      45.581885734059256
+     ]
+    ]
+   },
+   "properties": {
+    "id": 17,
+    "node_up": 13,
+    "node_down": 18,
+    "length": 594.9,
+    "speed": 25.976,
+    "lanes": 2,
+    "capacity": 0.92,
+    "fd_u": 25.976,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.46,
+    "pipes": [
+     {
+      "lanes": 1
+     },
+     {
+      "lanes": 1
+     }
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.73994261082924,
+      45.581885734059256
+     ],
+     [
+      4.73794261082924,
+      45.58088573405925
+     ]
+    ]
+   },
+   "properties": {
+    "id": 18,
+    "node_up": 18,
+    "node_down": 14,
+    "length": 300.0,
+    "speed": 25.976,
+    "lanes": 2,
+    "capacity": 0.92,
+    "fd_u": 25.976,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.46
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.753842421674179,
+      45.585954524567775
+     ],
+     [
+      4.752218163384423,
+      45.58349626370834
+     ]
+    ]
+   },
+   "properties": {
+    "id": 19,
+    "node_up": 2,
+    "node_down": 21,
+    "length": 250.0,
+    "speed": 13.9,
+    "lanes": 1,
+    "capacity": 0.4193,
+    "fd_u": 13.9,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.4193
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      4.770224301492356,
+      45.590187954450506
+     ],
+     [
+      4.771224301492356,
+      45.587787954450505
+     ]
+    ]
+   },
+   "properties": {
+    "id": 20,
+    "node_up": 4,
+    "node_down": 22,
+    "length": 250.0,
+    "speed": 13.9,
+    "lanes": 1,
+    "capacity": 0.4193,
+    "fd_u": 13.9,
+    "fd_w": 4.2,
+    "fd_kx": 0.13,
+    "fd_c": 0.4193
+   }
+  }
+ ]
+}

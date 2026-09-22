@@ -1,0 +1,9 @@
+/target
+/.claude
+# Local only: paper, model notes, AI context
+/docs/
+__pycache__/
+/ROADMAP.md
+/MIGRATION_PLAN.md
+/compare_cvc.py
+/scenarios/ndw/*_request.md

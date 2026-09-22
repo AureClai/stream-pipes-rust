@@ -1,0 +1,1122 @@
+[
+ {
+  "period_start": 16200.0,
+  "period_end": 17100.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 364.0,
+  "count": 91.0
+ },
+ {
+  "period_start": 16200.0,
+  "period_end": 17100.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 56.0,
+  "count": 14.0
+ },
+ {
+  "period_start": 17100.0,
+  "period_end": 18000.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 460.0,
+  "count": 115.0
+ },
+ {
+  "period_start": 17100.0,
+  "period_end": 18000.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 44.0,
+  "count": 11.0
+ },
+ {
+  "period_start": 18000.0,
+  "period_end": 18900.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 500.0,
+  "count": 125.0
+ },
+ {
+  "period_start": 18000.0,
+  "period_end": 18900.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 40.0,
+  "count": 10.0
+ },
+ {
+  "period_start": 18900.0,
+  "period_end": 19800.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 680.0,
+  "count": 170.0
+ },
+ {
+  "period_start": 18900.0,
+  "period_end": 19800.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 60.0,
+  "count": 15.0
+ },
+ {
+  "period_start": 19800.0,
+  "period_end": 20700.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 764.0,
+  "count": 191.0
+ },
+ {
+  "period_start": 19800.0,
+  "period_end": 20700.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 132.0,
+  "count": 33.0
+ },
+ {
+  "period_start": 20700.0,
+  "period_end": 21600.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 700.0,
+  "count": 175.0
+ },
+ {
+  "period_start": 20700.0,
+  "period_end": 21600.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 152.0,
+  "count": 38.0
+ },
+ {
+  "period_start": 21600.0,
+  "period_end": 22500.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1088.0,
+  "count": 272.0
+ },
+ {
+  "period_start": 21600.0,
+  "period_end": 22500.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 160.0,
+  "count": 40.0
+ },
+ {
+  "period_start": 22500.0,
+  "period_end": 23400.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1524.0,
+  "count": 381.0
+ },
+ {
+  "period_start": 22500.0,
+  "period_end": 23400.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 268.0,
+  "count": 67.0
+ },
+ {
+  "period_start": 23400.0,
+  "period_end": 24300.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1564.0,
+  "count": 391.0
+ },
+ {
+  "period_start": 23400.0,
+  "period_end": 24300.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 256.0,
+  "count": 64.0
+ },
+ {
+  "period_start": 24300.0,
+  "period_end": 25200.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1704.0,
+  "count": 426.0
+ },
+ {
+  "period_start": 24300.0,
+  "period_end": 25200.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 348.0,
+  "count": 87.0
+ },
+ {
+  "period_start": 25200.0,
+  "period_end": 26100.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1888.0,
+  "count": 472.0
+ },
+ {
+  "period_start": 25200.0,
+  "period_end": 26100.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 324.0,
+  "count": 81.0
+ },
+ {
+  "period_start": 26100.0,
+  "period_end": 27000.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1988.0,
+  "count": 497.0
+ },
+ {
+  "period_start": 26100.0,
+  "period_end": 27000.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 452.0,
+  "count": 113.0
+ },
+ {
+  "period_start": 27000.0,
+  "period_end": 27900.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2032.0,
+  "count": 508.0
+ },
+ {
+  "period_start": 27000.0,
+  "period_end": 27900.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 500.0,
+  "count": 125.0
+ },
+ {
+  "period_start": 27900.0,
+  "period_end": 28800.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2044.0,
+  "count": 511.0
+ },
+ {
+  "period_start": 27900.0,
+  "period_end": 28800.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 400.0,
+  "count": 100.0
+ },
+ {
+  "period_start": 28800.0,
+  "period_end": 29700.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1908.0,
+  "count": 477.0
+ },
+ {
+  "period_start": 28800.0,
+  "period_end": 29700.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 340.0,
+  "count": 85.0
+ },
+ {
+  "period_start": 29700.0,
+  "period_end": 30600.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1988.0,
+  "count": 497.0
+ },
+ {
+  "period_start": 29700.0,
+  "period_end": 30600.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 408.0,
+  "count": 102.0
+ },
+ {
+  "period_start": 30600.0,
+  "period_end": 31500.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1948.0,
+  "count": 487.0
+ },
+ {
+  "period_start": 30600.0,
+  "period_end": 31500.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 460.0,
+  "count": 115.0
+ },
+ {
+  "period_start": 31500.0,
+  "period_end": 32400.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1752.0,
+  "count": 438.0
+ },
+ {
+  "period_start": 31500.0,
+  "period_end": 32400.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 324.0,
+  "count": 81.0
+ },
+ {
+  "period_start": 32400.0,
+  "period_end": 33300.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1924.0,
+  "count": 481.0
+ },
+ {
+  "period_start": 32400.0,
+  "period_end": 33300.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 300.0,
+  "count": 75.0
+ },
+ {
+  "period_start": 33300.0,
+  "period_end": 34200.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1976.0,
+  "count": 494.0
+ },
+ {
+  "period_start": 33300.0,
+  "period_end": 34200.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 304.0,
+  "count": 76.0
+ },
+ {
+  "period_start": 34200.0,
+  "period_end": 35100.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2228.0,
+  "count": 557.0
+ },
+ {
+  "period_start": 34200.0,
+  "period_end": 35100.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 296.0,
+  "count": 74.0
+ },
+ {
+  "period_start": 35100.0,
+  "period_end": 36000.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2172.0,
+  "count": 543.0
+ },
+ {
+  "period_start": 35100.0,
+  "period_end": 36000.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 220.0,
+  "count": 55.0
+ },
+ {
+  "period_start": 36000.0,
+  "period_end": 36900.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2228.0,
+  "count": 557.0
+ },
+ {
+  "period_start": 36000.0,
+  "period_end": 36900.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 300.0,
+  "count": 75.0
+ },
+ {
+  "period_start": 36900.0,
+  "period_end": 37800.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2756.0,
+  "count": 689.0
+ },
+ {
+  "period_start": 36900.0,
+  "period_end": 37800.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 336.0,
+  "count": 84.0
+ },
+ {
+  "period_start": 37800.0,
+  "period_end": 38700.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2592.0,
+  "count": 648.0
+ },
+ {
+  "period_start": 37800.0,
+  "period_end": 38700.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 364.0,
+  "count": 91.0
+ },
+ {
+  "period_start": 38700.0,
+  "period_end": 39600.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2776.0,
+  "count": 694.0
+ },
+ {
+  "period_start": 38700.0,
+  "period_end": 39600.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 228.0,
+  "count": 57.0
+ },
+ {
+  "period_start": 39600.0,
+  "period_end": 40500.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2840.0,
+  "count": 710.0
+ },
+ {
+  "period_start": 39600.0,
+  "period_end": 40500.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 336.0,
+  "count": 84.0
+ },
+ {
+  "period_start": 40500.0,
+  "period_end": 41400.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2696.0,
+  "count": 674.0
+ },
+ {
+  "period_start": 40500.0,
+  "period_end": 41400.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 292.0,
+  "count": 73.0
+ },
+ {
+  "period_start": 41400.0,
+  "period_end": 42300.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2744.0,
+  "count": 686.0
+ },
+ {
+  "period_start": 41400.0,
+  "period_end": 42300.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 356.0,
+  "count": 89.0
+ },
+ {
+  "period_start": 42300.0,
+  "period_end": 43200.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2644.0,
+  "count": 661.0
+ },
+ {
+  "period_start": 42300.0,
+  "period_end": 43200.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 372.0,
+  "count": 93.0
+ },
+ {
+  "period_start": 43200.0,
+  "period_end": 44100.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1936.0,
+  "count": 484.0
+ },
+ {
+  "period_start": 43200.0,
+  "period_end": 44100.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 224.0,
+  "count": 56.0
+ },
+ {
+  "period_start": 44100.0,
+  "period_end": 45000.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3264.0,
+  "count": 816.0
+ },
+ {
+  "period_start": 44100.0,
+  "period_end": 45000.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 360.0,
+  "count": 90.0
+ },
+ {
+  "period_start": 45000.0,
+  "period_end": 45900.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3768.0,
+  "count": 942.0
+ },
+ {
+  "period_start": 45000.0,
+  "period_end": 45900.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 392.0,
+  "count": 98.0
+ },
+ {
+  "period_start": 45900.0,
+  "period_end": 46800.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3208.0,
+  "count": 802.0
+ },
+ {
+  "period_start": 45900.0,
+  "period_end": 46800.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 352.0,
+  "count": 88.0
+ },
+ {
+  "period_start": 46800.0,
+  "period_end": 47700.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3140.0,
+  "count": 785.0
+ },
+ {
+  "period_start": 46800.0,
+  "period_end": 47700.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 456.0,
+  "count": 114.0
+ },
+ {
+  "period_start": 47700.0,
+  "period_end": 48600.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3388.0,
+  "count": 847.0
+ },
+ {
+  "period_start": 47700.0,
+  "period_end": 48600.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 388.0,
+  "count": 97.0
+ },
+ {
+  "period_start": 48600.0,
+  "period_end": 49500.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3460.0,
+  "count": 865.0
+ },
+ {
+  "period_start": 48600.0,
+  "period_end": 49500.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 464.0,
+  "count": 116.0
+ },
+ {
+  "period_start": 49500.0,
+  "period_end": 50400.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3592.0,
+  "count": 898.0
+ },
+ {
+  "period_start": 49500.0,
+  "period_end": 50400.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 516.0,
+  "count": 129.0
+ },
+ {
+  "period_start": 50400.0,
+  "period_end": 51300.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3392.0,
+  "count": 848.0
+ },
+ {
+  "period_start": 50400.0,
+  "period_end": 51300.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 440.0,
+  "count": 110.0
+ },
+ {
+  "period_start": 51300.0,
+  "period_end": 52200.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3888.0,
+  "count": 972.0
+ },
+ {
+  "period_start": 51300.0,
+  "period_end": 52200.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 524.0,
+  "count": 131.0
+ },
+ {
+  "period_start": 52200.0,
+  "period_end": 53100.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3588.0,
+  "count": 897.0
+ },
+ {
+  "period_start": 52200.0,
+  "period_end": 53100.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 512.0,
+  "count": 128.0
+ },
+ {
+  "period_start": 53100.0,
+  "period_end": 54000.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3776.0,
+  "count": 944.0
+ },
+ {
+  "period_start": 53100.0,
+  "period_end": 54000.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 504.0,
+  "count": 126.0
+ },
+ {
+  "period_start": 54000.0,
+  "period_end": 54900.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3232.0,
+  "count": 808.0
+ },
+ {
+  "period_start": 54000.0,
+  "period_end": 54900.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 468.0,
+  "count": 117.0
+ },
+ {
+  "period_start": 54900.0,
+  "period_end": 55800.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3432.0,
+  "count": 858.0
+ },
+ {
+  "period_start": 54900.0,
+  "period_end": 55800.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 424.0,
+  "count": 106.0
+ },
+ {
+  "period_start": 55800.0,
+  "period_end": 56700.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3016.0,
+  "count": 754.0
+ },
+ {
+  "period_start": 55800.0,
+  "period_end": 56700.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 428.0,
+  "count": 107.0
+ },
+ {
+  "period_start": 56700.0,
+  "period_end": 57600.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3076.0,
+  "count": 769.0
+ },
+ {
+  "period_start": 56700.0,
+  "period_end": 57600.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 584.0,
+  "count": 146.0
+ },
+ {
+  "period_start": 57600.0,
+  "period_end": 58500.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2872.0,
+  "count": 718.0
+ },
+ {
+  "period_start": 57600.0,
+  "period_end": 58500.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 548.0,
+  "count": 137.0
+ },
+ {
+  "period_start": 58500.0,
+  "period_end": 59400.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3052.0,
+  "count": 763.0
+ },
+ {
+  "period_start": 58500.0,
+  "period_end": 59400.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 596.0,
+  "count": 149.0
+ },
+ {
+  "period_start": 59400.0,
+  "period_end": 60300.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 3108.0,
+  "count": 777.0
+ },
+ {
+  "period_start": 59400.0,
+  "period_end": 60300.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 576.0,
+  "count": 144.0
+ },
+ {
+  "period_start": 60300.0,
+  "period_end": 61200.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2732.0,
+  "count": 683.0
+ },
+ {
+  "period_start": 60300.0,
+  "period_end": 61200.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 552.0,
+  "count": 138.0
+ },
+ {
+  "period_start": 61200.0,
+  "period_end": 62100.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2848.0,
+  "count": 712.0
+ },
+ {
+  "period_start": 61200.0,
+  "period_end": 62100.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 516.0,
+  "count": 129.0
+ },
+ {
+  "period_start": 62100.0,
+  "period_end": 63000.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2644.0,
+  "count": 661.0
+ },
+ {
+  "period_start": 62100.0,
+  "period_end": 63000.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 468.0,
+  "count": 117.0
+ },
+ {
+  "period_start": 63000.0,
+  "period_end": 63900.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2680.0,
+  "count": 670.0
+ },
+ {
+  "period_start": 63000.0,
+  "period_end": 63900.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 488.0,
+  "count": 122.0
+ },
+ {
+  "period_start": 63900.0,
+  "period_end": 64800.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2536.0,
+  "count": 634.0
+ },
+ {
+  "period_start": 63900.0,
+  "period_end": 64800.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 436.0,
+  "count": 109.0
+ },
+ {
+  "period_start": 64800.0,
+  "period_end": 65700.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2540.0,
+  "count": 635.0
+ },
+ {
+  "period_start": 64800.0,
+  "period_end": 65700.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 496.0,
+  "count": 124.0
+ },
+ {
+  "period_start": 65700.0,
+  "period_end": 66600.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2440.0,
+  "count": 610.0
+ },
+ {
+  "period_start": 65700.0,
+  "period_end": 66600.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 408.0,
+  "count": 102.0
+ },
+ {
+  "period_start": 66600.0,
+  "period_end": 67500.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2268.0,
+  "count": 567.0
+ },
+ {
+  "period_start": 66600.0,
+  "period_end": 67500.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 376.0,
+  "count": 94.0
+ },
+ {
+  "period_start": 67500.0,
+  "period_end": 68400.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2208.0,
+  "count": 552.0
+ },
+ {
+  "period_start": 67500.0,
+  "period_end": 68400.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 364.0,
+  "count": 91.0
+ },
+ {
+  "period_start": 68400.0,
+  "period_end": 69300.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2096.0,
+  "count": 524.0
+ },
+ {
+  "period_start": 68400.0,
+  "period_end": 69300.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 272.0,
+  "count": 68.0
+ },
+ {
+  "period_start": 69300.0,
+  "period_end": 70200.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2152.0,
+  "count": 538.0
+ },
+ {
+  "period_start": 69300.0,
+  "period_end": 70200.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 228.0,
+  "count": 57.0
+ },
+ {
+  "period_start": 70200.0,
+  "period_end": 71100.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2192.0,
+  "count": 548.0
+ },
+ {
+  "period_start": 70200.0,
+  "period_end": 71100.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 280.0,
+  "count": 70.0
+ },
+ {
+  "period_start": 71100.0,
+  "period_end": 72000.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2228.0,
+  "count": 557.0
+ },
+ {
+  "period_start": 71100.0,
+  "period_end": 72000.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 220.0,
+  "count": 55.0
+ },
+ {
+  "period_start": 72000.0,
+  "period_end": 72900.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 2064.0,
+  "count": 516.0
+ },
+ {
+  "period_start": 72000.0,
+  "period_end": 72900.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 236.0,
+  "count": 59.0
+ },
+ {
+  "period_start": 72900.0,
+  "period_end": 73800.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1864.0,
+  "count": 466.0
+ },
+ {
+  "period_start": 72900.0,
+  "period_end": 73800.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 216.0,
+  "count": 54.0
+ },
+ {
+  "period_start": 73800.0,
+  "period_end": 74700.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1844.0,
+  "count": 461.0
+ },
+ {
+  "period_start": 73800.0,
+  "period_end": 74700.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 164.0,
+  "count": 41.0
+ },
+ {
+  "period_start": 74700.0,
+  "period_end": 75600.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1836.0,
+  "count": 459.0
+ },
+ {
+  "period_start": 74700.0,
+  "period_end": 75600.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 152.0,
+  "count": 38.0
+ },
+ {
+  "period_start": 75600.0,
+  "period_end": 76500.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1460.0,
+  "count": 365.0
+ },
+ {
+  "period_start": 75600.0,
+  "period_end": 76500.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 148.0,
+  "count": 37.0
+ },
+ {
+  "period_start": 76500.0,
+  "period_end": 77400.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1748.0,
+  "count": 437.0
+ },
+ {
+  "period_start": 76500.0,
+  "period_end": 77400.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 172.0,
+  "count": 43.0
+ },
+ {
+  "period_start": 77400.0,
+  "period_end": 78300.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1552.0,
+  "count": 388.0
+ },
+ {
+  "period_start": 77400.0,
+  "period_end": 78300.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 168.0,
+  "count": 42.0
+ },
+ {
+  "period_start": 78300.0,
+  "period_end": 79200.0,
+  "origin": 0,
+  "destination": 2,
+  "flow": 1288.0,
+  "count": 322.0
+ },
+ {
+  "period_start": 78300.0,
+  "period_end": 79200.0,
+  "origin": 0,
+  "destination": 3,
+  "flow": 140.0,
+  "count": 35.0
+ }
+]

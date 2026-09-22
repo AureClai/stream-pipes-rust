@@ -1,0 +1,2882 @@
+[
+ {
+  "link_id": 0,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 2580.0,
+  "label": "M60/9484A",
+  "speed_kmh": 90.1
+ },
+ {
+  "link_id": 0,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 2512.0,
+  "label": "M60/9489A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 2552.0,
+  "label": "M60/9492A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 2568.0,
+  "label": "M60/9495A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 1256.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 3664.0,
+  "label": "M60/9500A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 3,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 3708.0,
+  "label": "M60/9505A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 3688.0,
+  "label": "M60/9513A",
+  "speed_kmh": 85.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 504.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 43200.0,
+  "t_end": 44100.0,
+  "flow_veh_h": 3200.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 2480.0,
+  "label": "M60/9484A",
+  "speed_kmh": 90.1
+ },
+ {
+  "link_id": 0,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 2372.0,
+  "label": "M60/9489A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 2368.0,
+  "label": "M60/9492A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 2372.0,
+  "label": "M60/9495A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1336.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 3664.0,
+  "label": "M60/9500A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 3,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 3728.0,
+  "label": "M60/9505A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 3740.0,
+  "label": "M60/9513A",
+  "speed_kmh": 85.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 548.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 44100.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 3244.0,
+  "label": "M60/9531A",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 2460.0,
+  "label": "M60/9484A",
+  "speed_kmh": 88.5
+ },
+ {
+  "link_id": 0,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 2408.0,
+  "label": "M60/9489A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 2412.0,
+  "label": "M60/9492A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 2452.0,
+  "label": "M60/9495A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 1524.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 3828.0,
+  "label": "M60/9500A",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 3,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 3908.0,
+  "label": "M60/9505A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 3912.0,
+  "label": "M60/9513A",
+  "speed_kmh": 85.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 588.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 45000.0,
+  "t_end": 45900.0,
+  "flow_veh_h": 3256.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 2416.0,
+  "label": "M60/9484A",
+  "speed_kmh": 88.5
+ },
+ {
+  "link_id": 0,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 2336.0,
+  "label": "M60/9489A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 2352.0,
+  "label": "M60/9492A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 2404.0,
+  "label": "M60/9495A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1308.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 3540.0,
+  "label": "M60/9500A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 3556.0,
+  "label": "M60/9505A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 3532.0,
+  "label": "M60/9513A",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 6,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 496.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 45900.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 3104.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 2292.0,
+  "label": "M60/9484A",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 0,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 2216.0,
+  "label": "M60/9489A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 2168.0,
+  "label": "M60/9492A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 2168.0,
+  "label": "M60/9495A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 1464.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 3464.0,
+  "label": "M60/9500A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 3,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 3300.0,
+  "label": "M60/9505A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 3576.0,
+  "label": "M60/9513A",
+  "speed_kmh": 85.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 524.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 46800.0,
+  "t_end": 47700.0,
+  "flow_veh_h": 2972.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 2520.0,
+  "label": "M60/9484A",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 0,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 2392.0,
+  "label": "M60/9489A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 2376.0,
+  "label": "M60/9492A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 2440.0,
+  "label": "M60/9495A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1324.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 3664.0,
+  "label": "M60/9500A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 3648.0,
+  "label": "M60/9505A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 3688.0,
+  "label": "M60/9513A",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 660.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 47700.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 3172.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 2720.0,
+  "label": "M60/9484A",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 0,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 2660.0,
+  "label": "M60/9489A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 2680.0,
+  "label": "M60/9492A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 2708.0,
+  "label": "M60/9495A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 1332.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 3816.0,
+  "label": "M60/9500A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 3692.0,
+  "label": "M60/9505A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 3908.0,
+  "label": "M60/9513A",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 532.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 48600.0,
+  "t_end": 49500.0,
+  "flow_veh_h": 3224.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 2736.0,
+  "label": "M60/9484A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 2656.0,
+  "label": "M60/9489A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 2636.0,
+  "label": "M60/9492A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 2700.0,
+  "label": "M60/9495A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1360.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 78.9
+ },
+ {
+  "link_id": 3,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 4004.0,
+  "label": "M60/9500A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 4032.0,
+  "label": "M60/9505A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 4008.0,
+  "label": "M60/9513A",
+  "speed_kmh": 85.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 564.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 49500.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 3556.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 2872.0,
+  "label": "M60/9484A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 0,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 2776.0,
+  "label": "M60/9489A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 2752.0,
+  "label": "M60/9492A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 2712.0,
+  "label": "M60/9495A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 1248.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 3792.0,
+  "label": "M60/9500A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 3852.0,
+  "label": "M60/9505A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 3912.0,
+  "label": "M60/9513A",
+  "speed_kmh": 85.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 512.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 50400.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 3380.0,
+  "label": "M60/9531A",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 2864.0,
+  "label": "M60/9484A",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 2708.0,
+  "label": "M60/9489A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 2748.0,
+  "label": "M60/9492A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 2812.0,
+  "label": "M60/9495A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1504.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 4184.0,
+  "label": "M60/9500A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 3,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 4224.0,
+  "label": "M60/9505A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 4256.0,
+  "label": "M60/9513A",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 688.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 51300.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 3556.0,
+  "label": "M60/9531A",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3084.0,
+  "label": "M60/9484A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3016.0,
+  "label": "M60/9489A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3016.0,
+  "label": "M60/9492A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3020.0,
+  "label": "M60/9495A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 1400.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 4332.0,
+  "label": "M60/9500A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 4332.0,
+  "label": "M60/9505A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 4320.0,
+  "label": "M60/9513A",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 528.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 52200.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3836.0,
+  "label": "M60/9531A",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2976.0,
+  "label": "M60/9484A",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2892.0,
+  "label": "M60/9489A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2912.0,
+  "label": "M60/9492A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2944.0,
+  "label": "M60/9495A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1488.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 4264.0,
+  "label": "M60/9500A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 4320.0,
+  "label": "M60/9505A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 4340.0,
+  "label": "M60/9513A",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 588.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 53100.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 3712.0,
+  "label": "M60/9531A",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 3484.0,
+  "label": "M60/9484A",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 3400.0,
+  "label": "M60/9489A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 3396.0,
+  "label": "M60/9492A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 3420.0,
+  "label": "M60/9495A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 1444.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 4748.0,
+  "label": "M60/9500A",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 3,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 4772.0,
+  "label": "M60/9505A",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 4724.0,
+  "label": "M60/9513A",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 6,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 592.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 54000.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 4012.0,
+  "label": "M60/9531A",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 3604.0,
+  "label": "M60/9484A",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 3512.0,
+  "label": "M60/9489A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 3544.0,
+  "label": "M60/9492A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 3564.0,
+  "label": "M60/9495A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 1392.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 78.9
+ },
+ {
+  "link_id": 3,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 4756.0,
+  "label": "M60/9500A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 4828.0,
+  "label": "M60/9505A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 4884.0,
+  "label": "M60/9513A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 700.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 67.6
+ },
+ {
+  "link_id": 7,
+  "t_start": 54900.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 4300.0,
+  "label": "M60/9531A",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 3824.0,
+  "label": "M60/9484A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 3768.0,
+  "label": "M60/9489A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 3748.0,
+  "label": "M60/9492A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 3760.0,
+  "label": "M60/9495A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 1252.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 3,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 4912.0,
+  "label": "M60/9500A",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 3,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 4844.0,
+  "label": "M60/9505A",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 4,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 4892.0,
+  "label": "M60/9513A",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 564.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 55800.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 4264.0,
+  "label": "M60/9531A",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 3852.0,
+  "label": "M60/9484A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 3680.0,
+  "label": "M60/9489A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 3648.0,
+  "label": "M60/9492A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 3696.0,
+  "label": "M60/9495A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 1472.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 78.9
+ },
+ {
+  "link_id": 3,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 5056.0,
+  "label": "M60/9500A",
+  "speed_kmh": 90.1
+ },
+ {
+  "link_id": 3,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 5028.0,
+  "label": "M60/9505A",
+  "speed_kmh": 90.1
+ },
+ {
+  "link_id": 4,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 5108.0,
+  "label": "M60/9513A",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 584.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 56700.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 4572.0,
+  "label": "M60/9531A",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 3884.0,
+  "label": "M60/9484A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 3824.0,
+  "label": "M60/9489A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 3832.0,
+  "label": "M60/9492A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 3864.0,
+  "label": "M60/9495A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 1628.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 5332.0,
+  "label": "M60/9500A",
+  "speed_kmh": 90.1
+ },
+ {
+  "link_id": 3,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 5392.0,
+  "label": "M60/9505A",
+  "speed_kmh": 90.1
+ },
+ {
+  "link_id": 4,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 5284.0,
+  "label": "M60/9513A",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 548.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 57600.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 4720.0,
+  "label": "M60/9531A",
+  "speed_kmh": 72.4
+ },
+ {
+  "link_id": 0,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3980.0,
+  "label": "M60/9484A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 0,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3888.0,
+  "label": "M60/9489A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3852.0,
+  "label": "M60/9492A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3832.0,
+  "label": "M60/9495A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 1268.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 78.9
+ },
+ {
+  "link_id": 3,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 5056.0,
+  "label": "M60/9500A",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 3,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 5044.0,
+  "label": "M60/9505A",
+  "speed_kmh": 90.1
+ },
+ {
+  "link_id": 4,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 5140.0,
+  "label": "M60/9513A",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 628.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 58500.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 4620.0,
+  "label": "M60/9531A",
+  "speed_kmh": 67.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 4028.0,
+  "label": "M60/9484A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 0,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 3884.0,
+  "label": "M60/9489A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 3892.0,
+  "label": "M60/9492A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 3928.0,
+  "label": "M60/9495A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 1320.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 3,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 5140.0,
+  "label": "M60/9500A",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 3,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 5116.0,
+  "label": "M60/9505A",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 4,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 5020.0,
+  "label": "M60/9513A",
+  "speed_kmh": 54.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 672.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 59400.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 4000.0,
+  "label": "M60/9531A",
+  "speed_kmh": 30.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 3712.0,
+  "label": "M60/9484A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 0,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 3544.0,
+  "label": "M60/9489A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 3568.0,
+  "label": "M60/9492A",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 2,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 3588.0,
+  "label": "M60/9495A",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 1212.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 4436.0,
+  "label": "M60/9500A",
+  "speed_kmh": 37.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 4368.0,
+  "label": "M60/9505A",
+  "speed_kmh": 40.2
+ },
+ {
+  "link_id": 4,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 4380.0,
+  "label": "M60/9513A",
+  "speed_kmh": 38.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 744.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 48.3
+ },
+ {
+  "link_id": 7,
+  "t_start": 60300.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 3544.0,
+  "label": "M60/9531A",
+  "speed_kmh": 22.5
+ },
+ {
+  "link_id": 0,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 3800.0,
+  "label": "M60/9484A",
+  "speed_kmh": 91.7
+ },
+ {
+  "link_id": 0,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 3596.0,
+  "label": "M60/9489A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 2,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 3576.0,
+  "label": "M60/9492A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 3524.0,
+  "label": "M60/9495A",
+  "speed_kmh": 40.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 1204.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 3,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 4688.0,
+  "label": "M60/9500A",
+  "speed_kmh": 35.4
+ },
+ {
+  "link_id": 3,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 4700.0,
+  "label": "M60/9505A",
+  "speed_kmh": 40.2
+ },
+ {
+  "link_id": 4,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 4692.0,
+  "label": "M60/9513A",
+  "speed_kmh": 48.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 696.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 49.9
+ },
+ {
+  "link_id": 7,
+  "t_start": 61200.0,
+  "t_end": 62100.0,
+  "flow_veh_h": 3996.0,
+  "label": "M60/9531A",
+  "speed_kmh": 27.4
+ },
+ {
+  "link_id": 0,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 3828.0,
+  "label": "M60/9484A",
+  "speed_kmh": 90.1
+ },
+ {
+  "link_id": 0,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 3612.0,
+  "label": "M60/9489A",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 2,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 3640.0,
+  "label": "M60/9492A",
+  "speed_kmh": 43.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 3572.0,
+  "label": "M60/9495A",
+  "speed_kmh": 29.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 1120.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 4584.0,
+  "label": "M60/9500A",
+  "speed_kmh": 32.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 4608.0,
+  "label": "M60/9505A",
+  "speed_kmh": 40.2
+ },
+ {
+  "link_id": 4,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 4568.0,
+  "label": "M60/9513A",
+  "speed_kmh": 41.8
+ },
+ {
+  "link_id": 6,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 756.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 64.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 62100.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 3496.0,
+  "label": "M60/9531A",
+  "speed_kmh": 20.9
+ },
+ {
+  "link_id": 0,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 3436.0,
+  "label": "M60/9484A",
+  "speed_kmh": 90.1
+ },
+ {
+  "link_id": 0,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 3252.0,
+  "label": "M60/9489A",
+  "speed_kmh": 51.5
+ },
+ {
+  "link_id": 2,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 3192.0,
+  "label": "M60/9492A",
+  "speed_kmh": 29.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 2888.0,
+  "label": "M60/9495A",
+  "speed_kmh": 30.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 1052.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 4260.0,
+  "label": "M60/9500A",
+  "speed_kmh": 27.4
+ },
+ {
+  "link_id": 3,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 4232.0,
+  "label": "M60/9505A",
+  "speed_kmh": 35.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 4400.0,
+  "label": "M60/9513A",
+  "speed_kmh": 38.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 868.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 64.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 63000.0,
+  "t_end": 63900.0,
+  "flow_veh_h": 4088.0,
+  "label": "M60/9531A",
+  "speed_kmh": 41.8
+ },
+ {
+  "link_id": 0,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 3076.0,
+  "label": "M60/9484A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 3040.0,
+  "label": "M60/9489A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 3136.0,
+  "label": "M60/9492A",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 3272.0,
+  "label": "M60/9495A",
+  "speed_kmh": 64.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 1008.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 78.9
+ },
+ {
+  "link_id": 3,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 4484.0,
+  "label": "M60/9500A",
+  "speed_kmh": 49.9
+ },
+ {
+  "link_id": 3,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 4556.0,
+  "label": "M60/9505A",
+  "speed_kmh": 56.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 4716.0,
+  "label": "M60/9513A",
+  "speed_kmh": 49.9
+ },
+ {
+  "link_id": 6,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 684.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 61.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 63900.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 4340.0,
+  "label": "M60/9531A",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 0,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 3056.0,
+  "label": "M60/9484A",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 2964.0,
+  "label": "M60/9489A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 2980.0,
+  "label": "M60/9492A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 3008.0,
+  "label": "M60/9495A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 1192.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 78.9
+ },
+ {
+  "link_id": 3,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 4056.0,
+  "label": "M60/9500A",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 4072.0,
+  "label": "M60/9505A",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 4060.0,
+  "label": "M60/9513A",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 504.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 27.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 64800.0,
+  "t_end": 65700.0,
+  "flow_veh_h": 3480.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2980.0,
+  "label": "M60/9484A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 0,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2892.0,
+  "label": "M60/9489A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2852.0,
+  "label": "M60/9492A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2904.0,
+  "label": "M60/9495A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 1000.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 78.9
+ },
+ {
+  "link_id": 3,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 3768.0,
+  "label": "M60/9500A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 3824.0,
+  "label": "M60/9505A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 3864.0,
+  "label": "M60/9513A",
+  "speed_kmh": 82.1
+ },
+ {
+  "link_id": 6,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 492.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 65700.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 3548.0,
+  "label": "M60/9531A",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 2548.0,
+  "label": "M60/9484A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 0,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 2512.0,
+  "label": "M60/9489A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 2552.0,
+  "label": "M60/9492A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 2592.0,
+  "label": "M60/9495A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 1084.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 3616.0,
+  "label": "M60/9500A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 3,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 3668.0,
+  "label": "M60/9505A",
+  "speed_kmh": 93.3
+ },
+ {
+  "link_id": 4,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 3684.0,
+  "label": "M60/9513A",
+  "speed_kmh": 82.1
+ },
+ {
+  "link_id": 6,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 496.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 66600.0,
+  "t_end": 67500.0,
+  "flow_veh_h": 3132.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2072.0,
+  "label": "M60/9484A",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 0,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2052.0,
+  "label": "M60/9489A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2056.0,
+  "label": "M60/9492A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2096.0,
+  "label": "M60/9495A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 988.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 78.9
+ },
+ {
+  "link_id": 3,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2988.0,
+  "label": "M60/9500A",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2992.0,
+  "label": "M60/9505A",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 3068.0,
+  "label": "M60/9513A",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 6,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 524.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 67500.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2672.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 1792.0,
+  "label": "M60/9484A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 1712.0,
+  "label": "M60/9489A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 1704.0,
+  "label": "M60/9492A",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 1704.0,
+  "label": "M60/9495A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 1012.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 3,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 2640.0,
+  "label": "M60/9500A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 2652.0,
+  "label": "M60/9505A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 2708.0,
+  "label": "M60/9513A",
+  "speed_kmh": 85.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 416.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 68400.0,
+  "t_end": 69300.0,
+  "flow_veh_h": 2320.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1716.0,
+  "label": "M60/9484A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1696.0,
+  "label": "M60/9489A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1720.0,
+  "label": "M60/9492A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1720.0,
+  "label": "M60/9495A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 948.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 3,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2608.0,
+  "label": "M60/9500A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2672.0,
+  "label": "M60/9505A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2696.0,
+  "label": "M60/9513A",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 6,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 380.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 69300.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2276.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 1568.0,
+  "label": "M60/9484A",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 1484.0,
+  "label": "M60/9489A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 1480.0,
+  "label": "M60/9492A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 1476.0,
+  "label": "M60/9495A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 880.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 2264.0,
+  "label": "M60/9500A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 2296.0,
+  "label": "M60/9505A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 2292.0,
+  "label": "M60/9513A",
+  "speed_kmh": 85.3
+ },
+ {
+  "link_id": 6,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 396.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 67.6
+ },
+ {
+  "link_id": 7,
+  "t_start": 70200.0,
+  "t_end": 71100.0,
+  "flow_veh_h": 2000.0,
+  "label": "M60/9531A",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1272.0,
+  "label": "M60/9484A",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1252.0,
+  "label": "M60/9489A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1280.0,
+  "label": "M60/9492A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1296.0,
+  "label": "M60/9495A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 724.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 3,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1992.0,
+  "label": "M60/9500A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 3,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 2032.0,
+  "label": "M60/9505A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 2056.0,
+  "label": "M60/9513A",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 6,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 396.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 71100.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1724.0,
+  "label": "M60/9531A",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1256.0,
+  "label": "M60/9484A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1224.0,
+  "label": "M60/9489A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1196.0,
+  "label": "M60/9492A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1212.0,
+  "label": "M60/9495A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 688.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 3,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1848.0,
+  "label": "M60/9500A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 3,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1832.0,
+  "label": "M60/9505A",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1840.0,
+  "label": "M60/9513A",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 6,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 352.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 72000.0,
+  "t_end": 72900.0,
+  "flow_veh_h": 1412.0,
+  "label": "M60/9531A",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1152.0,
+  "label": "M60/9484A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 0,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1092.0,
+  "label": "M60/9489A",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1100.0,
+  "label": "M60/9492A",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1100.0,
+  "label": "M60/9495A",
+  "speed_kmh": 107.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 620.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 82.1
+ },
+ {
+  "link_id": 3,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1664.0,
+  "label": "M60/9500A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1696.0,
+  "label": "M60/9505A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1692.0,
+  "label": "M60/9513A",
+  "speed_kmh": 90.1
+ },
+ {
+  "link_id": 6,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 288.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 70.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 72900.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1496.0,
+  "label": "M60/9531A",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1108.0,
+  "label": "M60/9484A",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 0,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1068.0,
+  "label": "M60/9489A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1060.0,
+  "label": "M60/9492A",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1088.0,
+  "label": "M60/9495A",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 596.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 80.5
+ },
+ {
+  "link_id": 3,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1640.0,
+  "label": "M60/9500A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 3,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1668.0,
+  "label": "M60/9505A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1712.0,
+  "label": "M60/9513A",
+  "speed_kmh": 86.9
+ },
+ {
+  "link_id": 6,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 324.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 73800.0,
+  "t_end": 74700.0,
+  "flow_veh_h": 1312.0,
+  "label": "M60/9531A",
+  "speed_kmh": 75.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 960.0,
+  "label": "M60/9484A",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 0,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 936.0,
+  "label": "M60/9489A",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 936.0,
+  "label": "M60/9492A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 972.0,
+  "label": "M60/9495A",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 564.0,
+  "label": "M60/9495K Portwood",
+  "speed_kmh": 83.7
+ },
+ {
+  "link_id": 3,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1464.0,
+  "label": "M60/9500A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 3,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1460.0,
+  "label": "M60/9505A",
+  "speed_kmh": 101.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1464.0,
+  "label": "M60/9513A",
+  "speed_kmh": 88.5
+ },
+ {
+  "link_id": 6,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 292.0,
+  "label": "M60/9526J off-slip",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 74700.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1236.0,
+  "label": "M60/9531A",
+  "speed_kmh": 77.2
+ }
+]
