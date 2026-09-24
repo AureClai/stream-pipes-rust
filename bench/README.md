@@ -1,9 +1,12 @@
 # Benchmarks: pipe-stream vs Stream Python and Eclipse SUMO
 
 Measures how fast pipe-stream runs compared with the Python reference
-implementation of Stream
-([stream-python](https://github.com/AureClai/stream-python)), and how closely
-the two engines agree, on the same vehicles.
+implementation of Stream, and how closely the two engines agree, on the
+same vehicles. Stream is published by Cerema Centre-Est under the CeCILL-B
+licence at
+[gitlab.cerema.fr/centre-est/mobilite/Stream/stream-python](https://gitlab.cerema.fr/centre-est/mobilite/Stream/stream-python);
+these benchmarks were run against the copy at
+[github.com/AureClai/stream-python](https://github.com/AureClai/stream-python).
 
 Results: [RESULTS.md](RESULTS.md) (Stream Python) and [SUMO.md](SUMO.md)
 (Eclipse SUMO, micro and meso).
