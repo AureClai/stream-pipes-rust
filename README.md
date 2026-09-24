@@ -232,12 +232,7 @@ Datasets keep their own licences:
 
 ## License
 
-Licensed under either of
-
-- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE)), or
-- MIT license ([LICENSE-MIT](LICENSE-MIT))
-
-at your option.
+Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
 
 pipe-stream derives from
 **[Stream](https://gitlab.cerema.fr/centre-est/mobilite/Stream/stream-python)**
