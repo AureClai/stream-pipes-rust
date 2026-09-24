@@ -1,11 +1,12 @@
-# Benchmark: pipe-stream vs Stream Python
+# Benchmarks: pipe-stream vs Stream Python and Eclipse SUMO
 
 Measures how fast pipe-stream runs compared with the Python reference
 implementation of Stream
 ([stream-python](https://github.com/AureClai/stream-python)), and how closely
 the two engines agree, on the same vehicles.
 
-Results: [RESULTS.md](RESULTS.md).
+Results: [RESULTS.md](RESULTS.md) (Stream Python) and [SUMO.md](SUMO.md)
+(Eclipse SUMO, micro and meso).
 
 ## Method
 
@@ -81,3 +82,23 @@ writes `bench/results/results.json`; the intermediate scenario and trajectory
 files next to it are git-ignored.
 
 Full run: about 5 minutes, almost all of it in Stream Python.
+
+## SUMO
+
+`compare_with_sumo.py` runs the same scenarios and the same assigned
+vehicles through Eclipse SUMO, microscopic and mesoscopic (`--mesosim`),
+and compares speed and aggregate outputs with pipe-stream. The network goes
+through `netconvert` as plain nodes and edges, with one route per vehicle.
+The vehicle type is calibrated on Stream's fundamental diagram; the
+settings are in [SUMO.md](SUMO.md#calibration).
+
+```bash
+.venv-bench/bin/pip install eclipse-sumo      # sumo + netconvert
+.venv-bench/bin/python bench/compare_with_sumo.py --stream-python ../stream-python --repeats 5
+.venv-bench/bin/python bench/make_sumo_report.py
+```
+
+Stream Python is still needed, to build the scenarios and assign the
+demand. `sumo` and `netconvert` are looked up in `$SUMO_HOME/bin`, then in
+the `eclipse-sumo` pip package, then on `PATH`. Tested with SUMO 1.27.1.
+Full run: about 2 minutes.

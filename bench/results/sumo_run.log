@@ -1,0 +1,21 @@
+── bottleneck
+   pipe-stream     1.98 ms | SUMO micro   0.430 s (×217) | SUMO meso   0.160 s (×81) | mean tt 334.3 / 84.3 / 326.2 s
+── diverge
+   pipe-stream     1.07 ms | SUMO micro   0.210 s (×196) | SUMO meso   0.090 s (×84) | mean tt 80.0 / 80.0 / 80.4 s
+── merge
+   pipe-stream     1.90 ms | SUMO micro   0.820 s (×430) | SUMO meso   0.120 s (×63) | mean tt 202.9 / 111.6 / 301.3 s
+── real_network
+   pipe-stream     3.86 ms | SUMO micro   1.310 s (×340) | SUMO meso   0.150 s (×39) | mean tt 100.5 / 116.8 / 113.1 s
+── chain_10
+   pipe-stream     4.05 ms | SUMO micro   0.150 s (×37) | SUMO meso   0.090 s (×22) | mean tt 40.0 / 40.0 / 40.6 s
+── chain_50
+   pipe-stream    14.12 ms | SUMO micro   0.540 s (×38) | SUMO meso   0.110 s (×8) | mean tt 200.0 / 200.0 / 200.6 s
+── chain_100
+   pipe-stream    27.38 ms | SUMO micro   1.050 s (×38) | SUMO meso   0.110 s (×4) | mean tt 400.0 / 400.0 / 400.6 s
+── grid_3x3
+   pipe-stream     3.37 ms | SUMO micro   0.860 s (×255) | SUMO meso   0.220 s (×65) | mean tt 101.6 / 96.0 / 126.7 s
+── grid_5x5
+   pipe-stream     7.17 ms | SUMO micro   1.550 s (×216) | SUMO meso   0.120 s (×17) | mean tt 106.7 / 159.7 / 107.2 s
+── grid_8x8
+   pipe-stream    12.62 ms | SUMO micro   2.820 s (×224) | SUMO meso   0.160 s (×13) | mean tt 186.7 / 298.4 / 187.2 s
+Results written to /home/user/stream-pipes-rust/bench/results/sumo_results.json

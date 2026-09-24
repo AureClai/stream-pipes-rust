@@ -1,0 +1,291 @@
+{
+  "meta": {
+    "sumo": "Eclipse SUMO sumo 1.27.1",
+    "python": "3.11.15",
+    "platform": "Linux-6.18.44-fc-v37-x86_64-with-glibc2.39",
+    "seed": 42,
+    "repeats": 5
+  },
+  "results": [
+    {
+      "scenario": "bottleneck",
+      "nodes": 3,
+      "links": 2,
+      "vehicles": 2499,
+      "ru_s": 0.001982726,
+      "rust": {
+        "completed": 1760,
+        "mean_tt": 334.2572727272724,
+        "mean_tt_from_demand": 572.5199999999702
+      },
+      "micro_s": 0.43,
+      "micro_wall_s": 0.501759858000014,
+      "micro": {
+        "completed": 1637,
+        "mean_tt": 84.26695174098961,
+        "mean_tt_from_demand": 661.6271716554406,
+        "not_inserted": 822
+      },
+      "meso_s": 0.16,
+      "meso_wall_s": 0.23107630799995604,
+      "meso": {
+        "completed": 1581,
+        "mean_tt": 326.2055660974067,
+        "mean_tt_from_demand": 701.1978241618976,
+        "not_inserted": 763
+      }
+    },
+    {
+      "scenario": "diverge",
+      "nodes": 4,
+      "links": 3,
+      "vehicles": 1600,
+      "ru_s": 0.001073271,
+      "rust": {
+        "completed": 1564,
+        "mean_tt": 80.0,
+        "mean_tt_from_demand": 80.0
+      },
+      "micro_s": 0.21,
+      "micro_wall_s": 0.2782225850000941,
+      "micro": {
+        "completed": 1564,
+        "mean_tt": 80.0,
+        "mean_tt_from_demand": 80.375,
+        "not_inserted": 0
+      },
+      "meso_s": 0.09,
+      "meso_wall_s": 0.14895426800001133,
+      "meso": {
+        "completed": 1563,
+        "mean_tt": 80.38387715930902,
+        "mean_tt_from_demand": 80.75911708253359,
+        "not_inserted": 0
+      }
+    },
+    {
+      "scenario": "merge",
+      "nodes": 4,
+      "links": 3,
+      "vehicles": 2000,
+      "ru_s": 0.001904998,
+      "rust": {
+        "completed": 1759,
+        "mean_tt": 202.9348493462296,
+        "mean_tt_from_demand": 237.24434337693384
+      },
+      "micro_s": 0.82,
+      "micro_wall_s": 0.8846939939999174,
+      "micro": {
+        "completed": 995,
+        "mean_tt": 111.56884422110552,
+        "mean_tt_from_demand": 111.96944723619922,
+        "not_inserted": 832
+      },
+      "meso_s": 0.12,
+      "meso_wall_s": 0.18488035899997612,
+      "meso": {
+        "completed": 1580,
+        "mean_tt": 301.34746835443036,
+        "mean_tt_from_demand": 417.3253164557074,
+        "not_inserted": 255
+      }
+    },
+    {
+      "scenario": "real_network",
+      "nodes": 12,
+      "links": 12,
+      "vehicles": 2991,
+      "ru_s": 0.0038585629999999997,
+      "rust": {
+        "completed": 2872,
+        "mean_tt": 100.45927932092377,
+        "mean_tt_from_demand": 102.93483822247515
+      },
+      "micro_s": 1.31,
+      "micro_wall_s": 1.367720906000045,
+      "micro": {
+        "completed": 2092,
+        "mean_tt": 116.82648183556405,
+        "mean_tt_from_demand": 117.22782026751355,
+        "not_inserted": 553
+      },
+      "meso_s": 0.15,
+      "meso_wall_s": 0.2102091780000137,
+      "meso": {
+        "completed": 2717,
+        "mean_tt": 113.10158262789842,
+        "mean_tt_from_demand": 167.55686418827247,
+        "not_inserted": 72
+      }
+    },
+    {
+      "scenario": "chain_10",
+      "nodes": 11,
+      "links": 10,
+      "vehicles": 1499,
+      "ru_s": 0.004052108,
+      "rust": {
+        "completed": 1483,
+        "mean_tt": 40.0,
+        "mean_tt_from_demand": 40.00000000000001
+      },
+      "micro_s": 0.15,
+      "micro_wall_s": 0.20661398000004283,
+      "micro": {
+        "completed": 1482,
+        "mean_tt": 40.0,
+        "mean_tt_from_demand": 40.399999999971484,
+        "not_inserted": 0
+      },
+      "meso_s": 0.09,
+      "meso_wall_s": 0.15126658700000917,
+      "meso": {
+        "completed": 1482,
+        "mean_tt": 40.59986504723347,
+        "mean_tt_from_demand": 40.999865047204956,
+        "not_inserted": 0
+      }
+    },
+    {
+      "scenario": "chain_50",
+      "nodes": 51,
+      "links": 50,
+      "vehicles": 1499,
+      "ru_s": 0.014118083,
+      "rust": {
+        "completed": 1416,
+        "mean_tt": 200.0,
+        "mean_tt_from_demand": 200.0
+      },
+      "micro_s": 0.54,
+      "micro_wall_s": 0.6022800680000273,
+      "micro": {
+        "completed": 1416,
+        "mean_tt": 200.0,
+        "mean_tt_from_demand": 200.400141242912,
+        "not_inserted": 0
+      },
+      "meso_s": 0.11,
+      "meso_wall_s": 0.18025478499998826,
+      "meso": {
+        "completed": 1416,
+        "mean_tt": 200.59957627118644,
+        "mean_tt_from_demand": 200.99971751409845,
+        "not_inserted": 0
+      }
+    },
+    {
+      "scenario": "chain_100",
+      "nodes": 101,
+      "links": 100,
+      "vehicles": 1499,
+      "ru_s": 0.027381875,
+      "rust": {
+        "completed": 1333,
+        "mean_tt": 400.0,
+        "mean_tt_from_demand": 400.0
+      },
+      "micro_s": 1.05,
+      "micro_wall_s": 1.1159781520000251,
+      "micro": {
+        "completed": 1332,
+        "mean_tt": 400.0,
+        "mean_tt_from_demand": 400.39999999997747,
+        "not_inserted": 0
+      },
+      "meso_s": 0.11,
+      "meso_wall_s": 0.17319174800002202,
+      "meso": {
+        "completed": 1332,
+        "mean_tt": 400.5998498498499,
+        "mean_tt_from_demand": 400.99984984982734,
+        "not_inserted": 0
+      }
+    },
+    {
+      "scenario": "grid_3x3",
+      "nodes": 9,
+      "links": 24,
+      "vehicles": 2998,
+      "ru_s": 0.003372468,
+      "rust": {
+        "completed": 1773,
+        "mean_tt": 101.59796954312395,
+        "mean_tt_from_demand": 290.7329949238348
+      },
+      "micro_s": 0.86,
+      "micro_wall_s": 0.9322175190000053,
+      "micro": {
+        "completed": 1417,
+        "mean_tt": 96.04657727593508,
+        "mean_tt_from_demand": 134.83246294986844,
+        "not_inserted": 1511
+      },
+      "meso_s": 0.22,
+      "meso_wall_s": 0.2890614009999126,
+      "meso": {
+        "completed": 1609,
+        "mean_tt": 126.66563082660038,
+        "mean_tt_from_demand": 860.6426351771252,
+        "not_inserted": 1330
+      }
+    },
+    {
+      "scenario": "grid_5x5",
+      "nodes": 25,
+      "links": 80,
+      "vehicles": 2998,
+      "ru_s": 0.007170589000000001,
+      "rust": {
+        "completed": 2910,
+        "mean_tt": 106.66666666666703,
+        "mean_tt_from_demand": 106.66666666666703
+      },
+      "micro_s": 1.55,
+      "micro_wall_s": 1.620148812000025,
+      "micro": {
+        "completed": 1433,
+        "mean_tt": 159.72365666434055,
+        "mean_tt_from_demand": 214.90439637122483,
+        "not_inserted": 1365
+      },
+      "meso_s": 0.12,
+      "meso_wall_s": 0.19402047300002323,
+      "meso": {
+        "completed": 2908,
+        "mean_tt": 107.19944979367263,
+        "mean_tt_from_demand": 107.59972489680894,
+        "not_inserted": 0
+      }
+    },
+    {
+      "scenario": "grid_8x8",
+      "nodes": 64,
+      "links": 224,
+      "vehicles": 2998,
+      "ru_s": 0.01261733,
+      "rust": {
+        "completed": 2844,
+        "mean_tt": 186.6666666666673,
+        "mean_tt_from_demand": 186.6666666666673
+      },
+      "micro_s": 2.82,
+      "micro_wall_s": 2.902244395000025,
+      "micro": {
+        "completed": 1372,
+        "mean_tt": 298.3790087463557,
+        "mean_tt_from_demand": 312.33979591834446,
+        "not_inserted": 1211
+      },
+      "meso_s": 0.16,
+      "meso_wall_s": 0.23940843699995185,
+      "meso": {
+        "completed": 2842,
+        "mean_tt": 187.19985925404646,
+        "mean_tt_from_demand": 187.59999999997393,
+        "not_inserted": 0
+      }
+    }
+  ]
+}
