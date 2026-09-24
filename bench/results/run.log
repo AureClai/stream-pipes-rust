@@ -1,0 +1,21 @@
+── bottleneck
+   Python     0.823 s | pipe-stream     2.156 ms | ×382 | 2499 veh | passage MAE 1.09e-16 s
+── diverge
+   Python     0.714 s | pipe-stream     0.762 ms | ×937 | 1600 veh | passage MAE 0 s
+── merge
+   Python     0.911 s | pipe-stream     1.983 ms | ×459 | 2000 veh | passage MAE 149 s
+── real_network
+   Python     2.198 s | pipe-stream     3.866 ms | ×568 | 2991 veh | passage MAE 21.7 s
+── chain_10
+   Python     2.787 s | pipe-stream     2.548 ms | ×1,094 | 1499 veh | passage MAE 2.08e-14 s
+── chain_50
+   Python    14.077 s | pipe-stream    14.492 ms | ×971 | 1499 veh | passage MAE 2.14e-14 s
+── chain_100
+   Python    27.914 s | pipe-stream    27.890 ms | ×1,001 | 1499 veh | passage MAE 2.2e-14 s
+── grid_3x3
+   Python     4.702 s | pipe-stream     2.669 ms | ×1,762 | 2998 veh | passage MAE 815 s
+── grid_5x5
+   Python    16.814 s | pipe-stream     8.148 ms | ×2,064 | 2998 veh | passage MAE 2.12e-14 s
+── grid_8x8
+   Python    33.823 s | pipe-stream    10.092 ms | ×3,351 | 2998 veh | passage MAE 2.16e-14 s
+Results written to /home/user/stream-pipes-rust/bench/results/results.json
