@@ -32,7 +32,8 @@ import time
 import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RUNNER = os.path.join(ROOT, "target", "release", "examples", "bench_runner")
+RUNNER = os.path.join(ROOT, "target", "release", "examples",
+                      "bench_runner" + (".exe" if os.name == "nt" else ""))
 
 FD = {"u": 25.0, "C": 0.5, "kx": 0.15, "w": 5.0}
 LINK_DEFAULTS = {"Capacity": None, "road_type": 1, "Priority": None, "name": None}

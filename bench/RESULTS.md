@@ -104,12 +104,43 @@ The differences come from two node rules:
    21.7 s to 2.9 s MAE, and mean travel time from 74.9 s to 98.0 s against
    100.5 s.
 
-**Open point:** a residual 2.9 s MAE on `real_network` (2.5 % of the mean
-travel time), which first appears at the congested diverge node 6. It does not
-come from the storage-fraction correction of the spillback delay:
-Stream Python's `(dn_exact - dn) * C` is dimensionally off compared with
-pipe-stream's `(dn_exact - dn) / C`, but replacing it barely changes the
-result. It needs a closer investigation.
+## The residual 2.9 s on `real_network`
+
+A 2.9 s MAE (2.5 % of the mean travel time) survives the alignment. What it
+is not:
+
+- **not the storage-fraction correction.** Stream Python's
+  `(dn_exact - dn) * C` is dimensionally off compared with pipe-stream's
+  `(dn_exact - dn) / C`, but patching Stream Python to divide — by the
+  per-lane `c` or by `c * lanes` — moves the MAE only from 2.921 s to
+  2.901 s / 2.916 s;
+- **not routing or ordering.** Over the whole run each branch of the
+  diverge carries exactly the same vehicles in both engines (489 into
+  link 4, 504 into link 5), and in the affected window the two engines
+  fill their slots with the **same vehicles in the same order** (0 of 237
+  slots permuted on link 4, 0 of 216 on link 5).
+
+What it is: a **release-timing difference during one congested episode**.
+Everything matches until t = 25 834 s, when a queue forms at the diverge
+(node 5, one incoming link splitting into links 4 and 5). From there:
+
+| | first slots after divergence, link 5 |
+|---|---|
+| Stream Python | 25 834.550, 25 835.407 — spaced 0.857 s = 1/C, the downstream capacity headway |
+| pipe-stream | 25 834.893, 25 836.093 — spaced 1.2 s, the arrival grid, with one 3.6 s gap where Stream Python keeps a 2.4 s cadence |
+
+Differences are whole multiples of the 1.2 s vehicle arrival spacing
+(0.34, 0.69, then 1.200 s repeatedly). pipe-stream is the later engine in
+92.7 % of differing passages, by +6.4 s on average and at most 22.9 s.
+Throughput is unaffected: the branch totals equalise by the end of the run.
+
+So pipe-stream appears to miss service opportunities while a queue drains
+at a congested diverge, releasing on the arrival grid rather than at the
+capacity headway. The next step is a minimal reproducer — a single diverge,
+a one-lane branch and arrivals every 1.2 s — to decide whether this is a
+defect in the retry/wake-up scheduling or a deliberate consequence of the
+event-driven wake-up strategy. Until then the difference is reported, not
+absorbed.
 
 ## Caveats
 
