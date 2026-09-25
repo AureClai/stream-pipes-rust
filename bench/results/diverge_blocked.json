@@ -1,0 +1,232 @@
+{
+  "setup": {
+    "through_vph": 3600.0,
+    "exit_vph": 360.0,
+    "duration_s": 1800.0,
+    "gate_veh_per_s": 0.01,
+    "phi": 0.95,
+    "fd": {
+      "u": 25.0,
+      "w": 5.0,
+      "kx": 0.127,
+      "C": 0.55
+    },
+    "cycle_s": 100.0,
+    "green_s": 2.0
+  },
+  "results": [
+    {
+      "engine": "Stream Python (1 stream)",
+      "through": {
+        "completed": 722,
+        "demanded": 1801,
+        "throughput_vph": 1444.0,
+        "mean_tt": 40.0,
+        "mean_delay": 0.0
+      },
+      "exit": {
+        "completed": 18,
+        "demanded": 178,
+        "throughput_vph": 36.0,
+        "mean_tt": 812.1717171717173,
+        "mean_delay": 772.1717171717173
+      }
+    },
+    {
+      "engine": "pipe-stream (1 pipe)",
+      "through": {
+        "completed": 722,
+        "demanded": 1801,
+        "throughput_vph": 1444.0,
+        "mean_tt": 81.79811970116671,
+        "mean_delay": 41.79811970116671
+      },
+      "exit": {
+        "completed": 18,
+        "demanded": 178,
+        "throughput_vph": 36.0,
+        "mean_tt": 812.1717171717173,
+        "mean_delay": 772.1717171717173
+      }
+    },
+    {
+      "engine": "pipe-stream (pipes, phi=0.95)",
+      "through": {
+        "completed": 1761,
+        "demanded": 1801,
+        "throughput_vph": 3522.0,
+        "mean_tt": 40.0855864300676,
+        "mean_delay": 0.08558643006760036
+      },
+      "exit": {
+        "completed": 18,
+        "demanded": 178,
+        "throughput_vph": 36.0,
+        "mean_tt": 812.1717171717173,
+        "mean_delay": 772.1717171717173
+      }
+    },
+    {
+      "engine": "SUMO micro",
+      "through": {
+        "completed": 1740,
+        "demanded": 1801,
+        "throughput_vph": 3480.0,
+        "mean_tt": 50.27298850574713,
+        "mean_delay": 10.27298850574713
+      },
+      "exit": {
+        "completed": 17,
+        "demanded": 178,
+        "throughput_vph": 34.0,
+        "mean_tt": 808.7058823529412,
+        "mean_delay": 768.7058823529412
+      }
+    },
+    {
+      "engine": "SUMO meso",
+      "through": {
+        "completed": 793,
+        "demanded": 1801,
+        "throughput_vph": 1586.0,
+        "mean_tt": 116.91172761664565,
+        "mean_delay": 76.91172761664565
+      },
+      "exit": {
+        "completed": 17,
+        "demanded": 178,
+        "throughput_vph": 34.0,
+        "mean_tt": 805.7058823529412,
+        "mean_delay": 765.7058823529412
+      }
+    }
+  ],
+  "phi_sweep": [
+    {
+      "engine": "pipe-stream (phi=1)",
+      "through": {
+        "completed": 1763,
+        "demanded": 1801,
+        "throughput_vph": 3526.0,
+        "mean_tt": 40.00000000000005,
+        "mean_delay": 4.973799150320701e-14
+      },
+      "exit": {
+        "completed": 18,
+        "demanded": 178,
+        "throughput_vph": 36.0,
+        "mean_tt": 812.1717171717173,
+        "mean_delay": 772.1717171717173
+      },
+      "phi": 1.0
+    },
+    {
+      "engine": "pipe-stream (phi=0.95)",
+      "through": {
+        "completed": 1761,
+        "demanded": 1801,
+        "throughput_vph": 3522.0,
+        "mean_tt": 40.0855864300676,
+        "mean_delay": 0.08558643006760036
+      },
+      "exit": {
+        "completed": 18,
+        "demanded": 178,
+        "throughput_vph": 36.0,
+        "mean_tt": 812.1717171717173,
+        "mean_delay": 772.1717171717173
+      },
+      "phi": 0.95
+    },
+    {
+      "engine": "pipe-stream (phi=0.9)",
+      "through": {
+        "completed": 1756,
+        "demanded": 1801,
+        "throughput_vph": 3512.0,
+        "mean_tt": 40.434067324725376,
+        "mean_delay": 0.4340673247253761
+      },
+      "exit": {
+        "completed": 18,
+        "demanded": 178,
+        "throughput_vph": 36.0,
+        "mean_tt": 812.1717171717173,
+        "mean_delay": 772.1717171717173
+      },
+      "phi": 0.9
+    },
+    {
+      "engine": "pipe-stream (phi=0.8)",
+      "through": {
+        "completed": 1725,
+        "demanded": 1801,
+        "throughput_vph": 3450.0,
+        "mean_tt": 43.52055335968419,
+        "mean_delay": 3.520553359684193
+      },
+      "exit": {
+        "completed": 18,
+        "demanded": 178,
+        "throughput_vph": 36.0,
+        "mean_tt": 812.1717171717173,
+        "mean_delay": 772.1717171717173
+      },
+      "phi": 0.8
+    },
+    {
+      "engine": "pipe-stream (phi=0.7)",
+      "through": {
+        "completed": 1686,
+        "demanded": 1801,
+        "throughput_vph": 3372.0,
+        "mean_tt": 46.50136340527359,
+        "mean_delay": 6.501363405273587
+      },
+      "exit": {
+        "completed": 18,
+        "demanded": 178,
+        "throughput_vph": 36.0,
+        "mean_tt": 812.1717171717173,
+        "mean_delay": 772.1717171717173
+      },
+      "phi": 0.7
+    },
+    {
+      "engine": "pipe-stream (phi=0.6)",
+      "through": {
+        "completed": 1647,
+        "demanded": 1801,
+        "throughput_vph": 3294.0,
+        "mean_tt": 48.637007598754536,
+        "mean_delay": 8.637007598754536
+      },
+      "exit": {
+        "completed": 18,
+        "demanded": 178,
+        "throughput_vph": 36.0,
+        "mean_tt": 812.1717171717173,
+        "mean_delay": 772.1717171717173
+      },
+      "phi": 0.6
+    },
+    {
+      "engine": "pipe-stream (phi=0.5)",
+      "through": {
+        "completed": 1607,
+        "demanded": 1801,
+        "throughput_vph": 3214.0,
+        "mean_tt": 49.718843695195396,
+        "mean_delay": 9.718843695195396
+      },
+      "exit": {
+        "completed": 18,
+        "demanded": 178,
+        "throughput_vph": 36.0,
+        "mean_tt": 812.1717171717173,
+        "mean_delay": 772.1717171717173
+      },
+      "phi": 0.5
+    }
+  ]
+}

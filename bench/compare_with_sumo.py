@@ -39,13 +39,14 @@ ROOT = base.ROOT
 
 def tool(name):
     """sumo / netconvert: $SUMO_HOME/bin, then the pip package, then PATH."""
+    exe = name + (".exe" if os.name == "nt" else "")
     if os.environ.get("SUMO_HOME"):
-        path = os.path.join(os.environ["SUMO_HOME"], "bin", name)
+        path = os.path.join(os.environ["SUMO_HOME"], "bin", exe)
         if os.path.exists(path):
             return path
     try:
         import sumo  # the eclipse-sumo pip package
-        path = os.path.join(sumo.SUMO_HOME, "bin", name)
+        path = os.path.join(sumo.SUMO_HOME, "bin", exe)
         if os.path.exists(path):
             return path
     except ImportError:

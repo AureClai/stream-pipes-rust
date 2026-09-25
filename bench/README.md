@@ -8,8 +8,9 @@ licence at
 these benchmarks were run against the copy at
 [github.com/AureClai/stream-python](https://github.com/AureClai/stream-python).
 
-Results: [RESULTS.md](RESULTS.md) (Stream Python) and [SUMO.md](SUMO.md)
-(Eclipse SUMO, micro and meso).
+Results: [RESULTS.md](RESULTS.md) (Stream Python), [SUMO.md](SUMO.md)
+(Eclipse SUMO, micro and meso) and [DIVERGE.md](DIVERGE.md) (what each engine
+does to the mainline beside a blocked off-ramp).
 
 ## Method
 
@@ -105,3 +106,16 @@ Stream Python is still needed, to build the scenarios and assign the
 demand. `sumo` and `netconvert` are looked up in `$SUMO_HOME/bin`, then in
 the `eclipse-sumo` pip package, then on `PATH`. Tested with SUMO 1.27.1.
 Full run: about 2 minutes.
+
+## Blocked off-ramp
+
+`diverge_blocked.py` runs one diverge scenario — a three-lane approach, a
+one-lane off-ramp blocked by a gate, 9 % exit-bound demand — through Stream
+Python, pipe-stream with one pipe per link, pipe-stream with the approach
+partitioned, and both SUMO modes, and reports what each does to the through
+traffic beside the queue. It also sweeps the friction coefficient φ.
+Results and discussion: [DIVERGE.md](DIVERGE.md).
+
+```bash
+.venv-bench/bin/python bench/diverge_blocked.py --stream-python ../stream-python
+```

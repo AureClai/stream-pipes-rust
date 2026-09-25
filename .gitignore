@@ -12,3 +12,4 @@ __pycache__/
 /bench/results/*.scenario.json
 /bench/results/*.rust.json
 /bench/results/*.xml
+/.venv-bench/
