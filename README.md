@@ -210,9 +210,7 @@ These are deliberate modelling choices for now, not bugs:
 
 If you use pipe-stream, please cite the paper (preprint forthcoming):
 
-> A. Clairais, *A Pipe-Stream Event-Based Mesoscopic LWR Model with Per-Lane
-> Resolution, Class-Restricted Lanes and Built-In Realism Verification*,
-> 2026.
+> Clairais, A. (2026). A Pipe-Stream Event-Based Mesoscopic LWR Model with Per-Lane Resolution and Class-Restricted Lanes. Zenodo. https://doi.org/10.5281/zenodo.22957996
 
 and, for the underlying single-stream model,
 [Stream](https://gitlab.cerema.fr/centre-est/mobilite/Stream/stream-python)
