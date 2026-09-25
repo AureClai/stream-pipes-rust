@@ -224,7 +224,7 @@ Datasets keep their own licences:
   *Contains National Highways data © National Highways.*
 - **NGSIM** (US DOT): public open data, fetched by script, not
   redistributed.
-- **Cerema AVATAR** (A47): open data from Cerema.
+- **Cerema AVATAR** (A47): open data from DIR Centre-Est registered in Cerema AVATAR.
 - **NDW** (Dutch per-lane data): subject to NDW's terms, fetched by
   script, not redistributed.
 
