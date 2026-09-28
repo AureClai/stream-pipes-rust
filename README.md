@@ -1,4 +1,5 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22957996.svg)](https://doi.org/10.5281/zenodo.22957996)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23017416.svg)](https://doi.org/10.5281/zenodo.23017416)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![made-with-rust](https://img.shields.io/badge/Made%20with-Rust-1f425f.svg)](https://www.rust-lang.org/)
 
@@ -215,6 +216,8 @@ These are deliberate modelling choices for now, not bugs:
 If you use pipe-stream, please cite the paper (preprint forthcoming):
 
 > Clairais, A. (2026). A Pipe-Stream Event-Based Mesoscopic LWR Model with Per-Lane Resolution and Class-Restricted Lanes. Zenodo. https://doi.org/10.5281/zenodo.22957996
+
+> Clairais, A. (2026). Shipping the Means of Refutation: Executable Verification and Field Validation of a Lane-Resolved Mesoscopic LWR Model (Version 1). Zenodo. https://doi.org/10.5281/zenodo.23017416
 
 and, for the underlying single-stream model,
 [Stream](https://gitlab.cerema.fr/centre-est/mobilite/Stream/stream-python)
