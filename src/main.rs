@@ -52,7 +52,8 @@ enum Commands {
     },
     /// Run a scenario and the built-in verification apparatus on it
     /// (per-element mechanism checks; optionally the analytic benchmarks).
-    /// Exit code is non-zero when any check fails.
+    /// Exit code is non-zero when any check fails, and when the run
+    /// exercised nothing at all (absence of evidence is not a pass).
     Verify {
         /// Path to the input scenario JSON file (compiled artifact)
         #[arg(short, long, value_name = "FILE")]
@@ -66,9 +67,15 @@ enum Commands {
         #[arg(long, default_value_t = 300.0)]
         bin_size: f64,
 
-        /// Also run the nine closed-form analytic benchmarks
+        /// Also run the ten closed-form analytic benchmarks
         #[arg(long)]
         benchmarks: bool,
+
+        /// Treat any not-exercised mechanism as a failure. Off by default,
+        /// because a scenario is entitled not to exercise every mechanism;
+        /// on, for gating a suite that is supposed to cover all of them.
+        #[arg(long)]
+        strict: bool,
 
         /// Write the full JSON verification report to this path
         #[arg(short, long, value_name = "FILE")]
@@ -130,8 +137,8 @@ fn main() -> Result<()> {
                 // TODO: Result export
             }
         }
-        Commands::Verify { input, assignment, bin_size, benchmarks, output } => {
-            run_verify(input, assignment, bin_size, benchmarks, output)?;
+        Commands::Verify { input, assignment, bin_size, benchmarks, strict, output } => {
+            run_verify(input, assignment, bin_size, benchmarks, strict, output)?;
         }
     }
 
@@ -147,6 +154,7 @@ fn run_verify(
     assignment: bool,
     bin_size: f64,
     benchmarks: bool,
+    strict: bool,
     output: Option<PathBuf>,
 ) -> Result<()> {
     println!("Loading scenario from {:?}...", input);
@@ -185,12 +193,20 @@ fn run_verify(
     if benchmarks {
         println!("Analytic benchmarks:");
         for b in run_benchmarks()? {
-            if b.status == CheckStatus::Fail {
+            // The benchmarks are event-exact, so anything short of Pass is a
+            // defect: a Warn here is an undiagnosed deviation, not acceptable
+            // accuracy, and must not leave the command reporting success.
+            if b.status != CheckStatus::Pass {
                 benchmark_failures += 1;
             }
+            // Report the gap in ulps as well as percent: "0.000%" is a rounded
+            // print and cannot distinguish exact agreement from a deviation
+            // twelve orders of magnitude above rounding, which is the whole
+            // claim being made here.
+            let ulps = (b.measured.to_bits() as i64 - b.analytic.to_bits() as i64).abs();
             println!(
-                "  [{:?}] {} — analytic {} {u}, measured {} {u} ({:.3}% error)",
-                b.status, b.name, b.analytic, b.measured, b.error_pct, u = b.unit
+                "  [{:?}] {} — analytic {} {u}, measured {} {u} ({:.3}% error, {} ulp)",
+                b.status, b.name, b.analytic, b.measured, b.error_pct, ulps, u = b.unit
             );
         }
     }
@@ -210,6 +226,35 @@ fn run_verify(
             benchmark_failures
         );
     }
-    println!("Verification passed.");
+
+    // Absence of evidence is not evidence of correctness — the principle the
+    // status vocabulary exists to enforce. A run that exercised nothing has
+    // verified nothing, and must not exit 0 reporting success.
+    let exercised = s.elements_checked.saturating_sub(s.elements_not_exercised);
+    if s.elements_checked > 0 && exercised == 0 {
+        anyhow::bail!(
+            "verification INCONCLUSIVE: no mechanism was exercised ({} element(s), all \
+             not-exercised). Nothing was verified. If the scenario draws its vehicles \
+             from a demand matrix, pass --assignment.",
+            s.elements_checked
+        );
+    }
+    if strict && s.elements_not_exercised > 0 {
+        anyhow::bail!(
+            "verification INCOMPLETE (--strict): {} of {} element(s) not exercised",
+            s.elements_not_exercised,
+            s.elements_checked
+        );
+    }
+
+    if s.elements_not_exercised > 0 {
+        println!(
+            "Verification passed on what was exercised — {} of {} element(s) \
+             not exercised, and therefore not verified.",
+            s.elements_not_exercised, s.elements_checked
+        );
+    } else {
+        println!("Verification passed.");
+    }
     Ok(())
 }

@@ -25,9 +25,19 @@ use crate::verification::CheckStatus;
 use anyhow::{Context, Result};
 use serde::{Deserialize, Serialize};
 
-/// Relative error bounds: the engine is deterministic and event-exact, so
-/// benchmarks must match theory almost perfectly.
-const PASS_PCT: f64 = 0.5;
+/// Relative error bounds. The engine is deterministic and event-exact: on
+/// these cases its answer and the closed-form value are the *same real
+/// number*, so the only admissible difference is floating-point
+/// representation. The pass bound is therefore set at the scale of accumulated
+/// rounding rather than at a modelling tolerance — a deviation the engine
+/// could not have produced by rounding is a defect, however small it looks.
+/// Measured worst case across the suite is 1 ulp (1.7e-16 relative), on
+/// `friction_throttle`; the other eight agree bit-for-bit.
+const PASS_PCT: f64 = 1e-10; // 1e-12 relative
+/// Above the exactness bound and below this, a benchmark is not "accurate
+/// enough": it is an undiagnosed defect. The separate status exists to aid
+/// bisection, not to license the deviation — both Warn and Fail break the
+/// build (see `all_benchmarks_are_exact` and the CLI exit status).
 const WARN_PCT: f64 = 5.0;
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -270,6 +280,55 @@ fn case_spillback_wave() -> Result<BenchmarkResult> {
         "A 4-slot link at jam: the 5th entry is enabled by the 1st exit and must \
          lag it by the backward wave travel time L/w = 100/5 = 20 s.",
         20.0,
+        measured,
+        "s",
+    ))
+}
+
+fn case_fractional_storage_wave() -> Result<BenchmarkResult> {
+    // The only case with NON-INTEGER storage, and the only one that can tell
+    // frac/C from frac·C.
+    //
+    // L0: kx 0.0125 × 100 m × 2 lanes → 2.5 vehicles of storage, which a
+    // discrete solver must round up to 3 slots. Rounding up hands the pipe
+    // half a vehicle of room the continuum never granted it, so each slot
+    // release has to be held back by the time that half-vehicle needs to
+    // clear at capacity.
+    //
+    // Derived from Newell's continuous supply bound, independently of the
+    // engine's own expression:
+    //     t_in(n) ≥ t_out(n − kx·L·Λ) + L/w,        kx·L·Λ = 2.5 veh
+    // whose discrete form can only index whole vehicles, n − ⌈kx·L·Λ⌉, and so
+    // reads the downstream count frac = ⌈2.5⌉ − 2.5 = 0.5 vehicles too early.
+    // At the discharge rate C those 0.5 vehicles occupy frac/C = 0.5/10 =
+    // 0.05 s. Expected lag = L/w + frac/C = 100/5 + 0.05 = 20.05 s.
+    //
+    // The sign and the dimension are what this pins. The correction is a time,
+    // so it divides by C; multiplying instead would give 100/5 + 0.5·10 = 25 s,
+    // a 24.7% error here but exactly 0 in every integer-storage case — which is
+    // how the defect survived the rest of this suite.
+    let n = 6usize;
+    let s = run(corridor(0.0125, 0.01, &vec![0.0; n]))?;
+    let dn = 3usize; // ⌈2.5⌉
+    let first_exit = s
+        .vehicles
+        .iter()
+        .filter_map(|v| v.node_times.get(1).copied())
+        .fold(f64::INFINITY, f64::min);
+    let mut entries: Vec<f64> = s
+        .vehicles
+        .iter()
+        .filter_map(|v| v.node_times.first().copied())
+        .collect();
+    entries.sort_by(|a, b| a.total_cmp(b));
+    let measured = entries.get(dn).map_or(f64::NAN, |t| t - first_exit);
+    Ok(result(
+        "fractional_storage_wave",
+        "Fractional-slot backward wave",
+        "A link holding 2.5 vehicles, discretised to 3 slots. Theory: the 4th \
+         entry lags the 1st exit by L/w plus the fractional slot's discharge \
+         time, 100/5 + 0.5/10 = 20.05 s.",
+        20.05,
         measured,
         "s",
     ))
@@ -538,6 +597,7 @@ pub fn run_benchmarks() -> Result<Vec<BenchmarkResult>> {
         case_bottleneck_discharge()?,
         case_queue_delay()?,
         case_spillback_wave()?,
+        case_fractional_storage_wave()?,
         case_merge_throughput()?,
         case_bus_lane_immunity()?,
         case_shoulder_exit_wave()?,
@@ -562,6 +622,31 @@ mod tests {
                 b.unit,
                 b.measured,
                 b.error_pct
+            );
+        }
+    }
+
+    /// The acceptance bar of the papers, enforced literally: agreement with
+    /// the closed-form value up to floating-point representation. Stated in
+    /// ulps because percentages hide the scale involved — 0.5% would pass a
+    /// benchmark wrong by 13 orders of magnitude more than rounding can
+    /// explain. A regression here means the solver stopped being exact, not
+    /// that it got slightly less accurate.
+    #[test]
+    fn all_benchmarks_are_exact() {
+        const MAX_ULPS: i64 = 4;
+        for b in run_benchmarks().expect("benchmark suite should run") {
+            let ulps = (b.measured.to_bits() as i64 - b.analytic.to_bits() as i64).abs();
+            assert!(
+                ulps <= MAX_ULPS,
+                "benchmark '{}' is not event-exact: analytic {:.17} {}, measured {:.17}, \
+                 {} ulps apart (limit {})",
+                b.id,
+                b.analytic,
+                b.unit,
+                b.measured,
+                ulps,
+                MAX_ULPS
             );
         }
     }
