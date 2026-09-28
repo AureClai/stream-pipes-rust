@@ -57,7 +57,15 @@ for _, g in df.groupby("traj", sort=False):
 
 gore = float(np.median(gores))
 commit = np.sort(np.array([d for d in dists if d >= 0]))
-censor = gore  # commitments longer than the upstream extent are unobservable
+
+# This distance is measured inside a right-side lane: the last change out of a
+# mainline lane can only move into one. The binding bound is therefore that
+# lane's own length, not the extent of the observed site — a vehicle cannot
+# enter a lane before that lane exists. Most vehicles route through the
+# auxiliary lane, so its length is the visible ceiling; the tail past it is the
+# minority entering through the on-ramp lane, which begins further upstream.
+aux = df.loc[df["lane_id"] == 6, "y"]
+censor = float(aux.max() - aux.min())
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.4, 3.0))
 
@@ -67,7 +75,7 @@ ax1.axvspan(300, 500, color=BLUE, alpha=0.10, lw=0)
 ax1.text(400, 0.07, "G1 floor\n300–500 m", ha="center", fontsize=8.5,
          color=BLUE)
 ax1.axvline(censor, ls="--", lw=1.0, color="#999999")
-ax1.text(censor - 10, 0.52, f"observation limit ({censor:.0f} m)",
+ax1.text(censor - 10, 0.52, f"auxiliary lane length ({censor:.0f} m)",
          rotation=90, va="center", ha="right", fontsize=8, color="#888888")
 ax1.step(commit, ecdf_y, where="post", color=BLUE)
 med = float(np.median(commit))
@@ -78,11 +86,11 @@ ax1.annotate(f"median {med:.0f} m", (med, 0.5), textcoords="offset points",
 ax1.plot([p90], [0.9], "s", ms=5, color=BLUE)
 ax1.annotate(f"p90 {p90:.0f} m", (p90, 0.9), textcoords="offset points",
              xytext=(-8, 3), ha="right", fontsize=8.5)
-ax1.set_xlabel("commitment distance to own exit-lane entry (m)")
+ax1.set_xlabel("auxiliary-lane traversal to own exit-lane entry (m)")
 ax1.set_ylabel("ECDF")
 ax1.set_xlim(0, 520)
 ax1.set_ylim(0, 1.02)
-ax1.set_title(f"(a) Exit commitment, n = {len(commit)}")
+ax1.set_title(f"(a) Auxiliary-lane traversal, n = {len(commit)}")
 
 # (b) LC intensity per 100 m bin, periods 0-2
 bins = np.arange(0, 800, 100)

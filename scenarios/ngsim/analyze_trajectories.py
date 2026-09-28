@@ -120,44 +120,129 @@ def virtual_loops(df: pd.DataFrame, stations: list[float]) -> pd.DataFrame:
     return loops
 
 
+def lane_extents(df: pd.DataFrame) -> dict[int, tuple[float, float]]:
+    """Observed longitudinal extent of each lane, in metres along the section.
+
+    A lane that exists over only part of the section censors any distance
+    measured inside it — which is what the auxiliary lane does here.
+    """
+    return {
+        int(lane): (round(float(g["y"].min()), 1), round(float(g["y"].max()), 1))
+        for lane, g in df.groupby("lane_id")
+    }
+
+
 def commitment_metrics(
     df: pd.DataFrame, location: str, min_dur: float, late_m: float
 ) -> dict:
+    """Where exit-bound vehicles commit to the exit side of the carriageway.
+
+    WHAT THIS CANNOT MEASURE, AND WHY. The obvious metric — the last change
+    out of a mainline lane, down to the point the vehicle enters the off-ramp
+    lane — is bounded by the AUXILIARY lane's own length, because that is the
+    only lane such a change can move into. On US-101 the auxiliary lane spans
+    roughly y = 188..411 m, so no vehicle can score above ~224 m whatever its
+    behaviour, and the resulting median (~201 m) describes the geometry of
+    the site rather than any driver decision. It is reported below as
+    `aux_lane_traversal_m`, under that name, and must not be read as a
+    commitment distance.
+
+    The behavioural event is the last change INTO the rightmost mainline lane,
+    which may happen anywhere upstream. That observation is right-censored:
+    a vehicle already in the rightmost lane when it enters the camera section
+    committed somewhere upstream, and the section only bounds it from below.
+    Each exit-bound vehicle is therefore classified:
+
+      censored_at_entry  already in lane >= RIGHTMOST when first seen; the
+                         commitment distance is AT LEAST (y_exit - y_first)
+      observed           seen changing into the rightmost lane inside the
+                         section; fully observed
+      weaving            entered from the on-ramp and never joined the
+                         mainline; a mainline commitment distance is
+                         undefined for these
+
+    When the censored share is large the honest status is `not-exercised`:
+    the site cannot see the quantity, and a median over the observed minority
+    would describe only the vehicles that happened to commit late.
+    """
     exit_lane = EXIT_LANE.get(location)
     if exit_lane is None:
         return {"status": "not-exercised (no off-ramp lane at this site)"}
-    dists, gore_estimates = [], []
+    rightmost = max(MAINLINE.get(location, [5])) - 1  # 6 mainline ids -> lane 5
+    on_ramp = exit_lane - 1
+
+    aux_traversal, censored, observed, weaving, gore_estimates = [], [], [], [], []
     for _, g in df.groupby("traj", sort=False):
         runs = debounce_lanes(g, min_dur)
         lanes = [r[2] for r in runs]
         if exit_lane not in lanes:
             continue
-        first_exit = lanes.index(exit_lane)
-        gore_estimates.append(runs[first_exit][1])
-        # last change from a pure mainline lane (1-5) toward the exit path
-        last_main = None
-        for r0, r1 in zip(runs, runs[1:]):
-            if r0[2] <= 5 and r1[2] > 5:
-                last_main = r1
-        if last_main is not None:
-            # per-vehicle: from the last mainline lane change to the point
-            # where THIS vehicle enters the exit lane (not a pooled gore)
-            dists.append(runs[first_exit][1] - last_main[1])
-    if not dists:
+        i_exit = lanes.index(exit_lane)
+        y_exit, y_first, first_lane = runs[i_exit][1], runs[0][1], runs[0][2]
+        gore_estimates.append(y_exit)
+
+        # Geometry-bounded quantity, kept for continuity and clearly named.
+        last_out = [r1[1] for r0, r1 in zip(runs, runs[1:])
+                    if r0[2] <= rightmost and r1[2] > rightmost]
+        if last_out:
+            aux_traversal.append(y_exit - last_out[-1])
+
+        into_right = [r1[1] for r0, r1 in zip(runs[:i_exit], runs[1:i_exit + 1])
+                      if r1[2] == rightmost and r0[2] < rightmost]
+        if first_lane == on_ramp:
+            weaving.append(y_exit - y_first)
+        elif first_lane >= rightmost:
+            censored.append(y_exit - y_first)
+        elif into_right:
+            observed.append(y_exit - into_right[-1])
+
+    if not gore_estimates:
         return {"status": "not-exercised (no exit-bound vehicles found)"}
-    gore = float(np.median(gore_estimates))  # censoring reference only
-    commit = np.array([d for d in dists if d >= 0])
+
+    mainline = len(censored) + len(observed)
+    censored_share = len(censored) / mainline if mainline else 1.0
+
+    def stats(a: list[float]) -> dict | None:
+        if not a:
+            return None
+        v = np.asarray(a, float)
+        return {
+            "n": int(len(v)),
+            "median": round(float(np.median(v)), 1),
+            "p25": round(float(np.percentile(v, 25)), 1),
+            "p75": round(float(np.percentile(v, 75)), 1),
+            "min": round(float(v.min()), 1),
+            "max": round(float(v.max()), 1),
+        }
+
+    aux = np.asarray(aux_traversal, float)
     return {
-        "status": "run",
-        "n_exit_vehicles": int(len(dists)),
-        "gore_y_m_est": round(gore, 1),
+        # The quantity the guideline needs cannot be estimated from a sample
+        # that is mostly censored; say so in the vocabulary of the apparatus.
+        "status": (
+            "not-exercised (commitment is censored for "
+            f"{censored_share:.0%} of mainline exit-bound vehicles: they enter "
+            "the section already committed)"
+            if censored_share > 0.5 else "run"
+        ),
+        "n_exit_vehicles": int(len(gore_estimates)),
+        "gore_y_m_est": round(float(np.median(gore_estimates)), 1),
+        "lane_extent_m": lane_extents(df),
         "commitment_distance_m": {
-            "median": round(float(np.median(commit)), 1),
-            "p25": round(float(np.percentile(commit, 25)), 1),
-            "p75": round(float(np.percentile(commit, 75)), 1),
-            "p90": round(float(np.percentile(commit, 90)), 1),
+            "censored_at_entry": stats(censored),
+            "observed_in_section": stats(observed),
+            "weaving_on_ramp_to_off_ramp": stats(weaving),
+            "censored_share": round(censored_share, 3),
+            "lower_bound_note": (
+                "censored_at_entry values are LOWER BOUNDS: commitment "
+                "occurred at or before the section entry"
+            ),
         },
-        "late_insertion_share": round(float((commit < late_m).mean()), 3),
+        # Geometry, not behaviour. Named so it cannot be misquoted.
+        "aux_lane_traversal_m": stats(aux_traversal),
+        "late_insertion_share_of_aux_traversal": (
+            round(float((aux < late_m).mean()), 3) if len(aux) else None
+        ),
         "late_threshold_m": late_m,
     }
 
