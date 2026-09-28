@@ -2,8 +2,12 @@
 # Fork of stream-core-rust: pipe-stream (meso-per-lane) prototype.
 # The lib name stays `stream_core_rust` so module imports are unchanged.
 name = "stream-pipes-rust"
-version = "0.1.0"
+version = "0.1.2"
 edition = "2021"
+# Option::is_none_or (stable since 1.82) is used in the solver; the lockfile is
+# format v4 (Cargo 1.78+). Declared so an older toolchain fails with a version
+# message instead of an unrelated compile error.
+rust-version = "1.82"
 description = "Event-based mesoscopic LWR traffic model with per-lane pipes, class-restricted lanes and built-in verification"
 license = "MIT OR Apache-2.0"
 authors = ["Aurélien Clairais <aureclai.dev@gmail.com>"]

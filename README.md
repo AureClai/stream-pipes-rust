@@ -40,7 +40,7 @@ with its own capacity, storage and backward wave.
 | | |
 |---|---|
 | **Exact** | Discrete-event solution of LWR with a triangular fundamental diagram (Newell's simplified theory). No time step, no RNG: two runs are bit-identical. |
-| **Verified** | Nine closed-form LWR benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle) pass at machine precision. |
+| **Verified** | Ten closed-form LWR benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, fractional-slot wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle) pass at machine precision. |
 | **Self-auditing** | `stream-cli verify` checks every link, pipe and node of any scenario (free-flow traversal, capacity, storage bound, backward wave, FD adherence, conservation, FIFO, demand served) and reports **pass / warn / fail / not-exercised**. |
 | **Validated** | Three instrumented corridors in two countries: 1 280 of 1 312 flow windows below GEH 5. NGSIM trajectories confirm the lane-commitment assumption. |
 | **Scenario variants** | *Patches* (lane closures, capacity drops, lane add/shrink, demand scaling, new links) compose a variant from a base network, with time windows. |
@@ -72,7 +72,7 @@ cd stream-pipes-rust
 cargo build --release --no-default-features --bin stream-cli
 ```
 
-Run the nine analytic benchmarks and verify a bundled scenario:
+Run the ten analytic benchmarks and verify a bundled scenario:
 
 ```bash
 cargo run --release --no-default-features --bin stream-cli -- \
