@@ -90,7 +90,7 @@ never fully served before the end of the simulation.
 | Command | Purpose |
 |---|---|
 | `stream-cli build --network N.geojson --demand D.json --config C.json -o scenario.json` | Compile source files into one validated scenario |
-| `stream-cli run -i scenario.json [--assignment]` | Simulate (with `--assignment`, generate and route vehicles from demand first) |
+| `stream-cli run -i scenario.json [--assignment] [--merge capacity] [-o results.json]` | Simulate (with `--assignment`, generate and route vehicles from demand first) |
 | `stream-cli verify -i scenario.json [--assignment] [--bin-size 300] [--benchmarks] [-o report.json]` | Simulate, then run the verification apparatus |
 
 ### Using it as a library
@@ -223,7 +223,11 @@ These are deliberate modelling choices for now, not bugs:
 - no lane changes in the middle of a link: a vehicle commits to a pipe on entry;
 - static shortest-path assignment, blind to vehicle class, with no mid-run
   rerouting;
-- deterministic node service order (no stochastic merge yet), no signals;
+- deterministic merges: by default a node serves its incoming links in id
+  order (the historical rule, kept bit for bit); `"merge": "capacity"` in a
+  scenario's `config.json` (or `--merge capacity`) shares a saturated merge in
+  proportion to the incoming capacities instead. No stochastic merge, no
+  signals;
 - myopic lane choice, and friction switches on or off rather than varying
   continuously.
 

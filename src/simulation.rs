@@ -166,6 +166,38 @@ fn choose_pipe_for_transfer(
     }
 }
 
+// ── Merge rule ────────────────────────────────────────────────────────────────
+
+/// How a node shares its outflow between incoming links that all have
+/// vehicles waiting.
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
+pub enum MergeRule {
+    /// Incoming links are tried in id order: under saturation the lowest id
+    /// takes every slot it can use. The historical rule — and the default, so
+    /// every existing scenario runs bit-identically.
+    #[default]
+    InOrder,
+    /// Deterministic weighted fair merge: each incoming link counts the
+    /// vehicles it passed while another incoming link was also waiting; the
+    /// node tries first the link with the smallest count / capacity. Under
+    /// sustained saturation the outflow splits in proportion to the incoming
+    /// capacities (Daganzo's capacity-proportional merge); a link alone takes
+    /// all the supply.
+    CapacityProportional,
+}
+
+impl MergeRule {
+    /// Read `"merge"` from a scenario config: `"in_order"` (default) or
+    /// `"capacity"`.
+    pub fn from_config(config: &serde_json::Value) -> Result<Self> {
+        match config.get("merge").and_then(|v| v.as_str()) {
+            None | Some("in_order") => Ok(MergeRule::InOrder),
+            Some("capacity") => Ok(MergeRule::CapacityProportional),
+            Some(other) => anyhow::bail!("unknown merge rule '{other}' (expected \"in_order\" or \"capacity\")"),
+        }
+    }
+}
+
 /// Placeholder vehicle id for system-originated events (LinkReady) that do not
 /// reference a real vehicle — distinct from any valid index.
 const NO_VEHICLE: VehID = VehID::MAX;
@@ -214,6 +246,11 @@ pub struct Simulation {
     /// node transfers — Python's `General["ActiveUpStreamCapacity"]`.
     /// Defaults to `false`, matching the Python default.
     pub upstream_capacity: bool,
+    /// How nodes share their outflow between waiting incoming links.
+    pub merge_rule: MergeRule,
+    /// Per link: vehicles it passed at its downstream node while another
+    /// incoming link of that node was waiting (CapacityProportional only).
+    merge_served: Vec<f64>,
 }
 
 #[cfg(feature = "python")]
@@ -236,11 +273,14 @@ impl Simulation {
                 i, node.id
             );
         }
+        let n_links = scenario.links.len();
         let mut sim = Simulation {
             scenario,
             events: BinaryHeap::new(),
             current_time: 0.0,
             upstream_capacity: false,
+            merge_rule: MergeRule::InOrder,
+            merge_served: vec![0.0; n_links],
         };
         // Build runtime pipes here (not in Link::new) so that FD parameters
         // adjusted after construction — as several tests do — are respected.
@@ -620,6 +660,10 @@ impl Simulation {
             return;
         }
         let incoming_links = self.scenario.nodes[node_id].incoming_links.clone();
+        if self.merge_rule == MergeRule::CapacityProportional && incoming_links.len() > 1 {
+            self.process_node_transfer_fair(&incoming_links);
+            return;
+        }
 
         for in_link_idx in incoming_links {
             if in_link_idx >= self.scenario.links.len() {
@@ -629,6 +673,42 @@ impl Simulation {
 
             for in_pipe in 0..n_pipes as PipeIdx {
                 self.try_transfer_pipe_head(in_link_idx, in_pipe);
+            }
+        }
+    }
+
+    /// Capacity-proportional merge: try every incoming pipe head once, as the
+    /// in-order sweep does, but always next the one whose link has passed the
+    /// fewest vehicles per unit of capacity under competition. Ties go to the
+    /// lower (link, pipe), so the rule is deterministic.
+    fn process_node_transfer_fair(&mut self, incoming_links: &[LinkID]) {
+        let mut pending: Vec<(LinkID, PipeIdx)> = incoming_links
+            .iter()
+            .filter(|&&l| l < self.scenario.links.len())
+            .flat_map(|&l| (0..self.scenario.links[l].pipes.len() as PipeIdx).map(move |p| (l, p)))
+            .collect();
+        let waiting = |sim: &Self, l: LinkID| sim.scenario.links[l].pipes.iter().any(|p| !p.waiting_queue.is_empty());
+        let weight = |sim: &Self, l: LinkID| {
+            let c: f64 = sim.scenario.links[l].pipes.iter().map(|p| p.capacity).sum();
+            if c > 0.0 { c } else { f64::MIN_POSITIVE }
+        };
+        while !pending.is_empty() {
+            let (k, _) = pending
+                .iter()
+                .enumerate()
+                .min_by(|(_, a), (_, b)| {
+                    let ka = self.merge_served[a.0] / weight(self, a.0);
+                    let kb = self.merge_served[b.0] / weight(self, b.0);
+                    ka.total_cmp(&kb).then(a.cmp(b))
+                })
+                .expect("pending is not empty");
+            let (link, pipe) = pending.remove(k);
+            let competing = incoming_links.iter().any(|&o| o != link && o < self.scenario.links.len() && waiting(self, o));
+            let before = self.scenario.links[link].pipes[usize::from(pipe)].waiting_queue.len();
+            self.try_transfer_pipe_head(link, pipe);
+            let passed = self.scenario.links[link].pipes[usize::from(pipe)].waiting_queue.len() < before;
+            if passed && competing {
+                self.merge_served[link] += 1.0;
             }
         }
     }

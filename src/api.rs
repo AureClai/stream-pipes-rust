@@ -17,7 +17,7 @@ use crate::assignment::{assign_demand, NetworkGraph};
 use crate::io::compile_with_patches;
 use crate::model::{LinkID, NodeID, NodeType, PipeIdx, Scenario, VehicleState};
 use crate::patch::Patch;
-use crate::simulation::Simulation;
+use crate::simulation::{MergeRule, Simulation};
 use crate::validation::Validate;
 use anyhow::{Context, Result};
 use serde::{Deserialize, Serialize};
@@ -129,6 +129,9 @@ pub fn check(inputs: &ScenarioInputs) -> CheckReport {
             return report;
         }
     };
+    if let Err(e) = MergeRule::from_config(&inputs.config) {
+        report.errors.push(format!("{e:#}"));
+    }
     report.warnings = warnings;
     report.nodes = scenario.nodes.len();
     report.entries = count_nodes(&scenario, NodeType::Entry);
@@ -273,6 +276,7 @@ where
 
     let mut sim = Simulation::new(scenario);
     sim.upstream_capacity = options.upstream_capacity;
+    sim.merge_rule = MergeRule::from_config(&inputs.config)?;
     let events_processed = sim.run_with_progress(PROGRESS_EVERY, |sim_time, events| {
         observer(Progress::Simulating { sim_time, start_time, end_time, events })
     })?;

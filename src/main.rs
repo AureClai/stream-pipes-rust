@@ -2,7 +2,7 @@ use clap::{Parser, Subcommand};
 use stream_core_rust::api::{collect, RunOptions};
 use stream_core_rust::benchmarks::run_benchmarks;
 use stream_core_rust::io::{load_scenario, compile_scenario};
-use stream_core_rust::simulation::Simulation;
+use stream_core_rust::simulation::{MergeRule, Simulation};
 use stream_core_rust::validation::Validate;
 use stream_core_rust::assignment::assign_demand;
 use stream_core_rust::verification::{verify_scenario, CheckStatus};
@@ -32,6 +32,10 @@ enum Commands {
         /// Run assignment (generate & route vehicles from demand) before simulation
         #[arg(short, long)]
         assignment: bool,
+
+        /// Merge rule at nodes: "in_order" (default) or "capacity"
+        #[arg(long, default_value = "in_order")]
+        merge: String,
     },
     /// Compile a scenario from source files (GeoJSON + JSON) into a single artifact
     Build {
@@ -81,7 +85,15 @@ enum Commands {
         /// Write the full JSON verification report to this path
         #[arg(short, long, value_name = "FILE")]
         output: Option<PathBuf>,
+
+        /// Merge rule at nodes: "in_order" (default) or "capacity"
+        #[arg(long, default_value = "in_order")]
+        merge: String,
     },
+}
+
+fn merge_rule(name: &str) -> Result<MergeRule> {
+    MergeRule::from_config(&serde_json::json!({ "merge": name }))
 }
 
 fn main() -> Result<()> {
@@ -104,7 +116,8 @@ fn main() -> Result<()> {
             
             println!("Build complete in {:.2?}.", start.elapsed());
         },
-        Commands::Run { input, output, assignment } => {
+        Commands::Run { input, output, assignment, merge } => {
+            let merge = merge_rule(&merge)?;
             println!("Loading scenario from {:?}...", input);
             let start = Instant::now();
             let mut scenario = load_scenario(&input)?;
@@ -127,6 +140,7 @@ fn main() -> Result<()> {
 
             println!("Initializing Simulation...");
             let mut sim = Simulation::new(scenario);
+            sim.merge_rule = merge;
 
             println!("Running Simulation...");
             let sim_start = Instant::now();
@@ -143,8 +157,8 @@ fn main() -> Result<()> {
                 file.flush()?;
             }
         }
-        Commands::Verify { input, assignment, bin_size, benchmarks, strict, output } => {
-            run_verify(input, assignment, bin_size, benchmarks, strict, output)?;
+        Commands::Verify { input, assignment, bin_size, benchmarks, strict, output, merge } => {
+            run_verify(input, assignment, bin_size, benchmarks, strict, output, merge_rule(&merge)?)?;
         }
     }
 
@@ -162,6 +176,7 @@ fn run_verify(
     benchmarks: bool,
     strict: bool,
     output: Option<PathBuf>,
+    merge: MergeRule,
 ) -> Result<()> {
     println!("Loading scenario from {:?}...", input);
     let mut scenario = load_scenario(&input)?;
@@ -171,6 +186,7 @@ fn run_verify(
         println!("Assignment: {} vehicles generated.", added);
     }
     let mut sim = Simulation::new(scenario);
+    sim.merge_rule = merge;
     let events = sim.run()?;
     println!("Simulation: {} events processed.", events);
 
