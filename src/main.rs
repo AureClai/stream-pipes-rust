@@ -1,4 +1,5 @@
 use clap::{Parser, Subcommand};
+use stream_core_rust::api::{collect, RunOptions};
 use stream_core_rust::benchmarks::run_benchmarks;
 use stream_core_rust::io::{load_scenario, compile_scenario};
 use stream_core_rust::simulation::Simulation;
@@ -134,7 +135,12 @@ fn main() -> Result<()> {
 
             if let Some(output_path) = output {
                 println!("Writing results to {:?}...", output_path);
-                // TODO: Result export
+                let options = RunOptions { assignment, keep_vehicles: true, ..Default::default() };
+                let results = collect(sim.scenario, events_processed, Vec::new(), &options);
+                use std::io::Write;
+                let mut file = std::io::BufWriter::new(std::fs::File::create(&output_path)?);
+                serde_json::to_writer(&mut file, &results)?;
+                file.flush()?;
             }
         }
         Commands::Verify { input, assignment, bin_size, benchmarks, strict, output } => {

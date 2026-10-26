@@ -302,6 +302,17 @@ impl Simulation {
     }
 
     pub fn run(&mut self) -> Result<usize> {
+        self.run_with_progress(0, |_, _| true)
+    }
+
+    /// Same as `run`, but calls `on_progress(sim_time, events_processed)`
+    /// every `every` events (never when `every` is 0). Returning `false`
+    /// cancels the run, which then returns an error.
+    /// The callback only observes, so a completed run is bit-identical to `run`.
+    pub fn run_with_progress<F>(&mut self, every: usize, mut on_progress: F) -> Result<usize>
+    where
+        F: FnMut(f64, usize) -> bool,
+    {
         let mut events_processed = 0;
         let max_time = self.scenario.start_time + self.scenario.duration;
 
@@ -311,6 +322,9 @@ impl Simulation {
             }
             self.current_time = event.time;
             events_processed += 1;
+            if every > 0 && events_processed % every == 0 && !on_progress(event.time, events_processed) {
+                anyhow::bail!("simulation cancelled at t = {:.1} s", event.time);
+            }
 
             match event.event_type {
                 EventType::ApplyPatch => self.handle_apply_patch(event.veh_id),

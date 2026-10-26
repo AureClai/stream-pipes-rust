@@ -116,6 +116,22 @@ sim.run()?;
 let report = verify_scenario(&sim.scenario, 300.0);
 ```
 
+Hosts that embed the engine (such as the
+[RustGIS plugin](https://github.com/AureClai/rustgis-stream-pipes)) use the
+`api` module instead: plain values in, serializable results out, with
+progress reports and cancellation.
+
+```rust
+use stream_core_rust::api::{check, run, RunOptions, ScenarioInputs};
+
+let inputs = ScenarioInputs::from_dir("scenarios/a47_givors", &["gate".into()])?;
+let report = check(&inputs);            // errors and warnings, no simulation
+let out = run(&inputs, &RunOptions::default(), |_progress| true)?;
+// out.link_stats, out.pipe_stats, out.vehicles (with keep_vehicles)
+```
+
+`stream-cli run --output results.json` writes the same `RunOutput`.
+
 The library crate is named `stream_core_rust`, after the engine it was forked
 from. Analysis modules are pure functions over a finished scenario:
 `analysis` (binned flow, density and speed per link and per pipe),

@@ -48,6 +48,8 @@ tower-http = { version = "0.5", features = ["cors"], optional = true }
 tower = { version = "0.4", optional = true }
 
 [features]
-default = ["python"]
+# No default features: the engine is embedded by other crates (the RustGIS
+# plugin), which must not pull in the Python extension.
+default = []
 python = ["dep:pyo3"]
 server = ["dep:axum", "dep:tokio", "dep:tower-http", "dep:tower"]
