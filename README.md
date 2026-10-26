@@ -174,7 +174,8 @@ paper (see [Citing](#citing)).
 |---|---|
 | `bottleneck`, `diverge`, `grid`, `real_world` | Regression fixtures (golden checksums in `tests/scenarios.rs`) |
 | `m1_diverge`, `m60_stockport` | UK motorway corridors with WebTRIS detector data |
-| `a47_givors` | French urban motorway: single stream vs pipes, φ sweep |
+| `a47_givors` | French urban motorway: single stream vs pipes, φ sweep (second preprint) |
+| `a47_givors_osm` | The same motorway rebuilt from OpenStreetMap and Cerema AVATAR, every interchange, screened data, capacity-proportional merges ([README](scenarios/a47_givors_osm/README.md)) |
 | `ngsim/` | Scripts to fetch NGSIM trajectories and measure lane commitment |
 | `ndw/` | Per-lane validation on Dutch NDW data (in preparation) |
 

@@ -1,0 +1,3805 @@
+[
+ {
+  "link_id": 47,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 154.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 314.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 552.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 760.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 934.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 930.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 914.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 530.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 406.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 264.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 488.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 610.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 684.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 754.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 570.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 688.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 682.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 708.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 744.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 732.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 55800.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 816.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 57600.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 886.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 59400.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 792.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 818.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 810.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 740.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 696.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 574.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 540.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 472.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 75600.0,
+  "t_end": 77400.0,
+  "flow_veh_h": 484.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 47,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 406.0,
+  "label": "2224 bretelle"
+ },
+ {
+  "link_id": 6,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 812.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 89.4
+ },
+ {
+  "link_id": 6,
+  "t_start": 19800.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 1496.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 86.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 2730.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 69.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 2336.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 28.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 2340.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 24.8
+ },
+ {
+  "link_id": 6,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 2390.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 28.4
+ },
+ {
+  "link_id": 6,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 2768.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 42.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 2578.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 59.4
+ },
+ {
+  "link_id": 6,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 2126.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 2402.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 73.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 2160.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 75.4
+ },
+ {
+  "link_id": 6,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1958.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 74.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 2088.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 75.4
+ },
+ {
+  "link_id": 6,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 2088.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 75.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 2154.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 75.4
+ },
+ {
+  "link_id": 6,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 2090.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 77.4
+ },
+ {
+  "link_id": 6,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 2170.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 76.8
+ },
+ {
+  "link_id": 6,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 2236.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 76.0
+ },
+ {
+  "link_id": 6,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1878.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 79.8
+ },
+ {
+  "link_id": 6,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2208.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 76.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2126.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 77.4
+ },
+ {
+  "link_id": 6,
+  "t_start": 55800.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 2164.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 75.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 57600.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 2322.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 76.8
+ },
+ {
+  "link_id": 6,
+  "t_start": 59400.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 2248.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 75.8
+ },
+ {
+  "link_id": 6,
+  "t_start": 61200.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 2410.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 76.6
+ },
+ {
+  "link_id": 6,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2334.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2214.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 77.8
+ },
+ {
+  "link_id": 6,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2268.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 78.8
+ },
+ {
+  "link_id": 6,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1976.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 83.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1698.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 82.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1190.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 86.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 986.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 83.2
+ },
+ {
+  "link_id": 6,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 646.0,
+  "label": "MYR69.62 vers Lyon",
+  "speed_kmh": 83.0
+ },
+ {
+  "link_id": 15,
+  "t_start": 18000.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 25.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 21600.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 20.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 25200.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 14.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 28800.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 44.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 32400.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 58.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 36000.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 51.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 39600.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 58.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 43200.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 40.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 46800.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 57.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 50400.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 53.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 54000.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 61.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 57600.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 72.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 61200.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 74.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 64800.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 74.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 68400.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 49.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 72000.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 27.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 15,
+  "t_start": 75600.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 34.0,
+  "label": "MYR69.64 bretelle"
+ },
+ {
+  "link_id": 30,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 484.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 19800.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 574.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 874.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1270.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1672.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 2232.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 2206.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 2070.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1658.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1468.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1196.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 2232.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 2540.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 2160.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 2294.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 2058.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 2224.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 2104.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 2292.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2354.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2732.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 55800.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 2950.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 57600.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3034.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 59400.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 2800.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 61200.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 3174.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 3078.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2980.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 3076.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2578.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1930.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1580.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1352.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 30,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 926.0,
+  "label": "MYR69.61 vers Saint-Étienne"
+ },
+ {
+  "link_id": 34,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 464.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 86.6
+ },
+ {
+  "link_id": 34,
+  "t_start": 19800.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 506.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 87.6
+ },
+ {
+  "link_id": 34,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 780.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 87.8
+ },
+ {
+  "link_id": 34,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1104.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 87.0
+ },
+ {
+  "link_id": 34,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1434.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 86.8
+ },
+ {
+  "link_id": 34,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1866.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 84.2
+ },
+ {
+  "link_id": 34,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1878.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 84.4
+ },
+ {
+  "link_id": 34,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1658.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 86.0
+ },
+ {
+  "link_id": 34,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1316.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 83.8
+ },
+ {
+  "link_id": 34,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1208.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 34,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 958.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 86.4
+ },
+ {
+  "link_id": 34,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1858.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 83.0
+ },
+ {
+  "link_id": 34,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 2078.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 80.4
+ },
+ {
+  "link_id": 34,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1818.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 82.8
+ },
+ {
+  "link_id": 34,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1808.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 84.6
+ },
+ {
+  "link_id": 34,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1652.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 84.6
+ },
+ {
+  "link_id": 34,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1840.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 83.0
+ },
+ {
+  "link_id": 34,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1630.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 83.8
+ },
+ {
+  "link_id": 34,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1736.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 83.8
+ },
+ {
+  "link_id": 34,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1848.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 84.0
+ },
+ {
+  "link_id": 34,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2164.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 84.6
+ },
+ {
+  "link_id": 34,
+  "t_start": 55800.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 2454.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 84.8
+ },
+ {
+  "link_id": 34,
+  "t_start": 57600.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 2508.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 84.4
+ },
+ {
+  "link_id": 34,
+  "t_start": 59400.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 2286.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 86.2
+ },
+ {
+  "link_id": 34,
+  "t_start": 61200.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 2630.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 83.6
+ },
+ {
+  "link_id": 34,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2520.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 86.0
+ },
+ {
+  "link_id": 34,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2582.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 84.2
+ },
+ {
+  "link_id": 34,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2648.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 34,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2242.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 85.8
+ },
+ {
+  "link_id": 34,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1686.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 91.2
+ },
+ {
+  "link_id": 34,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1402.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 90.8
+ },
+ {
+  "link_id": 34,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1178.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 92.2
+ },
+ {
+  "link_id": 34,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 862.0,
+  "label": "MYR69.51 vers Saint-Étienne",
+  "speed_kmh": 92.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 774.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 97.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 19800.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 1354.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 2538.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 80.8
+ },
+ {
+  "link_id": 3,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1598.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 29.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1254.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 20.4
+ },
+ {
+  "link_id": 3,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1324.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 20.8
+ },
+ {
+  "link_id": 3,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1716.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 29.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1836.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 72.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1842.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 89.4
+ },
+ {
+  "link_id": 3,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1904.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 88.4
+ },
+ {
+  "link_id": 3,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1692.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 89.8
+ },
+ {
+  "link_id": 3,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1568.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 88.8
+ },
+ {
+  "link_id": 3,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1686.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 88.8
+ },
+ {
+  "link_id": 3,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1548.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 90.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1618.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 90.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1536.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 90.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1716.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 89.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1832.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 89.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1540.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 90.8
+ },
+ {
+  "link_id": 3,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1750.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 89.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 1580.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 91.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 55800.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 1634.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 90.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 57600.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 1730.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 90.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 59400.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 1736.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 92.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 61200.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 1948.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 91.8
+ },
+ {
+  "link_id": 3,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 1856.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 94.0
+ },
+ {
+  "link_id": 3,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 1748.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 93.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 1822.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 93.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1534.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 95.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1336.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 97.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 962.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 3,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 724.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 94.6
+ },
+ {
+  "link_id": 3,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 568.0,
+  "label": "MYR69.52 vers Lyon",
+  "speed_kmh": 97.8
+ },
+ {
+  "link_id": 33,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 480.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 85.4
+ },
+ {
+  "link_id": 33,
+  "t_start": 19800.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 538.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 87.2
+ },
+ {
+  "link_id": 33,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 802.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 33,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1048.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 84.0
+ },
+ {
+  "link_id": 33,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1320.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 83.2
+ },
+ {
+  "link_id": 33,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1678.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 81.2
+ },
+ {
+  "link_id": 33,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1688.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 81.4
+ },
+ {
+  "link_id": 33,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1626.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 82.8
+ },
+ {
+  "link_id": 33,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1364.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 80.0
+ },
+ {
+  "link_id": 33,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1214.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 83.2
+ },
+ {
+  "link_id": 33,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1000.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 82.6
+ },
+ {
+  "link_id": 33,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1856.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 80.0
+ },
+ {
+  "link_id": 33,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 2130.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 78.6
+ },
+ {
+  "link_id": 33,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1792.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 80.6
+ },
+ {
+  "link_id": 33,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1762.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 81.6
+ },
+ {
+  "link_id": 33,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1694.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 82.2
+ },
+ {
+  "link_id": 33,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1942.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 80.6
+ },
+ {
+  "link_id": 33,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1654.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 81.4
+ },
+ {
+  "link_id": 33,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1796.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 81.2
+ },
+ {
+  "link_id": 33,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1912.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 81.8
+ },
+ {
+  "link_id": 33,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2156.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 82.4
+ },
+ {
+  "link_id": 33,
+  "t_start": 55800.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 2484.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 83.2
+ },
+ {
+  "link_id": 33,
+  "t_start": 57600.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 2524.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 81.8
+ },
+ {
+  "link_id": 33,
+  "t_start": 59400.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 2340.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 84.4
+ },
+ {
+  "link_id": 33,
+  "t_start": 61200.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 2650.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 82.2
+ },
+ {
+  "link_id": 33,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2600.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 83.0
+ },
+ {
+  "link_id": 33,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2548.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 83.4
+ },
+ {
+  "link_id": 33,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2702.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 83.8
+ },
+ {
+  "link_id": 33,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2334.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 83.2
+ },
+ {
+  "link_id": 33,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1694.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 88.6
+ },
+ {
+  "link_id": 33,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1408.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 89.2
+ },
+ {
+  "link_id": 33,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1212.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 89.6
+ },
+ {
+  "link_id": 33,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 844.0,
+  "label": "MYR69.41 vers Saint-Étienne",
+  "speed_kmh": 90.2
+ },
+ {
+  "link_id": 4,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 800.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 97.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 19800.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 1348.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 94.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 2494.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 80.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1212.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 22.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1056.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 18.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1072.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 19.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1454.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 23.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1936.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 69.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1904.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 89.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1924.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 88.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1730.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 89.2
+ },
+ {
+  "link_id": 4,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1608.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 88.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1646.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 88.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1602.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 89.2
+ },
+ {
+  "link_id": 4,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1634.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 89.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1524.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 89.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1730.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 88.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1800.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 88.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1534.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 89.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1754.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 89.0
+ },
+ {
+  "link_id": 4,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 1602.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 90.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 55800.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 1710.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 88.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 57600.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 1726.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 90.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 59400.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 1730.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 92.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 61200.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 1968.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 90.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 1838.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 92.6
+ },
+ {
+  "link_id": 4,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 1746.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 91.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 1786.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 92.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1500.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 94.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1332.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 96.2
+ },
+ {
+  "link_id": 4,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 968.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 98.8
+ },
+ {
+  "link_id": 4,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 742.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 94.4
+ },
+ {
+  "link_id": 4,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 550.0,
+  "label": "MYR69.42 vers Lyon",
+  "speed_kmh": 96.8
+ },
+ {
+  "link_id": 44,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 380.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 94.8
+ },
+ {
+  "link_id": 44,
+  "t_start": 19800.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 510.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 96.0
+ },
+ {
+  "link_id": 44,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 766.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 96.0
+ },
+ {
+  "link_id": 44,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1130.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 96.2
+ },
+ {
+  "link_id": 44,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1470.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 97.2
+ },
+ {
+  "link_id": 44,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1880.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 97.2
+ },
+ {
+  "link_id": 44,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1884.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 97.6
+ },
+ {
+  "link_id": 44,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1764.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 44,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1378.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 95.6
+ },
+ {
+  "link_id": 44,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1256.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 96.4
+ },
+ {
+  "link_id": 44,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 992.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 96.8
+ },
+ {
+  "link_id": 44,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1702.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 95.4
+ },
+ {
+  "link_id": 44,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 2264.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 92.0
+ },
+ {
+  "link_id": 44,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 2000.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 92.6
+ },
+ {
+  "link_id": 44,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1836.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 95.8
+ },
+ {
+  "link_id": 44,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1788.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 95.4
+ },
+ {
+  "link_id": 44,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1958.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 44,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1852.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 95.6
+ },
+ {
+  "link_id": 44,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1862.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 44,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1944.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 96.2
+ },
+ {
+  "link_id": 44,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2232.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 96.0
+ },
+ {
+  "link_id": 44,
+  "t_start": 55800.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 2662.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 94.6
+ },
+ {
+  "link_id": 44,
+  "t_start": 57600.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 2692.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 95.4
+ },
+ {
+  "link_id": 44,
+  "t_start": 59400.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 2438.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 97.2
+ },
+ {
+  "link_id": 44,
+  "t_start": 61200.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 2510.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 97.0
+ },
+ {
+  "link_id": 44,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2718.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 97.4
+ },
+ {
+  "link_id": 44,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2552.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 97.6
+ },
+ {
+  "link_id": 44,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2726.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 96.0
+ },
+ {
+  "link_id": 44,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2504.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 98.6
+ },
+ {
+  "link_id": 44,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1872.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 100.2
+ },
+ {
+  "link_id": 44,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1516.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 101.2
+ },
+ {
+  "link_id": 44,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1242.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 102.6
+ },
+ {
+  "link_id": 44,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 832.0,
+  "label": "MYR69.91 vers Saint-Étienne",
+  "speed_kmh": 102.2
+ },
+ {
+  "link_id": 36,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 388.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 94.2
+ },
+ {
+  "link_id": 36,
+  "t_start": 19800.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 478.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 94.2
+ },
+ {
+  "link_id": 36,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 784.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 96.2
+ },
+ {
+  "link_id": 36,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1128.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.8
+ },
+ {
+  "link_id": 36,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1360.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 96.2
+ },
+ {
+  "link_id": 36,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1822.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.4
+ },
+ {
+  "link_id": 36,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1748.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.8
+ },
+ {
+  "link_id": 36,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1666.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.6
+ },
+ {
+  "link_id": 36,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1286.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 94.6
+ },
+ {
+  "link_id": 36,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1162.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.4
+ },
+ {
+  "link_id": 36,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 884.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.6
+ },
+ {
+  "link_id": 36,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1654.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 94.6
+ },
+ {
+  "link_id": 36,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1992.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 92.0
+ },
+ {
+  "link_id": 36,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1764.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 93.6
+ },
+ {
+  "link_id": 36,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1572.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 94.4
+ },
+ {
+  "link_id": 36,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1558.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.4
+ },
+ {
+  "link_id": 36,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1686.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.4
+ },
+ {
+  "link_id": 36,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1554.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.8
+ },
+ {
+  "link_id": 36,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1678.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.4
+ },
+ {
+  "link_id": 36,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1684.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.6
+ },
+ {
+  "link_id": 36,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2026.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.0
+ },
+ {
+  "link_id": 36,
+  "t_start": 55800.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 2356.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.2
+ },
+ {
+  "link_id": 36,
+  "t_start": 57600.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 2312.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.6
+ },
+ {
+  "link_id": 36,
+  "t_start": 59400.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 2090.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 97.4
+ },
+ {
+  "link_id": 36,
+  "t_start": 61200.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 2294.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 96.8
+ },
+ {
+  "link_id": 36,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2276.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 96.6
+ },
+ {
+  "link_id": 36,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2212.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 96.0
+ },
+ {
+  "link_id": 36,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2486.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 95.6
+ },
+ {
+  "link_id": 36,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2126.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 97.2
+ },
+ {
+  "link_id": 36,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1608.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 98.6
+ },
+ {
+  "link_id": 36,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1316.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 98.2
+ },
+ {
+  "link_id": 36,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1118.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 98.6
+ },
+ {
+  "link_id": 36,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 764.0,
+  "label": "MYR69.71 vers Saint-Étienne",
+  "speed_kmh": 99.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 716.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 106.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 19800.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 1478.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 104.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 2640.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1806.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 78.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1402.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 88.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1460.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 88.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1596.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 104.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1726.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 102.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1692.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 102.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 2030.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 101.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1620.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 101.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1522.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 100.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1564.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 102.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1526.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 102.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1514.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 102.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1554.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 102.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1682.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1714.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 102.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1532.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 102.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1722.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 101.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 1592.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 103.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 55800.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 1650.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 100.6
+ },
+ {
+  "link_id": 1,
+  "t_start": 57600.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 1762.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 103.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 59400.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 1786.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 104.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 61200.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 1762.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 104.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 1708.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 106.0
+ },
+ {
+  "link_id": 1,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 1702.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 103.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 1698.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 106.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1470.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 106.2
+ },
+ {
+  "link_id": 1,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1292.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 108.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 906.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 108.4
+ },
+ {
+  "link_id": 1,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 674.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 105.8
+ },
+ {
+  "link_id": 1,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 518.0,
+  "label": "MYR69.72 vers Lyon",
+  "speed_kmh": 105.2
+ },
+ {
+  "link_id": 51,
+  "t_start": 18000.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 9.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 21600.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 43.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 25200.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 65.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 28800.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 85.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 32400.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 94.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 36000.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 148.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 39600.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 204.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 43200.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 205.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 46800.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 236.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 50400.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 197.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 54000.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 266.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 57600.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 319.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 61200.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 355.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 64800.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 295.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 68400.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 287.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 72000.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 128.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 51,
+  "t_start": 75600.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 65.0,
+  "label": "MYR69.75 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 18000.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 56.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 21600.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 49.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 25200.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 37.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 28800.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 83.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 32400.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 107.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 36000.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 82.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 39600.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 80.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 43200.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 90.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 46800.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 90.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 50400.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 80.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 54000.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 97.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 57600.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 112.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 61200.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 107.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 64800.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 80.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 68400.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 62.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 72000.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 49.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 12,
+  "t_start": 75600.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 28.0,
+  "label": "MYR69.76 bretelle"
+ },
+ {
+  "link_id": 2,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 788.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 103.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 19800.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 1370.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 101.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 2668.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 90.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1488.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 28.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1360.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 23.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 1332.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 20.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 1714.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 33.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1800.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 92.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1836.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 96.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 2068.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 94.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1788.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 95.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1538.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 95.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1644.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 94.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1540.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 96.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1680.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 96.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1576.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 96.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1738.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 95.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1806.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 97.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1532.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 97.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1742.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 95.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 1620.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 97.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 55800.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 1642.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 95.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 57600.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 1768.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 97.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 59400.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 1794.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 98.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 61200.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 1878.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 97.4
+ },
+ {
+  "link_id": 2,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 1800.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 99.2
+ },
+ {
+  "link_id": 2,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 1772.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 99.0
+ },
+ {
+  "link_id": 2,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 1830.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 99.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1482.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 101.6
+ },
+ {
+  "link_id": 2,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1318.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 102.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 946.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 104.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 742.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 100.8
+ },
+ {
+  "link_id": 2,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 562.0,
+  "label": "MYR69.32 vers Lyon",
+  "speed_kmh": 103.6
+ },
+ {
+  "link_id": 16,
+  "t_start": 18000.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 12.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 21600.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 35.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 25200.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 93.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 28800.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 107.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 32400.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 103.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 36000.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 141.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 39600.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 116.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 43200.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 131.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 46800.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 110.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 50400.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 113.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 54000.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 128.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 57600.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 242.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 61200.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 290.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 64800.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 201.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 68400.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 90.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 72000.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 55.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 16,
+  "t_start": 75600.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 41.0,
+  "label": "MYR69.A4 bretelle"
+ },
+ {
+  "link_id": 7,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 714.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 89.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 19800.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 1316.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 92.6
+ },
+ {
+  "link_id": 7,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 2436.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 69.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 2196.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 24.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 2180.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 23.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 2242.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 25.6
+ },
+ {
+  "link_id": 7,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 2578.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 42.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 2312.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 59.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1910.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 83.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 2112.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 79.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1922.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 77.6
+ },
+ {
+  "link_id": 7,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 1730.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 80.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 1872.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 81.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 1856.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 80.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 1872.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 81.6
+ },
+ {
+  "link_id": 7,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1856.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 82.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 1904.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 82.2
+ },
+ {
+  "link_id": 7,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1972.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 79.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 1672.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 85.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 1962.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 81.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 1762.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 79.8
+ },
+ {
+  "link_id": 7,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2102.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 81.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2000.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 82.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2032.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 84.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 1770.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 87.6
+ },
+ {
+  "link_id": 7,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1490.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 88.4
+ },
+ {
+  "link_id": 7,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1064.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 91.6
+ },
+ {
+  "link_id": 7,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 846.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 89.0
+ },
+ {
+  "link_id": 7,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 512.0,
+  "label": "MYR69.A2 vers Lyon",
+  "speed_kmh": 81.4
+ },
+ {
+  "link_id": 28,
+  "t_start": 18000.0,
+  "t_end": 19800.0,
+  "flow_veh_h": 468.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 81.0
+ },
+ {
+  "link_id": 28,
+  "t_start": 19800.0,
+  "t_end": 21600.0,
+  "flow_veh_h": 554.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 84.8
+ },
+ {
+  "link_id": 28,
+  "t_start": 21600.0,
+  "t_end": 23400.0,
+  "flow_veh_h": 840.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 82.6
+ },
+ {
+  "link_id": 28,
+  "t_start": 23400.0,
+  "t_end": 25200.0,
+  "flow_veh_h": 1218.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 82.8
+ },
+ {
+  "link_id": 28,
+  "t_start": 25200.0,
+  "t_end": 27000.0,
+  "flow_veh_h": 1622.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 80.0
+ },
+ {
+  "link_id": 28,
+  "t_start": 27000.0,
+  "t_end": 28800.0,
+  "flow_veh_h": 2118.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 79.0
+ },
+ {
+  "link_id": 28,
+  "t_start": 28800.0,
+  "t_end": 30600.0,
+  "flow_veh_h": 2084.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 79.2
+ },
+ {
+  "link_id": 28,
+  "t_start": 30600.0,
+  "t_end": 32400.0,
+  "flow_veh_h": 1918.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 28,
+  "t_start": 32400.0,
+  "t_end": 34200.0,
+  "flow_veh_h": 1554.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 76.8
+ },
+ {
+  "link_id": 28,
+  "t_start": 34200.0,
+  "t_end": 36000.0,
+  "flow_veh_h": 1338.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 77.6
+ },
+ {
+  "link_id": 28,
+  "t_start": 36000.0,
+  "t_end": 37800.0,
+  "flow_veh_h": 1074.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 78.2
+ },
+ {
+  "link_id": 28,
+  "t_start": 37800.0,
+  "t_end": 39600.0,
+  "flow_veh_h": 2082.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 74.4
+ },
+ {
+  "link_id": 28,
+  "t_start": 39600.0,
+  "t_end": 41400.0,
+  "flow_veh_h": 2412.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 71.8
+ },
+ {
+  "link_id": 28,
+  "t_start": 41400.0,
+  "t_end": 43200.0,
+  "flow_veh_h": 2054.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 76.2
+ },
+ {
+  "link_id": 28,
+  "t_start": 43200.0,
+  "t_end": 45000.0,
+  "flow_veh_h": 2108.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 77.4
+ },
+ {
+  "link_id": 28,
+  "t_start": 45000.0,
+  "t_end": 46800.0,
+  "flow_veh_h": 1936.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 79.0
+ },
+ {
+  "link_id": 28,
+  "t_start": 46800.0,
+  "t_end": 48600.0,
+  "flow_veh_h": 2082.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 77.4
+ },
+ {
+  "link_id": 28,
+  "t_start": 48600.0,
+  "t_end": 50400.0,
+  "flow_veh_h": 1976.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 79.2
+ },
+ {
+  "link_id": 28,
+  "t_start": 50400.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 2180.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 78.2
+ },
+ {
+  "link_id": 28,
+  "t_start": 52200.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2236.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 77.6
+ },
+ {
+  "link_id": 28,
+  "t_start": 54000.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2568.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 76.4
+ },
+ {
+  "link_id": 28,
+  "t_start": 55800.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 2820.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 76.6
+ },
+ {
+  "link_id": 28,
+  "t_start": 57600.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 2832.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 74.6
+ },
+ {
+  "link_id": 28,
+  "t_start": 59400.0,
+  "t_end": 61200.0,
+  "flow_veh_h": 2530.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 77.2
+ },
+ {
+  "link_id": 28,
+  "t_start": 61200.0,
+  "t_end": 63000.0,
+  "flow_veh_h": 2844.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 73.2
+ },
+ {
+  "link_id": 28,
+  "t_start": 63000.0,
+  "t_end": 64800.0,
+  "flow_veh_h": 2784.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 73.6
+ },
+ {
+  "link_id": 28,
+  "t_start": 64800.0,
+  "t_end": 66600.0,
+  "flow_veh_h": 2722.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 74.8
+ },
+ {
+  "link_id": 28,
+  "t_start": 66600.0,
+  "t_end": 68400.0,
+  "flow_veh_h": 2872.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 74.0
+ },
+ {
+  "link_id": 28,
+  "t_start": 68400.0,
+  "t_end": 70200.0,
+  "flow_veh_h": 2462.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 77.4
+ },
+ {
+  "link_id": 28,
+  "t_start": 70200.0,
+  "t_end": 72000.0,
+  "flow_veh_h": 1834.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 84.8
+ },
+ {
+  "link_id": 28,
+  "t_start": 72000.0,
+  "t_end": 73800.0,
+  "flow_veh_h": 1504.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 84.2
+ },
+ {
+  "link_id": 28,
+  "t_start": 73800.0,
+  "t_end": 75600.0,
+  "flow_veh_h": 1286.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 84.2
+ },
+ {
+  "link_id": 28,
+  "t_start": 77400.0,
+  "t_end": 79200.0,
+  "flow_veh_h": 866.0,
+  "label": "MYR69.A1 vers Saint-Étienne",
+  "speed_kmh": 86.2
+ }
+]

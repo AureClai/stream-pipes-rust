@@ -1,0 +1,222 @@
+{
+ "name": "gate",
+ "description": "Downstream boundary at the A7 / A46 junction: while station MYR69.A2 (last on the Lyon carriageway) is congested, the end link discharges at the flow it measures. Built from Cerema AVATAR, 2026-06-11.",
+ "ops": [
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 23040.0,
+   "until": 23400.0,
+   "set": {
+    "fd_c": 0.2407
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 23400.0,
+   "until": 23760.0,
+   "set": {
+    "fd_c": 0.2271
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 23760.0,
+   "until": 24120.0,
+   "set": {
+    "fd_c": 0.2407
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 24120.0,
+   "until": 24480.0,
+   "set": {
+    "fd_c": 0.2096
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 24480.0,
+   "until": 24840.0,
+   "set": {
+    "fd_c": 0.2057
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 24840.0,
+   "until": 25200.0,
+   "set": {
+    "fd_c": 0.1871
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 25200.0,
+   "until": 25560.0,
+   "set": {
+    "fd_c": 0.2105
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 25560.0,
+   "until": 25920.0,
+   "set": {
+    "fd_c": 0.2164
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 25920.0,
+   "until": 26280.0,
+   "set": {
+    "fd_c": 0.2193
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 26280.0,
+   "until": 26640.0,
+   "set": {
+    "fd_c": 0.2096
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 26640.0,
+   "until": 27000.0,
+   "set": {
+    "fd_c": 0.2066
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 27000.0,
+   "until": 27360.0,
+   "set": {
+    "fd_c": 0.2193
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 27360.0,
+   "until": 27720.0,
+   "set": {
+    "fd_c": 0.1803
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 27720.0,
+   "until": 28080.0,
+   "set": {
+    "fd_c": 0.2339
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 28080.0,
+   "until": 28440.0,
+   "set": {
+    "fd_c": 0.2261
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 28440.0,
+   "until": 28800.0,
+   "set": {
+    "fd_c": 0.2329
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 28800.0,
+   "until": 29160.0,
+   "set": {
+    "fd_c": 0.2281
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 29160.0,
+   "until": 29520.0,
+   "set": {
+    "fd_c": 0.2515
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 29520.0,
+   "until": 29880.0,
+   "set": {
+    "fd_c": 0.2485
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 31320.0,
+   "until": 31680.0,
+   "set": {
+    "fd_c": 0.2232
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 55800.0,
+   "until": 56160.0,
+   "set": {
+    "fd_c": 0.0906
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 59760.0,
+   "until": 60120.0,
+   "set": {
+    "fd_c": 0.114
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 61920.0,
+   "until": 62280.0,
+   "set": {
+    "fd_c": 0.1452
+   }
+  },
+  {
+   "op": "set_link",
+   "link": 11,
+   "from": 77400.0,
+   "until": 77760.0,
+   "set": {
+    "fd_c": 0.0409
+   }
+  }
+ ]
+}
