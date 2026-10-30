@@ -8,6 +8,30 @@ pub trait Validate {
 
 impl Validate for Scenario {
     fn validate(&self) -> Result<()> {
+        // 0. Ids index the engine's vectors directly: they must be 0..n in
+        // order (io sorts them; gaps or duplicates would silently send a
+        // vehicle onto the wrong link).
+        for (i, node) in self.nodes.iter().enumerate() {
+            if node.id != i {
+                bail!(
+                    "Node ids must be 0..{} in order: node at position {} has id {}",
+                    self.nodes.len(),
+                    i,
+                    node.id
+                );
+            }
+        }
+        for (i, link) in self.links.iter().enumerate() {
+            if link.id != i {
+                bail!(
+                    "Link ids must be 0..{} in order: link at position {} has id {}",
+                    self.links.len(),
+                    i,
+                    link.id
+                );
+            }
+        }
+
         // 1. Validate Nodes
         let mut node_ids = HashSet::new();
         for node in &self.nodes {
@@ -161,12 +185,45 @@ impl Validate for Scenario {
                 );
             }
 
-            // Validate Path connectivity?
-            // This is expensive O(V * PathLen), maybe optional?
-            // Let's do basic check: all links exist
             for &lid in &veh.path {
                 if !link_ids.contains(&lid) {
                     bail!("Vehicle {} path references missing Link {}", veh.id, lid);
+                }
+            }
+            // Connected path from the origin to the destination: the engine
+            // moves a vehicle onto its next link at the node where it stands,
+            // so a gap in the path would teleport it.
+            if let (Some(&first), Some(&last)) = (veh.path.first(), veh.path.last()) {
+                let link = |id: usize| &self.links[id];
+                if link(first).node_up != veh.origin {
+                    bail!(
+                        "Vehicle {}: path starts at node {} (link {}) but its origin is node {}",
+                        veh.id,
+                        link(first).node_up,
+                        first,
+                        veh.origin
+                    );
+                }
+                if link(last).node_down != veh.destination {
+                    bail!(
+                        "Vehicle {}: path ends at node {} (link {}) but its destination is node {}",
+                        veh.id,
+                        link(last).node_down,
+                        last,
+                        veh.destination
+                    );
+                }
+                for w in veh.path.windows(2) {
+                    if link(w[0]).node_down != link(w[1]).node_up {
+                        bail!(
+                            "Vehicle {}: path is not connected: link {} ends at node {} but link {} starts at node {}",
+                            veh.id,
+                            w[0],
+                            link(w[0]).node_down,
+                            w[1],
+                            link(w[1]).node_up
+                        );
+                    }
                 }
             }
 

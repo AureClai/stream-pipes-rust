@@ -113,10 +113,10 @@ pub fn resolve_spec(raw: &Value, node: &Node, links: &[Link]) -> Result<Roundabo
                     None => {
                         let mut angles = Vec::new();
                         if let Some(l) = in_link {
-                            angles.push(link_bearing(link(l)?, node, true));
+                            angles.push(link_bearing(link(l)?, node, true)?);
                         }
                         if let Some(l) = out_link {
-                            angles.push(link_bearing(link(l)?, node, false));
+                            angles.push(link_bearing(link(l)?, node, false)?);
                         }
                         if angles.is_empty() {
                             bail!("Roundabout node {id}: an arm without links needs a 'position'");
@@ -156,7 +156,7 @@ pub fn resolve_spec(raw: &Value, node: &Node, links: &[Link]) -> Result<Roundabo
 /// toward the link's point next to the node. Longitude differences are
 /// scaled by cos(latitude) when the coordinates look geographic; this local
 /// linear map keeps the angular order of the arms either way.
-pub fn link_bearing(link: &Link, node: &Node, incoming: bool) -> f64 {
+pub fn link_bearing(link: &Link, node: &Node, incoming: bool) -> Result<f64> {
     let (x0, y0) = node.points;
     let toward = if incoming {
         // Last point before the node.
@@ -164,10 +164,16 @@ pub fn link_bearing(link: &Link, node: &Node, incoming: bool) -> f64 {
     } else {
         link.points.iter().find(|p| **p != node.points).copied()
     };
-    let (x1, y1) = toward.unwrap_or((x0 + 1.0, y0));
+    let (x1, y1) = toward.ok_or_else(|| {
+        anyhow!(
+            "Roundabout node {}: link {} has no geometry to place it around the node; give it a LineString or list the arms with their 'position'",
+            node.id,
+            link.id
+        )
+    })?;
     let geographic = x0.abs() <= 180.0 && y0.abs() <= 90.0;
     let scale = if geographic { y0.to_radians().cos().max(1e-6) } else { 1.0 };
-    ((y1 - y0)).atan2((x1 - x0) * scale)
+    Ok((y1 - y0).atan2((x1 - x0) * scale))
 }
 
 fn circular_mean(angles: &[f64]) -> f64 {
@@ -190,12 +196,12 @@ pub fn infer_arms(node: &Node, links: &[Link]) -> Result<Vec<(Option<LinkID>, Op
     let mut ins: Vec<(LinkID, f64)> = Vec::new();
     for &lid in &node.incoming_links {
         let l = find(lid).ok_or_else(|| anyhow!("Roundabout node {}: unknown link {lid}", node.id))?;
-        ins.push((lid, link_bearing(l, node, true)));
+        ins.push((lid, link_bearing(l, node, true)?));
     }
     let mut outs: Vec<(LinkID, f64)> = Vec::new();
     for &lid in &node.outgoing_links {
         let l = find(lid).ok_or_else(|| anyhow!("Roundabout node {}: unknown link {lid}", node.id))?;
-        outs.push((lid, link_bearing(l, node, false)));
+        outs.push((lid, link_bearing(l, node, false)?));
     }
     // Greedy by smallest gap, deterministic on ties (link ids).
     let mut pairs: Vec<(f64, usize, usize)> = Vec::new();
@@ -749,11 +755,23 @@ impl RoundaboutState {
     /// over the vehicles fills a difference array and a running sum gives
     /// every c(q): O(vehicles + points) instead of O(vehicles × points).
     pub fn storage_bound(&self, p: usize, exit_pt: usize, me: Option<VehID>) -> Bound {
-        if self.kxl <= 0.0 || p == exit_pt {
+        if p == exit_pt {
+            return Bound::At(f64::NEG_INFINITY);
+        }
+        self.storage_bound_steps(p, self.steps(p, exit_pt), me)
+    }
+
+    /// Storage bound for a vehicle at its exit point that cannot leave and
+    /// goes round again: every point of a full lap, back to `p`.
+    pub fn storage_bound_lap(&self, p: usize, me: Option<VehID>) -> Bound {
+        self.storage_bound_steps(p, self.geom.len(), me)
+    }
+
+    fn storage_bound_steps(&self, p: usize, len: usize, me: Option<VehID>) -> Bound {
+        if self.kxl <= 0.0 {
             return Bound::At(f64::NEG_INFINITY);
         }
         let n = self.geom.len();
-        let len = self.steps(p, exit_pt);
         let mut diff = self.scratch.borrow_mut();
         diff[..len + 2].fill(0);
         for (&v, rv) in self.on_ring.iter() {

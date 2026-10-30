@@ -1030,31 +1030,50 @@ impl Simulation {
             st.hold[p].pop_front();
             return true;
         };
-        if st.ring_head_waits(p, veh, now) {
+        // At its exit point a vehicle leaves, unless no pipe of its exit link
+        // accepts it any more (closed by a patch after it entered): then it
+        // goes round again rather than stopping and blocking the ring. The
+        // exit link's state is not part of the ring version, so heads at
+        // their exit point are never served from the cache.
+        let at_exit = p == rv.exit_pt;
+        let leaving = at_exit && {
+            let v = &self.scenario.vehicles[veh];
+            let out = v.path.get(v.current_link_idx + 1).copied();
+            let next_next = v.path.get(v.current_link_idx + 2).copied();
+            out.filter(|&l| l < self.scenario.links.len())
+                .is_some_and(|l| !eligible_pipes(&self.scenario.links[l], v.class_id, next_next).is_empty())
+        };
+        if !at_exit && st.ring_head_waits(p, veh, now) {
             return false;
         }
         // The ring headway alone may already say "later": wake up then and
         // evaluate the storage at that time (same passage time, less work).
         let cap = st.capacity_bound(p);
-        let bound = if cap > now {
+        let bound = if cap > now || leaving {
             Bound::At(cap)
+        } else if at_exit {
+            Bound::At(cap).and(st.storage_bound_lap(p, Some(veh)))
         } else {
             Bound::At(cap).and(st.storage_bound(p, rv.exit_pt, Some(veh)))
         };
         let t = match bound {
             Bound::Blocked => {
-                st.remember_ring_bound(p, veh, bound);
+                if !at_exit {
+                    st.remember_ring_bound(p, veh, bound);
+                }
                 return false;
             }
             Bound::At(t) => t,
         };
         if t > now {
-            st.remember_ring_bound(p, veh, bound);
+            if !at_exit {
+                st.remember_ring_bound(p, veh, bound);
+            }
             self.schedule_ring_ready(st, p, t);
             return false;
         }
 
-        if p != rv.exit_pt {
+        if !leaving {
             st.hold[p].pop_front();
             st.record(p, veh, now, true);
             if let Some(r) = st.on_ring.get_mut(&veh) {
@@ -1179,6 +1198,18 @@ impl Simulation {
         };
         let exit_pt = match out {
             Some(out) => match st.exit_point_of(out) {
+                // Its exit accepts nobody of its class right now (closed by
+                // a patch): wait on the approach, as at an ordinary node.
+                // The patch reopening the link re-triggers this node.
+                Some(_)
+                    if {
+                        let v = &self.scenario.vehicles[veh];
+                        let next_next = v.path.get(v.current_link_idx + 2).copied();
+                        eligible_pipes(&self.scenario.links[out], v.class_id, next_next).is_empty()
+                    } =>
+                {
+                    return false
+                }
                 Some(x) => x,
                 // Not an exit of this roundabout: validation rejects such a
                 // path; the vehicle waits rather than teleporting.

@@ -55,8 +55,16 @@ impl NetworkGraph {
             for i in 0..nodes.len() - 1 {
                 let u = nodes[i];
                 let v = nodes[i + 1];
-                let edge = self.graph.find_edge(u, v).unwrap();
-                links.push(self.graph[edge].0);
+                // Parallel links join the same two nodes: take the cheapest
+                // (the one the shortest-path cost was computed on), lowest
+                // id on ties.
+                let (link, _) = self
+                    .graph
+                    .edges_connecting(u, v)
+                    .map(|e| *e.weight())
+                    .min_by(|a, b| a.1.total_cmp(&b.1).then(a.0.cmp(&b.0)))
+                    .expect("consecutive path nodes are joined by an edge");
+                links.push(link);
             }
             Some((cost, links))
         } else {
