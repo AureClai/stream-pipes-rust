@@ -466,6 +466,85 @@ impl Bound {
     }
 }
 
+/// The vehicles on a ring. A handful at most (bounded by the ring storage),
+/// so a flat vector beats any map; order is irrelevant to every rule (they
+/// only count or test for existence).
+#[derive(Debug, Clone, Default)]
+pub struct RingSet {
+    items: Vec<(VehID, RingVehicle)>,
+}
+
+impl RingSet {
+    pub fn get(&self, veh: &VehID) -> Option<&RingVehicle> {
+        self.items.iter().find(|(v, _)| v == veh).map(|(_, r)| r)
+    }
+    pub fn get_mut(&mut self, veh: &VehID) -> Option<&mut RingVehicle> {
+        self.items.iter_mut().find(|(v, _)| v == veh).map(|(_, r)| r)
+    }
+    pub fn insert(&mut self, veh: VehID, rv: RingVehicle) {
+        match self.get_mut(&veh) {
+            Some(r) => *r = rv,
+            None => self.items.push((veh, rv)),
+        }
+    }
+    pub fn remove(&mut self, veh: &VehID) -> Option<RingVehicle> {
+        let i = self.items.iter().position(|(v, _)| v == veh)?;
+        Some(self.items.swap_remove(i).1)
+    }
+    pub fn is_empty(&self) -> bool {
+        self.items.is_empty()
+    }
+    pub fn len(&self) -> usize {
+        self.items.len()
+    }
+    pub fn iter(&self) -> impl Iterator<Item = (&VehID, &RingVehicle)> {
+        self.items.iter().map(|(v, r)| (v, r))
+    }
+    pub fn values(&self) -> impl Iterator<Item = &RingVehicle> {
+        self.items.iter().map(|(_, r)| r)
+    }
+}
+
+/// A map over a handful of keys (one per approach lane): a flat vector with
+/// linear search, no allocation once warm.
+#[derive(Debug, Clone)]
+pub struct SmallMap<K, V> {
+    items: Vec<(K, V)>,
+}
+
+impl<K, V> Default for SmallMap<K, V> {
+    fn default() -> Self {
+        SmallMap { items: Vec::new() }
+    }
+}
+
+impl<K: PartialEq, V> SmallMap<K, V> {
+    pub fn get(&self, key: &K) -> Option<&V> {
+        self.items.iter().find(|(k, _)| k == key).map(|(_, v)| v)
+    }
+    pub fn insert(&mut self, key: K, value: V) {
+        match self.items.iter_mut().find(|(k, _)| *k == key) {
+            Some((_, v)) => *v = value,
+            None => self.items.push((key, value)),
+        }
+    }
+}
+
+/// Constants of one ordered pair of ring points (p, q), computed once.
+#[derive(Debug, Clone, Copy, Default)]
+struct PairConst {
+    /// Index steps from p to q going forward, in 1..=n.
+    steps: usize,
+    /// Storage of the arc p → q in whole vehicles, K = ceil(kx·lanes·d) ≥ 1.
+    k: usize,
+    /// d / w.
+    wave: f64,
+    /// (K − kx·lanes·d) / C, the fractional-slot correction.
+    frac: f64,
+    /// d / u_ring.
+    travel: f64,
+}
+
 #[derive(Debug, Clone)]
 pub struct RoundaboutState {
     pub node: NodeID,
@@ -473,7 +552,12 @@ pub struct RoundaboutState {
     pub geom: RingGeometry,
     /// kx · lanes (veh/m).
     kxl: f64,
-    cap: f64,
+    /// 1/C, lead and lag, frozen.
+    headway: f64,
+    lead: f64,
+    lag: f64,
+    /// Row-major n × n table of point-pair constants.
+    pairs: Vec<PairConst>,
     pub arm_of_in: BTreeMap<LinkID, usize>,
     pub arm_of_out: BTreeMap<LinkID, usize>,
     /// Per point: ring vehicles arrived and waiting to pass, FIFO.
@@ -486,12 +570,36 @@ pub struct RoundaboutState {
     pub last_pass: Vec<f64>,
     pub last_circ_pass: Vec<f64>,
     /// Last entry time per approach (link, pipe), for the follow-up time.
-    pub last_entry: BTreeMap<(LinkID, PipeIdx), f64>,
-    pub on_ring: BTreeMap<VehID, RingVehicle>,
+    pub last_entry: SmallMap<(LinkID, PipeIdx), f64>,
+    pub on_ring: RingSet,
     /// Per point: pending `RingReady` wake-up times (bit patterns).
-    pub pending_ready: Vec<BTreeSet<u64>>,
+    pending_ready: Vec<Vec<u64>>,
     /// Per point: every passage, in order.
     pub trace: Vec<Vec<Passage>>,
+    /// Bumped on every change of the ring state (a passage, an arrival at a
+    /// point). A bound computed at one version holds until the next.
+    pub version: u64,
+    /// Last waiting bound computed for the head of each ring point and of
+    /// each approach lane: (version, head vehicle, bound).
+    ring_cache: Vec<Option<(u64, VehID, Bound)>>,
+    entry_cache: SmallMap<(LinkID, PipeIdx), (u64, VehID, Bound)>,
+    /// Scratch for `storage_bound` (difference array over the steps).
+    scratch: std::cell::RefCell<Vec<i32>>,
+}
+
+/// True when a bound cached for `veh` at the current `version` still holds
+/// at `now`. A bound only depends on the ring state (which bumps the
+/// version) and on `now` through max(now, ·): "blocked" stays blocked and
+/// "not before t > now" stays t (its wake-up is already scheduled) until the
+/// ring changes.
+fn still_waits(cached: Option<&(u64, VehID, Bound)>, version: u64, veh: VehID, now: f64) -> bool {
+    match cached {
+        Some(&(v, h, b)) if v == version && h == veh => match b {
+            Bound::Blocked => true,
+            Bound::At(t) => t > now,
+        },
+        _ => false,
+    }
 }
 
 impl RoundaboutState {
@@ -500,6 +608,24 @@ impl RoundaboutState {
         let n = geom.len();
         let kxl = spec.fd.kx.max(0.0) * f64::from(spec.lanes);
         let log_cap = (kxl * spec.circumference).ceil() as usize + 2;
+        let cap = spec.capacity();
+        // Same arithmetic, in the same order, as the bound evaluated on the
+        // fly: the results are bit-identical.
+        let mut pairs = vec![PairConst::default(); n * n];
+        for p in 0..n {
+            for q in 0..n {
+                let d = geom.arc(p, q);
+                let dn = kxl * d;
+                let k = (dn.ceil() as usize).max(1);
+                pairs[p * n + q] = PairConst {
+                    steps: geom.steps(p, q),
+                    k,
+                    wave: d / spec.fd.w,
+                    frac: (k as f64 - dn) / cap,
+                    travel: d / spec.speed,
+                };
+            }
+        }
         let mut arm_of_in = BTreeMap::new();
         let mut arm_of_out = BTreeMap::new();
         for (k, arm) in spec.arms.iter().enumerate() {
@@ -515,7 +641,10 @@ impl RoundaboutState {
             spec: spec.clone(),
             geom,
             kxl,
-            cap: spec.capacity(),
+            headway: 1.0 / cap,
+            lead: spec.lead(),
+            lag: spec.lag(),
+            pairs,
             arm_of_in,
             arm_of_out,
             hold: vec![VecDeque::new(); n],
@@ -524,11 +653,72 @@ impl RoundaboutState {
             passed: vec![0; n],
             last_pass: vec![f64::NEG_INFINITY; n],
             last_circ_pass: vec![f64::NEG_INFINITY; n],
-            last_entry: BTreeMap::new(),
-            on_ring: BTreeMap::new(),
-            pending_ready: vec![BTreeSet::new(); n],
+            last_entry: SmallMap::default(),
+            on_ring: RingSet::default(),
+            pending_ready: vec![Vec::new(); n],
             trace: vec![Vec::new(); n],
+            version: 0,
+            ring_cache: vec![None; n],
+            entry_cache: SmallMap::default(),
+            scratch: std::cell::RefCell::new(vec![0; n + 2]),
         }
+    }
+
+    /// Register a pending `RingReady` at `t` for point `p`; false when one
+    /// is already pending at that exact time.
+    pub fn add_pending(&mut self, p: usize, t: f64) -> bool {
+        let bits = t.to_bits();
+        let set = &mut self.pending_ready[p];
+        if set.contains(&bits) {
+            return false;
+        }
+        set.push(bits);
+        true
+    }
+
+    /// The `RingReady` at `t` for point `p` fired.
+    pub fn clear_pending(&mut self, p: usize, t: f64) {
+        let bits = t.to_bits();
+        let set = &mut self.pending_ready[p];
+        if let Some(i) = set.iter().position(|&b| b == bits) {
+            set.swap_remove(i);
+        }
+    }
+
+    /// The head `veh` of ring point `p` is known to wait (unchanged ring).
+    pub fn ring_head_waits(&self, p: usize, veh: VehID, now: f64) -> bool {
+        still_waits(self.ring_cache[p].as_ref(), self.version, veh, now)
+    }
+
+    pub fn remember_ring_bound(&mut self, p: usize, veh: VehID, bound: Bound) {
+        self.ring_cache[p] = Some((self.version, veh, bound));
+    }
+
+    /// The head `veh` of approach lane `key` is known to wait.
+    pub fn entry_waits(&self, key: (LinkID, PipeIdx), veh: VehID, now: f64) -> bool {
+        still_waits(self.entry_cache.get(&key), self.version, veh, now)
+    }
+
+    pub fn remember_entry_bound(&mut self, key: (LinkID, PipeIdx), veh: VehID, bound: Bound) {
+        self.entry_cache.insert(key, (self.version, veh, bound));
+    }
+
+    #[inline]
+    fn pair(&self, p: usize, q: usize) -> &PairConst {
+        &self.pairs[p * self.geom.len() + q]
+    }
+
+    /// Forward steps from `from` to `to`, in 1..=n (n for a full lap).
+    #[inline]
+    fn steps(&self, from: usize, to: usize) -> usize {
+        self.pair(from, to).steps
+    }
+
+    /// `q` strictly after `from` and at or before `to` (same as
+    /// `RingGeometry::within`, from the table).
+    #[inline]
+    fn within(&self, from: usize, q: usize, to: usize) -> bool {
+        q != from && self.steps(from, q) <= self.steps(from, to)
     }
 
     pub fn speed(&self) -> f64 {
@@ -537,7 +727,7 @@ impl RoundaboutState {
 
     /// Free-flow time from point `from` to point `to`.
     pub fn travel_time(&self, from: usize, to: usize) -> f64 {
-        self.geom.arc(from, to) / self.spec.speed
+        self.pair(from, to).travel
     }
 
     /// Exit point for a vehicle leaving by `out_link`.
@@ -551,37 +741,50 @@ impl RoundaboutState {
 
     /// Newell storage bound for a vehicle about to pass point `p`, bound for
     /// `exit_pt`. `me` excludes the vehicle itself from the count.
+    ///
+    /// For every downstream point q up to the exit (j steps after p), c(q) is
+    /// the number of vehicles ahead between p and q that will pass q. A
+    /// vehicle whose last point lies a steps after p (0 at p) and whose exit
+    /// lies r steps after that point counts for a < j ≤ a + r, so one pass
+    /// over the vehicles fills a difference array and a running sum gives
+    /// every c(q): O(vehicles + points) instead of O(vehicles × points).
     pub fn storage_bound(&self, p: usize, exit_pt: usize, me: Option<VehID>) -> Bound {
         if self.kxl <= 0.0 || p == exit_pt {
             return Bound::At(f64::NEG_INFINITY);
         }
+        let n = self.geom.len();
+        let len = self.steps(p, exit_pt);
+        let mut diff = self.scratch.borrow_mut();
+        diff[..len + 2].fill(0);
+        for (&v, rv) in self.on_ring.iter() {
+            if Some(v) == me {
+                continue;
+            }
+            let a = if rv.last_pt == p { 0 } else { self.steps(p, rv.last_pt) };
+            if a >= len {
+                continue;
+            }
+            let hi = (a + self.steps(rv.last_pt, rv.exit_pt)).min(len);
+            if a < hi {
+                diff[a + 1] += 1;
+                diff[hi + 1] -= 1;
+            }
+        }
         let mut bound = Bound::At(f64::NEG_INFINITY);
-        let mut q = p;
-        loop {
-            q = self.geom.next(q);
-            let d = self.geom.arc(p, q);
-            let dn = self.kxl * d;
-            let k = (dn.ceil() as usize).max(1);
-            let ahead = self
-                .on_ring
-                .iter()
-                .filter(|(&v, rv)| {
-                    Some(v) != me
-                        && (rv.last_pt == p || self.geom.within(p, rv.last_pt, q) && rv.last_pt != q)
-                        && self.geom.within(rv.last_pt, q, rv.exit_pt)
-                })
-                .count();
-            if ahead >= k {
+        let mut ahead: i32 = 0;
+        for j in 1..=len {
+            ahead += diff[j];
+            let q = (p + j) % n;
+            let pc = self.pair(p, q);
+            let ahead = ahead as usize;
+            if ahead >= pc.k {
                 return Bound::Blocked;
             }
-            let need = k - ahead;
+            let need = pc.k - ahead;
             let log = &self.log[q];
             if need <= log.len() {
-                let t = log[log.len() - need] + d / self.spec.fd.w + (k as f64 - dn) / self.cap;
+                let t = log[log.len() - need] + pc.wave + pc.frac;
                 bound = bound.max(t);
-            }
-            if q == exit_pt {
-                break;
             }
         }
         bound
@@ -590,32 +793,40 @@ impl RoundaboutState {
     /// Earliest passage of a circulating vehicle at `p` set by the ring
     /// capacity.
     pub fn capacity_bound(&self, p: usize) -> f64 {
-        self.last_pass[p] + 1.0 / self.cap
+        self.last_pass[p] + self.headway
     }
 
     /// When the head of approach (link, pipe) may enter at merge point `m`,
     /// bound for `exit_pt`, evaluated at `now`.
+    ///
+    /// When a cheap term (lead, ring headway, follow-up) already lies in the
+    /// future, that time is returned as is: it is a lower bound, the caller
+    /// wakes up then and evaluates the rest. Entry times are the same as with
+    /// the full bound; only the storage and lag evaluations are saved.
     pub fn entry_bound(&self, m: usize, key: (LinkID, PipeIdx), exit_pt: usize, now: f64) -> Bound {
         // Priority: a ring vehicle waiting at the merge point goes first.
         if !self.hold[m].is_empty() {
             return Bound::Blocked;
         }
         let mut t = now
-            .max(self.last_circ_pass[m] + self.spec.lead())
+            .max(self.last_circ_pass[m] + self.lead)
             .max(self.capacity_bound(m));
         if let Some(&last) = self.last_entry.get(&key) {
             t = t.max(last + self.spec.follow_up);
+        }
+        if t > now {
+            return Bound::At(t);
         }
         let b = Bound::At(t).and(self.storage_bound(m, exit_pt, None));
         let Bound::At(t) = b else {
             return Bound::Blocked;
         };
         // Lag: no circulating vehicle in motion may reach M within `lag`.
-        let lag = self.spec.lag();
+        let lag = self.lag;
         let conflict = self.on_ring.values().any(|rv| {
             rv.in_transit
                 && rv.last_pt != m
-                && self.geom.within(rv.last_pt, m, rv.exit_pt)
+                && self.within(rv.last_pt, m, rv.exit_pt)
                 && rv.last_time + self.travel_time(rv.last_pt, m) < t + lag
         });
         if conflict {
@@ -627,6 +838,7 @@ impl RoundaboutState {
 
     /// Record a passage at `p`.
     pub fn record(&mut self, p: usize, veh: VehID, time: f64, circulating: bool) {
+        self.version += 1;
         self.passed[p] += 1;
         self.last_pass[p] = time;
         if circulating {
@@ -638,6 +850,15 @@ impl RoundaboutState {
             log.pop_front();
         }
         self.trace[p].push(Passage { time, veh, circulating });
+    }
+
+    /// A ring vehicle reached point `p` and waits to pass it.
+    pub fn arrive(&mut self, p: usize, veh: VehID) {
+        self.version += 1;
+        if let Some(rv) = self.on_ring.get_mut(&veh) {
+            rv.in_transit = false;
+        }
+        self.hold[p].push_back(veh);
     }
 }
 

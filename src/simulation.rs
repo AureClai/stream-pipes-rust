@@ -264,7 +264,7 @@ pub struct Simulation {
     /// Ring state of every roundabout node, indexed by node id (None for
     /// ordinary nodes). Public so tests and verification can read the
     /// passages recorded at each ring point.
-    pub roundabouts: Vec<Option<RoundaboutState>>,
+    pub roundabouts: Vec<Option<Box<RoundaboutState>>>,
 }
 
 #[cfg(feature = "python")]
@@ -301,7 +301,7 @@ impl Simulation {
             .scenario
             .nodes
             .iter()
-            .map(|n| n.roundabout.as_ref().map(|spec| RoundaboutState::new(n.id, spec)))
+            .map(|n| n.roundabout.as_ref().map(|spec| Box::new(RoundaboutState::new(n.id, spec))))
             .collect();
         // Build runtime pipes here (not in Link::new) so that FD parameters
         // adjusted after construction — as several tests do — are respected.
@@ -939,24 +939,20 @@ impl Simulation {
         let Some(Some(st)) = self.roundabouts.get_mut(node_id) else {
             return;
         };
-        let p = usize::from(point);
-        if let Some(rv) = st.on_ring.get_mut(&veh_id) {
-            rv.in_transit = false;
-        }
-        st.hold[p].push_back(veh_id);
+        st.arrive(usize::from(point), veh_id);
         self.process_roundabout(node_id);
     }
 
     fn handle_ring_ready(&mut self, node_id: NodeID, point: PipeIdx, time: f64) {
         if let Some(Some(st)) = self.roundabouts.get_mut(node_id) {
-            st.pending_ready[usize::from(point)].remove(&time.to_bits());
+            st.clear_pending(usize::from(point), time);
         }
         self.process_roundabout(node_id);
     }
 
     /// Wake the roundabout at `t` for point `p` (one event per distinct time).
     fn schedule_ring_ready(&mut self, st: &mut RoundaboutState, p: usize, t: f64) {
-        if t > self.current_time && st.pending_ready[p].insert(t.to_bits()) {
+        if t > self.current_time && st.add_pending(p, t) {
             self.events.push(Event {
                 time: t,
                 event_type: EventType::RingReady,
@@ -1034,12 +1030,26 @@ impl Simulation {
             st.hold[p].pop_front();
             return true;
         };
-        let bound = Bound::At(st.capacity_bound(p)).and(st.storage_bound(p, rv.exit_pt, Some(veh)));
+        if st.ring_head_waits(p, veh, now) {
+            return false;
+        }
+        // The ring headway alone may already say "later": wake up then and
+        // evaluate the storage at that time (same passage time, less work).
+        let cap = st.capacity_bound(p);
+        let bound = if cap > now {
+            Bound::At(cap)
+        } else {
+            Bound::At(cap).and(st.storage_bound(p, rv.exit_pt, Some(veh)))
+        };
         let t = match bound {
-            Bound::Blocked => return false,
+            Bound::Blocked => {
+                st.remember_ring_bound(p, veh, bound);
+                return false;
+            }
             Bound::At(t) => t,
         };
         if t > now {
+            st.remember_ring_bound(p, veh, bound);
             self.schedule_ring_ready(st, p, t);
             return false;
         }
@@ -1135,6 +1145,12 @@ impl Simulation {
             self.scenario.links[in_link].pipes[usize::from(pipe)].waiting_queue.pop_front();
             return true;
         }
+        // Known to wait for the ring: nothing on the approach side can change
+        // that (the gate is checked again once the ring lets it go).
+        let key = (in_link, pipe);
+        if st.entry_waits(key, veh, now) {
+            return false;
+        }
 
         // Discharge gate of the approach pipe (friction / upstream capacity),
         // exactly as at an ordinary node.
@@ -1186,10 +1202,13 @@ impl Simulation {
             }
         };
 
-        let key = (in_link, pipe);
         match st.entry_bound(m, key, exit_pt, now) {
-            Bound::Blocked => return false,
-            Bound::At(t) if t > now => {
+            b @ Bound::Blocked => {
+                st.remember_entry_bound(key, veh, b);
+                return false;
+            }
+            b @ Bound::At(t) if t > now => {
+                st.remember_entry_bound(key, veh, b);
                 self.schedule_ring_ready(st, m, t);
                 return false;
             }

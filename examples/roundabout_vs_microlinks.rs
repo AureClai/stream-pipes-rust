@@ -219,15 +219,48 @@ struct Outcome {
     total: usize,
     exited: usize,
     mean_delay: f64,
+    checksum: u64,
+}
+
+/// Timed runs per case; the fastest is reported (the others only add noise).
+const REPS: usize = 15;
+
+/// FNV-1a over every vehicle's node times and ring exits: two codings of the
+/// engine that agree on this agree bit for bit.
+fn checksum(s: &Scenario) -> u64 {
+    let mut h: u64 = 0xcbf29ce484222325;
+    let mut eat = |x: u64| {
+        for b in x.to_le_bytes() {
+            h ^= u64::from(b);
+            h = h.wrapping_mul(0x100000001b3);
+        }
+    };
+    for v in &s.vehicles {
+        for t in &v.node_times {
+            eat(t.to_bits());
+        }
+        for &(i, t) in &v.ring_exits {
+            eat(i as u64);
+            eat(t.to_bits());
+        }
+    }
+    h
 }
 
 fn run(mut scenario: Scenario, rule: MergeRule) -> Outcome {
     assign_demand(&mut scenario).expect("assignment");
-    let mut sim = Simulation::new(scenario);
-    sim.merge_rule = rule;
-    let t0 = Instant::now();
-    let events = sim.run().expect("run");
-    let millis = t0.elapsed().as_secs_f64() * 1e3;
+    let mut best = f64::INFINITY;
+    let mut done = None;
+    for _ in 0..REPS {
+        let mut sim = Simulation::new(scenario.clone());
+        sim.merge_rule = rule;
+        let t0 = Instant::now();
+        let events = sim.run().expect("run");
+        best = best.min(t0.elapsed().as_secs_f64() * 1e3);
+        done = Some((sim, events));
+    }
+    let (sim, events) = done.expect("at least one run");
+    let millis = best;
 
     let s = &sim.scenario;
     let free: Vec<f64> = s.links.iter().map(|l| l.length / l.speed).collect();
@@ -247,6 +280,7 @@ fn run(mut scenario: Scenario, rule: MergeRule) -> Outcome {
         total: s.vehicles.len(),
         exited,
         mean_delay: delays.iter().sum::<f64>() / delays.len().max(1) as f64,
+        checksum: checksum(s),
     }
 }
 
@@ -266,12 +300,13 @@ fn ring_ff(s: &Scenario, v: &stream_core_rust::model::Vehicle) -> f64 {
 
 fn print(label: &str, q: f64, o: &Outcome) {
     println!(
-        "{label:<34} q={q:>5.0} | events/veh {:>6.1} | {:>7.2} ms | served {:>5}/{:<5} | mean delay {:>7.1} s",
+        "{label:<34} q={q:>5.0} | events/veh {:>6.1} | {:>7.2} ms | served {:>5}/{:<5} | mean delay {:>7.1} s | {:016x}",
         o.events as f64 / o.total.max(1) as f64,
         o.millis,
         o.exited,
         o.total,
-        o.mean_delay
+        o.mean_delay,
+        o.checksum
     );
 }
 

@@ -215,8 +215,12 @@ rings of 4, 8 and 16 segments on a four-arm roundabout. From 600 veh/h per
 arm, the micro-link ring gridlocks as soon as the approaches have
 priority (lower link ids, or the capacity merge rule); with the ring served
 first it clears, but its delays depend on the number of segments. The
-roundabout node serves every demand level, with 9 to 10 events per
-vehicle.
+roundabout node serves every demand level, with 9.5 to 11 events per
+vehicle, and runs as fast as the coarsest (4-segment) micro-link ring
+at 600 veh/h per arm, faster at 300 and 900 veh/h, and faster than the
+8- and 16-segment rings throughout. The ring bound is evaluated in one
+pass over the ring vehicles with precomputed point-pair constants, and is
+not recomputed while the ring state is unchanged.
 
 ### Bundled scenarios
 
