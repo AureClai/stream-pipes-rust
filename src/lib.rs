@@ -12,6 +12,7 @@ pub mod benchmarks;
 pub mod patch;
 pub mod roundabout;
 pub mod signals;
+pub mod junction;
 pub mod reference;
 
 #[cfg(feature = "python")]

@@ -3,6 +3,7 @@ use crate::model::{
 };
 use crate::roundabout::{Bound, PointKind, RingVehicle, RoundaboutState};
 use crate::signals::{Command, ControlView, Controller, SignalRuntime, SwitchRecord};
+use crate::junction::JunctionState;
 use anyhow::Result;
 #[cfg(feature = "python")]
 use pyo3::prelude::*;
@@ -120,6 +121,14 @@ fn eligible_pipes(link: &Link, class_id: usize, next_link: Option<LinkID>) -> Ve
         .filter(|&p| link.pipes[usize::from(p)].allows_class(class_id))
         .filter(|&p| by_move.is_none_or(|v| v.contains(&p)))
         .collect()
+}
+
+/// Same test as `!eligible_pipes(..).is_empty()`, without allocating.
+fn has_eligible_pipe(link: &Link, class_id: usize, next_link: Option<LinkID>) -> bool {
+    let by_move = next_link.and_then(|nl| link.moves.get(&nl));
+    (0..link.pipes.len() as u8).any(|p| {
+        link.pipes[usize::from(p)].allows_class(class_id) && by_move.is_none_or(|v| v.contains(&p))
+    })
 }
 
 /// Choice point 1 — entry-node enqueue. Discretionary rule: least-occupied
@@ -285,6 +294,9 @@ pub struct Simulation {
     /// Cumulative vehicles that entered / left each link (controller sensors).
     link_entered: Vec<u64>,
     link_exited: Vec<u64>,
+    /// Priority-junction state per node id (None for other nodes).
+    pub junctions: Vec<Option<Box<JunctionState>>>,
+    junctions_active: bool,
 }
 
 #[cfg(feature = "python")]
@@ -322,7 +334,16 @@ impl Simulation {
             controllers_started: false,
             link_entered: vec![0; n_links],
             link_exited: vec![0; n_links],
+            junctions: Vec::new(),
+            junctions_active: false,
         };
+        sim.junctions = sim
+            .scenario
+            .nodes
+            .iter()
+            .map(|n| n.junction.as_ref().map(|spec| Box::new(JunctionState::new(n, spec))))
+            .collect();
+        sim.junctions_active = sim.junctions.iter().any(Option::is_some);
         sim.signals = SignalRuntime::new(&sim.scenario.signals, &sim.scenario);
         sim.signals_active = !sim.signals.is_empty();
         sim.scenario.signal_log.clear();
@@ -593,6 +614,9 @@ impl Simulation {
                     veh.node_times.push(self.current_time);
                 }
                 veh.pipes_taken.push(pipe_idx);
+                if self.junctions_active {
+                    self.junction_expect(link_id, veh_id);
+                }
 
                 self.events.push(Event {
                     time: self.current_time + travel_time,
@@ -640,6 +664,12 @@ impl Simulation {
             .waiting_queue
             .push_back(veh_id);
         let node_id = self.scenario.links[link_id].node_down;
+        if self.junctions_active {
+            if let Some(js) = self.junctions.get_mut(node_id).and_then(|j| j.as_deref_mut()) {
+                let v = &self.scenario.vehicles[veh_id];
+                js.arrived(link_id, v.path.get(v.current_link_idx + 1).copied());
+            }
+        }
         self.process_node_transfer(node_id);
     }
 
@@ -720,6 +750,10 @@ impl Simulation {
 
     fn process_node_transfer(&mut self, node_id: NodeID) {
         if node_id >= self.scenario.nodes.len() {
+            return;
+        }
+        if self.junctions_active && self.junctions.get(node_id).is_some_and(Option::is_some) {
+            self.process_junction(node_id);
             return;
         }
         if self.roundabouts.get(node_id).is_some_and(Option::is_some) {
@@ -856,6 +890,15 @@ impl Simulation {
         } else {
             Controlled::default()
         };
+        // Priority rules: a minor movement waits for its gap.
+        let junction_move = if self.junctions_active {
+            match self.junction_gate(in_link_idx, in_pipe, veh_id, next_link_opt) {
+                Some(m) => m,
+                None => return,
+            }
+        } else {
+            None
+        };
 
         if let Some(next_link_idx) = next_link_opt {
             if next_link_idx >= self.scenario.links.len() {
@@ -910,6 +953,10 @@ impl Simulation {
                     self.link_entered[next_link_idx] += 1;
                     if self.signals_active {
                         self.signal_passed(controlled, in_link_idx, in_pipe);
+                    }
+                    if self.junctions_active {
+                        self.junction_passed(in_link_idx, in_pipe, junction_move);
+                        self.junction_expect(next_link_idx, veh_id);
                     }
 
                     self.events.push(Event {
@@ -969,6 +1016,9 @@ impl Simulation {
             }
             if self.signals_active {
                 self.signal_passed(controlled, in_link_idx, in_pipe);
+            }
+            if self.junctions_active {
+                self.junction_passed(in_link_idx, in_pipe, junction_move);
             }
             self.events.push(Event {
                 time: self.current_time,
@@ -1041,7 +1091,10 @@ impl Simulation {
         }
         let node = g.node;
         self.scenario.signal_log.push(SwitchRecord { group, time: self.current_time, green });
-        if green {
+        // Green releases the group's queue; red can release the movements
+        // that give way to it at a priority junction (permitted turns).
+        let junction = self.junctions_active && self.junctions.get(node).is_some_and(Option::is_some);
+        if green || junction {
             self.process_node_transfer(node);
         }
     }
@@ -1206,6 +1259,162 @@ impl Simulation {
     }
 }
 
+// ── Priority junctions ────────────────────────────────────────────────────────
+//
+// See `junction.rs`. A junction node serves its heads in priority order
+// (rank 1 first) and repeats after every departure, so a minor head always
+// sees the major vehicles that could go before it.
+
+/// Outcome of the junction gate before any state is changed.
+enum JunctionWait {
+    Go(Option<usize>),
+    Until(f64),
+    Event,
+}
+
+impl Simulation {
+    /// A vehicle just entered `link`: if the link ends at a junction, record
+    /// its arrival there (free-flow, the same expression as its
+    /// `VehicleArrival`).
+    fn junction_expect(&mut self, link: LinkID, veh: VehID) {
+        let l = &self.scenario.links[link];
+        let node = l.node_down;
+        let arrival = self.current_time + l.length / l.speed;
+        let v = &self.scenario.vehicles[veh];
+        let next = v.path.get(v.current_link_idx + 1).copied();
+        if let Some(js) = self.junctions.get_mut(node).and_then(|j| j.as_deref_mut()) {
+            js.expect(link, arrival, next);
+        }
+    }
+
+    fn junction_passed(&mut self, link: LinkID, pipe: PipeIdx, movement: Option<usize>) {
+        let node = self.scenario.links[link].node_down;
+        let now = self.current_time;
+        if let Some(js) = self.junctions.get_mut(node).and_then(|j| j.as_deref_mut()) {
+            js.passed(movement, link, pipe, now);
+        }
+    }
+
+    /// Serve the heads of a junction in priority order until none moves.
+    fn process_junction(&mut self, node_id: NodeID) {
+        loop {
+            let mut heads: Vec<(u8, LinkID, PipeIdx)> = Vec::new();
+            {
+                let Some(js) = self.junctions[node_id].as_deref() else { return };
+                for &l in &self.scenario.nodes[node_id].incoming_links {
+                    let Some(link) = self.scenario.links.get(l) else { continue };
+                    for (p, pipe) in link.pipes.iter().enumerate() {
+                        if let Some(&v) = pipe.waiting_queue.front() {
+                            let veh = &self.scenario.vehicles[v];
+                            let next = veh.path.get(veh.current_link_idx + 1).copied();
+                            heads.push((js.rank_of(l, next), l, p as PipeIdx));
+                        }
+                    }
+                }
+            }
+            heads.sort_unstable();
+            let mut progress = false;
+            for (_, l, p) in heads {
+                let before = self.scenario.links[l].pipes[usize::from(p)].waiting_queue.len();
+                self.try_transfer_pipe_head(l, p);
+                if self.scenario.links[l].pipes[usize::from(p)].waiting_queue.len() < before {
+                    progress = true;
+                    break;
+                }
+            }
+            if !progress {
+                break;
+            }
+        }
+    }
+
+    /// May the head of (link, pipe), bound for `next`, go now under the
+    /// priority rules? `Some(movement)` = yes (record it on departure),
+    /// None = it waits (with a wake-up when the wait has a known end).
+    fn junction_gate(&mut self, link: LinkID, pipe: PipeIdx, veh: VehID, next: Option<LinkID>) -> Option<Option<usize>> {
+        let node = self.scenario.links[link].node_down;
+        let now = self.current_time;
+        let wait = {
+            let Some(js) = self.junctions.get(node).and_then(|j| j.as_deref()) else {
+                return Some(None);
+            };
+            let Some(m) = js.movement(link, next) else {
+                return Some(None);
+            };
+            if js.moves[m].yields.is_empty() {
+                JunctionWait::Go(Some(m))
+            } else {
+                // A movement held by a red signal does not count as a conflict.
+                let red = |n: usize| -> bool {
+                    self.signals_active
+                        && self
+                            .signals
+                            .group_of(js.moves[n].from, Some(js.moves[n].to))
+                            .is_some_and(|g| !self.signals.groups[g].green)
+                };
+                let l = &self.scenario.links[link];
+                let v = &self.scenario.vehicles[veh];
+                let arrival = v.link_entry_time(v.current_link_idx).unwrap_or(now) + l.length / l.speed;
+                let t = js.cheap_bound(m, link, pipe, arrival, now, &red);
+                if t > now {
+                    JunctionWait::Until(t)
+                } else if js.approaching_conflict(m, now, &red) {
+                    // The approaching vehicle's arrival re-triggers the node.
+                    JunctionWait::Event
+                } else {
+                    // A better-ranked vehicle already at the line that can go
+                    // soon keeps its priority; one stuck behind a full exit
+                    // does not.
+                    let lag = js.moves[m].lag;
+                    let blocked = js.moves[m].yields.iter().any(|&n| {
+                        if red(n) {
+                            return false;
+                        }
+                        let (from, to) = (js.moves[n].from, js.moves[n].to);
+                        self.scenario.links[from].pipes.iter().any(|p| {
+                            p.waiting_queue.front().is_some_and(|&hv| {
+                                let h = &self.scenario.vehicles[hv];
+                                if h.path.get(h.current_link_idx + 1) != Some(&to) {
+                                    return false;
+                                }
+                                let nn = h.path.get(h.current_link_idx + 2).copied();
+                                match choose_pipe_for_transfer(&self.scenario.links[to], h.class_id, nn, now) {
+                                    PipeChoice::AdmitNow(_) => true,
+                                    PipeChoice::WakeAt(_, tw) => tw < now + lag,
+                                    PipeChoice::Blocked | PipeChoice::NoEligible => false,
+                                }
+                            })
+                        })
+                    });
+                    if blocked {
+                        JunctionWait::Event
+                    } else {
+                        JunctionWait::Go(Some(m))
+                    }
+                }
+            }
+        };
+        match wait {
+            JunctionWait::Go(m) => Some(m),
+            JunctionWait::Event => None,
+            JunctionWait::Until(t) => {
+                let p = &mut self.scenario.links[link].pipes[usize::from(pipe)];
+                if p.last_scheduled_exit_ready_time != Some(t) {
+                    p.last_scheduled_exit_ready_time = Some(t);
+                    self.events.push(Event {
+                        time: t,
+                        event_type: EventType::LinkReady,
+                        link_id: link,
+                        veh_id: EXIT_WAKE,
+                        pipe,
+                    });
+                }
+                None
+            }
+        }
+    }
+}
+
 // ── Roundabouts ───────────────────────────────────────────────────────────────
 //
 // The ring of a roundabout node is solved in `process_roundabout`, which the
@@ -1322,7 +1531,7 @@ impl Simulation {
             let out = v.path.get(v.current_link_idx + 1).copied();
             let next_next = v.path.get(v.current_link_idx + 2).copied();
             out.filter(|&l| l < self.scenario.links.len())
-                .is_some_and(|l| !eligible_pipes(&self.scenario.links[l], v.class_id, next_next).is_empty())
+                .is_some_and(|l| has_eligible_pipe(&self.scenario.links[l], v.class_id, next_next))
         };
         if !at_exit && st.ring_head_waits(p, veh, now) {
             return false;
@@ -1398,6 +1607,9 @@ impl Simulation {
                     v.state = VehicleState::Moving;
                     v.pipes_taken.push(target);
                     v.ring_exits.push((v.current_link_idx, now));
+                }
+                if self.junctions_active {
+                    self.junction_expect(out, veh);
                 }
                 self.events.push(Event {
                     time: now + travel_time,
@@ -1487,7 +1699,7 @@ impl Simulation {
                     if {
                         let v = &self.scenario.vehicles[veh];
                         let next_next = v.path.get(v.current_link_idx + 2).copied();
-                        eligible_pipes(&self.scenario.links[out], v.class_id, next_next).is_empty()
+                        !has_eligible_pipe(&self.scenario.links[out], v.class_id, next_next)
                     } =>
                 {
                     return false
@@ -1596,7 +1808,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 1,
@@ -1604,7 +1816,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1],
                     points: (1.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 2,
@@ -1612,7 +1824,7 @@ mod tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
             ],
             links: vec![
@@ -1796,7 +2008,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 1,
@@ -1804,7 +2016,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1, 2],
                     points: (1.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 2,
@@ -1812,7 +2024,7 @@ mod tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 3,
@@ -1820,7 +2032,7 @@ mod tests {
                     incoming_links: vec![2],
                     outgoing_links: vec![],
                     points: (2.0, 1.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
             ],
             links: vec![

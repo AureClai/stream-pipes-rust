@@ -33,7 +33,7 @@ fn network(types: &[NodeType], links: Vec<Link>) -> (Vec<Node>, Vec<Link>) {
             outgoing_links: vec![],
             points: (id as f64 * 100.0, 0.0),
             signals: vec![],
-            roundabout: None,
+            roundabout: None, junction: None,
         })
         .collect();
     for l in &links {

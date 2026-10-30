@@ -41,7 +41,7 @@ with its own capacity, storage and backward wave.
 | | |
 |---|---|
 | **Exact** | Discrete-event solution of LWR with a triangular fundamental diagram (Newell's simplified theory). No time step, no RNG: two runs are bit-identical. |
-| **Verified** | Seventeen closed-form benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, fractional-slot wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle; four roundabout cases: free flow, entry capacity, Siegloch gap acceptance, spillback on the ring; and signal discharge per green, ramp-metering rate, toll service) pass at machine precision. |
+| **Verified** | Eighteen closed-form benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, fractional-slot wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle; four roundabout cases: free flow, entry capacity, Siegloch gap acceptance, spillback on the ring; signal discharge per green, ramp-metering rate, toll service; and Siegloch gap acceptance at a priority junction) pass at machine precision. |
 | **Self-auditing** | `stream-cli verify` checks every link, pipe and node of any scenario (free-flow traversal, capacity, storage bound, backward wave, FD adherence, conservation, FIFO, demand served) and reports **pass / warn / fail / not-exercised**. |
 | **Validated** | Three instrumented corridors in two countries: 1 280 of 1 312 flow windows below GEH 5. NGSIM trajectories confirm the lane-commitment assumption. |
 | **Scenario variants** | *Patches* (lane closures, capacity drops, lane add/shrink, demand scaling, new links) compose a variant from a base network, with time windows. |
@@ -56,8 +56,7 @@ server are working and tested. Not yet available:
 - **Python bindings**: the PyO3 module is a stub for now.
 - `stream-cli run --output`: result export from the CLI (use `verify -o`
   or the HTTP server to get results).
-- Time-dependent assignment, conflicts between movements at ordinary
-  junctions, and stochastic merges (see
+- Time-dependent assignment, all-way stops, and stochastic merges (see
   [Limitations](#limitations)).
 
 APIs and file formats may change before 1.0.
@@ -74,7 +73,7 @@ cd stream-pipes-rust
 cargo build --release --no-default-features --bin stream-cli
 ```
 
-Run the seventeen analytic benchmarks and verify a bundled scenario:
+Run the eighteen analytic benchmarks and verify a bundled scenario:
 
 ```bash
 cargo run --release --no-default-features --bin stream-cli -- \
@@ -223,6 +222,42 @@ at 600 veh/h per arm, faster at 300 and 900 veh/h, and faster than the
 pass over the ring vehicles with precomputed point-pair constants, and is
 not recomputed while the ring state is unchanged.
 
+### Priority junctions
+
+A node with a `junction` object applies priority rules between its
+movements (it needs the link geometry to classify them):
+
+```jsonc
+"properties": { "id": 12,
+  "junction": {
+    "major": [30, 31, 34, 35],      // links of the major road
+    "control": "stop",              // minor approaches: "yield" (default) or "stop"
+    "movements": [                  // optional overrides
+      { "from": 32, "to": 35, "critical_gap": 6.0, "follow_up": 3.5 }
+    ]
+} }
+```
+
+- Each movement (incoming → outgoing link) is classified as right,
+  through, left or U-turn from the link bearings, and ranked as in the HCM
+  two-way-stop method: rank 1 major through and right, rank 2 major left
+  and minor right, rank 3 minor through, rank 4 minor left.
+- Two movements conflict when they share an exit or their paths cross
+  (right-hand traffic); a movement gives way to every conflicting movement
+  of a better rank. Overrides can change a rank, the gaps, the stop time
+  or the `yields_to` list of any movement.
+- A giving-way vehicle goes when `lead` = t_f/2 has passed since the last
+  conflicting vehicle, no conflicting vehicle can reach the node within
+  `lag` = t_c − t_f (vehicles on their way arrive at known free-flow
+  times; one already at the line counts if it can move), t_f has passed
+  since the previous departure from its lane, and, at a stop, it has stood
+  `stop_time` (1 s by default) at the line. A gap g lets
+  floor((g − t_0)/t_f) + 1 vehicles through, t_0 = t_c − t_f/2. Defaults:
+  HCM 6 base critical headways and follow-up times.
+- With signals on the same node, a movement on red does not count as a
+  conflict: a left turn in a green phase is *permitted* (it gives way to
+  the opposing through), and *protected* while the opposing through is red.
+
 ### Signals, ramp metering, tolls
 
 An optional `signals.json` next to the network (picked up by
@@ -351,8 +386,11 @@ These are deliberate modelling choices for now, not bugs:
   choice), exiting vehicles do not disturb entries, a vehicle stopped on
   the ring does not count as a conflict for the entries downstream until it
   moves again, and the assignment ignores the time spent on the ring;
-- junctions: movements at an ordinary node do not conflict with each other
-  (they interact only through the links they share); signal groups are not
+- junctions: a node without a `junction` object lets its movements cross
+  freely (they interact only through the links they share); priority
+  junctions need link geometry to classify their movements, assume
+  right-hand traffic and measure conflicts at the node itself (no conflict
+  areas inside it); all-way stops are not modelled; signal groups are not
   supported on roundabout nodes, nor tolls on roundabout approaches.
 
 ## Citing

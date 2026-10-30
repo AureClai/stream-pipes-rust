@@ -562,6 +562,10 @@ pub struct Node {
     /// inside the node (see `roundabout.rs`) instead of by micro-links.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub roundabout: Option<RoundaboutSpec>,
+    /// When set, this ordinary node applies priority rules: minor movements
+    /// give way to the major ones they conflict with (see `junction.rs`).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub junction: Option<crate::junction::JunctionSpec>,
 }
 
 // ── Roundabouts ───────────────────────────────────────────────────────────────

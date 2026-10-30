@@ -709,6 +709,104 @@ fn check_roundabout(scenario: &Scenario, node_id: NodeID, spec: &RoundaboutSpec)
     vec![traversal, entries, exits, fifo]
 }
 
+/// Priority-junction check, from the vehicle records and the applied signal
+/// switches: every departure of a minor movement respects, against each
+/// movement it gives way to (unless that one was on red), `lead` after its
+/// last passage and `lag` before its next arrival at the node, plus the
+/// follow-up time and the stop time of its lane.
+fn check_junction(scenario: &Scenario, node_id: NodeID, spec: &crate::junction::JunctionSpec) -> Check {
+    const EPS: f64 = 1e-9;
+    let id = "junction_priority";
+    let name = "Priority (gap acceptance)";
+    // Per movement: passages and arrivals at the node; per lane: departures.
+    let mut passes: HashMap<(LinkID, LinkID), Vec<f64>> = HashMap::new();
+    let mut arrivals: HashMap<(LinkID, LinkID), Vec<f64>> = HashMap::new();
+    let mut lanes: HashMap<(LinkID, PipeIdx), Vec<(f64, f64, Option<LinkID>)>> = HashMap::new();
+    for veh in &scenario.vehicles {
+        for (i, &lid) in veh.path.iter().enumerate() {
+            let Some(link) = scenario.links.get(lid) else { continue };
+            if link.node_down != node_id {
+                continue;
+            }
+            let (Some(t_in), Some(t_out)) = (veh.link_entry_time(i), veh.link_exit_time(i)) else { continue };
+            let next = veh.path.get(i + 1).copied();
+            let arrival = t_in + link.length / link.speed;
+            if let Some(n) = next {
+                passes.entry((lid, n)).or_default().push(t_out);
+                arrivals.entry((lid, n)).or_default().push(arrival);
+            }
+            let pipe = veh.pipes_taken.get(i).copied().unwrap_or(0);
+            lanes.entry((lid, pipe)).or_default().push((t_out, arrival, next));
+        }
+    }
+    for v in passes.values_mut().chain(arrivals.values_mut()) {
+        v.sort_by(f64::total_cmp);
+    }
+    // Red at t for a movement controlled by a signal group.
+    let red_at = |from: LinkID, to: LinkID, t: f64| -> bool {
+        let Some(g) = scenario.signals.groups.iter().position(|g| {
+            g.node == node_id && g.movements.iter().any(|m| m.from == from && (m.to.is_none() || m.to == Some(to)))
+        }) else {
+            return false;
+        };
+        let state = scenario
+            .signal_log
+            .iter()
+            .filter(|r| r.group == g && r.time <= t)
+            .last()
+            .map_or(true, |r| r.green);
+        !state
+    };
+    let mut checked = 0usize;
+    let mut violations = 0usize;
+    for (&(link, _pipe), deps) in lanes.iter_mut() {
+        deps.sort_by(|a, b| a.0.total_cmp(&b.0));
+        let mut prev: Option<f64> = None;
+        for &(t, arrival, next) in deps.iter() {
+            let m = next.and_then(|n| spec.movement(link, n));
+            if let Some(m) = m.filter(|m| !m.yields_to.is_empty()) {
+                checked += 1;
+                let mut ok = true;
+                if let Some(p) = prev {
+                    ok &= t >= p + m.follow_up - EPS;
+                }
+                ok &= t >= arrival.max(prev.unwrap_or(f64::NEG_INFINITY)) + m.stop_time - EPS;
+                for &[a, b] in &m.yields_to {
+                    if let Some(ps) = passes.get(&(a, b)) {
+                        // Last conflicting passage at or before t.
+                        let k = ps.partition_point(|&x| x <= t + EPS);
+                        if k > 0 && ps[k - 1] > t - m.lead() + EPS && !red_at(a, b, ps[k - 1]) {
+                            ok = false;
+                        }
+                    }
+                    if let Some(arr) = arrivals.get(&(a, b)) {
+                        let k = arr.partition_point(|&x| x < t - EPS);
+                        if k < arr.len() && arr[k] < t + m.lag() - EPS && !red_at(a, b, arr[k]) {
+                            ok = false;
+                        }
+                    }
+                }
+                if !ok {
+                    violations += 1;
+                }
+            }
+            prev = Some(t);
+        }
+    }
+    if checked == 0 {
+        return not_exercised(id, name, "No minor movement was used.");
+    }
+    check(
+        id,
+        name,
+        if violations == 0 { CheckStatus::Pass } else { CheckStatus::Fail },
+        Some(violations as f64),
+        Some(0.0),
+        "departures",
+        format!("{checked} minor departures checked for lead, lag, follow-up and stop time against the movements they give way to."),
+    )
+}
+
 /// Signal group mechanism checks, from the applied switches
 /// (`signal_log`) and the vehicle records: no vehicle takes a controlled
 /// movement on red, and no green lets more vehicles through than its cap.
@@ -970,6 +1068,9 @@ pub fn verify_scenario(scenario: &Scenario, bin_size: f64) -> VerificationReport
                 if let Some(spec) = &node.roundabout {
                     checks.extend(check_roundabout(scenario, node.id, spec));
                 }
+                if let Some(spec) = &node.junction {
+                    checks.push(check_junction(scenario, node.id, spec));
+                }
                 elements.push(element_report(
                     ElementType::Node,
                     node.id,
@@ -1086,7 +1187,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 1,
@@ -1094,7 +1195,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1],
                     points: (1.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 2,
@@ -1102,7 +1203,7 @@ mod tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
             ],
             links: vec![
@@ -1281,7 +1382,7 @@ mod pipe_verification_tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 1,
@@ -1289,7 +1390,7 @@ mod pipe_verification_tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1, 2],
                     points: (1.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 2,
@@ -1297,7 +1398,7 @@ mod pipe_verification_tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 3,
@@ -1305,7 +1406,7 @@ mod pipe_verification_tests {
                     incoming_links: vec![2],
                     outgoing_links: vec![],
                     points: (2.0, 1.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
             ],
             links: vec![

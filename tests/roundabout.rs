@@ -60,7 +60,7 @@ fn node(id: usize, node_type: NodeType) -> Node {
         outgoing_links: vec![],
         points: (id as f64, 0.0),
         signals: vec![],
-        roundabout: None,
+        roundabout: None, junction: None,
     }
 }
 

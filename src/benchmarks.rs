@@ -99,7 +99,7 @@ fn node(id: usize, node_type: NodeType, incoming: Vec<usize>, outgoing: Vec<usiz
         incoming_links: incoming,
         outgoing_links: outgoing,
         points: (id as f64, 0.0),
-        signals: vec![], roundabout: None,
+        signals: vec![], roundabout: None, junction: None,
     }
 }
 
@@ -853,6 +853,71 @@ fn case_toll_service() -> Result<BenchmarkResult> {
     ))
 }
 
+// ── Priority junction ─────────────────────────────────────────────────────────
+
+fn case_junction_siegloch() -> Result<BenchmarkResult> {
+    // T junction at node 0 (1000, 1000): major road west → east, minor
+    // approach from the south turning right (east). Approaches 100 m at
+    // 10 m/s; the minor right turn has t_c = 6 s, t_f = 4 s (t_0 = 4 s).
+    let centre = (1000.0, 1000.0);
+    let (west, east, south) = ((900.0, 1000.0), (1100.0, 1000.0), (1000.0, 900.0));
+    let fd_in = FundamentalDiagram { u: 10.0, w: 5.0, kx: 0.15, c: 0.5 };
+    let free = FundamentalDiagram { u: 10.0, w: 5.0, kx: 10.0, c: 10.0 };
+    let pt = |id, t, p| Node { points: p, ..node(id, t, vec![], vec![]) };
+    let mut nodes = vec![
+        pt(0, NodeType::Internal, centre),
+        pt(1, NodeType::Entry, west),
+        pt(2, NodeType::Exit, east),
+        pt(3, NodeType::Entry, south),
+    ];
+    let links = vec![
+        Link::new(0, 1, 0, 100.0, 10.0, 1, 0.5, fd_in.clone(), vec![west, centre]),
+        Link::new(1, 0, 2, 100.0, 10.0, 1, 10.0, free, vec![centre, east]),
+        Link::new(2, 3, 0, 100.0, 10.0, 1, 0.5, fd_in, vec![south, centre]),
+    ];
+    for l in &links {
+        nodes[l.node_up].outgoing_links.push(l.id);
+        nodes[l.node_down].incoming_links.push(l.id);
+    }
+    let raw = serde_json::json!({
+        "major": [0, 1],
+        "movements": [ { "from": 2, "to": 1, "critical_gap": 6.0, "follow_up": 4.0 } ]
+    });
+    nodes[0].junction = Some(crate::junction::resolve_spec(&raw, &nodes[0], &links)?);
+    let h = 12.5;
+    let mut vehicles: Vec<Vehicle> = (0..40).map(|k| Vehicle::new(k, 0, vec![0, 1], k as f64 * h, 1, 2)).collect();
+    vehicles.extend((0..250).map(|k| Vehicle::new(40 + k, 0, vec![2, 1], 0.0, 3, 2)));
+    let s = run(Scenario {
+        nodes,
+        links,
+        vehicles,
+        demand: vec![],
+        start_time: 0.0,
+        duration: 100_000.0,
+        classes: vec!["car".to_string()],
+        link_schedule: Vec::new(),
+        assignment_excluded: Vec::new(),
+        signals: Default::default(),
+        signal_log: Vec::new(),
+    })?;
+    let major: Vec<f64> = s.vehicles[..40].iter().map(|v| v.node_times[1]).collect();
+    let gaps = 2..30;
+    let n_gaps = gaps.len();
+    let entered: usize = gaps
+        .map(|k| s.vehicles[40..].iter().filter(|v| v.node_times[1] > major[k] && v.node_times[1] < major[k + 1]).count())
+        .sum();
+    Ok(result(
+        "junction_siegloch",
+        "Priority junction: gap acceptance (Siegloch)",
+        "Regular major stream every H = 12.5 s in front of a saturated minor right \
+         turn, t_c = 6 s, t_f = 4 s (t_0 = 4 s). Theory: floor((H − t_0)/t_f) + 1 = 3 \
+         departures per gap.",
+        ((h - 4.0) / 4.0f64).floor() + 1.0,
+        entered as f64 / n_gaps as f64,
+        "veh/gap",
+    ))
+}
+
 // ── Entry point ───────────────────────────────────────────────────────────────
 
 pub fn run_benchmarks() -> Result<Vec<BenchmarkResult>> {
@@ -874,6 +939,7 @@ pub fn run_benchmarks() -> Result<Vec<BenchmarkResult>> {
         case_signal_saturation()?,
         case_ramp_meter()?,
         case_toll_service()?,
+        case_junction_siegloch()?,
     ])
 }
 

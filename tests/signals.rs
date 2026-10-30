@@ -14,7 +14,7 @@ use stream_core_rust::simulation::Simulation;
 use stream_core_rust::validation::Validate;
 
 fn node(id: usize, t: NodeType, inc: Vec<usize>, out: Vec<usize>) -> Node {
-    Node { id, node_type: t, incoming_links: inc, outgoing_links: out, points: (0.0, 0.0), signals: vec![], roundabout: None }
+    Node { id, node_type: t, incoming_links: inc, outgoing_links: out, points: (0.0, 0.0), signals: vec![], roundabout: None, junction: None }
 }
 
 fn base(l0: Link, trips: &[(usize, f64)]) -> Scenario {

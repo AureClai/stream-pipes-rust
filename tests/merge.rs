@@ -18,7 +18,7 @@ fn fd(c: f64, kx: f64) -> FundamentalDiagram {
 }
 
 fn node(id: usize, node_type: NodeType, incoming: Vec<usize>, outgoing: Vec<usize>) -> Node {
-    Node { id, node_type, incoming_links: incoming, outgoing_links: outgoing, points: (0.0, 0.0), signals: vec![], roundabout: None }
+    Node { id, node_type, incoming_links: incoming, outgoing_links: outgoing, points: (0.0, 0.0), signals: vec![], roundabout: None, junction: None }
 }
 
 /// `q0`, `q1`: arrival rates (veh/s) on L0 and L1, for `t_end` seconds.

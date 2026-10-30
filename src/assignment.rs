@@ -192,7 +192,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 1,
@@ -200,7 +200,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1],
                     points: (1.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 2,
@@ -208,7 +208,7 @@ mod tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
             ],
             links: vec![
@@ -365,7 +365,7 @@ mod class_tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 1,
@@ -373,7 +373,7 @@ mod class_tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![],
                     points: (1.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
             ],
             links: vec![Link::new(0, 0, 1, 1000.0, 10.0, 2, 1.0, fd, vec![])],

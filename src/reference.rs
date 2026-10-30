@@ -233,7 +233,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 1,
@@ -241,7 +241,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![],
                     points: (1.0, 0.0),
-                    signals: vec![], roundabout: None,
+                    signals: vec![], roundabout: None, junction: None,
                 },
             ],
             links: vec![Link::new(0, 0, 1, 100.0, 10.0, 1, 10.0, fd, vec![])],

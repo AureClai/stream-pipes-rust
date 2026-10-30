@@ -82,7 +82,7 @@ impl Controller for Alinea {
 const HORIZON: f64 = 3600.0;
 
 fn node(id: usize, t: NodeType, inc: Vec<usize>, out: Vec<usize>) -> Node {
-    Node { id, node_type: t, incoming_links: inc, outgoing_links: out, points: (id as f64, 0.0), signals: vec![], roundabout: None }
+    Node { id, node_type: t, incoming_links: inc, outgoing_links: out, points: (id as f64, 0.0), signals: vec![], roundabout: None, junction: None }
 }
 
 fn fd(u: f64, c: f64) -> FundamentalDiagram {

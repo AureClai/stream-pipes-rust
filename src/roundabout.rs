@@ -995,7 +995,7 @@ mod tests {
             outgoing_links: vec![1, 3, 5, 7],
             points: (1000.0, 1000.0),
             signals: vec![],
-            roundabout: None,
+            roundabout: None, junction: None,
         };
         let fd = FundamentalDiagram { u: 10.0, w: 5.0, kx: 0.15, c: 0.5 };
         let mut links = Vec::new();

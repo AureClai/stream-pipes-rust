@@ -162,6 +162,7 @@ pub fn compile_scenario_from_network_value(
     let mut links = Vec::new();
     // Raw `roundabout` objects, resolved once the topology is known.
     let mut roundabouts: Vec<(usize, serde_json::Value)> = Vec::new();
+    let mut junctions: Vec<(usize, serde_json::Value)> = Vec::new();
 
     for feature in collection.features {
         let props = feature
@@ -193,6 +194,9 @@ pub fn compile_scenario_from_network_value(
                         .ok_or(anyhow!("Roundabout node {} missing its 'roundabout' object", id))?;
                     roundabouts.push((id, raw));
                 }
+                if let Some(raw) = props.get("junction") {
+                    junctions.push((id, raw.clone()));
+                }
                 let x = coords
                     .first()
                     .copied()
@@ -207,7 +211,7 @@ pub fn compile_scenario_from_network_value(
                     incoming_links: Vec::new(),
                     outgoing_links: Vec::new(),
                     points: (x, y),
-                    signals: Vec::new(), roundabout: None,
+                    signals: Vec::new(), roundabout: None, junction: None,
                 });
             }
             Value::LineString(coords) => {
@@ -296,6 +300,11 @@ pub fn compile_scenario_from_network_value(
         let idx = node_idx_map[&id];
         let spec = crate::roundabout::resolve_spec(&raw, &nodes[idx], &links)?;
         nodes[idx].roundabout = Some(spec);
+    }
+    for (id, raw) in junctions {
+        let idx = node_idx_map[&id];
+        let spec = crate::junction::resolve_spec(&raw, &nodes[idx], &links)?;
+        nodes[idx].junction = Some(spec);
     }
 
     // 2. Parse Demand from value
