@@ -589,6 +589,156 @@ fn case_friction_throttle() -> Result<BenchmarkResult> {
         "s",
     ))
 }
+// ── Roundabout node ───────────────────────────────────────────────────────────
+
+/// One roundabout node 0 on a 100 m ring at 10 m/s (C = 0.5 veh/s), four arms
+/// at 0/25/50/75 m with 4 m islands — points X0 = 98, M0 = 2, X1 = 23,
+/// M1 = 27, X2 = 48, M2 = 52, X3 = 73, M3 = 77. Arm k: approach link 2k
+/// (100 m at 10 m/s, C = 1 veh/s) and exit link 2k + 1 (100 m at 10 m/s,
+/// capacity `exit_c[k]`). `trips`: (arm in, arm out, start).
+fn roundabout_scenario(
+    critical_gap: f64,
+    follow_up: f64,
+    exit_c: [f64; 4],
+    trips: &[(usize, usize, f64)],
+) -> Scenario {
+    use crate::model::{RoundaboutArm, RoundaboutSpec};
+    let fd = |c: f64, kx: f64| FundamentalDiagram { u: 10.0, w: 5.0, kx, c };
+    let mut nodes = vec![node(0, NodeType::Internal, vec![], vec![])];
+    let mut links = Vec::new();
+    let mut arms = Vec::new();
+    for k in 0..4 {
+        nodes.push(node(1 + 2 * k, NodeType::Entry, vec![], vec![2 * k]));
+        nodes.push(node(2 + 2 * k, NodeType::Exit, vec![2 * k + 1], vec![]));
+        nodes[0].incoming_links.push(2 * k);
+        nodes[0].outgoing_links.push(2 * k + 1);
+        links.push(Link::new(2 * k, 1 + 2 * k, 0, 100.0, 10.0, 1, 1.0, fd(1.0, 0.15), vec![]));
+        links.push(Link::new(2 * k + 1, 0, 2 + 2 * k, 100.0, 10.0, 1, exit_c[k], fd(exit_c[k], 0.15), vec![]));
+        arms.push(RoundaboutArm { in_link: Some(2 * k), out_link: Some(2 * k + 1), position: 25.0 * k as f64 });
+    }
+    nodes[0].roundabout = Some(RoundaboutSpec {
+        circumference: 100.0,
+        lanes: 1,
+        speed: 10.0,
+        fd: fd(0.5, 0.15),
+        critical_gap,
+        follow_up,
+        island: 4.0,
+        arms,
+    });
+    let vehicles = trips
+        .iter()
+        .enumerate()
+        .map(|(i, &(a, b, t))| Vehicle::new(i, 0, vec![2 * a, 2 * b + 1], t, 1 + 2 * a, 2 + 2 * b))
+        .collect();
+    Scenario {
+        nodes,
+        links,
+        vehicles,
+        demand: vec![],
+        start_time: 0.0,
+        duration: 100_000.0,
+        classes: vec!["car".to_string()],
+        link_schedule: Vec::new(),
+        assignment_excluded: Vec::new(),
+    }
+}
+
+fn case_roundabout_free_flow() -> Result<BenchmarkResult> {
+    let s = run(roundabout_scenario(4.0, 2.0, [10.0; 4], &[(0, 2, 0.0)]))?;
+    let v = &s.vehicles[0];
+    let measured = v.node_times.last().copied().unwrap_or(f64::NAN) - v.node_times[0];
+    Ok(result(
+        "roundabout_free_flow",
+        "Roundabout free-flow traversal",
+        "One vehicle through a roundabout node, approach and exit 100 m at 10 m/s, \
+         ring arc M0 → X2 = 46 m at 10 m/s. Theory: 10 + 4.6 + 10 = 24.6 s.",
+        10.0 + 46.0 / 10.0 + 10.0,
+        measured,
+        "s",
+    ))
+}
+
+fn case_roundabout_entry_capacity() -> Result<BenchmarkResult> {
+    let trips: Vec<_> = (0..8).map(|_| (0, 1, 0.0)).collect();
+    let s = run(roundabout_scenario(4.0, 2.5, [10.0; 4], &trips))?;
+    let measured = s
+        .vehicles
+        .iter()
+        .filter_map(|v| v.node_times.get(1).copied())
+        .fold(f64::NEG_INFINITY, f64::max);
+    Ok(result(
+        "roundabout_entry_capacity",
+        "Roundabout entry capacity, no conflict",
+        "8 vehicles queued on an approach, empty ring, t_f = 2.5 s > 1/C_ring = 2 s > \
+         1/C_approach. Theory: entries every t_f from the first arrival at 10 s; \
+         last at 10 + 7·2.5 = 27.5 s.",
+        10.0 + 7.0 * 2.5,
+        measured,
+        "s",
+    ))
+}
+
+fn case_roundabout_siegloch() -> Result<BenchmarkResult> {
+    // Circulating 3 → 1 every H = 12.5 s passes M0 at 12.5 + kH; a saturated
+    // queue on arm 0 (bound for arm 2) faces it.
+    let h = 12.5;
+    let mut trips: Vec<(usize, usize, f64)> = (0..40).map(|k| (3, 1, k as f64 * h)).collect();
+    trips.extend((0..250).map(|_| (0, 2, 0.0)));
+    let mut sim = Simulation::new(roundabout_scenario(6.0, 4.0, [10.0; 4], &trips));
+    sim.run().context("benchmark simulation failed")?;
+    let st = sim.roundabouts[0].as_ref().context("roundabout state")?;
+    let passages = &st.trace[st.geom.merge_point[0]];
+    let circ: Vec<f64> = passages.iter().filter(|p| p.circulating).map(|p| p.time).collect();
+    let gaps = 2..30;
+    let n_gaps = gaps.len();
+    let entered: usize = gaps
+        .map(|k| {
+            passages
+                .iter()
+                .filter(|p| !p.circulating && p.time > circ[k] && p.time < circ[k + 1])
+                .count()
+        })
+        .sum();
+    Ok(result(
+        "roundabout_siegloch",
+        "Roundabout gap acceptance (Siegloch)",
+        "Regular circulating stream every H = 12.5 s in front of a saturated entry, \
+         t_c = 6 s, t_f = 4 s (t_0 = 4 s). Theory: floor((H − t_0)/t_f) + 1 = 3 \
+         entries per gap.",
+        ((h - 4.0) / 4.0f64).floor() + 1.0,
+        entered as f64 / n_gaps as f64,
+        "veh/gap",
+    ))
+}
+
+fn case_roundabout_spillback() -> Result<BenchmarkResult> {
+    // Arm 2's exit discharges 0.1 veh/s; 60 vehicles 0 → 2 fill the ring
+    // between M0 and X2 (46 m · 0.15 = 6.9 → 7 slots) and wait there.
+    let trips: Vec<_> = (0..60).map(|k| (0, 2, k as f64 * 2.0)).collect();
+    let s = run(roundabout_scenario(4.0, 2.0, [10.0, 10.0, 0.1, 10.0], &trips))?;
+    let on_ring: Vec<(f64, f64)> = s
+        .vehicles
+        .iter()
+        .filter_map(|v| Some((*v.node_times.get(1)?, v.ring_exits.first()?.1)))
+        .collect();
+    let max_on_arc = on_ring
+        .iter()
+        .map(|&(t, _)| on_ring.iter().filter(|&&(a, b)| a <= t && b > t).count())
+        .max()
+        .unwrap_or(0);
+    Ok(result(
+        "roundabout_spillback",
+        "Roundabout spillback storage",
+        "A saturated exit (0.1 veh/s) makes its traffic queue on the ring back to \
+         the entry point 46 m upstream. Theory: the arc holds ceil(kx·d) = \
+         ceil(0.15·46) = 7 vehicles at most, and fills up.",
+        7.0,
+        max_on_arc as f64,
+        "veh",
+    ))
+}
+
 // ── Entry point ───────────────────────────────────────────────────────────────
 
 pub fn run_benchmarks() -> Result<Vec<BenchmarkResult>> {
@@ -603,6 +753,10 @@ pub fn run_benchmarks() -> Result<Vec<BenchmarkResult>> {
         case_shoulder_exit_wave()?,
         case_shoulder_exit_through()?,
         case_friction_throttle()?,
+        case_roundabout_free_flow()?,
+        case_roundabout_entry_capacity()?,
+        case_roundabout_siegloch()?,
+        case_roundabout_spillback()?,
     ])
 }
 

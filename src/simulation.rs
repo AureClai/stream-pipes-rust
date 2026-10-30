@@ -978,10 +978,11 @@ impl Simulation {
         });
     }
 
-    /// Move everything that can move through the roundabout now: at each
-    /// point in the order of circulation, the waiting ring vehicles first,
-    /// then the entries of that arm; repeat while anything passed (a passage
-    /// can free storage upstream).
+    /// Move everything that can move through the roundabout now. The ring
+    /// goes first and is settled before any entry is considered, so that a
+    /// vehicle that can pass a point right away is seen in motion by the
+    /// entries' lag check; then the entries, in the order of circulation.
+    /// Repeat while anything passed (a passage can free storage upstream).
     fn process_roundabout(&mut self, node_id: NodeID) {
         let Some(mut st) = self.roundabouts.get_mut(node_id).and_then(Option::take) else {
             return;
@@ -992,6 +993,11 @@ impl Simulation {
                 while self.try_pass_ring(&mut st, p) {
                     progress = true;
                 }
+            }
+            if progress {
+                continue;
+            }
+            for p in 0..st.geom.len() {
                 let point = st.geom.points[p];
                 if point.kind != PointKind::Merge {
                     continue;

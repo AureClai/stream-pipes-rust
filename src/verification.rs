@@ -38,7 +38,8 @@
 
 use crate::analysis::compute_link_stats;
 use crate::diagnostics::{compute_fd_points, compute_node_balance, FDRegime};
-use crate::model::{LinkID, NodeID, NodeType, PipeIdx, Scenario};
+use crate::model::{LinkID, NodeID, NodeType, PipeIdx, RoundaboutSpec, Scenario};
+use crate::roundabout::RingGeometry;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -550,6 +551,163 @@ fn check_node_fifo(scenario: &Scenario, node_id: NodeID) -> Check {
     )
 }
 
+/// One crossing of a roundabout node, reconstructed from a vehicle record.
+struct RingCrossing {
+    arm_in: usize,
+    arm_out: usize,
+    approach: (LinkID, PipeIdx),
+    t_in: f64,
+    t_out: f64,
+}
+
+fn ring_crossings(scenario: &Scenario, node_id: NodeID, spec: &RoundaboutSpec) -> Vec<RingCrossing> {
+    let mut out = Vec::new();
+    for veh in &scenario.vehicles {
+        for (i, w) in veh.path.windows(2).enumerate() {
+            let Some(l) = scenario.links.get(w[0]) else { continue };
+            if l.node_down != node_id {
+                continue;
+            }
+            let arm_in = spec.arms.iter().position(|a| a.in_link == Some(w[0]));
+            let arm_out = spec.arms.iter().position(|a| a.out_link == Some(w[1]));
+            let (Some(arm_in), Some(arm_out)) = (arm_in, arm_out) else { continue };
+            let (Some(t_in), Some(t_out)) = (veh.link_exit_time(i), veh.link_entry_time(i + 1)) else {
+                continue;
+            };
+            let pipe = veh.pipes_taken.get(i).copied().unwrap_or(0);
+            out.push(RingCrossing { arm_in, arm_out, approach: (w[0], pipe), t_in, t_out });
+        }
+    }
+    out
+}
+
+/// Smallest gap between consecutive times of each group (sorted in place).
+fn min_headway<K: Ord>(groups: &mut std::collections::BTreeMap<K, Vec<f64>>) -> Option<f64> {
+    groups
+        .values_mut()
+        .flat_map(|ts| {
+            ts.sort_by(f64::total_cmp);
+            ts.windows(2).map(|w| w[1] - w[0]).collect::<Vec<_>>()
+        })
+        .min_by(f64::total_cmp)
+}
+
+/// Roundabout mechanism checks, from vehicle records alone: ring traversals
+/// never beat free flow, entries respect the follow-up time per approach
+/// lane and the ring headway per entry point, exits respect the ring
+/// headway, and vehicles of one movement leave in the order they entered
+/// (FIFO ring). The gap-acceptance rule itself is exercised by the
+/// `roundabout_siegloch` benchmark.
+fn check_roundabout(scenario: &Scenario, node_id: NodeID, spec: &RoundaboutSpec) -> Vec<Check> {
+    use std::collections::BTreeMap;
+    const EPS: f64 = 1e-9;
+    let crossings = ring_crossings(scenario, node_id, spec);
+    if crossings.is_empty() {
+        return vec![not_exercised("ring_traversal", "Ring free-flow traversal", "No vehicle crossed the roundabout.")];
+    }
+    let geom = RingGeometry::new(spec);
+    let headway = 1.0 / spec.capacity();
+
+    // 1. Free flow on the ring.
+    let slack = crossings
+        .iter()
+        .map(|c| {
+            let ff = geom.arc(geom.merge_point[c.arm_in], geom.exit_point[c.arm_out]) / spec.speed;
+            c.t_out - c.t_in - ff
+        })
+        .fold(f64::INFINITY, f64::min);
+    let traversal = check(
+        "ring_traversal",
+        "Ring free-flow traversal",
+        if slack >= -EPS { CheckStatus::Pass } else { CheckStatus::Fail },
+        Some(slack),
+        Some(0.0),
+        "s",
+        format!(
+            "Smallest (ring time − free-flow arc time) over {} crossings; negative means faster than free flow.",
+            crossings.len()
+        ),
+    );
+
+    // 2. Entries: follow-up per approach lane, ring headway per entry point.
+    let mut per_lane: BTreeMap<(LinkID, PipeIdx), Vec<f64>> = BTreeMap::new();
+    let mut per_merge: BTreeMap<usize, Vec<f64>> = BTreeMap::new();
+    let mut per_exit: BTreeMap<usize, Vec<f64>> = BTreeMap::new();
+    for c in &crossings {
+        per_lane.entry(c.approach).or_default().push(c.t_in);
+        per_merge.entry(c.arm_in).or_default().push(c.t_in);
+        per_exit.entry(c.arm_out).or_default().push(c.t_out);
+    }
+    let lane_min = min_headway(&mut per_lane);
+    let merge_min = min_headway(&mut per_merge);
+    let entry_ok = lane_min.is_none_or(|h| h >= spec.follow_up - EPS) && merge_min.is_none_or(|h| h >= headway - EPS);
+    let entries = match (lane_min, merge_min) {
+        (None, None) => not_exercised("ring_entry_headway", "Entry headways", "No two entries to compare."),
+        _ => check(
+            "ring_entry_headway",
+            "Entry headways",
+            if entry_ok { CheckStatus::Pass } else { CheckStatus::Fail },
+            lane_min,
+            Some(spec.follow_up),
+            "s",
+            format!(
+                "Smallest entry headway per approach lane (≥ t_f = {:.3} s) and per entry point \
+                 ({} s, ≥ 1/C = {:.3} s).",
+                spec.follow_up,
+                merge_min.map_or("n/a".to_string(), |h| format!("{h:.3}")),
+                headway
+            ),
+        ),
+    };
+
+    // 3. Exits: ring headway per exit point.
+    let exit_min = min_headway(&mut per_exit);
+    let exits = match exit_min {
+        None => not_exercised("ring_exit_headway", "Exit headways", "No two exits at one arm."),
+        Some(h) => check(
+            "ring_exit_headway",
+            "Exit headways",
+            if h >= headway - EPS { CheckStatus::Pass } else { CheckStatus::Fail },
+            Some(h),
+            Some(headway),
+            "s",
+            format!("Smallest exit headway at one exit point (≥ 1/C = {headway:.3} s)."),
+        ),
+    };
+
+    // 4. FIFO ring: within one movement, exit order follows entry order.
+    let mut per_move: BTreeMap<(usize, usize), Vec<(f64, f64)>> = BTreeMap::new();
+    for c in &crossings {
+        per_move.entry((c.arm_in, c.arm_out)).or_default().push((c.t_in, c.t_out));
+    }
+    let mut pairs = 0usize;
+    let mut violations = 0usize;
+    for v in per_move.values_mut() {
+        v.sort_by(|a, b| a.0.total_cmp(&b.0));
+        for w in v.windows(2) {
+            pairs += 1;
+            if w[1].1 < w[0].1 - EPS {
+                violations += 1;
+            }
+        }
+    }
+    let fifo = if pairs == 0 {
+        not_exercised("ring_fifo", "Ring FIFO", "No two crossings of one movement.")
+    } else {
+        check(
+            "ring_fifo",
+            "Ring FIFO",
+            if violations == 0 { CheckStatus::Pass } else { CheckStatus::Fail },
+            Some(violations as f64),
+            Some(0.0),
+            "violations",
+            format!("{pairs} consecutive crossings per movement checked for overtaking on the ring."),
+        )
+    };
+
+    vec![traversal, entries, exits, fifo]
+}
+
 /// Flow conservation at the node, aggregated over time bins.
 fn check_node_conservation(node_id: NodeID, errors: &HashMap<NodeID, Vec<f64>>) -> Check {
     let id = "flow_conservation";
@@ -738,10 +896,13 @@ pub fn verify_scenario(scenario: &Scenario, bin_size: f64) -> VerificationReport
     for node in &scenario.nodes {
         match node.node_type {
             NodeType::Internal => {
-                let checks = vec![
+                let mut checks = vec![
                     check_node_conservation(node.id, &cons_errors),
                     check_node_fifo(scenario, node.id),
                 ];
+                if let Some(spec) = &node.roundabout {
+                    checks.extend(check_roundabout(scenario, node.id, spec));
+                }
                 elements.push(element_report(
                     ElementType::Node,
                     node.id,

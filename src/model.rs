@@ -605,15 +605,21 @@ impl RoundaboutSpec {
     pub fn capacity(&self) -> f64 {
         self.fd.c * f64::from(self.lanes)
     }
-    /// Gap-acceptance split: an entering vehicle needs `lead` after the last
-    /// circulating passage and `lag` before the next one, which admits
-    /// floor((g − t_0)/t_f) + 1 vehicles in a gap g, t_0 = t_c − t_f/2
-    /// (Siegloch).
+    /// Siegloch's t_0 = t_c − t_f/2: a gap g admits floor((g − t_0)/t_f) + 1
+    /// entering vehicles.
+    pub fn t0(&self) -> f64 {
+        self.critical_gap - self.follow_up / 2.0
+    }
+    /// Gap-acceptance split of t_0: an entering vehicle needs `lead` after
+    /// the last circulating passage and `lag` before the next one, with
+    /// lead + lag = t_0. Nominally lead = t_f/2 and lag = t_c − t_f, but an
+    /// entering vehicle cannot follow a circulating one closer than the ring
+    /// headway 1/C, so lead = max(t_f/2, 1/C) and lag = t_0 − lead (≥ 0).
     pub fn lead(&self) -> f64 {
-        self.follow_up / 2.0
+        (self.follow_up / 2.0).max(1.0 / self.capacity())
     }
     pub fn lag(&self) -> f64 {
-        self.critical_gap - self.follow_up
+        (self.t0() - self.lead()).max(0.0)
     }
 }
 

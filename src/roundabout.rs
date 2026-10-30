@@ -25,8 +25,10 @@
 //! `lead` has passed since the last circulating vehicle, when no circulating
 //! vehicle in motion can reach M_i within `lag`, when `t_f` has passed since
 //! the last entry from its lane (pipe), and when the storage constraint
-//! holds at M_i. With lead = t_f/2 and lag = t_c − t_f, a gap g admits
-//! exactly floor((g − t_0)/t_f) + 1 vehicles, t_0 = t_c − t_f/2 (Siegloch).
+//! holds at M_i. With lead + lag = t_0 = t_c − t_f/2, a gap g admits
+//! exactly floor((g − t_0)/t_f) + 1 vehicles (Siegloch) when t_f ≥ 1/C. The
+//! nominal split is lead = t_f/2, lag = t_c − t_f; lead never drops below
+//! the ring headway 1/C (see `RoundaboutSpec::lead`).
 
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 
