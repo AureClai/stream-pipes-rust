@@ -22,7 +22,7 @@ fn node(id: usize, node_type: NodeType, incoming: Vec<usize>, outgoing: Vec<usiz
         incoming_links: incoming,
         outgoing_links: outgoing,
         points: (id as f64, 0.0),
-        signals: vec![],
+        signals: vec![], roundabout: None,
     }
 }
 

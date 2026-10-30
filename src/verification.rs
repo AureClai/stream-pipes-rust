@@ -160,13 +160,13 @@ fn collect_passages(scenario: &Scenario) -> HashMap<(LinkID, PipeIdx), LinkPassa
             veh.id
         );
         for (i, &lid) in veh.path.iter().enumerate() {
-            let Some(&t_in) = veh.node_times.get(i) else {
+            let Some(t_in) = veh.link_entry_time(i) else {
                 break;
             };
             let pipe = veh.pipes_taken.get(i).copied().unwrap_or(0);
             let p = map.entry((lid, pipe)).or_default();
             p.entries.push(t_in);
-            if let Some(&t_out) = veh.node_times.get(i + 1) {
+            if let Some(t_out) = veh.link_exit_time(i) {
                 p.exits.push(t_out);
                 p.completed.push((t_in, t_out));
                 p.travel_times.push(t_out - t_in);
@@ -509,9 +509,7 @@ fn check_node_fifo(scenario: &Scenario, node_id: NodeID) -> Check {
                 if lid != in_link {
                     continue;
                 }
-                if let (Some(&t_in), Some(&t_out)) =
-                    (veh.node_times.get(i), veh.node_times.get(i + 1))
-                {
+                if let (Some(t_in), Some(t_out)) = (veh.link_entry_time(i), veh.link_exit_time(i)) {
                     let pipe = veh.pipes_taken.get(i).copied().unwrap_or(0);
                     if let Some(bucket) = per_pipe.get_mut(usize::from(pipe)) {
                         bucket.push((t_in + ff, t_out));
@@ -849,7 +847,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 1,
@@ -857,7 +855,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1],
                     points: (1.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 2,
@@ -865,7 +863,7 @@ mod tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
             ],
             links: vec![
@@ -1044,7 +1042,7 @@ mod pipe_verification_tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 1,
@@ -1052,7 +1050,7 @@ mod pipe_verification_tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1, 2],
                     points: (1.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 2,
@@ -1060,7 +1058,7 @@ mod pipe_verification_tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 3,
@@ -1068,7 +1066,7 @@ mod pipe_verification_tests {
                     incoming_links: vec![2],
                     outgoing_links: vec![],
                     points: (2.0, 1.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
             ],
             links: vec![

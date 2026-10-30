@@ -35,6 +35,12 @@ impl Validate for Scenario {
                     }
                 }
             }
+            if let Some(spec) = &node.roundabout {
+                if node.node_type != NodeType::Internal {
+                    bail!("Roundabout node {} must be an internal node", node.id);
+                }
+                crate::roundabout::validate_spec(spec, node)?;
+            }
         }
 
         // 2. Validate Links
@@ -267,7 +273,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 1,
@@ -275,7 +281,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1],
                     points: (1.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 2,
@@ -283,7 +289,7 @@ mod tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
             ],
             links: vec![

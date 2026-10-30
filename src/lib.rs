@@ -10,6 +10,7 @@ pub mod xt_analysis;
 pub mod verification;
 pub mod benchmarks;
 pub mod patch;
+pub mod roundabout;
 pub mod reference;
 
 #[cfg(feature = "python")]

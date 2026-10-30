@@ -28,7 +28,7 @@ pub enum NodeType {
     Exit = 2,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct FundamentalDiagram {
     pub u: f64,
     pub w: f64,
@@ -558,6 +558,63 @@ pub struct Node {
     pub outgoing_links: Vec<LinkID>,
     pub points: (f64, f64),
     pub signals: Vec<usize>,
+    /// When set, this internal node is a whole roundabout: its ring is solved
+    /// inside the node (see `roundabout.rs`) instead of by micro-links.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub roundabout: Option<RoundaboutSpec>,
+}
+
+// ── Roundabouts ───────────────────────────────────────────────────────────────
+
+/// One arm of a roundabout: the approach that enters the ring here, the link
+/// that leaves it here (either may be absent), and the arm's position along
+/// the ring, in metres in the direction of circulation.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct RoundaboutArm {
+    #[serde(default, rename = "in", skip_serializing_if = "Option::is_none")]
+    pub in_link: Option<LinkID>,
+    #[serde(default, rename = "out", skip_serializing_if = "Option::is_none")]
+    pub out_link: Option<LinkID>,
+    pub position: f64,
+}
+
+/// Resolved roundabout parameters (compiled scenario form). The ring is one
+/// FIFO stream of `lanes` lanes with a triangular FD; entries give way to it
+/// by gap acceptance (critical gap t_c, follow-up time t_f).
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct RoundaboutSpec {
+    /// Ring length along the circulating path (m).
+    pub circumference: f64,
+    pub lanes: u8,
+    /// Free-flow speed on the ring (m/s).
+    pub speed: f64,
+    /// Ring FD; `kx` and `c` per lane, as on links.
+    pub fd: FundamentalDiagram,
+    /// t_c (s).
+    pub critical_gap: f64,
+    /// t_f (s).
+    pub follow_up: f64,
+    /// Distance from an arm's exit point to its entry point along the ring (m).
+    pub island: f64,
+    /// Arms sorted by `position` (direction of circulation).
+    pub arms: Vec<RoundaboutArm>,
+}
+
+impl RoundaboutSpec {
+    /// Ring discharge capacity (veh/s).
+    pub fn capacity(&self) -> f64 {
+        self.fd.c * f64::from(self.lanes)
+    }
+    /// Gap-acceptance split: an entering vehicle needs `lead` after the last
+    /// circulating passage and `lag` before the next one, which admits
+    /// floor((g − t_0)/t_f) + 1 vehicles in a gap g, t_0 = t_c − t_f/2
+    /// (Siegloch).
+    pub fn lead(&self) -> f64 {
+        self.follow_up / 2.0
+    }
+    pub fn lag(&self) -> f64 {
+        self.critical_gap - self.follow_up
+    }
 }
 
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -588,9 +645,36 @@ pub struct Vehicle {
     /// `path` the vehicle has entered. Drives per-pipe analysis.
     #[serde(skip)]
     pub pipes_taken: Vec<PipeIdx>,
+    /// Roundabout exits: (index in `path` of the link entered, time). At a
+    /// roundabout node, `node_times` holds the time the vehicle left the
+    /// approach (entered the ring); it enters the next link later, when it
+    /// leaves the ring. Empty when the path crosses no roundabout.
+    #[serde(skip)]
+    pub ring_exits: Vec<(usize, f64)>,
 }
 
 impl Vehicle {
+    /// Time the vehicle entered `path[i]`, if it did.
+    pub fn link_entry_time(&self, i: usize) -> Option<f64> {
+        if self.ring_exits.is_empty() {
+            return self.node_times.get(i).copied();
+        }
+        // Still inside a roundabout ring: node_times already holds the ring
+        // entry, but the next link has not been entered yet.
+        if i >= self.pipes_taken.len() {
+            return None;
+        }
+        if let Some(&(_, t)) = self.ring_exits.iter().find(|(k, _)| *k == i) {
+            return Some(t);
+        }
+        self.node_times.get(i).copied()
+    }
+
+    /// Time the vehicle left `path[i]`, if it did.
+    pub fn link_exit_time(&self, i: usize) -> Option<f64> {
+        self.node_times.get(i + 1).copied()
+    }
+
     pub fn new(
         id: VehID,
         class_id: usize,
@@ -610,6 +694,7 @@ impl Vehicle {
             current_link_idx: 0,
             node_times: Vec::new(),
             pipes_taken: Vec::new(),
+            ring_exits: Vec::new(),
         }
     }
 }

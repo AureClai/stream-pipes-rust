@@ -89,13 +89,13 @@ pub fn compute_pipe_stats(scenario: &Scenario, bin_size: f64) -> HashMap<LinkID,
             veh.id
         );
         for (i, &link_id) in veh.path.iter().enumerate() {
-            if i + 1 >= veh.node_times.len() {
+            let (Some(t_in), Some(t_out)) = (veh.link_entry_time(i), veh.link_exit_time(i)) else {
                 break;
-            }
+            };
             let pipe = usize::from(veh.pipes_taken.get(i).copied().unwrap_or(0));
 
-            let t_entry = veh.node_times[i] - scenario.start_time;
-            let t_exit = veh.node_times[i + 1] - scenario.start_time;
+            let t_entry = t_in - scenario.start_time;
+            let t_exit = t_out - scenario.start_time;
             if t_exit <= t_entry {
                 continue;
             }
@@ -207,14 +207,14 @@ pub fn compute_link_stats(scenario: &Scenario, bin_size: f64) -> HashMap<LinkID,
         // node_times has L+1 times (Entry to L0, Entry to L1... Exit of L_last).
 
         for (i, &link_id) in veh.path.iter().enumerate() {
-            if i + 1 >= veh.node_times.len() {
+            let (Some(t_in), Some(t_out)) = (veh.link_entry_time(i), veh.link_exit_time(i)) else {
                 break;
-            }
+            };
 
             // Use relative time so bin 0 always corresponds to simulation start,
             // regardless of the absolute start_time value.
-            let t_entry = veh.node_times[i] - scenario.start_time;
-            let t_exit = veh.node_times[i + 1] - scenario.start_time;
+            let t_entry = t_in - scenario.start_time;
+            let t_exit = t_out - scenario.start_time;
 
             if t_exit <= t_entry {
                 continue;
@@ -321,7 +321,7 @@ mod pipe_stats_tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 1,
@@ -329,7 +329,7 @@ mod pipe_stats_tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![],
                     points: (1.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
             ],
             links: vec![l0],

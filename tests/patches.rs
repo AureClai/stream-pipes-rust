@@ -40,7 +40,7 @@ fn corridor(lanes_l0: u8, kx0: f64, c1: f64, n_veh: usize) -> Scenario {
         incoming_links: incoming,
         outgoing_links: outgoing,
         points: (x, 0.0),
-        signals: vec![],
+        signals: vec![], roundabout: None,
     };
     Scenario {
         nodes: vec![

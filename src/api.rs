@@ -226,6 +226,11 @@ pub struct VehicleResult {
     pub path: Vec<LinkID>,
     pub node_times: Vec<f64>,
     pub pipes_taken: Vec<PipeIdx>,
+    /// Roundabout exits: (index in `path` of the link entered, time). At a
+    /// roundabout, `node_times` holds the ring entry; the next link starts
+    /// here. Absent when the trip crosses no roundabout.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub ring_exits: Vec<(usize, f64)>,
 }
 
 /// Everything a host needs to present a run.
@@ -323,6 +328,7 @@ pub fn collect(
                 path: v.path.clone(),
                 node_times: v.node_times.clone(),
                 pipes_taken: v.pipes_taken.clone(),
+                ring_exits: v.ring_exits.clone(),
             })
             .collect()
     } else {

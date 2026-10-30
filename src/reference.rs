@@ -104,8 +104,7 @@ fn simulate_window(
             if lid != link_id {
                 continue;
             }
-            if let (Some(&t_in), Some(&t_out)) = (veh.node_times.get(i), veh.node_times.get(i + 1))
-            {
+            if let (Some(t_in), Some(t_out)) = (veh.link_entry_time(i), veh.link_exit_time(i)) {
                 if t_out >= t_start && t_out < t_end {
                     exits += 1;
                 }
@@ -234,7 +233,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 1,
@@ -242,7 +241,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![],
                     points: (1.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
             ],
             links: vec![Link::new(0, 0, 1, 100.0, 10.0, 1, 10.0, fd, vec![])],

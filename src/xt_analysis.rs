@@ -340,9 +340,11 @@ fn collect_link_cvcs(
     for veh in &scenario.vehicles {
         for (idx, &lid) in veh.path.iter().enumerate() {
             let pipe_ok = pipe.is_none_or(|p| veh.pipes_taken.get(idx).copied().unwrap_or(0) == p);
-            if lid == link_id && pipe_ok && idx + 1 < veh.node_times.len() {
-                entries.push(veh.node_times[idx] - t0);
-                exits.push(veh.node_times[idx + 1] - t0);
+            if lid == link_id && pipe_ok {
+                if let (Some(t_in), Some(t_out)) = (veh.link_entry_time(idx), veh.link_exit_time(idx)) {
+                    entries.push(t_in - t0);
+                    exits.push(t_out - t0);
+                }
             }
         }
     }
@@ -622,7 +624,7 @@ mod tests {
                 incoming_links: vec![],
                 outgoing_links: vec![0],
                 points: (0.0, 0.0),
-                signals: vec![],
+                signals: vec![], roundabout: None,
             },
             Node {
                 id: 1,
@@ -630,7 +632,7 @@ mod tests {
                 incoming_links: vec![0],
                 outgoing_links: vec![1],
                 points: (1.0, 0.0),
-                signals: vec![],
+                signals: vec![], roundabout: None,
             },
             Node {
                 id: 2,
@@ -638,7 +640,7 @@ mod tests {
                 incoming_links: vec![1],
                 outgoing_links: vec![],
                 points: (2.0, 0.0),
-                signals: vec![],
+                signals: vec![], roundabout: None,
             },
         ];
         let links = vec![
@@ -658,6 +660,7 @@ mod tests {
             current_link_idx: 1,
             node_times: vec![0.0, 40.0, 80.0],
             pipes_taken: vec![0, 0],
+            ring_exits: vec![],
         }];
         Scenario {
             nodes,

@@ -1,6 +1,7 @@
 use crate::model::{
     Link, LinkID, NodeID, PipeIdx, Scenario, StorageAvailability, VehID, VehicleState,
 };
+use crate::roundabout::{Bound, PointKind, RingVehicle, RoundaboutState};
 use anyhow::Result;
 #[cfg(feature = "python")]
 use pyo3::prelude::*;
@@ -16,6 +17,11 @@ pub enum EventType {
     VehicleArrival,
     LinkExit,
     LinkReady,
+    /// Roundabout wake-up: a ring constraint at point `pipe` of node
+    /// `link_id` expires. `veh_id` = NO_VEHICLE.
+    RingReady,
+    /// A ring vehicle reaches point `pipe` of roundabout node `link_id`.
+    RingArrival,
 }
 
 /// All four event types are (link, pipe)-addressed: `pipe` selects the LWR
@@ -39,11 +45,15 @@ impl EventType {
             // contain no ApplyPatch events, so the relative order of the
             // other four keys — and the golden fixture checksums — are
             // untouched.
+            // Ring events slot in without changing the relative order of the
+            // other types: scenarios without a roundabout never emit them.
             EventType::ApplyPatch => 0,
             EventType::LinkReady => 1,
-            EventType::LinkExit => 2,
-            EventType::VehicleArrival => 3,
-            EventType::VehicleEntry => 4,
+            EventType::RingReady => 2,
+            EventType::LinkExit => 3,
+            EventType::RingArrival => 4,
+            EventType::VehicleArrival => 5,
+            EventType::VehicleEntry => 6,
         }
     }
 }
@@ -251,6 +261,10 @@ pub struct Simulation {
     /// Per link: vehicles it passed at its downstream node while another
     /// incoming link of that node was waiting (CapacityProportional only).
     merge_served: Vec<f64>,
+    /// Ring state of every roundabout node, indexed by node id (None for
+    /// ordinary nodes). Public so tests and verification can read the
+    /// passages recorded at each ring point.
+    pub roundabouts: Vec<Option<RoundaboutState>>,
 }
 
 #[cfg(feature = "python")]
@@ -281,7 +295,14 @@ impl Simulation {
             upstream_capacity: false,
             merge_rule: MergeRule::InOrder,
             merge_served: vec![0.0; n_links],
+            roundabouts: Vec::new(),
         };
+        sim.roundabouts = sim
+            .scenario
+            .nodes
+            .iter()
+            .map(|n| n.roundabout.as_ref().map(|spec| RoundaboutState::new(n.id, spec)))
+            .collect();
         // Build runtime pipes here (not in Link::new) so that FD parameters
         // adjusted after construction — as several tests do — are respected.
         for link in &mut sim.scenario.links {
@@ -375,6 +396,10 @@ impl Simulation {
                 EventType::LinkExit => self.handle_link_exit(event.link_id, event.pipe),
                 EventType::LinkReady => {
                     self.handle_link_ready(event.link_id, event.pipe, event.veh_id)
+                }
+                EventType::RingReady => self.handle_ring_ready(event.link_id, event.pipe, event.time),
+                EventType::RingArrival => {
+                    self.handle_ring_arrival(event.link_id, event.pipe, event.veh_id)
                 }
             }
         }
@@ -659,6 +684,10 @@ impl Simulation {
         if node_id >= self.scenario.nodes.len() {
             return;
         }
+        if self.roundabouts.get(node_id).is_some_and(Option::is_some) {
+            self.process_roundabout(node_id);
+            return;
+        }
         let incoming_links = self.scenario.nodes[node_id].incoming_links.clone();
         if self.merge_rule == MergeRule::CapacityProportional && incoming_links.len() > 1 {
             self.process_node_transfer_fair(&incoming_links);
@@ -896,6 +925,304 @@ impl Simulation {
     }
 }
 
+// ── Roundabouts ───────────────────────────────────────────────────────────────
+//
+// The ring of a roundabout node is solved in `process_roundabout`, which the
+// ordinary triggers reach through `process_node_transfer`: an approach
+// arrival or gate wake (node_down), an exit-link slot release or wake
+// (node_up). Ring points have their own events, `RingArrival` (free-flow
+// arrival at the next point) and `RingReady` (a ring constraint expires).
+// See `roundabout.rs` for the rules.
+
+impl Simulation {
+    fn handle_ring_arrival(&mut self, node_id: NodeID, point: PipeIdx, veh_id: VehID) {
+        let Some(Some(st)) = self.roundabouts.get_mut(node_id) else {
+            return;
+        };
+        let p = usize::from(point);
+        if let Some(rv) = st.on_ring.get_mut(&veh_id) {
+            rv.in_transit = false;
+        }
+        st.hold[p].push_back(veh_id);
+        self.process_roundabout(node_id);
+    }
+
+    fn handle_ring_ready(&mut self, node_id: NodeID, point: PipeIdx, time: f64) {
+        if let Some(Some(st)) = self.roundabouts.get_mut(node_id) {
+            st.pending_ready[usize::from(point)].remove(&time.to_bits());
+        }
+        self.process_roundabout(node_id);
+    }
+
+    /// Wake the roundabout at `t` for point `p` (one event per distinct time).
+    fn schedule_ring_ready(&mut self, st: &mut RoundaboutState, p: usize, t: f64) {
+        if t > self.current_time && st.pending_ready[p].insert(t.to_bits()) {
+            self.events.push(Event {
+                time: t,
+                event_type: EventType::RingReady,
+                link_id: st.node,
+                veh_id: NO_VEHICLE,
+                pipe: p as PipeIdx,
+            });
+        }
+    }
+
+    fn schedule_ring_arrival(&mut self, st: &RoundaboutState, from: usize, veh: VehID) {
+        let next = st.geom.next(from);
+        self.events.push(Event {
+            time: self.current_time + st.travel_time(from, next),
+            event_type: EventType::RingArrival,
+            link_id: st.node,
+            veh_id: veh,
+            pipe: next as PipeIdx,
+        });
+    }
+
+    /// Move everything that can move through the roundabout now: at each
+    /// point in the order of circulation, the waiting ring vehicles first,
+    /// then the entries of that arm; repeat while anything passed (a passage
+    /// can free storage upstream).
+    fn process_roundabout(&mut self, node_id: NodeID) {
+        let Some(mut st) = self.roundabouts.get_mut(node_id).and_then(Option::take) else {
+            return;
+        };
+        loop {
+            let mut progress = false;
+            for p in 0..st.geom.len() {
+                while self.try_pass_ring(&mut st, p) {
+                    progress = true;
+                }
+                let point = st.geom.points[p];
+                if point.kind != PointKind::Merge {
+                    continue;
+                }
+                let Some(in_link) = st.spec.arms[point.arm].in_link else {
+                    continue;
+                };
+                if in_link >= self.scenario.links.len() {
+                    continue;
+                }
+                let n_pipes = self.scenario.links[in_link].pipes.len();
+                for pipe in 0..n_pipes as PipeIdx {
+                    while self.try_enter_ring(&mut st, p, in_link, pipe) {
+                        progress = true;
+                    }
+                }
+            }
+            if !progress {
+                break;
+            }
+        }
+        self.roundabouts[node_id] = Some(st);
+    }
+
+    /// Let the vehicle waiting at the head of ring point `p` pass it, if the
+    /// ring capacity, the storage downstream and (at its exit) the exit link
+    /// allow. Returns true when it passed.
+    fn try_pass_ring(&mut self, st: &mut RoundaboutState, p: usize) -> bool {
+        let now = self.current_time;
+        let Some(&veh) = st.hold[p].front() else {
+            return false;
+        };
+        let Some(&rv) = st.on_ring.get(&veh) else {
+            st.hold[p].pop_front();
+            return true;
+        };
+        let bound = Bound::At(st.capacity_bound(p)).and(st.storage_bound(p, rv.exit_pt, Some(veh)));
+        let t = match bound {
+            Bound::Blocked => return false,
+            Bound::At(t) => t,
+        };
+        if t > now {
+            self.schedule_ring_ready(st, p, t);
+            return false;
+        }
+
+        if p != rv.exit_pt {
+            st.hold[p].pop_front();
+            st.record(p, veh, now, true);
+            if let Some(r) = st.on_ring.get_mut(&veh) {
+                r.last_pt = p;
+                r.last_time = now;
+                r.in_transit = true;
+            }
+            self.schedule_ring_arrival(st, p, veh);
+            return true;
+        }
+
+        // Exit point: leave by the next link of the path.
+        let (class_id, out, next_next) = {
+            let v = &self.scenario.vehicles[veh];
+            (
+                v.class_id,
+                v.path.get(v.current_link_idx + 1).copied(),
+                v.path.get(v.current_link_idx + 2).copied(),
+            )
+        };
+        let Some(out) = out.filter(|&l| l < self.scenario.links.len()) else {
+            return false;
+        };
+        match choose_pipe_for_transfer(&self.scenario.links[out], class_id, next_next, now) {
+            PipeChoice::AdmitNow(target) => {
+                let travel_time = {
+                    let l = &self.scenario.links[out];
+                    l.length / l.speed
+                };
+                {
+                    let p_next = &mut self.scenario.links[out].pipes[usize::from(target)];
+                    p_next.admit(now);
+                    if p_next.capacity > 0.0 {
+                        p_next.next_available_entry_time = now + 1.0 / p_next.capacity;
+                    }
+                }
+                {
+                    let v = &mut self.scenario.vehicles[veh];
+                    v.current_link_idx += 1;
+                    v.state = VehicleState::Moving;
+                    v.pipes_taken.push(target);
+                    v.ring_exits.push((v.current_link_idx, now));
+                }
+                self.events.push(Event {
+                    time: now + travel_time,
+                    event_type: EventType::VehicleArrival,
+                    link_id: out,
+                    veh_id: veh,
+                    pipe: target,
+                });
+                st.hold[p].pop_front();
+                st.on_ring.remove(&veh);
+                st.record(p, veh, now, true);
+                true
+            }
+            PipeChoice::WakeAt(target, t) => {
+                if t > now {
+                    let p_next = &mut self.scenario.links[out].pipes[usize::from(target)];
+                    if p_next.last_scheduled_ready_time != Some(t) {
+                        p_next.last_scheduled_ready_time = Some(t);
+                        self.events.push(Event {
+                            time: t,
+                            event_type: EventType::LinkReady,
+                            link_id: out,
+                            veh_id: NO_VEHICLE,
+                            pipe: target,
+                        });
+                    }
+                }
+                false
+            }
+            // Blocked: a LinkExit on the exit link re-triggers this node.
+            PipeChoice::Blocked | PipeChoice::NoEligible => false,
+        }
+    }
+
+    /// Let the head of approach (in_link, pipe) enter the ring at merge
+    /// point `m`. Returns true when it entered (or ended its trip here).
+    fn try_enter_ring(&mut self, st: &mut RoundaboutState, m: usize, in_link: LinkID, pipe: PipeIdx) -> bool {
+        let now = self.current_time;
+        let Some(&veh) = self.scenario.links[in_link].pipes[usize::from(pipe)]
+            .waiting_queue
+            .front()
+        else {
+            return false;
+        };
+        if veh >= self.scenario.vehicles.len() {
+            self.scenario.links[in_link].pipes[usize::from(pipe)].waiting_queue.pop_front();
+            return true;
+        }
+
+        // Discharge gate of the approach pipe (friction / upstream capacity),
+        // exactly as at an ordinary node.
+        {
+            let p_in = &mut self.scenario.links[in_link].pipes[usize::from(pipe)];
+            if p_in.exit_gate_active && now < p_in.next_available_exit_time {
+                let t_exit = p_in.next_available_exit_time;
+                if p_in.last_scheduled_exit_ready_time != Some(t_exit) {
+                    p_in.last_scheduled_exit_ready_time = Some(t_exit);
+                    self.events.push(Event {
+                        time: t_exit,
+                        event_type: EventType::LinkReady,
+                        link_id: in_link,
+                        veh_id: EXIT_WAKE,
+                        pipe,
+                    });
+                }
+                return false;
+            }
+        }
+        let eff_phi = friction_phi(&self.scenario.links[in_link], pipe, now);
+
+        let out = {
+            let v = &self.scenario.vehicles[veh];
+            v.path.get(v.current_link_idx + 1).copied()
+        };
+        let exit_pt = match out {
+            Some(out) => match st.exit_point_of(out) {
+                Some(x) => x,
+                // Not an exit of this roundabout: validation rejects such a
+                // path; the vehicle waits rather than teleporting.
+                None => return false,
+            },
+            None => {
+                // Trip ends on the approach: leave the network here.
+                self.scenario.links[in_link].pipes[usize::from(pipe)].waiting_queue.pop_front();
+                self.arm_discharge_gate(in_link, pipe, eff_phi);
+                let v = &mut self.scenario.vehicles[veh];
+                v.state = VehicleState::Exited;
+                v.node_times.push(now);
+                self.events.push(Event {
+                    time: now,
+                    event_type: EventType::LinkExit,
+                    link_id: in_link,
+                    veh_id: veh,
+                    pipe,
+                });
+                return true;
+            }
+        };
+
+        let key = (in_link, pipe);
+        match st.entry_bound(m, key, exit_pt, now) {
+            Bound::Blocked => return false,
+            Bound::At(t) if t > now => {
+                self.schedule_ring_ready(st, m, t);
+                return false;
+            }
+            Bound::At(_) => {}
+        }
+
+        self.scenario.links[in_link].pipes[usize::from(pipe)].waiting_queue.pop_front();
+        self.arm_discharge_gate(in_link, pipe, eff_phi);
+        {
+            let v = &mut self.scenario.vehicles[veh];
+            v.state = VehicleState::Moving;
+            // Passage through the node = leaving the approach.
+            v.node_times.push(now);
+        }
+        self.events.push(Event {
+            time: now,
+            event_type: EventType::LinkExit,
+            link_id: in_link,
+            veh_id: veh,
+            pipe,
+        });
+        st.on_ring.insert(veh, RingVehicle { last_pt: m, last_time: now, exit_pt, in_transit: true });
+        st.record(m, veh, now, false);
+        st.last_entry.insert(key, now);
+        self.schedule_ring_arrival(st, m, veh);
+        true
+    }
+
+    /// Arm the discharge headway of an incoming pipe after a vehicle left it
+    /// (same one-shot friction rule as `try_transfer_pipe_head`).
+    fn arm_discharge_gate(&mut self, link: LinkID, pipe: PipeIdx, eff_phi: f64) {
+        let p_in = &mut self.scenario.links[link].pipes[usize::from(pipe)];
+        if p_in.capacity > 0.0 {
+            p_in.next_available_exit_time = self.current_time + 1.0 / (p_in.capacity * eff_phi);
+            p_in.exit_gate_active = self.upstream_capacity || eff_phi < 1.0;
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -931,7 +1258,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 1,
@@ -939,7 +1266,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1],
                     points: (1.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 2,
@@ -947,7 +1274,7 @@ mod tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
             ],
             links: vec![
@@ -1131,7 +1458,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 1,
@@ -1139,7 +1466,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1, 2],
                     points: (1.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 2,
@@ -1147,7 +1474,7 @@ mod tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
                 Node {
                     id: 3,
@@ -1155,7 +1482,7 @@ mod tests {
                     incoming_links: vec![2],
                     outgoing_links: vec![],
                     points: (2.0, 1.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None,
                 },
             ],
             links: vec![
