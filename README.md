@@ -42,7 +42,7 @@ with its own capacity, storage and backward wave.
 |---|---|
 | **Exact** | Discrete-event solution of LWR with a triangular fundamental diagram (Newell's simplified theory). No time step, no RNG: two runs are bit-identical. |
 | **Verified** | Eighteen closed-form benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, fractional-slot wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle; four roundabout cases: free flow, entry capacity, Siegloch gap acceptance, spillback on the ring; signal discharge per green, ramp-metering rate, toll service; and Siegloch gap acceptance at a priority junction) pass at machine precision. |
-| **Self-auditing** | `stream-cli verify` checks every link, pipe and node of any scenario (free-flow traversal, capacity, storage bound, backward wave, FD adherence, conservation, FIFO, demand served) and reports **pass / warn / fail / not-exercised**. |
+| **Self-auditing** | `stream-cli verify` checks every link, pipe and node of any scenario (free-flow traversal, capacity, storage bound, backward wave, FD adherence, conservation, FIFO, demand served; roundabout rings, gap acceptance at priority junctions, no passage on red) and reports **pass / warn / fail / not-exercised**. |
 | **Validated** | Three instrumented corridors in two countries: 1 280 of 1 312 flow windows below GEH 5. NGSIM trajectories confirm the lane-commitment assumption. |
 | **Scenario variants** | *Patches* (lane closures, capacity drops, lane add/shrink, demand scaling, new links) compose a variant from a base network, with time windows. |
 | **Fast** | 380 to 3,400 times faster than the Python reference implementation of Stream, with identical trajectories where the node rules match ([benchmark](bench/RESULTS.md)); 4 to 430 times faster than SUMO meso and micro ([benchmark](bench/SUMO.md)). |
@@ -289,7 +289,12 @@ signal groups, fixed-time plans and tolls:
   queue leaves at the saturation flow, the pipe capacity.
 - A **plan** gives, for one period, the cycle, the offset and each group's
   effective green windows within the cycle. Outside every plan period a
-  group is in its `off` state (`green` by default: a dark signal).
+  group is in its `off` state (`green` by default: a dark signal, which
+  has no per-green cap).
+- At a node that also has priority rules, up to `sneakers` (2 by default)
+  permitted vehicles already at the line may still clear within
+  `clearance` (3 s) of the red, as in the HCM; without them a permitted
+  left turn in a shared lane can starve behind a dense opposing flow.
 - `vehicles_per_green` caps the vehicles per green: 1 with a short cycle is
   fixed-rate ramp metering.
 - A **toll** serves one vehicle at a time per pipe: departure =
@@ -328,6 +333,7 @@ improve).
 | `a47_givors` | French urban motorway: single stream vs pipes, φ sweep (second preprint) |
 | `a47_givors_osm` | The same motorway rebuilt from OpenStreetMap and Cerema AVATAR, every interchange, screened data, capacity-proportional merges ([README](scenarios/a47_givors_osm/README.md)) |
 | `roundabout` | A four-arm roundabout as one `Roundabout` node, unbalanced turning flows |
+| `urban` | A synthetic town with every node mechanism: roundabout, priority junctions, signals with protected and permitted turns, ramp metering, toll, bus lane ([README](scenarios/urban/README.md)) |
 | `ngsim/` | Scripts to fetch NGSIM trajectories and measure lane commitment |
 | `ndw/` | Per-lane validation on Dutch NDW data (in preparation) |
 

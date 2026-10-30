@@ -416,9 +416,10 @@ impl JunctionState {
     /// Earliest time the head of (link, pipe), on movement `m`, which
     /// reached the line at `arrival`, may go — from the cheap terms only:
     /// lead after each conflicting passage, follow-up after the previous
-    /// departure of its lane, stop time at the line. `red(n)`: movement n
-    /// is held by a red signal (it then does not count).
-    pub fn cheap_bound(&self, m: usize, link: LinkID, pipe: PipeIdx, arrival: f64, now: f64, red: &dyn Fn(usize) -> bool) -> f64 {
+    /// departure of its lane, stop time at the line. The lead holds even
+    /// behind a movement that has just turned red: its last vehicle is
+    /// physically through the node.
+    pub fn cheap_bound(&self, m: usize, link: LinkID, pipe: PipeIdx, arrival: f64, now: f64) -> f64 {
         let mv = &self.moves[m];
         let mut t = now;
         let last = self.last_departure.get(&(link, pipe)).copied().unwrap_or(f64::NEG_INFINITY);
@@ -427,9 +428,7 @@ impl JunctionState {
         }
         t = t.max(arrival.max(last) + mv.stop_time);
         for &n in &mv.yields {
-            if !red(n) {
-                t = t.max(self.last_pass[n] + mv.lead);
-            }
+            t = t.max(self.last_pass[n] + mv.lead);
         }
         t
     }

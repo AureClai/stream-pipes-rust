@@ -27,7 +27,8 @@
 //!   from the theoretical triangular FD (Edie-style link averages).
 //!
 //! **Nodes**
-//! - `flow_conservation` — inflow vs outflow per time bin (vehicles must not
+//! - `flow_conservation` — vehicles leaving the incoming links vs vehicles
+//!   entering the outgoing links, per time bin (vehicles must not
 //!   appear or vanish at internal nodes).
 //! - `fifo_discipline` — passage order at the node must follow arrival order
 //!   per incoming link (LWR first-order traffic has no overtaking).
@@ -37,7 +38,7 @@
 //!   the network, plus entry-queue waiting statistics.
 
 use crate::analysis::compute_link_stats;
-use crate::diagnostics::{compute_fd_points, compute_node_balance, FDRegime};
+use crate::diagnostics::{compute_fd_points, FDRegime};
 use crate::model::{LinkID, NodeID, NodeType, PipeIdx, RoundaboutSpec, Scenario};
 use crate::roundabout::RingGeometry;
 use serde::{Deserialize, Serialize};
@@ -51,6 +52,8 @@ const TOL_MECHANISM: f64 = 0.01;
 /// FD adherence: mean |error| below → Pass, below warn bound → Warn.
 const FD_PASS_PCT: f64 = 10.0;
 const FD_WARN_PCT: f64 = 25.0;
+/// FD adherence: bins with fewer vehicles than this are not compared.
+const FD_MIN_VEHICLES: f64 = 30.0;
 /// Flow conservation mean |error| bounds (%).
 const CONS_PASS_PCT: f64 = 2.0;
 const CONS_WARN_PCT: f64 = 10.0;
@@ -448,6 +451,68 @@ fn check_backward_wave(sp: &StreamParams, p: &LinkPassages) -> Check {
 }
 
 /// Mean |deviation| of binned (k, q) observations from the triangular FD.
+/// A link that ends at a stop line — signal-controlled movements, a
+/// priority junction, a roundabout, a toll — carries interrupted flow: its
+/// averages mix a standing queue with free flow, which the fundamental
+/// diagram does not describe.
+fn interrupted_flow(scenario: &Scenario, link: &crate::model::Link) -> bool {
+    let node = scenario.nodes.get(link.node_down);
+    node.is_some_and(|n| n.roundabout.is_some() || n.junction.is_some())
+        || scenario.signals.groups.iter().any(|g| g.movements.iter().any(|m| m.from == link.id))
+        || scenario.signals.tolls.iter().any(|t| t.link == link.id)
+}
+
+fn fd_check(scenario: &Scenario, link: &crate::model::Link, fd_errors: &HashMap<LinkID, Vec<f64>>) -> Check {
+    if interrupted_flow(scenario, link) {
+        return not_exercised(
+            "fd_adherence",
+            "Fundamental diagram adherence",
+            "Interrupted flow: the link ends at a stop line (signal, priority junction, roundabout \
+             or toll), whose queue the fundamental diagram does not describe.",
+        );
+    }
+    check_fd_adherence(link.id, fd_errors)
+}
+
+/// Per internal node, the relative imbalance per time bin between the
+/// vehicles leaving its incoming links and those entering its outgoing
+/// links — node passages, not the outgoing links' exits, which would also
+/// count the storage building up on those links.
+fn node_passage_errors(scenario: &Scenario, bin_size: f64) -> HashMap<NodeID, Vec<f64>> {
+    let bin = |t: f64| ((t - scenario.start_time) / bin_size).floor().max(0.0) as usize;
+    let mut inflow: HashMap<(NodeID, usize), f64> = HashMap::new();
+    let mut outflow: HashMap<(NodeID, usize), f64> = HashMap::new();
+    let internal = |n: NodeID| {
+        scenario.nodes.get(n).is_some_and(|n| !n.incoming_links.is_empty() && !n.outgoing_links.is_empty())
+    };
+    for veh in &scenario.vehicles {
+        for (i, &lid) in veh.path.iter().enumerate() {
+            let Some(link) = scenario.links.get(lid) else { continue };
+            if let Some(t) = veh.link_exit_time(i) {
+                if internal(link.node_down) {
+                    *inflow.entry((link.node_down, bin(t))).or_default() += 1.0;
+                }
+            }
+            if let Some(t) = veh.link_entry_time(i) {
+                if internal(link.node_up) {
+                    *outflow.entry((link.node_up, bin(t))).or_default() += 1.0;
+                }
+            }
+        }
+    }
+    let mut keys: Vec<(NodeID, usize)> = inflow.keys().chain(outflow.keys()).copied().collect();
+    keys.sort_unstable();
+    keys.dedup();
+    let mut errors: HashMap<NodeID, Vec<f64>> = HashMap::new();
+    for key in keys {
+        let i = inflow.get(&key).copied().unwrap_or(0.0);
+        let o = outflow.get(&key).copied().unwrap_or(0.0);
+        let e = if i > 0.0 { (o - i) / i * 100.0 } else { 0.0 };
+        errors.entry(key.0).or_default().push(e.abs());
+    }
+    errors
+}
+
 fn check_fd_adherence(link_id: LinkID, fd_errors: &HashMap<LinkID, Vec<f64>>) -> Check {
     let id = "fd_adherence";
     let name = "Fundamental diagram adherence";
@@ -465,7 +530,8 @@ fn check_fd_adherence(link_id: LinkID, fd_errors: &HashMap<LinkID, Vec<f64>>) ->
     let detail = format!(
         "Mean |simulated − theoretical flow| over {} time bins, both FD branches. \
          Bins above 90% of jam density are excluded (non-uniform queue/discharge states \
-         where the FD does not describe the spatial average).",
+         where the FD does not describe the spatial average), and bins with fewer than 30 \
+         vehicles (edge effects dominate).",
         errors.len()
     );
     Check {
@@ -720,8 +786,12 @@ fn check_junction(scenario: &Scenario, node_id: NodeID, spec: &crate::junction::
     let name = "Priority (gap acceptance)";
     // Per movement: passages and arrivals at the node; per lane: departures.
     let mut passes: HashMap<(LinkID, LinkID), Vec<f64>> = HashMap::new();
+    // Conflicting vehicles that reached the node and went through without
+    // stopping (arrival = passage): those a minor vehicle must not cut in
+    // front of. One stuck at the line (behind a turning vehicle, a full
+    // exit) is no threat.
     let mut arrivals: HashMap<(LinkID, LinkID), Vec<f64>> = HashMap::new();
-    let mut lanes: HashMap<(LinkID, PipeIdx), Vec<(f64, f64, Option<LinkID>)>> = HashMap::new();
+    let mut lanes: HashMap<(LinkID, PipeIdx), Vec<(f64, f64, Option<LinkID>, f64)>> = HashMap::new();
     for veh in &scenario.vehicles {
         for (i, &lid) in veh.path.iter().enumerate() {
             let Some(link) = scenario.links.get(lid) else { continue };
@@ -733,10 +803,12 @@ fn check_junction(scenario: &Scenario, node_id: NodeID, spec: &crate::junction::
             let arrival = t_in + link.length / link.speed;
             if let Some(n) = next {
                 passes.entry((lid, n)).or_default().push(t_out);
-                arrivals.entry((lid, n)).or_default().push(arrival);
+                if (t_out - arrival).abs() < EPS {
+                    arrivals.entry((lid, n)).or_default().push(arrival);
+                }
             }
             let pipe = veh.pipes_taken.get(i).copied().unwrap_or(0);
-            lanes.entry((lid, pipe)).or_default().push((t_out, arrival, next));
+            lanes.entry((lid, pipe)).or_default().push((t_out, arrival, next, t_in));
         }
     }
     for v in passes.values_mut().chain(arrivals.values_mut()) {
@@ -760,9 +832,10 @@ fn check_junction(scenario: &Scenario, node_id: NodeID, spec: &crate::junction::
     let mut checked = 0usize;
     let mut violations = 0usize;
     for (&(link, _pipe), deps) in lanes.iter_mut() {
-        deps.sort_by(|a, b| a.0.total_cmp(&b.0));
+        // FIFO within a lane: simultaneous departures in entry order.
+        deps.sort_by(|a, b| a.0.total_cmp(&b.0).then(a.3.total_cmp(&b.3)));
         let mut prev: Option<f64> = None;
-        for &(t, arrival, next) in deps.iter() {
+        for &(t, arrival, next, _) in deps.iter() {
             let m = next.and_then(|n| spec.movement(link, n));
             if let Some(m) = m.filter(|m| !m.yields_to.is_empty()) {
                 checked += 1;
@@ -775,13 +848,13 @@ fn check_junction(scenario: &Scenario, node_id: NodeID, spec: &crate::junction::
                     if let Some(ps) = passes.get(&(a, b)) {
                         // Last conflicting passage at or before t.
                         let k = ps.partition_point(|&x| x <= t + EPS);
-                        if k > 0 && ps[k - 1] > t - m.lead() + EPS && !red_at(a, b, ps[k - 1]) {
+                        if k > 0 && ps[k - 1] > t - m.lead() + EPS {
                             ok = false;
                         }
                     }
                     if let Some(arr) = arrivals.get(&(a, b)) {
                         let k = arr.partition_point(|&x| x < t - EPS);
-                        if k < arr.len() && arr[k] < t + m.lag() - EPS && !red_at(a, b, arr[k]) {
+                        if k < arr.len() && arr[k] < t + m.lag() - EPS && !red_at(a, b, t) {
                             ok = false;
                         }
                     }
@@ -812,36 +885,59 @@ fn check_junction(scenario: &Scenario, node_id: NodeID, spec: &crate::junction::
 /// movement on red, and no green lets more vehicles through than its cap.
 fn check_signal_group(scenario: &Scenario, g: usize) -> Vec<Check> {
     let group = &scenario.signals.groups[g];
-    let mut switches: Vec<(f64, bool)> = scenario
+    let mut switches: Vec<(f64, bool, bool)> = scenario
         .signal_log
         .iter()
         .filter(|r| r.group == g)
-        .map(|r| (r.time, r.green))
+        .map(|r| (r.time, r.green, r.capped))
         .collect();
     switches.sort_by(|a, b| a.0.total_cmp(&b.0));
     // State at t: the last switch at or before t (a switch at t applies to
     // passages at t: switches are processed first at an instant).
     let green_index = |t: f64| -> Option<usize> {
-        let i = switches.partition_point(|&(s, _)| s <= t);
+        let i = switches.partition_point(|&(s, _, _)| s <= t);
         (i > 0 && switches[i - 1].1).then(|| i - 1)
     };
     let controls = |from: LinkID, to: Option<LinkID>| {
         group.movements.iter().any(|m| m.from == from && (m.to.is_none() || m.to == to))
     };
+    // A permitted movement (one that gives way at a priority junction) may
+    // clear up to `sneakers` vehicles within `clearance` of a red.
+    let permitted = |from: LinkID, to: Option<LinkID>| {
+        scenario.nodes.get(group.node).and_then(|n| n.junction.as_ref()).is_some_and(|j| {
+            to.and_then(|t| j.movement(from, t)).is_some_and(|m| !m.yields_to.is_empty())
+        })
+    };
     let mut passages = 0usize;
     let mut on_red = 0usize;
+    let mut sneakers = 0usize;
     let mut per_green: HashMap<usize, u32> = HashMap::new();
+    let mut per_red: HashMap<usize, u32> = HashMap::new();
     for veh in &scenario.vehicles {
         for (i, &lid) in veh.path.iter().enumerate() {
             let Some(link) = scenario.links.get(lid) else { continue };
-            if link.node_down != group.node || !controls(lid, veh.path.get(i + 1).copied()) {
+            let next = veh.path.get(i + 1).copied();
+            if link.node_down != group.node || !controls(lid, next) {
                 continue;
             }
             let Some(t) = veh.link_exit_time(i) else { continue };
             passages += 1;
             match green_index(t) {
-                Some(k) => *per_green.entry(k).or_default() += 1,
-                None => on_red += 1,
+                // The cap applies to plan or controller greens, not to the
+                // dark signal.
+                Some(k) if switches[k].2 => *per_green.entry(k).or_default() += 1,
+                Some(_) => {}
+                None => {
+                    let r = switches.partition_point(|&(s, _, _)| s <= t);
+                    let red_start = if r > 0 { switches[r - 1].0 } else { f64::NEG_INFINITY };
+                    let count = per_red.entry(r).or_default();
+                    if permitted(lid, next) && t < red_start + group.clearance && *count < group.sneakers {
+                        *count += 1;
+                        sneakers += 1;
+                    } else {
+                        on_red += 1;
+                    }
+                }
             }
         }
     }
@@ -855,7 +951,10 @@ fn check_signal_group(scenario: &Scenario, g: usize) -> Vec<Check> {
         Some(on_red as f64),
         Some(0.0),
         "vehicles",
-        format!("{passages} passages through the group's movements checked against {} applied switches.", switches.len()),
+        format!(
+            "{passages} passages through the group's movements checked against {} applied switches ({sneakers} permitted vehicles cleared just after a red).",
+            switches.len()
+        ),
     );
     let mut checks = vec![red];
     if let Some(cap) = group.vehicles_per_green {
@@ -897,7 +996,7 @@ fn check_node_conservation(node_id: NodeID, errors: &HashMap<NodeID, Vec<f64>>) 
         unit: "%".to_string(),
         error_pct: Some(mean),
         detail: format!(
-            "Mean |outflow − inflow| / inflow over {} time bins (startup window excluded).",
+            "Mean |entries into outgoing links − exits from incoming links| / exits over {} time bins (node passages).",
             errs.len()
         ),
     }
@@ -972,6 +1071,12 @@ pub fn verify_scenario(scenario: &Scenario, bin_size: f64) -> VerificationReport
     let fd_points = compute_fd_points(scenario, &stats, bin_size, n_bins);
     let mut fd_errors: HashMap<LinkID, Vec<f64>> = HashMap::new();
     for pt in &fd_points {
+        // Too few vehicles in the bin: exit counts and occupancy times
+        // disagree by edge effects alone (a vehicle more or less), whatever
+        // the dynamics. Require a minimum sample.
+        if pt.flow * bin_size / 3600.0 < FD_MIN_VEHICLES {
+            continue;
+        }
         if pt.regime == FDRegime::QueueOverflow {
             continue;
         }
@@ -994,14 +1099,7 @@ pub fn verify_scenario(scenario: &Scenario, bin_size: f64) -> VerificationReport
             .or_default()
             .push(pt.error_pct.abs());
     }
-    let balances = compute_node_balance(scenario, &stats, bin_size, n_bins);
-    let mut cons_errors: HashMap<NodeID, Vec<f64>> = HashMap::new();
-    for b in &balances {
-        cons_errors
-            .entry(b.node_id)
-            .or_default()
-            .push(b.error_pct.abs());
-    }
+    let cons_errors = node_passage_errors(scenario, bin_size);
 
     let mut elements = Vec::new();
     let empty = LinkPassages::default();
@@ -1019,7 +1117,7 @@ pub fn verify_scenario(scenario: &Scenario, bin_size: f64) -> VerificationReport
                 check_inflow_capacity(&sp, p),
                 check_storage_bound(&sp, p),
                 check_backward_wave(&sp, p),
-                check_fd_adherence(link.id, &fd_errors),
+                fd_check(scenario, link, &fd_errors),
             ];
             elements.push(element_report(
                 ElementType::Link,
@@ -1046,7 +1144,7 @@ pub fn verify_scenario(scenario: &Scenario, bin_size: f64) -> VerificationReport
                     checks,
                 ));
             }
-            let checks = vec![check_fd_adherence(link.id, &fd_errors)];
+            let checks = vec![fd_check(scenario, link, &fd_errors)];
             elements.push(element_report(
                 ElementType::Link,
                 link.id,

@@ -120,6 +120,8 @@ fn scenario(metered: bool) -> Scenario {
                 movements: vec![Movement { from: 1, to: None }],
                 vehicles_per_green: Some(1),
                 off: OffState::Red,
+                sneakers: 0,
+                clearance: 0.0,
             }],
             ..Default::default()
         }

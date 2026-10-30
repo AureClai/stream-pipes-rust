@@ -2,7 +2,7 @@ use crate::model::{
     Link, LinkID, NodeID, PipeIdx, Scenario, StorageAvailability, VehID, VehicleState,
 };
 use crate::roundabout::{Bound, PointKind, RingVehicle, RoundaboutState};
-use crate::signals::{Command, ControlView, Controller, SignalRuntime, SwitchRecord};
+use crate::signals::{Aspect, Command, ControlView, Controller, SignalRuntime, SwitchRecord};
 use crate::junction::JunctionState;
 use anyhow::Result;
 #[cfg(feature = "python")]
@@ -456,7 +456,7 @@ impl Simulation {
                 EventType::RingArrival => {
                     self.handle_ring_arrival(event.link_id, event.pipe, event.veh_id)
                 }
-                EventType::SignalSwitch => self.handle_signal_switch(event.link_id, event.pipe == 1),
+                EventType::SignalSwitch => self.handle_signal_switch(event.link_id, Aspect::from_code(event.pipe)),
                 EventType::ControlWake => self.call_controller(event.link_id, false),
             }
         }
@@ -1042,6 +1042,8 @@ impl Simulation {
 struct Controlled {
     group: Option<usize>,
     toll: bool,
+    /// Passed as a sneaker, just after its group turned red.
+    sneak: bool,
 }
 
 impl Simulation {
@@ -1057,40 +1059,65 @@ impl Simulation {
         let end = start + self.scenario.duration;
         let timelines = crate::signals::expand(&self.scenario.signals, start, end);
         for (g, timeline) in timelines.into_iter().enumerate() {
-            for (i, (t, green)) in timeline.into_iter().enumerate() {
+            for (i, (t, aspect)) in timeline.into_iter().enumerate() {
                 if i == 0 {
-                    self.signals.groups[g].green = green;
-                    self.scenario.signal_log.push(SwitchRecord { group: g, time: t, green });
+                    let grp = &mut self.signals.groups[g];
+                    grp.green = aspect.passes();
+                    grp.capped = aspect == Aspect::Green;
+                    self.scenario.signal_log.push(SwitchRecord {
+                        group: g,
+                        time: t,
+                        green: aspect.passes(),
+                        capped: aspect != Aspect::Off,
+                    });
                 } else {
-                    self.push_switch(g, t, green);
+                    self.push_switch(g, t, aspect);
                 }
             }
         }
     }
 
-    fn push_switch(&mut self, group: usize, time: f64, green: bool) {
+    fn push_switch(&mut self, group: usize, time: f64, aspect: Aspect) {
         self.events.push(Event {
             time,
             event_type: EventType::SignalSwitch,
             link_id: group,
             veh_id: NO_VEHICLE,
-            pipe: u8::from(green),
+            pipe: aspect.code(),
         });
     }
 
-    fn handle_signal_switch(&mut self, group: usize, green: bool) {
+    fn handle_signal_switch(&mut self, group: usize, aspect: Aspect) {
         let Some(g) = self.signals.groups.get_mut(group) else {
             return;
         };
-        if g.green == green {
+        let green = aspect.passes();
+        let capped = aspect == Aspect::Green;
+        if g.green == green && (!green || g.capped == capped) {
             return;
         }
+        // A new green, or a change between plan green and dark signal,
+        // starts a fresh per-green count.
+        g.served = 0;
+        g.capped = capped;
+        let turned = g.green != green;
         g.green = green;
-        if green {
-            g.served = 0;
+        if !green {
+            g.red_since = self.current_time;
+            g.sneak_left = g.sneakers;
         }
         let node = g.node;
-        self.scenario.signal_log.push(SwitchRecord { group, time: self.current_time, green });
+        self.scenario.signal_log.push(SwitchRecord {
+            group,
+            time: self.current_time,
+            green,
+            capped: aspect != Aspect::Off,
+        });
+        if !turned {
+            // Plan green ↔ dark signal: the cap may have just been lifted.
+            self.process_node_transfer(node);
+            return;
+        }
         // Green releases the group's queue; red can release the movements
         // that give way to it at a priority junction (permitted turns).
         let junction = self.junctions_active && self.junctions.get(node).is_some_and(Option::is_some);
@@ -1114,6 +1141,22 @@ impl Simulation {
             // Red, or the per-green cap is used up: the next switch to green
             // re-triggers the node.
             if !self.signals.open(g) {
+                // A permitted vehicle (one that gives way at this priority
+                // junction) already at the line may still clear just after
+                // the red: the HCM sneakers.
+                let at_line_before_red = {
+                    let l = &self.scenario.links[link];
+                    let v = &self.scenario.vehicles[veh];
+                    let entered = v.link_entry_time(v.current_link_idx).unwrap_or(self.current_time);
+                    entered + l.length / l.speed <= self.signals.groups[g].red_since
+                };
+                let permitted = self.signals.sneak_open(g, self.current_time)
+                    && at_line_before_red
+                    && !self.signals.groups[g].green
+                    && self.junction_yields(link, next);
+                if permitted {
+                    return Some(Controlled { group, toll: false, sneak: true });
+                }
                 return None;
             }
         }
@@ -1142,7 +1185,7 @@ impl Simulation {
             }
             toll = true;
         }
-        Some(Controlled { group, toll })
+        Some(Controlled { group, toll, sneak: false })
     }
 
     fn signal_passed(&mut self, c: Controlled, link: LinkID, pipe: PipeIdx) {
@@ -1151,6 +1194,10 @@ impl Simulation {
         let mut next_ready = f64::NEG_INFINITY;
         if let Some(g) = c.group {
             self.signals.groups[g].served += 1;
+            if c.sneak {
+                let grp = &mut self.signals.groups[g];
+                grp.sneak_left = grp.sneak_left.saturating_sub(1);
+            }
             // A queue released by a green leaves at the saturation flow, the
             // pipe capacity: enforce the discharge headway armed just before
             // (1/(C·φ)) even when the upstream-capacity term is off.
@@ -1232,7 +1279,8 @@ impl Simulation {
         match cmd {
             Command::Switch { group, at, green } => {
                 if let Some(g) = self.signals.group_index(&group) {
-                    self.push_switch(g, if at.is_finite() { at.max(now) } else { now }, green);
+                    let aspect = if green { Aspect::Green } else { Aspect::Red };
+                    self.push_switch(g, if at.is_finite() { at.max(now) } else { now }, aspect);
                 }
             }
             // Only future wake-ups: a controller asking for "now" again
@@ -1285,6 +1333,15 @@ impl Simulation {
         if let Some(js) = self.junctions.get_mut(node).and_then(|j| j.as_deref_mut()) {
             js.expect(link, arrival, next);
         }
+    }
+
+    /// Does the movement `link → next` give way to another one at its
+    /// node (a permitted movement)?
+    fn junction_yields(&self, link: LinkID, next: Option<LinkID>) -> bool {
+        let node = self.scenario.links[link].node_down;
+        self.junctions.get(node).and_then(|j| j.as_deref()).is_some_and(|js| {
+            js.movement(link, next).is_some_and(|m| !js.moves[m].yields.is_empty())
+        })
     }
 
     fn junction_passed(&mut self, link: LinkID, pipe: PipeIdx, movement: Option<usize>) {
@@ -1355,7 +1412,7 @@ impl Simulation {
                 let l = &self.scenario.links[link];
                 let v = &self.scenario.vehicles[veh];
                 let arrival = v.link_entry_time(v.current_link_idx).unwrap_or(now) + l.length / l.speed;
-                let t = js.cheap_bound(m, link, pipe, arrival, now, &red);
+                let t = js.cheap_bound(m, link, pipe, arrival, now);
                 if t > now {
                     JunctionWait::Until(t)
                 } else if js.approaching_conflict(m, now, &red) {

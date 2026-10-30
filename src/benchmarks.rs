@@ -783,6 +783,8 @@ fn one_group(cap: Option<u32>, cycle: f64, green: [f64; 2]) -> crate::signals::S
             movements: vec![Movement { from: 0, to: None }],
             vehicles_per_green: cap,
             off: OffState::Green,
+            sneakers: 0,
+            clearance: 0.0,
         }],
         plans: vec![FixedTimePlan {
             name: None,

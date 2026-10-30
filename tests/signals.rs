@@ -58,6 +58,8 @@ fn group(id: &str, movements: &[(usize, Option<usize>)]) -> SignalGroup {
         movements: movements.iter().map(|&(from, to)| Movement { from, to }).collect(),
         vehicles_per_green: None,
         off: OffState::Green,
+        sneakers: 2,
+        clearance: 3.0,
     }
 }
 
@@ -345,4 +347,27 @@ fn verification_reports_signal_groups() {
     let report = verify_scenario(&bad, 300.0);
     let el = report.elements.iter().find(|e| e.element_type == ElementType::Signal).unwrap();
     assert_eq!(el.checks[0].status, CheckStatus::Fail);
+}
+
+/// Regression: a capped ramp meter whose plan ends turns dark (green, no
+/// cap); its queue must then flow freely instead of staying stuck behind
+/// the cap of the last green.
+#[test]
+fn ramp_meter_releases_its_queue_when_the_plan_ends() {
+    let mut s = base(approach(), &(0..20).map(|_| (1, 0.0)).collect::<Vec<_>>());
+    let mut g = group("ramp", &[(0, None)]);
+    g.vehicles_per_green = Some(1);
+    s.signals = SignalNetwork {
+        groups: vec![g],
+        plans: vec![FixedTimePlan { from: 0.0, until: 30.0, ..plan(6.0, &[("ramp", &[[0.0, 2.0]])]) }],
+        tolls: vec![],
+    };
+    let sim = run(s);
+    all_exited(&sim);
+    let t = passages(&sim);
+    // Metered at 12, 18, 24, then the plan ends at 30 (its last green runs
+    // into the dark signal): everybody queued goes from 30 on.
+    close(t[0], 12.0, "metered");
+    close(t[3], 30.0, "released when the plan ends");
+    assert!(t[19] < 70.0, "the queue drains freely after the plan ({})", t[19]);
 }

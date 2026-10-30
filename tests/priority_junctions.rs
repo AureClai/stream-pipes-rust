@@ -211,6 +211,8 @@ fn left_turn_permitted_then_protected() {
             movements: vec![Movement { from: approach(E), to: Some(exit(W)) }],
             vehicles_per_green: None,
             off: OffState::Green,
+            sneakers: 2,
+            clearance: 3.0,
         }],
         plans: vec![FixedTimePlan {
             name: None,

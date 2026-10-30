@@ -28,6 +28,22 @@ use crate::model::{LinkID, NodeID, PipeIdx, Scenario};
 
 // ── Input: signals.json ───────────────────────────────────────────────────────
 
+fn default_sneakers() -> u32 {
+    2
+}
+
+fn yes() -> bool {
+    true
+}
+
+fn is_true(b: &bool) -> bool {
+    *b
+}
+
+fn default_clearance() -> f64 {
+    3.0
+}
+
 /// Everything `signals.json` declares. Empty for a scenario without
 /// signals, which then runs exactly as before.
 #[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
@@ -74,6 +90,13 @@ pub struct SignalGroup {
     pub vehicles_per_green: Option<u32>,
     #[serde(default)]
     pub off: OffState,
+    /// Permitted vehicles (movements that give way at a priority junction)
+    /// already at the line that may still clear after the group turns red
+    /// (HCM "sneakers"), within `clearance` seconds of the red.
+    #[serde(default = "default_sneakers")]
+    pub sneakers: u32,
+    #[serde(default = "default_clearance")]
+    pub clearance: f64,
 }
 
 /// A fixed-time plan for one period: cycles of `cycle` seconds starting at
@@ -146,6 +169,9 @@ pub fn validate(net: &SignalNetwork, s: &Scenario) -> Result<()> {
         }
         if g.movements.is_empty() {
             bail!("signal group '{}' controls no movement", g.id);
+        }
+        if !(g.clearance.is_finite() && g.clearance >= 0.0) {
+            bail!("signal group '{}': clearance must be ≥ 0", g.id);
         }
         if g.vehicles_per_green == Some(0) {
             bail!("signal group '{}': vehicles_per_green must be ≥ 1", g.id);
@@ -235,17 +261,49 @@ pub fn validate(net: &SignalNetwork, s: &Scenario) -> Result<()> {
 
 // ── Fixed-time expansion ──────────────────────────────────────────────────────
 
-/// The switches (time, green) of every group over [start, end], from the
-/// fixed-time plans and the `off` states. Each list starts with the state
-/// at `start` and alternates.
-pub fn expand(net: &SignalNetwork, start: f64, end: f64) -> Vec<Vec<(f64, bool)>> {
+/// What a group shows.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum Aspect {
+    Red,
+    /// Green of a plan (or of a controller): the per-green cap applies.
+    Green,
+    /// Dark signal, outside every plan period with `off: green`: traffic
+    /// passes as on green, with no per-green cap.
+    Off,
+}
+
+impl Aspect {
+    pub fn passes(self) -> bool {
+        self != Aspect::Red
+    }
+    pub(crate) fn code(self) -> u8 {
+        match self {
+            Aspect::Red => 0,
+            Aspect::Green => 1,
+            Aspect::Off => 2,
+        }
+    }
+    pub(crate) fn from_code(c: u8) -> Self {
+        match c {
+            1 => Aspect::Green,
+            2 => Aspect::Off,
+            _ => Aspect::Red,
+        }
+    }
+}
+
+/// The aspect changes (time, aspect) of every group over [start, end], from
+/// the fixed-time plans and the `off` states. Each list starts with the
+/// aspect at `start`.
+pub fn expand(net: &SignalNetwork, start: f64, end: f64) -> Vec<Vec<(f64, Aspect)>> {
     net.groups
         .iter()
         .map(|g| {
-            // Green intervals: plan windows inside plan periods, plus the
-            // gaps between periods when the group is green when off.
+            // Plan greens inside plan periods, and the gaps between periods
+            // as dark-signal intervals when the group is green when off.
             let mut periods: Vec<(f64, f64)> = Vec::new();
-            let mut greens: Vec<(f64, f64)> = Vec::new();
+            let mut intervals: Vec<(f64, f64, Aspect)> = Vec::new();
             for p in net.plans.iter().filter(|p| p.controlled().contains(&g.id.as_str())) {
                 let (from, until) = (p.from.max(start), p.until.min(end));
                 if from >= until {
@@ -264,7 +322,7 @@ pub fn expand(net: &SignalNetwork, start: f64, end: f64) -> Vec<Vec<(f64, bool)>
                     for &[a, b] in windows {
                         let (s0, s1) = ((c0 + a).max(from), (c0 + b).min(until));
                         if s0 < s1 {
-                            greens.push((s0, s1));
+                            intervals.push((s0, s1, Aspect::Green));
                         }
                     }
                     k += 1.0;
@@ -275,42 +333,50 @@ pub fn expand(net: &SignalNetwork, start: f64, end: f64) -> Vec<Vec<(f64, bool)>
                 let mut t = start;
                 for &(a, b) in &periods {
                     if a > t {
-                        greens.push((t, a));
+                        intervals.push((t, a, Aspect::Off));
                     }
                     t = t.max(b);
                 }
                 if t < end {
-                    greens.push((t, end));
+                    intervals.push((t, end, Aspect::Off));
                 }
             }
-            switches(greens, start, end)
+            timeline(intervals, start, end)
         })
         .collect()
 }
 
-/// Merge green intervals into alternating switches starting at `start`.
-fn switches(mut greens: Vec<(f64, f64)>, start: f64, end: f64) -> Vec<(f64, bool)> {
-    greens.sort_by(|a, b| a.0.total_cmp(&b.0));
-    let mut merged: Vec<(f64, f64)> = Vec::new();
-    for (a, b) in greens {
+/// Turn intervals into aspect changes starting at `start`. Overlapping or
+/// touching intervals of one aspect merge; a dark interval and a plan green
+/// never do, so the cap is reset where a plan begins or ends.
+fn timeline(mut intervals: Vec<(f64, f64, Aspect)>, start: f64, end: f64) -> Vec<(f64, Aspect)> {
+    intervals.sort_by(|a, b| a.0.total_cmp(&b.0).then(a.2.code().cmp(&b.2.code())));
+    let mut merged: Vec<(f64, f64, Aspect)> = Vec::new();
+    for (a, b, k) in intervals {
         match merged.last_mut() {
-            Some(last) if a <= last.1 => last.1 = last.1.max(b),
-            _ => merged.push((a, b)),
+            Some(last) if last.2 == k && a <= last.1 => last.1 = last.1.max(b),
+            _ => merged.push((a, b, k)),
         }
     }
-    let mut out = Vec::new();
-    let green_at_start = merged.first().is_some_and(|&(a, _)| a <= start);
-    out.push((start, green_at_start));
-    for (a, b) in merged {
-        if a > start {
-            out.push((a, true));
-        }
-        out.push((b, false));
+    let mut out: Vec<(f64, Aspect)> = vec![(start, Aspect::Red)];
+    for (a, b, k) in merged {
+        out.push((a.max(start), k));
+        out.push((b, Aspect::Red));
     }
-    // Switches at or after the horizon end never apply.
-    out.retain(|&(t, _)| t == start || t < end);
-    out.dedup_by(|b, a| a.1 == b.1);
-    out
+    // At one instant the last change wins (a green starting where the
+    // previous one ends); changes at or after the horizon end never apply.
+    let mut norm: Vec<(f64, Aspect)> = Vec::new();
+    for (t, k) in out {
+        if t != start && t >= end {
+            continue;
+        }
+        match norm.last_mut() {
+            Some(last) if last.0 == t => last.1 = k,
+            _ => norm.push((t, k)),
+        }
+    }
+    norm.dedup_by(|b, a| a.1 == b.1);
+    norm
 }
 
 // ── Runtime ───────────────────────────────────────────────────────────────────
@@ -321,6 +387,9 @@ pub struct SwitchRecord {
     pub group: usize,
     pub time: f64,
     pub green: bool,
+    /// False for a dark-signal (off-state) green: no per-green cap.
+    #[serde(default = "yes", skip_serializing_if = "is_true")]
+    pub capped: bool,
 }
 
 /// Run-time state of one signal group.
@@ -329,9 +398,17 @@ pub struct GroupState {
     pub id: String,
     pub node: NodeID,
     pub green: bool,
+    /// The green comes from a plan or a controller (cap applies), not from
+    /// the dark off state.
+    pub capped: bool,
     pub vehicles_per_green: Option<u32>,
     /// Vehicles passed since the group last turned green.
     pub served: u32,
+    pub sneakers: u32,
+    pub clearance: f64,
+    /// Time of the last switch to red, and the sneakers still allowed.
+    pub red_since: f64,
+    pub sneak_left: u32,
 }
 
 /// Run-time state of one toll lane.
@@ -364,8 +441,13 @@ impl SignalRuntime {
                 id: g.id.clone(),
                 node: g.node,
                 green: true,
+                capped: false,
                 vehicles_per_green: g.vehicles_per_green,
                 served: 0,
+                sneakers: g.sneakers,
+                clearance: g.clearance,
+                red_since: f64::NEG_INFINITY,
+                sneak_left: 0,
             });
             for m in &g.movements {
                 rt.by_movement.insert((m.from, m.to), i);
@@ -408,10 +490,17 @@ impl SignalRuntime {
             .copied()
     }
 
+    /// A permitted vehicle may still clear after the red: the group turned
+    /// red less than `clearance` ago and has sneakers left.
+    pub fn sneak_open(&self, group: usize, now: f64) -> bool {
+        let g = &self.groups[group];
+        !g.green && g.sneak_left > 0 && now < g.red_since + g.clearance
+    }
+
     /// May a vehicle take the movement controlled by `group` now?
     pub fn open(&self, group: usize) -> bool {
         let g = &self.groups[group];
-        g.green && g.vehicles_per_green.is_none_or(|n| g.served < n)
+        g.green && (!g.capped || g.vehicles_per_green.is_none_or(|n| g.served < n))
     }
 
     /// Service time of a vehicle of `class` at the toll of (link, pipe).
@@ -512,7 +601,7 @@ mod tests {
     use super::*;
 
     fn group(id: &str) -> SignalGroup {
-        SignalGroup { id: id.into(), node: 0, movements: vec![], vehicles_per_green: None, off: OffState::Green }
+        SignalGroup { id: id.into(), node: 0, movements: vec![], vehicles_per_green: None, off: OffState::Green, sneakers: 0, clearance: 0.0 }
     }
 
     #[test]
@@ -534,10 +623,13 @@ mod tests {
         };
         let sw = expand(&net, 0.0, 200.0);
         // a: cycles start at 10, 70 (and −50 → its window ends at −30).
-        assert_eq!(sw[0], vec![(0.0, false), (10.0, true), (30.0, false), (70.0, true), (90.0, false), (120.0, true)]);
+        use Aspect::{Green, Off, Red};
+        assert_eq!(sw[0], vec![(0.0, Red), (10.0, Green), (30.0, Red), (70.0, Green), (90.0, Red), (120.0, Off)]);
         // b: the cycle starting at −50 is green over [0, 5); then [35, 65),
         // and [95, 120) runs into the off state (green) after the plan.
-        assert_eq!(sw[1], vec![(0.0, true), (5.0, false), (35.0, true), (65.0, false), (95.0, true)]);
+        // The plan green [95, 120) and the dark signal after it stay apart, so
+        // the per-green cap is lifted at 120.
+        assert_eq!(sw[1], vec![(0.0, Green), (5.0, Red), (35.0, Green), (65.0, Red), (95.0, Green), (120.0, Off)]);
     }
 
     #[test]
@@ -561,7 +653,7 @@ mod tests {
         // Cycle −50 contributes [−10, 10); cycle 0: [40, 60); cycle 50: [90, 100).
         assert_eq!(
             expand(&net, 0.0, 100.0)[0],
-            vec![(0.0, true), (10.0, false), (40.0, true), (60.0, false), (90.0, true)]
+            vec![(0.0, Aspect::Green), (10.0, Aspect::Red), (40.0, Aspect::Green), (60.0, Aspect::Red), (90.0, Aspect::Green)]
         );
     }
 }

@@ -1,0 +1,2101 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [
+          1000.0,
+          1000.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 0,
+        "junction": {
+          "major": [
+            2,
+            3,
+            26,
+            27
+          ]
+        }
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1300.0,
+          1000.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 1,
+        "junction": {
+          "control": "stop",
+          "major": [
+            6,
+            7,
+            28,
+            29
+          ]
+        }
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1600.0,
+          1000.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 2,
+        "junction": {
+          "major": [
+            8,
+            9,
+            30,
+            31
+          ]
+        }
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1000.0,
+          1300.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 3,
+        "roundabout": {
+          "diameter": 30.0
+        },
+        "type": "Roundabout"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1300.0,
+          1300.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 4,
+        "junction": {
+          "major": [
+            11,
+            10,
+            14,
+            15
+          ]
+        }
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1600.0,
+          1300.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 5,
+        "junction": {
+          "major": [
+            15,
+            14,
+            48,
+            49
+          ]
+        }
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1000.0,
+          1600.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 6,
+        "junction": {
+          "major": [
+            13,
+            12,
+            38,
+            39
+          ]
+        }
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1300.0,
+          1600.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 7,
+        "junction": {
+          "major": [
+            17,
+            16,
+            40,
+            41
+          ]
+        }
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1600.0,
+          1600.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 8
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1900.0,
+          1300.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          700.0,
+          1000.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 10,
+        "name": "west_south_street in",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          700.0,
+          1000.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 11,
+        "name": "west_south_street out",
+        "type": "Exit"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1000.0,
+          700.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 12,
+        "name": "south_west_street in",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1000.0,
+          700.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 13,
+        "name": "south_west_street out",
+        "type": "Exit"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1300.0,
+          700.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 14,
+        "name": "avenue_south in",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1300.0,
+          700.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 15,
+        "name": "avenue_south out",
+        "type": "Exit"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1600.0,
+          700.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 16,
+        "name": "south_east_street in",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1600.0,
+          700.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 17,
+        "name": "south_east_street out",
+        "type": "Exit"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1900.0,
+          1000.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 18,
+        "name": "east_south_street in",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1900.0,
+          1000.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 19,
+        "name": "east_south_street out",
+        "type": "Exit"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          700.0,
+          1300.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 20,
+        "name": "boulevard_west in",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          700.0,
+          1300.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 21,
+        "name": "boulevard_west out",
+        "type": "Exit"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          700.0,
+          1600.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 22,
+        "name": "west_north_street in",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          700.0,
+          1600.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 23,
+        "name": "west_north_street out",
+        "type": "Exit"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1000.0,
+          1900.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 24,
+        "name": "north_west_street in",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1000.0,
+          1900.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 25,
+        "name": "north_west_street out",
+        "type": "Exit"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1300.0,
+          1900.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 26,
+        "name": "avenue_north in",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1300.0,
+          1900.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 27,
+        "name": "avenue_north out",
+        "type": "Exit"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1600.0,
+          1900.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 28,
+        "name": "north_east_street in",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1600.0,
+          1900.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 29,
+        "name": "north_east_street out",
+        "type": "Exit"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1900.0,
+          1600.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 30,
+        "name": "east_north_street in",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1900.0,
+          1600.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 31,
+        "name": "east_north_street out",
+        "type": "Exit"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2200.0,
+          1300.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 32,
+        "name": "boulevard_east in",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2200.0,
+          1300.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 33,
+        "name": "boulevard_east out",
+        "type": "Exit"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          1850.0,
+          1150.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "id": 34,
+        "name": "on-ramp",
+        "type": "Entry"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1000.0
+          ],
+          [
+            1300.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 0,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 1,
+        "node_up": 0,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1000.0
+          ],
+          [
+            1000.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 1,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 0,
+        "node_up": 1,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1000.0
+          ],
+          [
+            1000.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 2,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 3,
+        "node_up": 0,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1300.0
+          ],
+          [
+            1000.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 3,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 0,
+        "node_up": 3,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1000.0
+          ],
+          [
+            1600.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 4,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 2,
+        "node_up": 1,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1000.0
+          ],
+          [
+            1300.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 5,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 1,
+        "node_up": 2,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1000.0
+          ],
+          [
+            1300.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.5,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 6,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 4,
+        "node_up": 1,
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1300.0
+          ],
+          [
+            1300.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.5,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 7,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 1,
+        "node_up": 4,
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1000.0
+          ],
+          [
+            1600.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 8,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 5,
+        "node_up": 2,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1300.0
+          ],
+          [
+            1600.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 9,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 2,
+        "node_up": 5,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1300.0
+          ],
+          [
+            1300.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 1.5,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 10,
+        "lanes": 3,
+        "length": 300.0,
+        "moves": {
+          "11": [
+            2
+          ],
+          "14": [
+            0,
+            1
+          ],
+          "16": [
+            2
+          ],
+          "7": [
+            1
+          ]
+        },
+        "node_down": 4,
+        "node_up": 3,
+        "pipes": [
+          {
+            "classes": [
+              "bus"
+            ],
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ],
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1300.0
+          ],
+          [
+            1000.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 1.0,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 11,
+        "lanes": 2,
+        "length": 300.0,
+        "node_down": 3,
+        "node_up": 4,
+        "pipes": [
+          {
+            "classes": [
+              "bus"
+            ],
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ],
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1300.0
+          ],
+          [
+            1000.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 12,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 6,
+        "node_up": 3,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1600.0
+          ],
+          [
+            1000.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 13,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 3,
+        "node_up": 6,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1300.0
+          ],
+          [
+            1600.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 1.0,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 14,
+        "lanes": 2,
+        "length": 300.0,
+        "node_down": 5,
+        "node_up": 4,
+        "pipes": [
+          {
+            "classes": [
+              "bus"
+            ],
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ],
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1300.0
+          ],
+          [
+            1300.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 1.5,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 15,
+        "lanes": 3,
+        "length": 300.0,
+        "moves": {
+          "11": [
+            0,
+            1
+          ],
+          "14": [
+            2
+          ],
+          "16": [
+            1
+          ],
+          "7": [
+            2
+          ]
+        },
+        "node_down": 4,
+        "node_up": 5,
+        "pipes": [
+          {
+            "classes": [
+              "bus"
+            ],
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ],
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1300.0
+          ],
+          [
+            1300.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.5,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 16,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 7,
+        "node_up": 4,
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1600.0
+          ],
+          [
+            1300.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.5,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 17,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 4,
+        "node_up": 7,
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1300.0
+          ],
+          [
+            1600.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 18,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 8,
+        "node_up": 5,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1600.0
+          ],
+          [
+            1600.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 19,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 5,
+        "node_up": 8,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1600.0
+          ],
+          [
+            1300.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 20,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 7,
+        "node_up": 6,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1600.0
+          ],
+          [
+            1000.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 21,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 6,
+        "node_up": 7,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1600.0
+          ],
+          [
+            1600.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 22,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 8,
+        "node_up": 7,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1600.0
+          ],
+          [
+            1300.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 23,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 7,
+        "node_up": 8,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            700.0,
+            1000.0
+          ],
+          [
+            1000.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 24,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 0,
+        "node_up": 10,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1000.0
+          ],
+          [
+            700.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 25,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 11,
+        "node_up": 0,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            700.0
+          ],
+          [
+            1000.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 26,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 0,
+        "node_up": 12,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1000.0
+          ],
+          [
+            1000.0,
+            700.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 27,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 13,
+        "node_up": 0,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            700.0
+          ],
+          [
+            1300.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.5,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 28,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 1,
+        "node_up": 14,
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1000.0
+          ],
+          [
+            1300.0,
+            700.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.5,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 29,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 15,
+        "node_up": 1,
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            700.0
+          ],
+          [
+            1600.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 30,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 2,
+        "node_up": 16,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1000.0
+          ],
+          [
+            1600.0,
+            700.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 31,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 17,
+        "node_up": 2,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1900.0,
+            1000.0
+          ],
+          [
+            1600.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 32,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 2,
+        "node_up": 18,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1000.0
+          ],
+          [
+            1900.0,
+            1000.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 33,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 19,
+        "node_up": 2,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            700.0,
+            1300.0
+          ],
+          [
+            1000.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 1.0,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 34,
+        "lanes": 2,
+        "length": 300.0,
+        "node_down": 3,
+        "node_up": 20,
+        "pipes": [
+          {
+            "classes": [
+              "bus"
+            ],
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ],
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1300.0
+          ],
+          [
+            700.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 1.0,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 35,
+        "lanes": 2,
+        "length": 300.0,
+        "node_down": 21,
+        "node_up": 3,
+        "pipes": [
+          {
+            "classes": [
+              "bus"
+            ],
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ],
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            700.0,
+            1600.0
+          ],
+          [
+            1000.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 36,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 6,
+        "node_up": 22,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1600.0
+          ],
+          [
+            700.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 37,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 23,
+        "node_up": 6,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1900.0
+          ],
+          [
+            1000.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 38,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 6,
+        "node_up": 24,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1000.0,
+            1600.0
+          ],
+          [
+            1000.0,
+            1900.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 39,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 25,
+        "node_up": 6,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1900.0
+          ],
+          [
+            1300.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 1.0,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 40,
+        "lanes": 2,
+        "length": 300.0,
+        "node_down": 7,
+        "node_up": 26,
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1300.0,
+            1600.0
+          ],
+          [
+            1300.0,
+            1900.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.5,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 41,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 27,
+        "node_up": 7,
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1900.0
+          ],
+          [
+            1600.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 42,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 8,
+        "node_up": 28,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1600.0
+          ],
+          [
+            1600.0,
+            1900.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 43,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 29,
+        "node_up": 8,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1900.0,
+            1600.0
+          ],
+          [
+            1600.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 44,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 8,
+        "node_up": 30,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1600.0
+          ],
+          [
+            1900.0,
+            1600.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 45,
+        "lanes": 1,
+        "length": 300.0,
+        "node_down": 31,
+        "node_up": 8,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            2200.0,
+            1300.0
+          ],
+          [
+            1900.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 1.0,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 46,
+        "lanes": 2,
+        "length": 300.0,
+        "node_down": 9,
+        "node_up": 32,
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1900.0,
+            1300.0
+          ],
+          [
+            2200.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 1.0,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 47,
+        "lanes": 2,
+        "length": 300.0,
+        "node_down": 33,
+        "node_up": 9,
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1600.0,
+            1300.0
+          ],
+          [
+            1900.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 1.0,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 48,
+        "lanes": 2,
+        "length": 300.0,
+        "node_down": 9,
+        "node_up": 5,
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1900.0,
+            1300.0
+          ],
+          [
+            1600.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 1.0,
+        "fd_c": 0.5,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 49,
+        "lanes": 2,
+        "length": 300.0,
+        "node_down": 5,
+        "node_up": 9,
+        "speed": 13.9
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            1850.0,
+            1150.0
+          ],
+          [
+            1900.0,
+            1300.0
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "capacity": 0.45,
+        "fd_c": 0.45,
+        "fd_kx": 0.15,
+        "fd_w": 5.0,
+        "id": 50,
+        "lanes": 1,
+        "length": 158.11388300841898,
+        "node_down": 9,
+        "node_up": 34,
+        "speed": 8.3
+      },
+      "type": "Feature"
+    }
+  ],
+  "type": "FeatureCollection"
+}
