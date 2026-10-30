@@ -322,3 +322,27 @@ fn no_signals_no_change() {
         assert_eq!(x.node_times, y.node_times);
     }
 }
+
+/// `verify` reports every signal group: no passage on red, cap respected.
+#[test]
+fn verification_reports_signal_groups() {
+    use stream_core_rust::verification::{verify_scenario, CheckStatus, ElementType};
+    let mut s = base(approach(), &(0..40).map(|_| (1, 0.0)).collect::<Vec<_>>());
+    let mut g = group("main", &[(0, Some(1))]);
+    g.vehicles_per_green = Some(8);
+    s.signals = SignalNetwork { groups: vec![g], plans: vec![plan(60.0, &[("main", &[[0.0, 20.0]])])], tolls: vec![] };
+    let sim = run(s);
+    let report = verify_scenario(&sim.scenario, 300.0);
+    let el = report.elements.iter().find(|e| e.element_type == ElementType::Signal).expect("signal element");
+    assert_eq!(el.checks.len(), 2);
+    for c in &el.checks {
+        assert_eq!(c.status, CheckStatus::Pass, "{}: {}", c.name, c.detail);
+    }
+    // Corrupt one passage onto the red: the check must fail.
+    let mut bad = sim.scenario.clone();
+    let v = bad.vehicles.iter_mut().find(|v| v.node_times[1] > 60.0).unwrap();
+    v.node_times[1] = 45.0;
+    let report = verify_scenario(&bad, 300.0);
+    let el = report.elements.iter().find(|e| e.element_type == ElementType::Signal).unwrap();
+    assert_eq!(el.checks[0].status, CheckStatus::Fail);
+}

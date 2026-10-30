@@ -104,6 +104,7 @@ pub enum ElementType {
     Link,
     Node,
     Entry,
+    Signal,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -708,6 +709,72 @@ fn check_roundabout(scenario: &Scenario, node_id: NodeID, spec: &RoundaboutSpec)
     vec![traversal, entries, exits, fifo]
 }
 
+/// Signal group mechanism checks, from the applied switches
+/// (`signal_log`) and the vehicle records: no vehicle takes a controlled
+/// movement on red, and no green lets more vehicles through than its cap.
+fn check_signal_group(scenario: &Scenario, g: usize) -> Vec<Check> {
+    let group = &scenario.signals.groups[g];
+    let mut switches: Vec<(f64, bool)> = scenario
+        .signal_log
+        .iter()
+        .filter(|r| r.group == g)
+        .map(|r| (r.time, r.green))
+        .collect();
+    switches.sort_by(|a, b| a.0.total_cmp(&b.0));
+    // State at t: the last switch at or before t (a switch at t applies to
+    // passages at t: switches are processed first at an instant).
+    let green_index = |t: f64| -> Option<usize> {
+        let i = switches.partition_point(|&(s, _)| s <= t);
+        (i > 0 && switches[i - 1].1).then(|| i - 1)
+    };
+    let controls = |from: LinkID, to: Option<LinkID>| {
+        group.movements.iter().any(|m| m.from == from && (m.to.is_none() || m.to == to))
+    };
+    let mut passages = 0usize;
+    let mut on_red = 0usize;
+    let mut per_green: HashMap<usize, u32> = HashMap::new();
+    for veh in &scenario.vehicles {
+        for (i, &lid) in veh.path.iter().enumerate() {
+            let Some(link) = scenario.links.get(lid) else { continue };
+            if link.node_down != group.node || !controls(lid, veh.path.get(i + 1).copied()) {
+                continue;
+            }
+            let Some(t) = veh.link_exit_time(i) else { continue };
+            passages += 1;
+            match green_index(t) {
+                Some(k) => *per_green.entry(k).or_default() += 1,
+                None => on_red += 1,
+            }
+        }
+    }
+    if passages == 0 {
+        return vec![not_exercised("signal_red", "No passage on red", "No vehicle took a movement of this group.")];
+    }
+    let red = check(
+        "signal_red",
+        "No passage on red",
+        if on_red == 0 { CheckStatus::Pass } else { CheckStatus::Fail },
+        Some(on_red as f64),
+        Some(0.0),
+        "vehicles",
+        format!("{passages} passages through the group's movements checked against {} applied switches.", switches.len()),
+    );
+    let mut checks = vec![red];
+    if let Some(cap) = group.vehicles_per_green {
+        let worst = per_green.values().copied().max().unwrap_or(0);
+        checks.push(check(
+            "signal_cap",
+            "Vehicles per green",
+            if worst <= cap { CheckStatus::Pass } else { CheckStatus::Fail },
+            Some(f64::from(worst)),
+            Some(f64::from(cap)),
+            "vehicles",
+            format!("Largest number of vehicles passed in one green, over {} greens (cap {cap}).", per_green.len()),
+        ));
+    }
+    checks
+}
+
 /// Flow conservation at the node, aggregated over time bins.
 fn check_node_conservation(node_id: NodeID, errors: &HashMap<NodeID, Vec<f64>>) -> Check {
     let id = "flow_conservation";
@@ -923,6 +990,17 @@ pub fn verify_scenario(scenario: &Scenario, bin_size: f64) -> VerificationReport
             }
             NodeType::Exit => {}
         }
+    }
+
+    // Signal groups
+    for (g, group) in scenario.signals.groups.iter().enumerate() {
+        elements.push(element_report(
+            ElementType::Signal,
+            g,
+            None,
+            format!("Signal group {}", group.id),
+            check_signal_group(scenario, g),
+        ));
     }
 
     // Worst elements first, then by id for stability.

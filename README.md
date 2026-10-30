@@ -41,7 +41,7 @@ with its own capacity, storage and backward wave.
 | | |
 |---|---|
 | **Exact** | Discrete-event solution of LWR with a triangular fundamental diagram (Newell's simplified theory). No time step, no RNG: two runs are bit-identical. |
-| **Verified** | Fourteen closed-form benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, fractional-slot wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle, and four roundabout cases: free flow, entry capacity, Siegloch gap acceptance, spillback on the ring) pass at machine precision. |
+| **Verified** | Seventeen closed-form benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, fractional-slot wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle; four roundabout cases: free flow, entry capacity, Siegloch gap acceptance, spillback on the ring; and signal discharge per green, ramp-metering rate, toll service) pass at machine precision. |
 | **Self-auditing** | `stream-cli verify` checks every link, pipe and node of any scenario (free-flow traversal, capacity, storage bound, backward wave, FD adherence, conservation, FIFO, demand served) and reports **pass / warn / fail / not-exercised**. |
 | **Validated** | Three instrumented corridors in two countries: 1 280 of 1 312 flow windows below GEH 5. NGSIM trajectories confirm the lane-commitment assumption. |
 | **Scenario variants** | *Patches* (lane closures, capacity drops, lane add/shrink, demand scaling, new links) compose a variant from a base network, with time windows. |
@@ -56,7 +56,8 @@ server are working and tested. Not yet available:
 - **Python bindings**: the PyO3 module is a stub for now.
 - `stream-cli run --output`: result export from the CLI (use `verify -o`
   or the HTTP server to get results).
-- Time-dependent assignment, traffic signals and stochastic merges (see
+- Time-dependent assignment, conflicts between movements at ordinary
+  junctions, and stochastic merges (see
   [Limitations](#limitations)).
 
 APIs and file formats may change before 1.0.
@@ -73,7 +74,7 @@ cd stream-pipes-rust
 cargo build --release --no-default-features --bin stream-cli
 ```
 
-Run the fourteen analytic benchmarks and verify a bundled scenario:
+Run the seventeen analytic benchmarks and verify a bundled scenario:
 
 ```bash
 cargo run --release --no-default-features --bin stream-cli -- \
@@ -222,6 +223,67 @@ at 600 veh/h per arm, faster at 300 and 900 veh/h, and faster than the
 pass over the ring vehicles with precomputed point-pair constants, and is
 not recomputed while the ring state is unchanged.
 
+### Signals, ramp metering, tolls
+
+An optional `signals.json` next to the network (picked up by
+`ScenarioInputs::from_dir`, or `stream-cli build --signals`) declares
+signal groups, fixed-time plans and tolls:
+
+```jsonc
+{
+  "groups": [
+    { "id": "north_through", "node": 12, "movements": [ { "from": 30, "to": 31 } ] },
+    { "id": "north_left",    "node": 12, "movements": [ { "from": 30, "to": 35 } ] },
+    { "id": "ramp", "node": 40, "movements": [ { "from": 52 } ],    // every movement of link 52
+      "vehicles_per_green": 1, "off": "red" }
+  ],
+  "plans": [
+    { "name": "am peak", "from": 25200, "until": 32400, "cycle": 90, "offset": 12,
+      "greens": { "north_through": [[0, 38]], "north_left": [[42, 55]] } }
+  ],
+  "tolls": [
+    { "link": 70, "pipes": [0, 1], "service_time": 12.0, "by_class": { "bus": 4.0 } }
+  ]
+}
+```
+
+- A **group** controls movements (incoming link → outgoing link). A red
+  group holds the head vehicle of every pipe whose next movement it
+  controls, and the vehicles behind it wait (FIFO): a red turn blocks a
+  shared lane but not a dedicated pocket (`pipes` + `moves`). A released
+  queue leaves at the saturation flow, the pipe capacity.
+- A **plan** gives, for one period, the cycle, the offset and each group's
+  effective green windows within the cycle. Outside every plan period a
+  group is in its `off` state (`green` by default: a dark signal).
+- `vehicles_per_green` caps the vehicles per green: 1 with a short cycle is
+  fixed-rate ramp metering.
+- A **toll** serves one vehicle at a time per pipe: departure =
+  max(arrival, previous departure) + service time of the vehicle's class.
+
+**Control algorithms are not in the engine.** Actuated, adaptive or
+traffic-responsive control (ALINEA…) is written against the
+`signals::Controller` trait, in the host's own code, like a mod:
+
+```rust
+impl Controller for MyControl {
+    fn start(&mut self, view: &ControlView) -> Vec<Command> { … }
+    fn wake(&mut self, view: &ControlView) -> Vec<Command> { … }
+}
+sim.add_controller(Box::new(MyControl::new()));
+```
+
+The engine wakes the controller at the times it asks for (`WakeAt`),
+shows it the sensors (`vehicles`, `queue`, `density`, `occupancy`,
+cumulative `entered` / `exited` per link) and applies its commands
+(`Switch` a group at a time, `SetVehiclesPerGreen`). Every applied switch
+is logged in `Scenario::signal_log`, and `verify` checks that no vehicle
+took a controlled movement on red and that no green exceeded its cap.
+`examples/ramp_metering_alinea.rs` implements ALINEA this way: the
+occupancy downstream of the merge is held at its set point and the
+mainline trip drops from 329 s to 118 s, while the ramp absorbs the queue
+(a first-order model has no capacity drop, so the total time does not
+improve).
+
 ### Bundled scenarios
 
 | Scenario | What it shows |
@@ -282,14 +344,16 @@ These are deliberate modelling choices for now, not bugs:
 - deterministic merges: by default a node serves its incoming links in id
   order (the historical rule, kept bit for bit); `"merge": "capacity"` in a
   scenario's `config.json` (or `--merge capacity`) shares a saturated merge in
-  proportion to the incoming capacities instead. No stochastic merge, no
-  signals;
+  proportion to the incoming capacities instead. No stochastic merge;
 - myopic lane choice, and friction switches on or off rather than varying
   continuously;
 - roundabouts: the ring is one FIFO stream (a multi-lane ring has no lane
   choice), exiting vehicles do not disturb entries, a vehicle stopped on
   the ring does not count as a conflict for the entries downstream until it
-  moves again, and the assignment ignores the time spent on the ring.
+  moves again, and the assignment ignores the time spent on the ring;
+- junctions: movements at an ordinary node do not conflict with each other
+  (they interact only through the links they share); signal groups are not
+  supported on roundabout nodes, nor tolls on roundabout approaches.
 
 ## Citing
 

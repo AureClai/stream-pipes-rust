@@ -744,6 +744,115 @@ fn case_roundabout_spillback() -> Result<BenchmarkResult> {
     ))
 }
 
+// ── Signals and tolls ─────────────────────────────────────────────────────────
+
+/// Entry(0) →[L0: 100 m at 10 m/s, saturation flow 0.5 veh/s]→ node 1
+/// →[L1: free]→ Exit(2); `n` vehicles released at t = 0 (they reach node 1
+/// every 2 s from 10 s).
+fn signal_scenario(n: usize, signals: crate::signals::SignalNetwork) -> Scenario {
+    let fd0 = FundamentalDiagram { u: 10.0, w: 5.0, kx: 0.15, c: 0.5 };
+    let free = FundamentalDiagram { u: 10.0, w: 5.0, kx: 10.0, c: 10.0 };
+    Scenario {
+        nodes: vec![
+            node(0, NodeType::Entry, vec![], vec![0]),
+            node(1, NodeType::Internal, vec![0], vec![1]),
+            node(2, NodeType::Exit, vec![1], vec![]),
+        ],
+        links: vec![
+            Link::new(0, 0, 1, 100.0, 10.0, 1, 0.5, fd0, vec![]),
+            Link::new(1, 1, 2, 100.0, 10.0, 1, 10.0, free, vec![]),
+        ],
+        vehicles: (0..n).map(|i| Vehicle::new(i, 0, vec![0, 1], 0.0, 0, 2)).collect(),
+        demand: vec![],
+        start_time: 0.0,
+        duration: 100_000.0,
+        classes: vec!["car".to_string()],
+        link_schedule: Vec::new(),
+        assignment_excluded: Vec::new(),
+        signals,
+        signal_log: Vec::new(),
+    }
+}
+
+fn one_group(cap: Option<u32>, cycle: f64, green: [f64; 2]) -> crate::signals::SignalNetwork {
+    use crate::signals::{FixedTimePlan, Movement, OffState, SignalGroup, SignalNetwork};
+    SignalNetwork {
+        groups: vec![SignalGroup {
+            id: "g".into(),
+            node: 1,
+            movements: vec![Movement { from: 0, to: None }],
+            vehicles_per_green: cap,
+            off: OffState::Green,
+        }],
+        plans: vec![FixedTimePlan {
+            name: None,
+            from: 0.0,
+            until: 100_000.0,
+            cycle,
+            offset: 0.0,
+            groups: vec![],
+            greens: [("g".to_string(), vec![green])].into_iter().collect(),
+        }],
+        tolls: vec![],
+    }
+}
+
+fn node_passages(s: &Scenario) -> Vec<f64> {
+    let mut t: Vec<f64> = s.vehicles.iter().filter_map(|v| v.node_times.get(1).copied()).collect();
+    t.sort_by(f64::total_cmp);
+    t
+}
+
+fn case_signal_saturation() -> Result<BenchmarkResult> {
+    let s = run(signal_scenario(60, one_group(None, 60.0, [0.0, 20.0])))?;
+    let t = node_passages(&s);
+    // Greens [60, 80), [120, 140), [180, 200) are fully saturated.
+    let per_green = t.iter().filter(|&&x| (60.0..200.0).contains(&x)).count() as f64 / 3.0;
+    Ok(result(
+        "signal_saturation",
+        "Signal: discharge per green",
+        "Fixed-time signal, cycle 60 s, effective green 20 s, saturated approach with \
+         saturation flow s = 0.5 veh/s. Theory: ceil(g·s) = 10 vehicles per green.",
+        10.0,
+        per_green,
+        "veh/green",
+    ))
+}
+
+fn case_ramp_meter() -> Result<BenchmarkResult> {
+    let s = run(signal_scenario(20, one_group(Some(1), 6.0, [0.0, 2.0])))?;
+    let t = node_passages(&s);
+    let measured = (t[t.len() - 1] - t[0]) / (t.len() - 1) as f64;
+    Ok(result(
+        "ramp_meter",
+        "Ramp metering: one vehicle per green",
+        "Ramp signal, cycle 6 s, one vehicle per green, saturated ramp. Theory: \
+         one vehicle every 6 s (600 veh/h).",
+        6.0,
+        measured,
+        "s",
+    ))
+}
+
+fn case_toll_service() -> Result<BenchmarkResult> {
+    use crate::signals::{SignalNetwork, Toll};
+    let tolls = SignalNetwork {
+        tolls: vec![Toll { link: 0, pipes: None, service_time: 12.0, by_class: Default::default() }],
+        ..Default::default()
+    };
+    let s = run(signal_scenario(10, tolls))?;
+    let t = node_passages(&s);
+    Ok(result(
+        "toll_service",
+        "Toll lane: deterministic service",
+        "10 vehicles reach a toll lane (service 12 s) every 2 s from 10 s. Theory: \
+         departures at max(arrival, previous) + 12 s; the last at 10 + 10·12 = 130 s.",
+        130.0,
+        t[t.len() - 1],
+        "s",
+    ))
+}
+
 // ── Entry point ───────────────────────────────────────────────────────────────
 
 pub fn run_benchmarks() -> Result<Vec<BenchmarkResult>> {
@@ -762,6 +871,9 @@ pub fn run_benchmarks() -> Result<Vec<BenchmarkResult>> {
         case_roundabout_entry_capacity()?,
         case_roundabout_siegloch()?,
         case_roundabout_spillback()?,
+        case_signal_saturation()?,
+        case_ramp_meter()?,
+        case_toll_service()?,
     ])
 }
 

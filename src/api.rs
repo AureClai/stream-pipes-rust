@@ -36,6 +36,9 @@ pub struct ScenarioInputs {
     pub demand: serde_json::Value,
     /// `{start_time, duration, classes}`.
     pub config: serde_json::Value,
+    /// `signals.json`: signal groups, fixed-time plans, tolls (optional).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub signals: Option<serde_json::Value>,
     /// Patches applied in order on top of the base inputs.
     #[serde(default)]
     pub patches: Vec<Patch>,
@@ -43,7 +46,8 @@ pub struct ScenarioInputs {
 
 impl ScenarioInputs {
     /// Read a scenario folder (`network.geojson`, `demand.json`,
-    /// `config.json`) plus the named patches from its `patches/` folder.
+    /// `config.json`, and `signals.json` when present) plus the named
+    /// patches from its `patches/` folder.
     pub fn from_dir(dir: impl AsRef<Path>, patch_names: &[String]) -> Result<Self> {
         let dir = dir.as_ref();
         let read = |name: &str| -> Result<serde_json::Value> {
@@ -63,6 +67,7 @@ impl ScenarioInputs {
             network: read("network.geojson")?,
             demand: read("demand.json")?,
             config: read("config.json")?,
+            signals: if dir.join("signals.json").exists() { Some(read("signals.json")?) } else { None },
             patches,
         })
     }
@@ -71,12 +76,15 @@ impl ScenarioInputs {
 /// Compile and validate the inputs into a ready-to-run scenario.
 /// Returns the scenario and the patch warnings.
 pub fn compile(inputs: &ScenarioInputs) -> Result<(Scenario, Vec<String>)> {
-    let (scenario, warnings) = compile_with_patches(
+    let (mut scenario, warnings) = compile_with_patches(
         inputs.network.clone(),
         inputs.demand.clone(),
         inputs.config.clone(),
         &inputs.patches,
     )?;
+    if let Some(signals) = &inputs.signals {
+        scenario.signals = crate::signals::compile(signals.clone(), &scenario)?;
+    }
     scenario.validate()?;
     Ok((scenario, warnings))
 }

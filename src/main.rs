@@ -51,6 +51,10 @@ enum Commands {
         #[arg(long)]
         config: PathBuf,
         
+        /// Path to signals.json (signal groups, plans, tolls; optional)
+        #[arg(long)]
+        signals: Option<PathBuf>,
+
         /// Output path for scenario.json
         #[arg(short, long)]
         output: PathBuf,
@@ -72,7 +76,7 @@ enum Commands {
         #[arg(long, default_value_t = 300.0)]
         bin_size: f64,
 
-        /// Also run the ten closed-form analytic benchmarks
+        /// Also run the closed-form analytic benchmarks
         #[arg(long)]
         benchmarks: bool,
 
@@ -100,10 +104,14 @@ fn main() -> Result<()> {
     let cli = Cli::parse();
 
     match cli.command {
-        Commands::Build { network, demand, config, output } => {
+        Commands::Build { network, demand, config, signals, output } => {
             println!("Compiling scenario...");
             let start = Instant::now();
-            let scenario = compile_scenario(network, demand, config)?;
+            let mut scenario = compile_scenario(network, demand, config)?;
+            if let Some(path) = signals {
+                let value: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(&path)?)?;
+                scenario.signals = stream_core_rust::signals::compile(value, &scenario)?;
+            }
             
             println!("Validating...");
             scenario.validate()?;
