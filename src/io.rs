@@ -321,7 +321,7 @@ pub fn compile_scenario_from_network_value(
         duration,
         classes,
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     })
 }
 

@@ -249,6 +249,11 @@ impl Validate for Scenario {
             }
         }
 
+        // Signals, plans and tolls (empty without signals.json).
+        if !self.signals.is_empty() {
+            crate::signals::validate(&self.signals, self)?;
+        }
+
         // 4. Validate the dynamic-patch schedule (empty for unpatched runs)
         for (i, change) in self.link_schedule.iter().enumerate() {
             let what = format!("Schedule entry {} (link {})", i, change.link_id);
@@ -359,7 +364,7 @@ mod tests {
             duration: 3600.0,
             classes: vec!["car".to_string()],
             link_schedule: Vec::new(),
-            assignment_excluded: Vec::new(),
+            assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
         }
     }
 

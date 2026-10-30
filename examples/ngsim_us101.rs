@@ -141,7 +141,7 @@ fn main() {
         duration,
         classes: vec!["car".to_string()],
         link_schedule,
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     };
 
     let mut sim = Simulation::new(scenario);

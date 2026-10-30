@@ -53,7 +53,7 @@ fn scenario(nodes: Vec<Node>, links: Vec<Link>, vehicles: Vec<Vehicle>) -> Scena
         duration: 100_000.0,
         classes: vec!["car".to_string(), "bus".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 

@@ -1037,7 +1037,7 @@ mod tests {
             duration: 100_000.0,
             classes: vec!["car".to_string()],
             link_schedule: Vec::new(),
-            assignment_excluded: Vec::new(),
+            assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
         }
     }
 
@@ -1241,7 +1241,7 @@ mod pipe_verification_tests {
             duration: 100_000.0,
             classes: vec!["car".to_string()],
             link_schedule: Vec::new(),
-            assignment_excluded: Vec::new(),
+            assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
         };
         let mut sim = Simulation::new(scenario);
         sim.run().unwrap();

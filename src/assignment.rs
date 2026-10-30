@@ -221,7 +221,7 @@ mod tests {
             duration: 3600.0,
             classes: vec!["car".to_string()],
             link_schedule: Vec::new(),
-            assignment_excluded: Vec::new(),
+            assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
         }
     }
 
@@ -383,7 +383,7 @@ mod class_tests {
             duration: 3600.0,
             classes: vec!["car".to_string(), "bus".to_string()],
             link_schedule: Vec::new(),
-            assignment_excluded: Vec::new(),
+            assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
         }
     }
 

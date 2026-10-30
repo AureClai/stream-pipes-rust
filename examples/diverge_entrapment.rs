@@ -102,7 +102,7 @@ fn scenario(pipes: bool) -> Scenario {
         duration: 2000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 

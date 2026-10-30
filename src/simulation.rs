@@ -2,6 +2,7 @@ use crate::model::{
     Link, LinkID, NodeID, PipeIdx, Scenario, StorageAvailability, VehID, VehicleState,
 };
 use crate::roundabout::{Bound, PointKind, RingVehicle, RoundaboutState};
+use crate::signals::{Command, ControlView, Controller, SignalRuntime, SwitchRecord};
 use anyhow::Result;
 #[cfg(feature = "python")]
 use pyo3::prelude::*;
@@ -22,6 +23,10 @@ pub enum EventType {
     RingReady,
     /// A ring vehicle reaches point `pipe` of roundabout node `link_id`.
     RingArrival,
+    /// Signal group `link_id` turns green (`pipe` = 1) or red (`pipe` = 0).
+    SignalSwitch,
+    /// External controller `link_id` asked to be woken now.
+    ControlWake,
 }
 
 /// All four event types are (link, pipe)-addressed: `pipe` selects the LWR
@@ -47,13 +52,17 @@ impl EventType {
             // untouched.
             // Ring events slot in without changing the relative order of the
             // other types: scenarios without a roundabout never emit them.
+            // Controllers act, then switches apply, before any vehicle moves
+            // at that instant. Scenarios without signals emit neither.
             EventType::ApplyPatch => 0,
-            EventType::LinkReady => 1,
-            EventType::RingReady => 2,
-            EventType::LinkExit => 3,
-            EventType::RingArrival => 4,
-            EventType::VehicleArrival => 5,
-            EventType::VehicleEntry => 6,
+            EventType::ControlWake => 1,
+            EventType::SignalSwitch => 2,
+            EventType::LinkReady => 3,
+            EventType::RingReady => 4,
+            EventType::LinkExit => 5,
+            EventType::RingArrival => 6,
+            EventType::VehicleArrival => 7,
+            EventType::VehicleEntry => 8,
         }
     }
 }
@@ -265,6 +274,17 @@ pub struct Simulation {
     /// ordinary nodes). Public so tests and verification can read the
     /// passages recorded at each ring point.
     pub roundabouts: Vec<Option<Box<RoundaboutState>>>,
+    /// Signal groups and tolls at run time (empty without signals.json).
+    pub signals: SignalRuntime,
+    /// True when signals, tolls or controllers exist; false keeps every
+    /// signal check off the hot path (and runs bit-identical).
+    signals_active: bool,
+    /// External controllers (each taken out while it runs).
+    controllers: Vec<Option<Box<dyn Controller>>>,
+    controllers_started: bool,
+    /// Cumulative vehicles that entered / left each link (controller sensors).
+    link_entered: Vec<u64>,
+    link_exited: Vec<u64>,
 }
 
 #[cfg(feature = "python")]
@@ -296,7 +316,20 @@ impl Simulation {
             merge_rule: MergeRule::InOrder,
             merge_served: vec![0.0; n_links],
             roundabouts: Vec::new(),
+            signals: SignalRuntime::default(),
+            signals_active: false,
+            controllers: Vec::new(),
+            controllers_started: false,
+            link_entered: vec![0; n_links],
+            link_exited: vec![0; n_links],
         };
+        sim.signals = SignalRuntime::new(&sim.scenario.signals, &sim.scenario);
+        sim.signals_active = !sim.signals.is_empty();
+        sim.scenario.signal_log.clear();
+        if sim.signals_active {
+            sim.current_time = sim.scenario.start_time;
+            sim.seed_signals();
+        }
         sim.roundabouts = sim
             .scenario
             .nodes
@@ -376,6 +409,7 @@ impl Simulation {
     {
         let mut events_processed = 0;
         let max_time = self.scenario.start_time + self.scenario.duration;
+        self.start_controllers();
 
         while let Some(event) = self.events.pop() {
             if event.time > max_time {
@@ -401,6 +435,8 @@ impl Simulation {
                 EventType::RingArrival => {
                     self.handle_ring_arrival(event.link_id, event.pipe, event.veh_id)
                 }
+                EventType::SignalSwitch => self.handle_signal_switch(event.link_id, event.pipe == 1),
+                EventType::ControlWake => self.call_controller(event.link_id, false),
             }
         }
         Ok(events_processed)
@@ -544,6 +580,7 @@ impl Simulation {
             if storage == StorageAvailability::Available && flow_ok {
                 pipe.entry_queue.pop_front();
                 pipe.admit(self.current_time);
+                self.link_entered[link_id] += 1;
                 if pipe.capacity > 0.0 {
                     pipe.next_available_entry_time = self.current_time + 1.0 / pipe.capacity;
                 }
@@ -624,6 +661,7 @@ impl Simulation {
                 link_id,
                 pipe_idx
             );
+            self.link_exited[link_id] += 1;
             if pipe.vehicles_on_pipe > 0 {
                 pipe.vehicles_on_pipe -= 1;
             }
@@ -808,6 +846,17 @@ impl Simulation {
             (v.class_id, next, next_next)
         };
 
+        // Signals and tolls: a red group or a busy toll lane holds the head
+        // (and its pipe, FIFO). Skipped entirely without signals.json.
+        let controlled = if self.signals_active {
+            match self.signal_gate(in_link_idx, in_pipe, veh_id, class_id, next_link_opt) {
+                Some(c) => c,
+                None => return,
+            }
+        } else {
+            Controlled::default()
+        };
+
         if let Some(next_link_idx) = next_link_opt {
             if next_link_idx >= self.scenario.links.len() {
                 return;
@@ -857,6 +906,10 @@ impl Simulation {
                         v.state = VehicleState::Moving;
                         v.node_times.push(self.current_time);
                         v.pipes_taken.push(target);
+                    }
+                    self.link_entered[next_link_idx] += 1;
+                    if self.signals_active {
+                        self.signal_passed(controlled, in_link_idx, in_pipe);
                     }
 
                     self.events.push(Event {
@@ -914,6 +967,9 @@ impl Simulation {
                 v.state = VehicleState::Exited;
                 v.node_times.push(self.current_time);
             }
+            if self.signals_active {
+                self.signal_passed(controlled, in_link_idx, in_pipe);
+            }
             self.events.push(Event {
                 time: self.current_time,
                 event_type: EventType::LinkExit,
@@ -921,6 +977,231 @@ impl Simulation {
                 veh_id,
                 pipe: in_pipe,
             });
+        }
+    }
+}
+
+// ── Signals, tolls and external controllers ───────────────────────────────────
+//
+// See `signals.rs`. Fixed-time plans are expanded into `SignalSwitch` events
+// when the simulation is built; external controllers add switches at run
+// time through `Command`s. A switch to green re-triggers the group's node.
+
+/// What a discharge went through, to update the group and toll state.
+#[derive(Debug, Clone, Copy, Default)]
+struct Controlled {
+    group: Option<usize>,
+    toll: bool,
+}
+
+impl Simulation {
+    /// Register an external controller. It is started when the run begins.
+    pub fn add_controller(&mut self, controller: Box<dyn Controller>) {
+        self.controllers.push(Some(controller));
+        self.signals_active = true;
+    }
+
+    /// Initial group states and the fixed-time switches over the horizon.
+    fn seed_signals(&mut self) {
+        let start = self.scenario.start_time;
+        let end = start + self.scenario.duration;
+        let timelines = crate::signals::expand(&self.scenario.signals, start, end);
+        for (g, timeline) in timelines.into_iter().enumerate() {
+            for (i, (t, green)) in timeline.into_iter().enumerate() {
+                if i == 0 {
+                    self.signals.groups[g].green = green;
+                    self.scenario.signal_log.push(SwitchRecord { group: g, time: t, green });
+                } else {
+                    self.push_switch(g, t, green);
+                }
+            }
+        }
+    }
+
+    fn push_switch(&mut self, group: usize, time: f64, green: bool) {
+        self.events.push(Event {
+            time,
+            event_type: EventType::SignalSwitch,
+            link_id: group,
+            veh_id: NO_VEHICLE,
+            pipe: u8::from(green),
+        });
+    }
+
+    fn handle_signal_switch(&mut self, group: usize, green: bool) {
+        let Some(g) = self.signals.groups.get_mut(group) else {
+            return;
+        };
+        if g.green == green {
+            return;
+        }
+        g.green = green;
+        if green {
+            g.served = 0;
+        }
+        let node = g.node;
+        self.scenario.signal_log.push(SwitchRecord { group, time: self.current_time, green });
+        if green {
+            self.process_node_transfer(node);
+        }
+    }
+
+    /// May the head vehicle of (link, pipe) pass now? None = it waits (a
+    /// wake-up is scheduled when the wait has a known end).
+    fn signal_gate(
+        &mut self,
+        link: LinkID,
+        pipe: PipeIdx,
+        veh: VehID,
+        class: usize,
+        next: Option<LinkID>,
+    ) -> Option<Controlled> {
+        let group = self.signals.group_of(link, next);
+        if let Some(g) = group {
+            // Red, or the per-green cap is used up: the next switch to green
+            // re-triggers the node.
+            if !self.signals.open(g) {
+                return None;
+            }
+        }
+        let mut toll = false;
+        if let Some(service) = self.signals.toll_service(link, pipe, class) {
+            let l = &self.scenario.links[link];
+            let v = &self.scenario.vehicles[veh];
+            // Arrival at the booth = free-flow arrival at the link end.
+            let entered = v.link_entry_time(v.current_link_idx).unwrap_or(self.current_time);
+            let arrival = entered + l.length / l.speed;
+            let last = self.signals.toll_lanes.get(&(link, pipe)).map_or(f64::NEG_INFINITY, |t| t.last_departure);
+            let ready = arrival.max(last) + service;
+            if self.current_time < ready {
+                let p = &mut self.scenario.links[link].pipes[usize::from(pipe)];
+                if p.last_scheduled_exit_ready_time != Some(ready) {
+                    p.last_scheduled_exit_ready_time = Some(ready);
+                    self.events.push(Event {
+                        time: ready,
+                        event_type: EventType::LinkReady,
+                        link_id: link,
+                        veh_id: EXIT_WAKE,
+                        pipe,
+                    });
+                }
+                return None;
+            }
+            toll = true;
+        }
+        Some(Controlled { group, toll })
+    }
+
+    fn signal_passed(&mut self, c: Controlled, link: LinkID, pipe: PipeIdx) {
+        let now = self.current_time;
+        // Earliest time the next vehicle of this pipe may follow.
+        let mut next_ready = f64::NEG_INFINITY;
+        if let Some(g) = c.group {
+            self.signals.groups[g].served += 1;
+            // A queue released by a green leaves at the saturation flow, the
+            // pipe capacity: enforce the discharge headway armed just before
+            // (1/(C·φ)) even when the upstream-capacity term is off.
+            let p = &mut self.scenario.links[link].pipes[usize::from(pipe)];
+            p.exit_gate_active = true;
+            next_ready = p.next_available_exit_time;
+        }
+        if c.toll {
+            if let Some(lane) = self.signals.toll_lanes.get_mut(&(link, pipe)) {
+                lane.last_departure = now;
+            }
+            // The next vehicle, if already at the booth, is served from now.
+            let class_and_arrival = self.scenario.links[link].pipes[usize::from(pipe)]
+                .waiting_queue
+                .front()
+                .map(|&v| {
+                    let veh = &self.scenario.vehicles[v];
+                    let l = &self.scenario.links[link];
+                    let entered = veh.link_entry_time(veh.current_link_idx).unwrap_or(now);
+                    (veh.class_id, entered + l.length / l.speed)
+                });
+            if let Some((class, arrival)) = class_and_arrival {
+                if let Some(service) = self.signals.toll_service(link, pipe, class) {
+                    next_ready = next_ready.max(arrival.max(now) + service);
+                }
+            }
+        }
+        // The vehicle now at the head needs its own wake-up: nothing else
+        // re-triggers this node when the headway or the service ends.
+        let p = &mut self.scenario.links[link].pipes[usize::from(pipe)];
+        if next_ready > now && !p.waiting_queue.is_empty() && p.last_scheduled_exit_ready_time != Some(next_ready) {
+            p.last_scheduled_exit_ready_time = Some(next_ready);
+            self.events.push(Event {
+                time: next_ready,
+                event_type: EventType::LinkReady,
+                link_id: link,
+                veh_id: EXIT_WAKE,
+                pipe,
+            });
+        }
+    }
+
+    fn start_controllers(&mut self) {
+        if self.controllers_started {
+            return;
+        }
+        self.controllers_started = true;
+        for i in 0..self.controllers.len() {
+            self.call_controller(i, true);
+        }
+    }
+
+    fn call_controller(&mut self, i: usize, first: bool) {
+        let Some(mut c) = self.controllers.get_mut(i).and_then(Option::take) else {
+            return;
+        };
+        let commands = {
+            let view = ControlView {
+                time: self.current_time,
+                scenario: &self.scenario,
+                signals: &self.signals,
+                entered: &self.link_entered,
+                exited: &self.link_exited,
+            };
+            if first {
+                c.start(&view)
+            } else {
+                c.wake(&view)
+            }
+        };
+        self.controllers[i] = Some(c);
+        for cmd in commands {
+            self.apply_command(i, cmd);
+        }
+    }
+
+    fn apply_command(&mut self, controller: usize, cmd: Command) {
+        let now = self.current_time;
+        match cmd {
+            Command::Switch { group, at, green } => {
+                if let Some(g) = self.signals.group_index(&group) {
+                    self.push_switch(g, if at.is_finite() { at.max(now) } else { now }, green);
+                }
+            }
+            // Only future wake-ups: a controller asking for "now" again
+            // would loop forever at one instant.
+            Command::WakeAt(t) => {
+                if t.is_finite() && t > now {
+                    self.events.push(Event {
+                        time: t,
+                        event_type: EventType::ControlWake,
+                        link_id: controller,
+                        veh_id: NO_VEHICLE,
+                        pipe: 0,
+                    });
+                }
+            }
+            Command::SetVehiclesPerGreen { group, n } => {
+                if let Some(g) = self.signals.group_index(&group) {
+                    self.signals.groups[g].vehicles_per_green = n.filter(|&n| n > 0);
+                    let node = self.signals.groups[g].node;
+                    self.process_node_transfer(node);
+                }
+            }
         }
     }
 }
@@ -1106,6 +1387,7 @@ impl Simulation {
                 {
                     let p_next = &mut self.scenario.links[out].pipes[usize::from(target)];
                     p_next.admit(now);
+                    self.link_entered[out] += 1;
                     if p_next.capacity > 0.0 {
                         p_next.next_available_entry_time = now + 1.0 / p_next.capacity;
                     }
@@ -1343,7 +1625,7 @@ mod tests {
             duration: 100_000.0,
             classes: vec!["car".to_string()],
             link_schedule: Vec::new(),
-            assignment_excluded: Vec::new(),
+            assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
         }
     }
 
@@ -1552,7 +1834,7 @@ mod tests {
             duration: 100_000.0,
             classes: vec!["car".to_string(), "bus".to_string()],
             link_schedule: Vec::new(),
-            assignment_excluded: Vec::new(),
+            assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
         }
     }
 

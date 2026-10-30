@@ -738,6 +738,14 @@ pub struct Scenario {
     /// horizon by a patch — "removed" without renumbering ids).
     #[serde(default)]
     pub assignment_excluded: Vec<LinkID>,
+    /// Signal groups, fixed-time plans and tolls (`signals.json`). Empty for
+    /// a scenario without signals, which then runs exactly as before.
+    #[serde(default, skip_serializing_if = "crate::signals::SignalNetwork::is_empty")]
+    pub signals: crate::signals::SignalNetwork,
+    /// Signal switches actually applied during the run (plans and external
+    /// controllers), in order. Filled by the simulation.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub signal_log: Vec<crate::signals::SwitchRecord>,
 }
 
 #[cfg(test)]

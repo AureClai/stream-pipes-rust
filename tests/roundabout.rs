@@ -119,7 +119,7 @@ fn build(cfg: &Cfg, trips: &[(usize, usize, f64)]) -> Scenario {
         duration: 100_000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     };
     s.validate().expect("valid roundabout scenario");
     s

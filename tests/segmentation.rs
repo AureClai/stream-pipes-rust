@@ -66,7 +66,7 @@ fn whole(n_veh: usize) -> Scenario {
         duration: 1_000_000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 
@@ -100,7 +100,7 @@ fn split(n_veh: usize) -> Scenario {
         duration: 1_000_000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 

@@ -159,7 +159,7 @@ fn micro_links(segments: usize, ring_first: bool, q: f64) -> Scenario {
         duration: HORIZON + DRAIN,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 
@@ -207,7 +207,7 @@ fn roundabout_node(q: f64) -> Scenario {
         duration: HORIZON + DRAIN,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     };
     scenario.validate().expect("valid roundabout scenario");
     scenario

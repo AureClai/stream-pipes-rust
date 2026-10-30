@@ -11,6 +11,7 @@ pub mod verification;
 pub mod benchmarks;
 pub mod patch;
 pub mod roundabout;
+pub mod signals;
 pub mod reference;
 
 #[cfg(feature = "python")]

@@ -139,7 +139,7 @@ fn corridor(kx0: f64, c1: f64, starts: &[f64]) -> Scenario {
         duration: 1_000_000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 
@@ -182,7 +182,7 @@ fn merge(c_bottleneck: f64, per_branch: usize) -> Scenario {
         duration: 1_000_000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 
@@ -416,7 +416,7 @@ fn bus_lane_scenario() -> Scenario {
         duration: 1_000_000.0,
         classes: vec!["car".to_string(), "bus".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 
@@ -519,7 +519,7 @@ fn shoulder_exit_scenario(phi: f64) -> Scenario {
         duration: 1_000_000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 
@@ -645,7 +645,7 @@ fn roundabout_scenario(
         duration: 100_000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 

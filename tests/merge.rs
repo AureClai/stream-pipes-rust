@@ -51,7 +51,7 @@ fn merge_scenario(q0: f64, q1: f64, c2: f64, t_end: f64) -> Scenario {
         duration: 20_000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 
