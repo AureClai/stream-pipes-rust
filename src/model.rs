@@ -662,11 +662,10 @@ pub struct Vehicle {
 impl Vehicle {
     /// Time the vehicle entered `path[i]`, if it did.
     pub fn link_entry_time(&self, i: usize) -> Option<f64> {
-        if self.ring_exits.is_empty() {
-            return self.node_times.get(i).copied();
-        }
-        // Still inside a roundabout ring: node_times already holds the ring
-        // entry, but the next link has not been entered yet.
+        // `pipes_taken` grows exactly when a link is entered. Outside
+        // roundabouts this is the same test as `i < node_times.len()`; on a
+        // ring, node_times already holds the ring entry while the next link
+        // has not been entered yet.
         if i >= self.pipes_taken.len() {
             return None;
         }

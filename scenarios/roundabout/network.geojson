@@ -1,0 +1,19 @@
+{"type":"FeatureCollection","features":[
+{"type":"Feature","geometry":{"type":"Point","coordinates":[1000,1000]},"properties":{"id":0,"type":"Roundabout","roundabout":{"diameter":30.0,"lanes":1,"speed":8.333,"fd_kx":0.15,"fd_w":5.0,"critical_gap":4.976,"follow_up":2.609,"island":6.0}}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[1300,1000]},"properties":{"id":1,"type":"Entry","name":"E in"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[1300,1000]},"properties":{"id":2,"type":"Exit","name":"E out"}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[1300,1000],[1000,1000]]},"properties":{"id":0,"node_up":1,"node_down":0,"length":300.0,"speed":13.9,"lanes":1,"capacity":0.5,"fd_kx":0.15,"fd_w":5.0}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[1000,1000],[1300,1000]]},"properties":{"id":1,"node_up":0,"node_down":2,"length":300.0,"speed":13.9,"lanes":1,"capacity":0.5,"fd_kx":0.15,"fd_w":5.0}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[1000,1300]},"properties":{"id":3,"type":"Entry","name":"N in"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[1000,1300]},"properties":{"id":4,"type":"Exit","name":"N out"}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[1000,1300],[1000,1000]]},"properties":{"id":2,"node_up":3,"node_down":0,"length":300.0,"speed":13.9,"lanes":1,"capacity":0.5,"fd_kx":0.15,"fd_w":5.0}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[1000,1000],[1000,1300]]},"properties":{"id":3,"node_up":0,"node_down":4,"length":300.0,"speed":13.9,"lanes":1,"capacity":0.5,"fd_kx":0.15,"fd_w":5.0}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[700,1000]},"properties":{"id":5,"type":"Entry","name":"W in"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[700,1000]},"properties":{"id":6,"type":"Exit","name":"W out"}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[700,1000],[1000,1000]]},"properties":{"id":4,"node_up":5,"node_down":0,"length":300.0,"speed":13.9,"lanes":1,"capacity":0.5,"fd_kx":0.15,"fd_w":5.0}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[1000,1000],[700,1000]]},"properties":{"id":5,"node_up":0,"node_down":6,"length":300.0,"speed":13.9,"lanes":1,"capacity":0.5,"fd_kx":0.15,"fd_w":5.0}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[1000,700]},"properties":{"id":7,"type":"Entry","name":"S in"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[1000,700]},"properties":{"id":8,"type":"Exit","name":"S out"}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[1000,700],[1000,1000]]},"properties":{"id":6,"node_up":7,"node_down":0,"length":300.0,"speed":13.9,"lanes":1,"capacity":0.5,"fd_kx":0.15,"fd_w":5.0}},
+{"type":"Feature","geometry":{"type":"LineString","coordinates":[[1000,1000],[1000,700]]},"properties":{"id":7,"node_up":0,"node_down":8,"length":300.0,"speed":13.9,"lanes":1,"capacity":0.5,"fd_kx":0.15,"fd_w":5.0}}
+]}

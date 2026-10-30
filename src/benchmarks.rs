@@ -18,6 +18,11 @@
 //!    is enabled by the first exit and must lag it by exactly L/w.
 //! 5. **merge_throughput** — two entry branches feeding one bottleneck: the
 //!    combined discharge rate equals C (capacity is conserved through the merge).
+//!
+//! The later cases cover pipes, friction and the roundabout node
+//! (`roundabout_*`: ring free flow, entry capacity without conflict, Siegloch
+//! gap acceptance in a regular circulating stream, spillback storage on the
+//! ring).
 
 use crate::model::{FundamentalDiagram, Link, Node, NodeType, PipeSpec, Scenario, Vehicle};
 use crate::simulation::Simulation;

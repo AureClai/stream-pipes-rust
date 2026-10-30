@@ -422,3 +422,16 @@ fn geojson_roundabout_compiles_and_runs() {
     let sim = run(s);
     all_exited(&sim);
 }
+
+/// A vehicle still on the ring when the run stops has not entered its exit
+/// link yet: the helpers must not report it there.
+#[test]
+fn vehicle_on_the_ring_at_the_horizon_is_not_on_its_exit_link() {
+    let mut s = build(&base(), &[(0, 0, 0.0)]); // U-turn: 9.6 s on the ring
+    s.duration = 15.0; // ring entry at 10 s, ring exit at 19.6 s
+    let sim = run(s);
+    let v = &sim.scenario.vehicles[0];
+    close(v.link_exit_time(0).unwrap(), 10.0, "left the approach");
+    assert_eq!(v.link_entry_time(1), None, "not on the exit link yet");
+    assert!(v.ring_exits.is_empty());
+}

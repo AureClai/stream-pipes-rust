@@ -74,15 +74,21 @@ fn arm_link(id: usize, up: usize, down: usize, from: (f64, f64), to: (f64, f64))
 
 /// Demand: every arm sends `q` veh/h to each of the three other arms in
 /// equal parts. Entry node of arm k = `entry(k)`, exit node = `exit(k)`.
+/// The OD streams are regular; their starts are staggered so they do not
+/// arrive in lockstep (which would leave artificially wide gaps).
 fn demand(q: f64, entry: impl Fn(usize) -> usize, exit: impl Fn(usize) -> usize) -> Vec<Demand> {
     let mut d = Vec::new();
+    let n_od = ARMS * (ARMS - 1);
     for o in 0..ARMS {
         for turn in 1..ARMS {
             let dest = (o + turn) % ARMS;
             let count = q / (ARMS - 1) as f64 * HORIZON / 3600.0;
+            let headway = HORIZON / count;
+            let j = o * (ARMS - 1) + turn - 1;
+            let offset = headway * j as f64 / n_od as f64;
             d.push(Demand {
-                period_start: 0.0,
-                period_end: HORIZON,
+                period_start: offset,
+                period_end: HORIZON + offset,
                 origin: entry(o),
                 destination: exit(dest),
                 flow: q / (ARMS - 1) as f64,

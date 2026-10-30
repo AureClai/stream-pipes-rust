@@ -1,0 +1,14 @@
+[
+  {"period_start": 0.0, "period_end": 3600.0, "origin": 1, "destination": 4, "flow": 100.0, "count": 100.0},
+  {"period_start": 0.0, "period_end": 3600.0, "origin": 1, "destination": 6, "flow": 350.0, "count": 350.0},
+  {"period_start": 0.0, "period_end": 3600.0, "origin": 1, "destination": 8, "flow": 150.0, "count": 150.0},
+  {"period_start": 0.0, "period_end": 3600.0, "origin": 3, "destination": 6, "flow": 100.0, "count": 100.0},
+  {"period_start": 0.0, "period_end": 3600.0, "origin": 3, "destination": 8, "flow": 250.0, "count": 250.0},
+  {"period_start": 0.0, "period_end": 3600.0, "origin": 3, "destination": 2, "flow": 120.0, "count": 120.0},
+  {"period_start": 0.0, "period_end": 3600.0, "origin": 5, "destination": 8, "flow": 130.0, "count": 130.0},
+  {"period_start": 0.0, "period_end": 3600.0, "origin": 5, "destination": 2, "flow": 380.0, "count": 380.0},
+  {"period_start": 0.0, "period_end": 3600.0, "origin": 5, "destination": 4, "flow": 90.0, "count": 90.0},
+  {"period_start": 0.0, "period_end": 3600.0, "origin": 7, "destination": 2, "flow": 110.0, "count": 110.0},
+  {"period_start": 0.0, "period_end": 3600.0, "origin": 7, "destination": 4, "flow": 270.0, "count": 270.0},
+  {"period_start": 0.0, "period_end": 3600.0, "origin": 7, "destination": 6, "flow": 140.0, "count": 140.0}
+]

@@ -41,7 +41,7 @@ with its own capacity, storage and backward wave.
 | | |
 |---|---|
 | **Exact** | Discrete-event solution of LWR with a triangular fundamental diagram (Newell's simplified theory). No time step, no RNG: two runs are bit-identical. |
-| **Verified** | Ten closed-form LWR benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, fractional-slot wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle) pass at machine precision. |
+| **Verified** | Fourteen closed-form benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, fractional-slot wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle, and four roundabout cases: free flow, entry capacity, Siegloch gap acceptance, spillback on the ring) pass at machine precision. |
 | **Self-auditing** | `stream-cli verify` checks every link, pipe and node of any scenario (free-flow traversal, capacity, storage bound, backward wave, FD adherence, conservation, FIFO, demand served) and reports **pass / warn / fail / not-exercised**. |
 | **Validated** | Three instrumented corridors in two countries: 1 280 of 1 312 flow windows below GEH 5. NGSIM trajectories confirm the lane-commitment assumption. |
 | **Scenario variants** | *Patches* (lane closures, capacity drops, lane add/shrink, demand scaling, new links) compose a variant from a base network, with time windows. |
@@ -73,7 +73,7 @@ cd stream-pipes-rust
 cargo build --release --no-default-features --bin stream-cli
 ```
 
-Run the ten analytic benchmarks and verify a bundled scenario:
+Run the fourteen analytic benchmarks and verify a bundled scenario:
 
 ```bash
 cargo run --release --no-default-features --bin stream-cli -- \
@@ -168,6 +168,56 @@ Pipe 0 is the rightmost. A link without `pipes` is a single all-lane stream,
 exactly as in the single-stream model. The full model is described in the
 paper (see [Citing](#citing)).
 
+### Roundabouts
+
+A roundabout is **one node**, not a ring of micro-links. Give the node
+`"type": "Roundabout"` and a `roundabout` object:
+
+```jsonc
+"properties": { "id": 7, "type": "Roundabout",
+  "roundabout": {
+    "diameter": 30.0,                          // or "circumference" (m)
+    "lanes": 1, "speed": 8.33,                 // ring
+    "fd_kx": 0.15, "fd_w": 5.0,                // optional; fd_c = kx·u·w/(u+w)
+    "critical_gap": 4.976, "follow_up": 2.609, // t_c, t_f (HCM 6 defaults)
+    "island": 6.0,                             // exit point → entry point (m)
+    "direction": "ccw",                        // "cw" for left-hand traffic
+    "arms": [ { "in": 12, "out": 13 }, … ]     // optional
+} }
+```
+
+Without `arms`, the arms are found from the bearing of the links around the
+node (an entry and an exit within 45° form one arm).
+
+The ring is one FIFO kinematic-wave stream that closes on itself, solved
+only at the arm points (each arm's exit point, then its entry point):
+
+- **ring dynamics**: free flow, the ring capacity at every point, and
+  Newell's storage constraint against every downstream point up to the
+  vehicle's exit. The result does not depend on how many points the ring
+  has, and storage is not rounded per micro-link;
+- **exits** use the ordinary transfer rule. A saturated exit holds its
+  vehicles on the ring and everyone behind them, so the queue spills back
+  around the ring and blocks the entries upstream;
+- **entries give way** by gap acceptance: `lead` after the last circulating
+  vehicle, `lag` before the next one, `t_f` between entries of one lane, with
+  lead + lag = t_c − t_f/2. In a gap g, exactly floor((g − t_0)/t_f) + 1
+  vehicles enter (Siegloch). The conflicting flow is not an input: it is
+  made of the vehicles actually on the ring.
+
+`node_times` holds the time a vehicle leaves the approach (enters the ring);
+`ring_exits` holds when it enters the exit link. Use
+`Vehicle::link_entry_time` / `link_exit_time` rather than indexing
+`node_times` directly.
+
+`examples/roundabout_vs_microlinks.rs` compares the node with micro-link
+rings of 4, 8 and 16 segments on a four-arm roundabout. From 600 veh/h per
+arm, the micro-link ring gridlocks as soon as the approaches have
+priority (lower link ids, or the capacity merge rule); with the ring served
+first it clears, but its delays depend on the number of segments. The
+roundabout node serves every demand level, with 9 to 10 events per
+vehicle.
+
 ### Bundled scenarios
 
 | Scenario | What it shows |
@@ -176,6 +226,7 @@ paper (see [Citing](#citing)).
 | `m1_diverge`, `m60_stockport` | UK motorway corridors with WebTRIS detector data |
 | `a47_givors` | French urban motorway: single stream vs pipes, φ sweep (second preprint) |
 | `a47_givors_osm` | The same motorway rebuilt from OpenStreetMap and Cerema AVATAR, every interchange, screened data, capacity-proportional merges ([README](scenarios/a47_givors_osm/README.md)) |
+| `roundabout` | A four-arm roundabout as one `Roundabout` node, unbalanced turning flows |
 | `ngsim/` | Scripts to fetch NGSIM trajectories and measure lane commitment |
 | `ndw/` | Per-lane validation on Dutch NDW data (in preparation) |
 
@@ -230,7 +281,11 @@ These are deliberate modelling choices for now, not bugs:
   proportion to the incoming capacities instead. No stochastic merge, no
   signals;
 - myopic lane choice, and friction switches on or off rather than varying
-  continuously.
+  continuously;
+- roundabouts: the ring is one FIFO stream (a multi-lane ring has no lane
+  choice), exiting vehicles do not disturb entries, a vehicle stopped on
+  the ring does not count as a conflict for the entries downstream until it
+  moves again, and the assignment ignores the time spent on the ring.
 
 ## Citing
 
