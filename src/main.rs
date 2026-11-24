@@ -6,6 +6,7 @@ use stream_core_rust::simulation::{MergeRule, Simulation};
 use stream_core_rust::validation::Validate;
 use stream_core_rust::assignment::assign_demand;
 use stream_core_rust::verification::{verify_scenario, CheckStatus};
+use std::collections::HashMap;
 use std::path::PathBuf;
 use std::time::Instant;
 use anyhow::Result;
@@ -36,6 +37,9 @@ enum Commands {
         /// Merge rule at nodes: "in_order" (default) or "capacity"
         #[arg(long, default_value = "in_order")]
         merge: String,
+        /// Aggregation bin size in seconds for link/pipe statistics
+        #[arg(long, default_value_t = 60.0)]
+        bin_size: f64,
     },
     /// Compile a scenario from source files (GeoJSON + JSON) into a single artifact
     Build {
@@ -157,7 +161,7 @@ fn main() -> Result<()> {
 
             if let Some(output_path) = output {
                 println!("Writing results to {:?}...", output_path);
-                let options = RunOptions { assignment, keep_vehicles: true, ..Default::default() };
+                let options = RunOptions { assignment, bin_size, keep_vehicles: true, ..Default::default() };
                 let results = collect(sim.scenario, events_processed, Vec::new(), &options);
                 use std::io::Write;
                 let mut file = std::io::BufWriter::new(std::fs::File::create(&output_path)?);
@@ -288,3 +292,15 @@ fn run_verify(
     }
     Ok(())
 }
+
+#[derive(Serialize)]
+struct RunOutput {
+    events_processed: usize,
+    duration_ms: u128,
+    vehicles_count: usize,
+    status: String,
+    link_stats: HashMap<LinkID, LinkStats>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pipe_stats: Option<HashMap<LinkID, Vec<PipeStats>>>,
+}
+
