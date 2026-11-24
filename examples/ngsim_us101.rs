@@ -36,7 +36,7 @@ fn node(id: usize, node_type: NodeType, incoming: Vec<usize>, outgoing: Vec<usiz
         incoming_links: incoming,
         outgoing_links: outgoing,
         points: (id as f64, 0.0),
-        signals: vec![],
+        signals: vec![], roundabout: None, junction: None,
     }
 }
 
@@ -141,7 +141,7 @@ fn main() {
         duration,
         classes: vec!["car".to_string()],
         link_schedule,
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     };
 
     let mut sim = Simulation::new(scenario);

@@ -40,7 +40,7 @@ fn corridor(lanes_l0: u8, kx0: f64, c1: f64, n_veh: usize) -> Scenario {
         incoming_links: incoming,
         outgoing_links: outgoing,
         points: (x, 0.0),
-        signals: vec![],
+        signals: vec![], roundabout: None, junction: None,
     };
     Scenario {
         nodes: vec![
@@ -58,7 +58,7 @@ fn corridor(lanes_l0: u8, kx0: f64, c1: f64, n_veh: usize) -> Scenario {
         duration: 100_000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 

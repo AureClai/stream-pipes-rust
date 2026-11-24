@@ -1,0 +1,8 @@
+{
+  "classes": [
+    "car",
+    "bus"
+  ],
+  "duration": 3600.0,
+  "start_time": 0.0
+}

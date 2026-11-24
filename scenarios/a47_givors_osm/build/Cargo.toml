@@ -1,0 +1,14 @@
+[package]
+name = "build-a47-givors-osm"
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+description = "Builds the A47 Givors scenario from OpenStreetMap and Cerema AVATAR data"
+publish = false
+
+# Standalone: not part of the engine's crate.
+[workspace]
+
+[dependencies]
+serde_json = { version = "1", features = ["preserve_order"] }
+serde = "1"

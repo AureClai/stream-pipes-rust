@@ -55,8 +55,16 @@ impl NetworkGraph {
             for i in 0..nodes.len() - 1 {
                 let u = nodes[i];
                 let v = nodes[i + 1];
-                let edge = self.graph.find_edge(u, v).unwrap();
-                links.push(self.graph[edge].0);
+                // Parallel links join the same two nodes: take the cheapest
+                // (the one the shortest-path cost was computed on), lowest
+                // id on ties.
+                let (link, _) = self
+                    .graph
+                    .edges_connecting(u, v)
+                    .map(|e| *e.weight())
+                    .min_by(|a, b| a.1.total_cmp(&b.1).then(a.0.cmp(&b.0)))
+                    .expect("consecutive path nodes are joined by an edge");
+                links.push(link);
             }
             Some((cost, links))
         } else {
@@ -184,7 +192,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 1,
@@ -192,7 +200,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1],
                     points: (1.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 2,
@@ -200,7 +208,7 @@ mod tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None, junction: None,
                 },
             ],
             links: vec![
@@ -213,7 +221,7 @@ mod tests {
             duration: 3600.0,
             classes: vec!["car".to_string()],
             link_schedule: Vec::new(),
-            assignment_excluded: Vec::new(),
+            assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
         }
     }
 
@@ -357,7 +365,7 @@ mod class_tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 1,
@@ -365,7 +373,7 @@ mod class_tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![],
                     points: (1.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None, junction: None,
                 },
             ],
             links: vec![Link::new(0, 0, 1, 1000.0, 10.0, 2, 1.0, fd, vec![])],
@@ -375,7 +383,7 @@ mod class_tests {
             duration: 3600.0,
             classes: vec!["car".to_string(), "bus".to_string()],
             link_schedule: Vec::new(),
-            assignment_excluded: Vec::new(),
+            assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
         }
     }
 

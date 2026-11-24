@@ -1,3 +1,4 @@
+pub mod api;
 pub mod model;
 pub mod simulation;
 pub mod assignment;
@@ -9,6 +10,9 @@ pub mod xt_analysis;
 pub mod verification;
 pub mod benchmarks;
 pub mod patch;
+pub mod roundabout;
+pub mod signals;
+pub mod junction;
 pub mod reference;
 
 #[cfg(feature = "python")]

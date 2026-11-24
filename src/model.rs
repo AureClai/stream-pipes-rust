@@ -28,7 +28,7 @@ pub enum NodeType {
     Exit = 2,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct FundamentalDiagram {
     pub u: f64,
     pub w: f64,
@@ -558,6 +558,73 @@ pub struct Node {
     pub outgoing_links: Vec<LinkID>,
     pub points: (f64, f64),
     pub signals: Vec<usize>,
+    /// When set, this internal node is a whole roundabout: its ring is solved
+    /// inside the node (see `roundabout.rs`) instead of by micro-links.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub roundabout: Option<RoundaboutSpec>,
+    /// When set, this ordinary node applies priority rules: minor movements
+    /// give way to the major ones they conflict with (see `junction.rs`).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub junction: Option<crate::junction::JunctionSpec>,
+}
+
+// ── Roundabouts ───────────────────────────────────────────────────────────────
+
+/// One arm of a roundabout: the approach that enters the ring here, the link
+/// that leaves it here (either may be absent), and the arm's position along
+/// the ring, in metres in the direction of circulation.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct RoundaboutArm {
+    #[serde(default, rename = "in", skip_serializing_if = "Option::is_none")]
+    pub in_link: Option<LinkID>,
+    #[serde(default, rename = "out", skip_serializing_if = "Option::is_none")]
+    pub out_link: Option<LinkID>,
+    pub position: f64,
+}
+
+/// Resolved roundabout parameters (compiled scenario form). The ring is one
+/// FIFO stream of `lanes` lanes with a triangular FD; entries give way to it
+/// by gap acceptance (critical gap t_c, follow-up time t_f).
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct RoundaboutSpec {
+    /// Ring length along the circulating path (m).
+    pub circumference: f64,
+    pub lanes: u8,
+    /// Free-flow speed on the ring (m/s).
+    pub speed: f64,
+    /// Ring FD; `kx` and `c` per lane, as on links.
+    pub fd: FundamentalDiagram,
+    /// t_c (s).
+    pub critical_gap: f64,
+    /// t_f (s).
+    pub follow_up: f64,
+    /// Distance from an arm's exit point to its entry point along the ring (m).
+    pub island: f64,
+    /// Arms sorted by `position` (direction of circulation).
+    pub arms: Vec<RoundaboutArm>,
+}
+
+impl RoundaboutSpec {
+    /// Ring discharge capacity (veh/s).
+    pub fn capacity(&self) -> f64 {
+        self.fd.c * f64::from(self.lanes)
+    }
+    /// Siegloch's t_0 = t_c − t_f/2: a gap g admits floor((g − t_0)/t_f) + 1
+    /// entering vehicles.
+    pub fn t0(&self) -> f64 {
+        self.critical_gap - self.follow_up / 2.0
+    }
+    /// Gap-acceptance split of t_0: an entering vehicle needs `lead` after
+    /// the last circulating passage and `lag` before the next one, with
+    /// lead + lag = t_0. Nominally lead = t_f/2 and lag = t_c − t_f, but an
+    /// entering vehicle cannot follow a circulating one closer than the ring
+    /// headway 1/C, so lead = max(t_f/2, 1/C) and lag = t_0 − lead (≥ 0).
+    pub fn lead(&self) -> f64 {
+        (self.follow_up / 2.0).max(1.0 / self.capacity())
+    }
+    pub fn lag(&self) -> f64 {
+        (self.t0() - self.lead()).max(0.0)
+    }
 }
 
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -588,9 +655,35 @@ pub struct Vehicle {
     /// `path` the vehicle has entered. Drives per-pipe analysis.
     #[serde(skip)]
     pub pipes_taken: Vec<PipeIdx>,
+    /// Roundabout exits: (index in `path` of the link entered, time). At a
+    /// roundabout node, `node_times` holds the time the vehicle left the
+    /// approach (entered the ring); it enters the next link later, when it
+    /// leaves the ring. Empty when the path crosses no roundabout.
+    #[serde(skip)]
+    pub ring_exits: Vec<(usize, f64)>,
 }
 
 impl Vehicle {
+    /// Time the vehicle entered `path[i]`, if it did.
+    pub fn link_entry_time(&self, i: usize) -> Option<f64> {
+        // `pipes_taken` grows exactly when a link is entered. Outside
+        // roundabouts this is the same test as `i < node_times.len()`; on a
+        // ring, node_times already holds the ring entry while the next link
+        // has not been entered yet.
+        if i >= self.pipes_taken.len() {
+            return None;
+        }
+        if let Some(&(_, t)) = self.ring_exits.iter().find(|(k, _)| *k == i) {
+            return Some(t);
+        }
+        self.node_times.get(i).copied()
+    }
+
+    /// Time the vehicle left `path[i]`, if it did.
+    pub fn link_exit_time(&self, i: usize) -> Option<f64> {
+        self.node_times.get(i + 1).copied()
+    }
+
     pub fn new(
         id: VehID,
         class_id: usize,
@@ -610,6 +703,7 @@ impl Vehicle {
             current_link_idx: 0,
             node_times: Vec::new(),
             pipes_taken: Vec::new(),
+            ring_exits: Vec::new(),
         }
     }
 }
@@ -648,6 +742,14 @@ pub struct Scenario {
     /// horizon by a patch — "removed" without renumbering ids).
     #[serde(default)]
     pub assignment_excluded: Vec<LinkID>,
+    /// Signal groups, fixed-time plans and tolls (`signals.json`). Empty for
+    /// a scenario without signals, which then runs exactly as before.
+    #[serde(default, skip_serializing_if = "crate::signals::SignalNetwork::is_empty")]
+    pub signals: crate::signals::SignalNetwork,
+    /// Signal switches actually applied during the run (plans and external
+    /// controllers), in order. Filled by the simulation.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub signal_log: Vec<crate::signals::SwitchRecord>,
 }
 
 #[cfg(test)]

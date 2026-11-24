@@ -1,10 +1,8 @@
 use clap::{Parser, Subcommand};
-use serde::Serialize;
-use stream_core_rust::analysis::{compute_link_stats, compute_pipe_stats, LinkStats, PipeStats};
+use stream_core_rust::api::{collect, RunOptions};
 use stream_core_rust::benchmarks::run_benchmarks;
 use stream_core_rust::io::{load_scenario, compile_scenario};
-use stream_core_rust::model::LinkID;
-use stream_core_rust::simulation::Simulation;
+use stream_core_rust::simulation::{MergeRule, Simulation};
 use stream_core_rust::validation::Validate;
 use stream_core_rust::assignment::assign_demand;
 use stream_core_rust::verification::{verify_scenario, CheckStatus};
@@ -36,6 +34,9 @@ enum Commands {
         #[arg(short, long)]
         assignment: bool,
 
+        /// Merge rule at nodes: "in_order" (default) or "capacity"
+        #[arg(long, default_value = "in_order")]
+        merge: String,
         /// Aggregation bin size in seconds for link/pipe statistics
         #[arg(long, default_value_t = 60.0)]
         bin_size: f64,
@@ -54,6 +55,10 @@ enum Commands {
         #[arg(long)]
         config: PathBuf,
         
+        /// Path to signals.json (signal groups, plans, tolls; optional)
+        #[arg(long)]
+        signals: Option<PathBuf>,
+
         /// Output path for scenario.json
         #[arg(short, long)]
         output: PathBuf,
@@ -75,7 +80,7 @@ enum Commands {
         #[arg(long, default_value_t = 300.0)]
         bin_size: f64,
 
-        /// Also run the ten closed-form analytic benchmarks
+        /// Also run the closed-form analytic benchmarks
         #[arg(long)]
         benchmarks: bool,
 
@@ -88,17 +93,29 @@ enum Commands {
         /// Write the full JSON verification report to this path
         #[arg(short, long, value_name = "FILE")]
         output: Option<PathBuf>,
+
+        /// Merge rule at nodes: "in_order" (default) or "capacity"
+        #[arg(long, default_value = "in_order")]
+        merge: String,
     },
+}
+
+fn merge_rule(name: &str) -> Result<MergeRule> {
+    MergeRule::from_config(&serde_json::json!({ "merge": name }))
 }
 
 fn main() -> Result<()> {
     let cli = Cli::parse();
 
     match cli.command {
-        Commands::Build { network, demand, config, output } => {
+        Commands::Build { network, demand, config, signals, output } => {
             println!("Compiling scenario...");
             let start = Instant::now();
-            let scenario = compile_scenario(network, demand, config)?;
+            let mut scenario = compile_scenario(network, demand, config)?;
+            if let Some(path) = signals {
+                let value: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(&path)?)?;
+                scenario.signals = stream_core_rust::signals::compile(value, &scenario)?;
+            }
             
             println!("Validating...");
             scenario.validate()?;
@@ -111,7 +128,8 @@ fn main() -> Result<()> {
             
             println!("Build complete in {:.2?}.", start.elapsed());
         },
-        Commands::Run { input, output, assignment, bin_size } => {
+        Commands::Run { input, output, assignment, merge } => {
+            let merge = merge_rule(&merge)?;
             println!("Loading scenario from {:?}...", input);
             let start = Instant::now();
             let mut scenario = load_scenario(&input)?;
@@ -134,25 +152,25 @@ fn main() -> Result<()> {
 
             println!("Initializing Simulation...");
             let mut sim = Simulation::new(scenario);
+            sim.merge_rule = merge;
 
             println!("Running Simulation...");
             let sim_start = Instant::now();
             let events_processed = sim.run()?;
-            let duration_ms = sim_start.elapsed().as_millis();
             println!("Simulation complete in {:.2?}. Processed {} events.", sim_start.elapsed(), events_processed);
 
             if let Some(output_path) = output {
                 println!("Writing results to {:?}...", output_path);
-                let results = build_run_output(&sim.scenario, events_processed, duration_ms, bin_size);
+                let options = RunOptions { assignment, bin_size, keep_vehicles: true, ..Default::default() };
+                let results = collect(sim.scenario, events_processed, Vec::new(), &options);
                 use std::io::Write;
                 let mut file = std::io::BufWriter::new(std::fs::File::create(&output_path)?);
-                serde_json::to_writer_pretty(&mut file, &results)?;
+                serde_json::to_writer(&mut file, &results)?;
                 file.flush()?;
-                println!("Results written to {:?}.", output_path);
             }
         }
-        Commands::Verify { input, assignment, bin_size, benchmarks, strict, output } => {
-            run_verify(input, assignment, bin_size, benchmarks, strict, output)?;
+        Commands::Verify { input, assignment, bin_size, benchmarks, strict, output, merge } => {
+            run_verify(input, assignment, bin_size, benchmarks, strict, output, merge_rule(&merge)?)?;
         }
     }
 
@@ -170,6 +188,7 @@ fn run_verify(
     benchmarks: bool,
     strict: bool,
     output: Option<PathBuf>,
+    merge: MergeRule,
 ) -> Result<()> {
     println!("Loading scenario from {:?}...", input);
     let mut scenario = load_scenario(&input)?;
@@ -179,6 +198,7 @@ fn run_verify(
         println!("Assignment: {} vehicles generated.", added);
     }
     let mut sim = Simulation::new(scenario);
+    sim.merge_rule = merge;
     let events = sim.run()?;
     println!("Simulation: {} events processed.", events);
 
@@ -282,25 +302,5 @@ struct RunOutput {
     link_stats: HashMap<LinkID, LinkStats>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pipe_stats: Option<HashMap<LinkID, Vec<PipeStats>>>,
-}
-
-fn build_run_output(
-    scenario: &stream_core_rust::model::Scenario,
-    events_processed: usize,
-    duration_ms: u128,
-    bin_size: f64,
-) -> RunOutput {
-    let link_stats = compute_link_stats(scenario, bin_size);
-    let has_pipes = scenario.links.iter().any(|l| l.pipes.len() > 1);
-    let pipe_stats = has_pipes.then(|| compute_pipe_stats(scenario, bin_size));
-
-    RunOutput {
-        events_processed,
-        duration_ms,
-        vehicles_count: scenario.vehicles.len(),
-        status: "success".to_string(),
-        link_stats,
-        pipe_stats,
-    }
 }
 

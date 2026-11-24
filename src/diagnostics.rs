@@ -352,6 +352,13 @@ fn compute_trajectories(scenario: &Scenario, max_trajectories: usize) -> Vec<Tra
             if link_id >= scenario.links.len() {
                 break;
             }
+            // Leaving a roundabout ring: the node is a point, so the time
+            // spent on the ring shows as a vertical segment.
+            if i > 0 {
+                if let Some(&(_, t)) = veh.ring_exits.iter().find(|(k, _)| *k == i) {
+                    points.push(TrajPoint { t, x: cumulative_km });
+                }
+            }
             cumulative_km += scenario.links[link_id].length / 1000.0;
             points.push(TrajPoint {
                 t: veh.node_times[i + 1],

@@ -1,6 +1,9 @@
 use crate::model::{
     Link, LinkID, NodeID, PipeIdx, Scenario, StorageAvailability, VehID, VehicleState,
 };
+use crate::roundabout::{Bound, PointKind, RingVehicle, RoundaboutState};
+use crate::signals::{Aspect, Command, ControlView, Controller, SignalRuntime, SwitchRecord};
+use crate::junction::JunctionState;
 use anyhow::Result;
 #[cfg(feature = "python")]
 use pyo3::prelude::*;
@@ -16,6 +19,15 @@ pub enum EventType {
     VehicleArrival,
     LinkExit,
     LinkReady,
+    /// Roundabout wake-up: a ring constraint at point `pipe` of node
+    /// `link_id` expires. `veh_id` = NO_VEHICLE.
+    RingReady,
+    /// A ring vehicle reaches point `pipe` of roundabout node `link_id`.
+    RingArrival,
+    /// Signal group `link_id` turns green (`pipe` = 1) or red (`pipe` = 0).
+    SignalSwitch,
+    /// External controller `link_id` asked to be woken now.
+    ControlWake,
 }
 
 /// All four event types are (link, pipe)-addressed: `pipe` selects the LWR
@@ -39,11 +51,19 @@ impl EventType {
             // contain no ApplyPatch events, so the relative order of the
             // other four keys — and the golden fixture checksums — are
             // untouched.
+            // Ring events slot in without changing the relative order of the
+            // other types: scenarios without a roundabout never emit them.
+            // Controllers act, then switches apply, before any vehicle moves
+            // at that instant. Scenarios without signals emit neither.
             EventType::ApplyPatch => 0,
-            EventType::LinkReady => 1,
-            EventType::LinkExit => 2,
-            EventType::VehicleArrival => 3,
-            EventType::VehicleEntry => 4,
+            EventType::ControlWake => 1,
+            EventType::SignalSwitch => 2,
+            EventType::LinkReady => 3,
+            EventType::RingReady => 4,
+            EventType::LinkExit => 5,
+            EventType::RingArrival => 6,
+            EventType::VehicleArrival => 7,
+            EventType::VehicleEntry => 8,
         }
     }
 }
@@ -101,6 +121,14 @@ fn eligible_pipes(link: &Link, class_id: usize, next_link: Option<LinkID>) -> Ve
         .filter(|&p| link.pipes[usize::from(p)].allows_class(class_id))
         .filter(|&p| by_move.is_none_or(|v| v.contains(&p)))
         .collect()
+}
+
+/// Same test as `!eligible_pipes(..).is_empty()`, without allocating.
+fn has_eligible_pipe(link: &Link, class_id: usize, next_link: Option<LinkID>) -> bool {
+    let by_move = next_link.and_then(|nl| link.moves.get(&nl));
+    (0..link.pipes.len() as u8).any(|p| {
+        link.pipes[usize::from(p)].allows_class(class_id) && by_move.is_none_or(|v| v.contains(&p))
+    })
 }
 
 /// Choice point 1 — entry-node enqueue. Discretionary rule: least-occupied
@@ -166,6 +194,38 @@ fn choose_pipe_for_transfer(
     }
 }
 
+// ── Merge rule ────────────────────────────────────────────────────────────────
+
+/// How a node shares its outflow between incoming links that all have
+/// vehicles waiting.
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
+pub enum MergeRule {
+    /// Incoming links are tried in id order: under saturation the lowest id
+    /// takes every slot it can use. The historical rule — and the default, so
+    /// every existing scenario runs bit-identically.
+    #[default]
+    InOrder,
+    /// Deterministic weighted fair merge: each incoming link counts the
+    /// vehicles it passed while another incoming link was also waiting; the
+    /// node tries first the link with the smallest count / capacity. Under
+    /// sustained saturation the outflow splits in proportion to the incoming
+    /// capacities (Daganzo's capacity-proportional merge); a link alone takes
+    /// all the supply.
+    CapacityProportional,
+}
+
+impl MergeRule {
+    /// Read `"merge"` from a scenario config: `"in_order"` (default) or
+    /// `"capacity"`.
+    pub fn from_config(config: &serde_json::Value) -> Result<Self> {
+        match config.get("merge").and_then(|v| v.as_str()) {
+            None | Some("in_order") => Ok(MergeRule::InOrder),
+            Some("capacity") => Ok(MergeRule::CapacityProportional),
+            Some(other) => anyhow::bail!("unknown merge rule '{other}' (expected \"in_order\" or \"capacity\")"),
+        }
+    }
+}
+
 /// Placeholder vehicle id for system-originated events (LinkReady) that do not
 /// reference a real vehicle — distinct from any valid index.
 const NO_VEHICLE: VehID = VehID::MAX;
@@ -214,6 +274,29 @@ pub struct Simulation {
     /// node transfers — Python's `General["ActiveUpStreamCapacity"]`.
     /// Defaults to `false`, matching the Python default.
     pub upstream_capacity: bool,
+    /// How nodes share their outflow between waiting incoming links.
+    pub merge_rule: MergeRule,
+    /// Per link: vehicles it passed at its downstream node while another
+    /// incoming link of that node was waiting (CapacityProportional only).
+    merge_served: Vec<f64>,
+    /// Ring state of every roundabout node, indexed by node id (None for
+    /// ordinary nodes). Public so tests and verification can read the
+    /// passages recorded at each ring point.
+    pub roundabouts: Vec<Option<Box<RoundaboutState>>>,
+    /// Signal groups and tolls at run time (empty without signals.json).
+    pub signals: SignalRuntime,
+    /// True when signals, tolls or controllers exist; false keeps every
+    /// signal check off the hot path (and runs bit-identical).
+    signals_active: bool,
+    /// External controllers (each taken out while it runs).
+    controllers: Vec<Option<Box<dyn Controller>>>,
+    controllers_started: bool,
+    /// Cumulative vehicles that entered / left each link (controller sensors).
+    link_entered: Vec<u64>,
+    link_exited: Vec<u64>,
+    /// Priority-junction state per node id (None for other nodes).
+    pub junctions: Vec<Option<Box<JunctionState>>>,
+    junctions_active: bool,
 }
 
 #[cfg(feature = "python")]
@@ -236,12 +319,44 @@ impl Simulation {
                 i, node.id
             );
         }
+        let n_links = scenario.links.len();
         let mut sim = Simulation {
             scenario,
             events: BinaryHeap::new(),
             current_time: 0.0,
             upstream_capacity: false,
+            merge_rule: MergeRule::InOrder,
+            merge_served: vec![0.0; n_links],
+            roundabouts: Vec::new(),
+            signals: SignalRuntime::default(),
+            signals_active: false,
+            controllers: Vec::new(),
+            controllers_started: false,
+            link_entered: vec![0; n_links],
+            link_exited: vec![0; n_links],
+            junctions: Vec::new(),
+            junctions_active: false,
         };
+        sim.junctions = sim
+            .scenario
+            .nodes
+            .iter()
+            .map(|n| n.junction.as_ref().map(|spec| Box::new(JunctionState::new(n, spec))))
+            .collect();
+        sim.junctions_active = sim.junctions.iter().any(Option::is_some);
+        sim.signals = SignalRuntime::new(&sim.scenario.signals, &sim.scenario);
+        sim.signals_active = !sim.signals.is_empty();
+        sim.scenario.signal_log.clear();
+        if sim.signals_active {
+            sim.current_time = sim.scenario.start_time;
+            sim.seed_signals();
+        }
+        sim.roundabouts = sim
+            .scenario
+            .nodes
+            .iter()
+            .map(|n| n.roundabout.as_ref().map(|spec| Box::new(RoundaboutState::new(n.id, spec))))
+            .collect();
         // Build runtime pipes here (not in Link::new) so that FD parameters
         // adjusted after construction — as several tests do — are respected.
         for link in &mut sim.scenario.links {
@@ -302,8 +417,20 @@ impl Simulation {
     }
 
     pub fn run(&mut self) -> Result<usize> {
+        self.run_with_progress(0, |_, _| true)
+    }
+
+    /// Same as `run`, but calls `on_progress(sim_time, events_processed)`
+    /// every `every` events (never when `every` is 0). Returning `false`
+    /// cancels the run, which then returns an error.
+    /// The callback only observes, so a completed run is bit-identical to `run`.
+    pub fn run_with_progress<F>(&mut self, every: usize, mut on_progress: F) -> Result<usize>
+    where
+        F: FnMut(f64, usize) -> bool,
+    {
         let mut events_processed = 0;
         let max_time = self.scenario.start_time + self.scenario.duration;
+        self.start_controllers();
 
         while let Some(event) = self.events.pop() {
             if event.time > max_time {
@@ -311,6 +438,9 @@ impl Simulation {
             }
             self.current_time = event.time;
             events_processed += 1;
+            if every > 0 && events_processed % every == 0 && !on_progress(event.time, events_processed) {
+                anyhow::bail!("simulation cancelled at t = {:.1} s", event.time);
+            }
 
             match event.event_type {
                 EventType::ApplyPatch => self.handle_apply_patch(event.veh_id),
@@ -322,6 +452,12 @@ impl Simulation {
                 EventType::LinkReady => {
                     self.handle_link_ready(event.link_id, event.pipe, event.veh_id)
                 }
+                EventType::RingReady => self.handle_ring_ready(event.link_id, event.pipe, event.time),
+                EventType::RingArrival => {
+                    self.handle_ring_arrival(event.link_id, event.pipe, event.veh_id)
+                }
+                EventType::SignalSwitch => self.handle_signal_switch(event.link_id, Aspect::from_code(event.pipe)),
+                EventType::ControlWake => self.call_controller(event.link_id, false),
             }
         }
         Ok(events_processed)
@@ -465,6 +601,7 @@ impl Simulation {
             if storage == StorageAvailability::Available && flow_ok {
                 pipe.entry_queue.pop_front();
                 pipe.admit(self.current_time);
+                self.link_entered[link_id] += 1;
                 if pipe.capacity > 0.0 {
                     pipe.next_available_entry_time = self.current_time + 1.0 / pipe.capacity;
                 }
@@ -477,6 +614,9 @@ impl Simulation {
                     veh.node_times.push(self.current_time);
                 }
                 veh.pipes_taken.push(pipe_idx);
+                if self.junctions_active {
+                    self.junction_expect(link_id, veh_id);
+                }
 
                 self.events.push(Event {
                     time: self.current_time + travel_time,
@@ -524,6 +664,12 @@ impl Simulation {
             .waiting_queue
             .push_back(veh_id);
         let node_id = self.scenario.links[link_id].node_down;
+        if self.junctions_active {
+            if let Some(js) = self.junctions.get_mut(node_id).and_then(|j| j.as_deref_mut()) {
+                let v = &self.scenario.vehicles[veh_id];
+                js.arrived(link_id, v.path.get(v.current_link_idx + 1).copied());
+            }
+        }
         self.process_node_transfer(node_id);
     }
 
@@ -545,6 +691,7 @@ impl Simulation {
                 link_id,
                 pipe_idx
             );
+            self.link_exited[link_id] += 1;
             if pipe.vehicles_on_pipe > 0 {
                 pipe.vehicles_on_pipe -= 1;
             }
@@ -605,7 +752,19 @@ impl Simulation {
         if node_id >= self.scenario.nodes.len() {
             return;
         }
+        if self.junctions_active && self.junctions.get(node_id).is_some_and(Option::is_some) {
+            self.process_junction(node_id);
+            return;
+        }
+        if self.roundabouts.get(node_id).is_some_and(Option::is_some) {
+            self.process_roundabout(node_id);
+            return;
+        }
         let incoming_links = self.scenario.nodes[node_id].incoming_links.clone();
+        if self.merge_rule == MergeRule::CapacityProportional && incoming_links.len() > 1 {
+            self.process_node_transfer_fair(&incoming_links);
+            return;
+        }
 
         for in_link_idx in incoming_links {
             if in_link_idx >= self.scenario.links.len() {
@@ -615,6 +774,42 @@ impl Simulation {
 
             for in_pipe in 0..n_pipes as PipeIdx {
                 self.try_transfer_pipe_head(in_link_idx, in_pipe);
+            }
+        }
+    }
+
+    /// Capacity-proportional merge: try every incoming pipe head once, as the
+    /// in-order sweep does, but always next the one whose link has passed the
+    /// fewest vehicles per unit of capacity under competition. Ties go to the
+    /// lower (link, pipe), so the rule is deterministic.
+    fn process_node_transfer_fair(&mut self, incoming_links: &[LinkID]) {
+        let mut pending: Vec<(LinkID, PipeIdx)> = incoming_links
+            .iter()
+            .filter(|&&l| l < self.scenario.links.len())
+            .flat_map(|&l| (0..self.scenario.links[l].pipes.len() as PipeIdx).map(move |p| (l, p)))
+            .collect();
+        let waiting = |sim: &Self, l: LinkID| sim.scenario.links[l].pipes.iter().any(|p| !p.waiting_queue.is_empty());
+        let weight = |sim: &Self, l: LinkID| {
+            let c: f64 = sim.scenario.links[l].pipes.iter().map(|p| p.capacity).sum();
+            if c > 0.0 { c } else { f64::MIN_POSITIVE }
+        };
+        while !pending.is_empty() {
+            let (k, _) = pending
+                .iter()
+                .enumerate()
+                .min_by(|(_, a), (_, b)| {
+                    let ka = self.merge_served[a.0] / weight(self, a.0);
+                    let kb = self.merge_served[b.0] / weight(self, b.0);
+                    ka.total_cmp(&kb).then(a.cmp(b))
+                })
+                .expect("pending is not empty");
+            let (link, pipe) = pending.remove(k);
+            let competing = incoming_links.iter().any(|&o| o != link && o < self.scenario.links.len() && waiting(self, o));
+            let before = self.scenario.links[link].pipes[usize::from(pipe)].waiting_queue.len();
+            self.try_transfer_pipe_head(link, pipe);
+            let passed = self.scenario.links[link].pipes[usize::from(pipe)].waiting_queue.len() < before;
+            if passed && competing {
+                self.merge_served[link] += 1.0;
             }
         }
     }
@@ -685,6 +880,26 @@ impl Simulation {
             (v.class_id, next, next_next)
         };
 
+        // Signals and tolls: a red group or a busy toll lane holds the head
+        // (and its pipe, FIFO). Skipped entirely without signals.json.
+        let controlled = if self.signals_active {
+            match self.signal_gate(in_link_idx, in_pipe, veh_id, class_id, next_link_opt) {
+                Some(c) => c,
+                None => return,
+            }
+        } else {
+            Controlled::default()
+        };
+        // Priority rules: a minor movement waits for its gap.
+        let junction_move = if self.junctions_active {
+            match self.junction_gate(in_link_idx, in_pipe, veh_id, next_link_opt) {
+                Some(m) => m,
+                None => return,
+            }
+        } else {
+            None
+        };
+
         if let Some(next_link_idx) = next_link_opt {
             if next_link_idx >= self.scenario.links.len() {
                 return;
@@ -734,6 +949,14 @@ impl Simulation {
                         v.state = VehicleState::Moving;
                         v.node_times.push(self.current_time);
                         v.pipes_taken.push(target);
+                    }
+                    self.link_entered[next_link_idx] += 1;
+                    if self.signals_active {
+                        self.signal_passed(controlled, in_link_idx, in_pipe);
+                    }
+                    if self.junctions_active {
+                        self.junction_passed(in_link_idx, in_pipe, junction_move);
+                        self.junction_expect(next_link_idx, veh_id);
                     }
 
                     self.events.push(Event {
@@ -791,6 +1014,12 @@ impl Simulation {
                 v.state = VehicleState::Exited;
                 v.node_times.push(self.current_time);
             }
+            if self.signals_active {
+                self.signal_passed(controlled, in_link_idx, in_pipe);
+            }
+            if self.junctions_active {
+                self.junction_passed(in_link_idx, in_pipe, junction_move);
+            }
             self.events.push(Event {
                 time: self.current_time,
                 event_type: EventType::LinkExit,
@@ -798,6 +1027,805 @@ impl Simulation {
                 veh_id,
                 pipe: in_pipe,
             });
+        }
+    }
+}
+
+// ── Signals, tolls and external controllers ───────────────────────────────────
+//
+// See `signals.rs`. Fixed-time plans are expanded into `SignalSwitch` events
+// when the simulation is built; external controllers add switches at run
+// time through `Command`s. A switch to green re-triggers the group's node.
+
+/// What a discharge went through, to update the group and toll state.
+#[derive(Debug, Clone, Copy, Default)]
+struct Controlled {
+    group: Option<usize>,
+    toll: bool,
+    /// Passed as a sneaker, just after its group turned red.
+    sneak: bool,
+}
+
+impl Simulation {
+    /// Register an external controller. It is started when the run begins.
+    pub fn add_controller(&mut self, controller: Box<dyn Controller>) {
+        self.controllers.push(Some(controller));
+        self.signals_active = true;
+    }
+
+    /// Initial group states and the fixed-time switches over the horizon.
+    fn seed_signals(&mut self) {
+        let start = self.scenario.start_time;
+        let end = start + self.scenario.duration;
+        let timelines = crate::signals::expand(&self.scenario.signals, start, end);
+        for (g, timeline) in timelines.into_iter().enumerate() {
+            for (i, (t, aspect)) in timeline.into_iter().enumerate() {
+                if i == 0 {
+                    let grp = &mut self.signals.groups[g];
+                    grp.green = aspect.passes();
+                    grp.capped = aspect == Aspect::Green;
+                    self.scenario.signal_log.push(SwitchRecord {
+                        group: g,
+                        time: t,
+                        green: aspect.passes(),
+                        capped: aspect != Aspect::Off,
+                    });
+                } else {
+                    self.push_switch(g, t, aspect);
+                }
+            }
+        }
+    }
+
+    fn push_switch(&mut self, group: usize, time: f64, aspect: Aspect) {
+        self.events.push(Event {
+            time,
+            event_type: EventType::SignalSwitch,
+            link_id: group,
+            veh_id: NO_VEHICLE,
+            pipe: aspect.code(),
+        });
+    }
+
+    fn handle_signal_switch(&mut self, group: usize, aspect: Aspect) {
+        let Some(g) = self.signals.groups.get_mut(group) else {
+            return;
+        };
+        let green = aspect.passes();
+        let capped = aspect == Aspect::Green;
+        if g.green == green && (!green || g.capped == capped) {
+            return;
+        }
+        // A new green, or a change between plan green and dark signal,
+        // starts a fresh per-green count.
+        g.served = 0;
+        g.capped = capped;
+        let turned = g.green != green;
+        g.green = green;
+        if !green {
+            g.red_since = self.current_time;
+            g.sneak_left = g.sneakers;
+        }
+        let node = g.node;
+        self.scenario.signal_log.push(SwitchRecord {
+            group,
+            time: self.current_time,
+            green,
+            capped: aspect != Aspect::Off,
+        });
+        if !turned {
+            // Plan green ↔ dark signal: the cap may have just been lifted.
+            self.process_node_transfer(node);
+            return;
+        }
+        // Green releases the group's queue; red can release the movements
+        // that give way to it at a priority junction (permitted turns).
+        let junction = self.junctions_active && self.junctions.get(node).is_some_and(Option::is_some);
+        if green || junction {
+            self.process_node_transfer(node);
+        }
+    }
+
+    /// May the head vehicle of (link, pipe) pass now? None = it waits (a
+    /// wake-up is scheduled when the wait has a known end).
+    fn signal_gate(
+        &mut self,
+        link: LinkID,
+        pipe: PipeIdx,
+        veh: VehID,
+        class: usize,
+        next: Option<LinkID>,
+    ) -> Option<Controlled> {
+        let group = self.signals.group_of(link, next);
+        if let Some(g) = group {
+            // Red, or the per-green cap is used up: the next switch to green
+            // re-triggers the node.
+            if !self.signals.open(g) {
+                // A permitted vehicle (one that gives way at this priority
+                // junction) already at the line may still clear just after
+                // the red: the HCM sneakers.
+                let at_line_before_red = {
+                    let l = &self.scenario.links[link];
+                    let v = &self.scenario.vehicles[veh];
+                    let entered = v.link_entry_time(v.current_link_idx).unwrap_or(self.current_time);
+                    entered + l.length / l.speed <= self.signals.groups[g].red_since
+                };
+                let permitted = self.signals.sneak_open(g, self.current_time)
+                    && at_line_before_red
+                    && !self.signals.groups[g].green
+                    && self.junction_yields(link, next);
+                if permitted {
+                    return Some(Controlled { group, toll: false, sneak: true });
+                }
+                return None;
+            }
+        }
+        let mut toll = false;
+        if let Some(service) = self.signals.toll_service(link, pipe, class) {
+            let l = &self.scenario.links[link];
+            let v = &self.scenario.vehicles[veh];
+            // Arrival at the booth = free-flow arrival at the link end.
+            let entered = v.link_entry_time(v.current_link_idx).unwrap_or(self.current_time);
+            let arrival = entered + l.length / l.speed;
+            let last = self.signals.toll_lanes.get(&(link, pipe)).map_or(f64::NEG_INFINITY, |t| t.last_departure);
+            let ready = arrival.max(last) + service;
+            if self.current_time < ready {
+                let p = &mut self.scenario.links[link].pipes[usize::from(pipe)];
+                if p.last_scheduled_exit_ready_time != Some(ready) {
+                    p.last_scheduled_exit_ready_time = Some(ready);
+                    self.events.push(Event {
+                        time: ready,
+                        event_type: EventType::LinkReady,
+                        link_id: link,
+                        veh_id: EXIT_WAKE,
+                        pipe,
+                    });
+                }
+                return None;
+            }
+            toll = true;
+        }
+        Some(Controlled { group, toll, sneak: false })
+    }
+
+    fn signal_passed(&mut self, c: Controlled, link: LinkID, pipe: PipeIdx) {
+        let now = self.current_time;
+        // Earliest time the next vehicle of this pipe may follow.
+        let mut next_ready = f64::NEG_INFINITY;
+        if let Some(g) = c.group {
+            self.signals.groups[g].served += 1;
+            if c.sneak {
+                let grp = &mut self.signals.groups[g];
+                grp.sneak_left = grp.sneak_left.saturating_sub(1);
+            }
+            // A queue released by a green leaves at the saturation flow, the
+            // pipe capacity: enforce the discharge headway armed just before
+            // (1/(C·φ)) even when the upstream-capacity term is off.
+            let p = &mut self.scenario.links[link].pipes[usize::from(pipe)];
+            p.exit_gate_active = true;
+            next_ready = p.next_available_exit_time;
+        }
+        if c.toll {
+            if let Some(lane) = self.signals.toll_lanes.get_mut(&(link, pipe)) {
+                lane.last_departure = now;
+            }
+            // The next vehicle, if already at the booth, is served from now.
+            let class_and_arrival = self.scenario.links[link].pipes[usize::from(pipe)]
+                .waiting_queue
+                .front()
+                .map(|&v| {
+                    let veh = &self.scenario.vehicles[v];
+                    let l = &self.scenario.links[link];
+                    let entered = veh.link_entry_time(veh.current_link_idx).unwrap_or(now);
+                    (veh.class_id, entered + l.length / l.speed)
+                });
+            if let Some((class, arrival)) = class_and_arrival {
+                if let Some(service) = self.signals.toll_service(link, pipe, class) {
+                    next_ready = next_ready.max(arrival.max(now) + service);
+                }
+            }
+        }
+        // The vehicle now at the head needs its own wake-up: nothing else
+        // re-triggers this node when the headway or the service ends.
+        let p = &mut self.scenario.links[link].pipes[usize::from(pipe)];
+        if next_ready > now && !p.waiting_queue.is_empty() && p.last_scheduled_exit_ready_time != Some(next_ready) {
+            p.last_scheduled_exit_ready_time = Some(next_ready);
+            self.events.push(Event {
+                time: next_ready,
+                event_type: EventType::LinkReady,
+                link_id: link,
+                veh_id: EXIT_WAKE,
+                pipe,
+            });
+        }
+    }
+
+    fn start_controllers(&mut self) {
+        if self.controllers_started {
+            return;
+        }
+        self.controllers_started = true;
+        for i in 0..self.controllers.len() {
+            self.call_controller(i, true);
+        }
+    }
+
+    fn call_controller(&mut self, i: usize, first: bool) {
+        let Some(mut c) = self.controllers.get_mut(i).and_then(Option::take) else {
+            return;
+        };
+        let commands = {
+            let view = ControlView {
+                time: self.current_time,
+                scenario: &self.scenario,
+                signals: &self.signals,
+                entered: &self.link_entered,
+                exited: &self.link_exited,
+            };
+            if first {
+                c.start(&view)
+            } else {
+                c.wake(&view)
+            }
+        };
+        self.controllers[i] = Some(c);
+        for cmd in commands {
+            self.apply_command(i, cmd);
+        }
+    }
+
+    fn apply_command(&mut self, controller: usize, cmd: Command) {
+        let now = self.current_time;
+        match cmd {
+            Command::Switch { group, at, green } => {
+                if let Some(g) = self.signals.group_index(&group) {
+                    let aspect = if green { Aspect::Green } else { Aspect::Red };
+                    self.push_switch(g, if at.is_finite() { at.max(now) } else { now }, aspect);
+                }
+            }
+            // Only future wake-ups: a controller asking for "now" again
+            // would loop forever at one instant.
+            Command::WakeAt(t) => {
+                if t.is_finite() && t > now {
+                    self.events.push(Event {
+                        time: t,
+                        event_type: EventType::ControlWake,
+                        link_id: controller,
+                        veh_id: NO_VEHICLE,
+                        pipe: 0,
+                    });
+                }
+            }
+            Command::SetVehiclesPerGreen { group, n } => {
+                if let Some(g) = self.signals.group_index(&group) {
+                    self.signals.groups[g].vehicles_per_green = n.filter(|&n| n > 0);
+                    let node = self.signals.groups[g].node;
+                    self.process_node_transfer(node);
+                }
+            }
+        }
+    }
+}
+
+// ── Priority junctions ────────────────────────────────────────────────────────
+//
+// See `junction.rs`. A junction node serves its heads in priority order
+// (rank 1 first) and repeats after every departure, so a minor head always
+// sees the major vehicles that could go before it.
+
+/// Outcome of the junction gate before any state is changed.
+enum JunctionWait {
+    Go(Option<usize>),
+    Until(f64),
+    Event,
+}
+
+impl Simulation {
+    /// A vehicle just entered `link`: if the link ends at a junction, record
+    /// its arrival there (free-flow, the same expression as its
+    /// `VehicleArrival`).
+    fn junction_expect(&mut self, link: LinkID, veh: VehID) {
+        let l = &self.scenario.links[link];
+        let node = l.node_down;
+        let arrival = self.current_time + l.length / l.speed;
+        let v = &self.scenario.vehicles[veh];
+        let next = v.path.get(v.current_link_idx + 1).copied();
+        if let Some(js) = self.junctions.get_mut(node).and_then(|j| j.as_deref_mut()) {
+            js.expect(link, arrival, next);
+        }
+    }
+
+    /// Does the movement `link → next` give way to another one at its
+    /// node (a permitted movement)?
+    fn junction_yields(&self, link: LinkID, next: Option<LinkID>) -> bool {
+        let node = self.scenario.links[link].node_down;
+        self.junctions.get(node).and_then(|j| j.as_deref()).is_some_and(|js| {
+            js.movement(link, next).is_some_and(|m| !js.moves[m].yields.is_empty())
+        })
+    }
+
+    fn junction_passed(&mut self, link: LinkID, pipe: PipeIdx, movement: Option<usize>) {
+        let node = self.scenario.links[link].node_down;
+        let now = self.current_time;
+        if let Some(js) = self.junctions.get_mut(node).and_then(|j| j.as_deref_mut()) {
+            js.passed(movement, link, pipe, now);
+        }
+    }
+
+    /// Serve the heads of a junction in priority order until none moves.
+    fn process_junction(&mut self, node_id: NodeID) {
+        loop {
+            let mut heads: Vec<(u8, LinkID, PipeIdx)> = Vec::new();
+            {
+                let Some(js) = self.junctions[node_id].as_deref() else { return };
+                for &l in &self.scenario.nodes[node_id].incoming_links {
+                    let Some(link) = self.scenario.links.get(l) else { continue };
+                    for (p, pipe) in link.pipes.iter().enumerate() {
+                        if let Some(&v) = pipe.waiting_queue.front() {
+                            let veh = &self.scenario.vehicles[v];
+                            let next = veh.path.get(veh.current_link_idx + 1).copied();
+                            heads.push((js.rank_of(l, next), l, p as PipeIdx));
+                        }
+                    }
+                }
+            }
+            heads.sort_unstable();
+            let mut progress = false;
+            for (_, l, p) in heads {
+                let before = self.scenario.links[l].pipes[usize::from(p)].waiting_queue.len();
+                self.try_transfer_pipe_head(l, p);
+                if self.scenario.links[l].pipes[usize::from(p)].waiting_queue.len() < before {
+                    progress = true;
+                    break;
+                }
+            }
+            if !progress {
+                break;
+            }
+        }
+    }
+
+    /// May the head of (link, pipe), bound for `next`, go now under the
+    /// priority rules? `Some(movement)` = yes (record it on departure),
+    /// None = it waits (with a wake-up when the wait has a known end).
+    fn junction_gate(&mut self, link: LinkID, pipe: PipeIdx, veh: VehID, next: Option<LinkID>) -> Option<Option<usize>> {
+        let node = self.scenario.links[link].node_down;
+        let now = self.current_time;
+        let wait = {
+            let Some(js) = self.junctions.get(node).and_then(|j| j.as_deref()) else {
+                return Some(None);
+            };
+            let Some(m) = js.movement(link, next) else {
+                return Some(None);
+            };
+            if js.moves[m].yields.is_empty() {
+                JunctionWait::Go(Some(m))
+            } else {
+                // A movement held by a red signal does not count as a conflict.
+                let red = |n: usize| -> bool {
+                    self.signals_active
+                        && self
+                            .signals
+                            .group_of(js.moves[n].from, Some(js.moves[n].to))
+                            .is_some_and(|g| !self.signals.groups[g].green)
+                };
+                let l = &self.scenario.links[link];
+                let v = &self.scenario.vehicles[veh];
+                let arrival = v.link_entry_time(v.current_link_idx).unwrap_or(now) + l.length / l.speed;
+                let t = js.cheap_bound(m, link, pipe, arrival, now);
+                if t > now {
+                    JunctionWait::Until(t)
+                } else if js.approaching_conflict(m, now, &red) {
+                    // The approaching vehicle's arrival re-triggers the node.
+                    JunctionWait::Event
+                } else {
+                    // A better-ranked vehicle already at the line that can go
+                    // soon keeps its priority; one stuck behind a full exit
+                    // does not.
+                    let lag = js.moves[m].lag;
+                    let blocked = js.moves[m].yields.iter().any(|&n| {
+                        if red(n) {
+                            return false;
+                        }
+                        let (from, to) = (js.moves[n].from, js.moves[n].to);
+                        self.scenario.links[from].pipes.iter().any(|p| {
+                            p.waiting_queue.front().is_some_and(|&hv| {
+                                let h = &self.scenario.vehicles[hv];
+                                if h.path.get(h.current_link_idx + 1) != Some(&to) {
+                                    return false;
+                                }
+                                let nn = h.path.get(h.current_link_idx + 2).copied();
+                                match choose_pipe_for_transfer(&self.scenario.links[to], h.class_id, nn, now) {
+                                    PipeChoice::AdmitNow(_) => true,
+                                    PipeChoice::WakeAt(_, tw) => tw < now + lag,
+                                    PipeChoice::Blocked | PipeChoice::NoEligible => false,
+                                }
+                            })
+                        })
+                    });
+                    if blocked {
+                        JunctionWait::Event
+                    } else {
+                        JunctionWait::Go(Some(m))
+                    }
+                }
+            }
+        };
+        match wait {
+            JunctionWait::Go(m) => Some(m),
+            JunctionWait::Event => None,
+            JunctionWait::Until(t) => {
+                let p = &mut self.scenario.links[link].pipes[usize::from(pipe)];
+                if p.last_scheduled_exit_ready_time != Some(t) {
+                    p.last_scheduled_exit_ready_time = Some(t);
+                    self.events.push(Event {
+                        time: t,
+                        event_type: EventType::LinkReady,
+                        link_id: link,
+                        veh_id: EXIT_WAKE,
+                        pipe,
+                    });
+                }
+                None
+            }
+        }
+    }
+}
+
+// ── Roundabouts ───────────────────────────────────────────────────────────────
+//
+// The ring of a roundabout node is solved in `process_roundabout`, which the
+// ordinary triggers reach through `process_node_transfer`: an approach
+// arrival or gate wake (node_down), an exit-link slot release or wake
+// (node_up). Ring points have their own events, `RingArrival` (free-flow
+// arrival at the next point) and `RingReady` (a ring constraint expires).
+// See `roundabout.rs` for the rules.
+
+impl Simulation {
+    fn handle_ring_arrival(&mut self, node_id: NodeID, point: PipeIdx, veh_id: VehID) {
+        let Some(Some(st)) = self.roundabouts.get_mut(node_id) else {
+            return;
+        };
+        st.arrive(usize::from(point), veh_id);
+        self.process_roundabout(node_id);
+    }
+
+    fn handle_ring_ready(&mut self, node_id: NodeID, point: PipeIdx, time: f64) {
+        if let Some(Some(st)) = self.roundabouts.get_mut(node_id) {
+            st.clear_pending(usize::from(point), time);
+        }
+        self.process_roundabout(node_id);
+    }
+
+    /// Wake the roundabout at `t` for point `p` (one event per distinct time).
+    fn schedule_ring_ready(&mut self, st: &mut RoundaboutState, p: usize, t: f64) {
+        if t > self.current_time && st.add_pending(p, t) {
+            self.events.push(Event {
+                time: t,
+                event_type: EventType::RingReady,
+                link_id: st.node,
+                veh_id: NO_VEHICLE,
+                pipe: p as PipeIdx,
+            });
+        }
+    }
+
+    fn schedule_ring_arrival(&mut self, st: &RoundaboutState, from: usize, veh: VehID) {
+        let next = st.geom.next(from);
+        self.events.push(Event {
+            time: self.current_time + st.travel_time(from, next),
+            event_type: EventType::RingArrival,
+            link_id: st.node,
+            veh_id: veh,
+            pipe: next as PipeIdx,
+        });
+    }
+
+    /// Move everything that can move through the roundabout now. The ring
+    /// goes first and is settled before any entry is considered, so that a
+    /// vehicle that can pass a point right away is seen in motion by the
+    /// entries' lag check; then the entries, in the order of circulation.
+    /// Repeat while anything passed (a passage can free storage upstream).
+    fn process_roundabout(&mut self, node_id: NodeID) {
+        let Some(mut st) = self.roundabouts.get_mut(node_id).and_then(Option::take) else {
+            return;
+        };
+        loop {
+            let mut progress = false;
+            for p in 0..st.geom.len() {
+                while self.try_pass_ring(&mut st, p) {
+                    progress = true;
+                }
+            }
+            if progress {
+                continue;
+            }
+            for p in 0..st.geom.len() {
+                let point = st.geom.points[p];
+                if point.kind != PointKind::Merge {
+                    continue;
+                }
+                let Some(in_link) = st.spec.arms[point.arm].in_link else {
+                    continue;
+                };
+                if in_link >= self.scenario.links.len() {
+                    continue;
+                }
+                let n_pipes = self.scenario.links[in_link].pipes.len();
+                for pipe in 0..n_pipes as PipeIdx {
+                    while self.try_enter_ring(&mut st, p, in_link, pipe) {
+                        progress = true;
+                    }
+                }
+            }
+            if !progress {
+                break;
+            }
+        }
+        self.roundabouts[node_id] = Some(st);
+    }
+
+    /// Let the vehicle waiting at the head of ring point `p` pass it, if the
+    /// ring capacity, the storage downstream and (at its exit) the exit link
+    /// allow. Returns true when it passed.
+    fn try_pass_ring(&mut self, st: &mut RoundaboutState, p: usize) -> bool {
+        let now = self.current_time;
+        let Some(&veh) = st.hold[p].front() else {
+            return false;
+        };
+        let Some(&rv) = st.on_ring.get(&veh) else {
+            st.hold[p].pop_front();
+            return true;
+        };
+        // At its exit point a vehicle leaves, unless no pipe of its exit link
+        // accepts it any more (closed by a patch after it entered): then it
+        // goes round again rather than stopping and blocking the ring. The
+        // exit link's state is not part of the ring version, so heads at
+        // their exit point are never served from the cache.
+        let at_exit = p == rv.exit_pt;
+        let leaving = at_exit && {
+            let v = &self.scenario.vehicles[veh];
+            let out = v.path.get(v.current_link_idx + 1).copied();
+            let next_next = v.path.get(v.current_link_idx + 2).copied();
+            out.filter(|&l| l < self.scenario.links.len())
+                .is_some_and(|l| has_eligible_pipe(&self.scenario.links[l], v.class_id, next_next))
+        };
+        if !at_exit && st.ring_head_waits(p, veh, now) {
+            return false;
+        }
+        // The ring headway alone may already say "later": wake up then and
+        // evaluate the storage at that time (same passage time, less work).
+        let cap = st.capacity_bound(p);
+        let bound = if cap > now || leaving {
+            Bound::At(cap)
+        } else if at_exit {
+            Bound::At(cap).and(st.storage_bound_lap(p, Some(veh)))
+        } else {
+            Bound::At(cap).and(st.storage_bound(p, rv.exit_pt, Some(veh)))
+        };
+        let t = match bound {
+            Bound::Blocked => {
+                if !at_exit {
+                    st.remember_ring_bound(p, veh, bound);
+                }
+                return false;
+            }
+            Bound::At(t) => t,
+        };
+        if t > now {
+            if !at_exit {
+                st.remember_ring_bound(p, veh, bound);
+            }
+            self.schedule_ring_ready(st, p, t);
+            return false;
+        }
+
+        if !leaving {
+            st.hold[p].pop_front();
+            st.record(p, veh, now, true);
+            if let Some(r) = st.on_ring.get_mut(&veh) {
+                r.last_pt = p;
+                r.last_time = now;
+                r.in_transit = true;
+            }
+            self.schedule_ring_arrival(st, p, veh);
+            return true;
+        }
+
+        // Exit point: leave by the next link of the path.
+        let (class_id, out, next_next) = {
+            let v = &self.scenario.vehicles[veh];
+            (
+                v.class_id,
+                v.path.get(v.current_link_idx + 1).copied(),
+                v.path.get(v.current_link_idx + 2).copied(),
+            )
+        };
+        let Some(out) = out.filter(|&l| l < self.scenario.links.len()) else {
+            return false;
+        };
+        match choose_pipe_for_transfer(&self.scenario.links[out], class_id, next_next, now) {
+            PipeChoice::AdmitNow(target) => {
+                let travel_time = {
+                    let l = &self.scenario.links[out];
+                    l.length / l.speed
+                };
+                {
+                    let p_next = &mut self.scenario.links[out].pipes[usize::from(target)];
+                    p_next.admit(now);
+                    self.link_entered[out] += 1;
+                    if p_next.capacity > 0.0 {
+                        p_next.next_available_entry_time = now + 1.0 / p_next.capacity;
+                    }
+                }
+                {
+                    let v = &mut self.scenario.vehicles[veh];
+                    v.current_link_idx += 1;
+                    v.state = VehicleState::Moving;
+                    v.pipes_taken.push(target);
+                    v.ring_exits.push((v.current_link_idx, now));
+                }
+                if self.junctions_active {
+                    self.junction_expect(out, veh);
+                }
+                self.events.push(Event {
+                    time: now + travel_time,
+                    event_type: EventType::VehicleArrival,
+                    link_id: out,
+                    veh_id: veh,
+                    pipe: target,
+                });
+                st.hold[p].pop_front();
+                st.on_ring.remove(&veh);
+                st.record(p, veh, now, true);
+                true
+            }
+            PipeChoice::WakeAt(target, t) => {
+                if t > now {
+                    let p_next = &mut self.scenario.links[out].pipes[usize::from(target)];
+                    if p_next.last_scheduled_ready_time != Some(t) {
+                        p_next.last_scheduled_ready_time = Some(t);
+                        self.events.push(Event {
+                            time: t,
+                            event_type: EventType::LinkReady,
+                            link_id: out,
+                            veh_id: NO_VEHICLE,
+                            pipe: target,
+                        });
+                    }
+                }
+                false
+            }
+            // Blocked: a LinkExit on the exit link re-triggers this node.
+            PipeChoice::Blocked | PipeChoice::NoEligible => false,
+        }
+    }
+
+    /// Let the head of approach (in_link, pipe) enter the ring at merge
+    /// point `m`. Returns true when it entered (or ended its trip here).
+    fn try_enter_ring(&mut self, st: &mut RoundaboutState, m: usize, in_link: LinkID, pipe: PipeIdx) -> bool {
+        let now = self.current_time;
+        let Some(&veh) = self.scenario.links[in_link].pipes[usize::from(pipe)]
+            .waiting_queue
+            .front()
+        else {
+            return false;
+        };
+        if veh >= self.scenario.vehicles.len() {
+            self.scenario.links[in_link].pipes[usize::from(pipe)].waiting_queue.pop_front();
+            return true;
+        }
+        // Known to wait for the ring: nothing on the approach side can change
+        // that (the gate is checked again once the ring lets it go).
+        let key = (in_link, pipe);
+        if st.entry_waits(key, veh, now) {
+            return false;
+        }
+
+        // Discharge gate of the approach pipe (friction / upstream capacity),
+        // exactly as at an ordinary node.
+        {
+            let p_in = &mut self.scenario.links[in_link].pipes[usize::from(pipe)];
+            if p_in.exit_gate_active && now < p_in.next_available_exit_time {
+                let t_exit = p_in.next_available_exit_time;
+                if p_in.last_scheduled_exit_ready_time != Some(t_exit) {
+                    p_in.last_scheduled_exit_ready_time = Some(t_exit);
+                    self.events.push(Event {
+                        time: t_exit,
+                        event_type: EventType::LinkReady,
+                        link_id: in_link,
+                        veh_id: EXIT_WAKE,
+                        pipe,
+                    });
+                }
+                return false;
+            }
+        }
+        let eff_phi = friction_phi(&self.scenario.links[in_link], pipe, now);
+
+        let out = {
+            let v = &self.scenario.vehicles[veh];
+            v.path.get(v.current_link_idx + 1).copied()
+        };
+        let exit_pt = match out {
+            Some(out) => match st.exit_point_of(out) {
+                // Its exit accepts nobody of its class right now (closed by
+                // a patch): wait on the approach, as at an ordinary node.
+                // The patch reopening the link re-triggers this node.
+                Some(_)
+                    if {
+                        let v = &self.scenario.vehicles[veh];
+                        let next_next = v.path.get(v.current_link_idx + 2).copied();
+                        !has_eligible_pipe(&self.scenario.links[out], v.class_id, next_next)
+                    } =>
+                {
+                    return false
+                }
+                Some(x) => x,
+                // Not an exit of this roundabout: validation rejects such a
+                // path; the vehicle waits rather than teleporting.
+                None => return false,
+            },
+            None => {
+                // Trip ends on the approach: leave the network here.
+                self.scenario.links[in_link].pipes[usize::from(pipe)].waiting_queue.pop_front();
+                self.arm_discharge_gate(in_link, pipe, eff_phi);
+                let v = &mut self.scenario.vehicles[veh];
+                v.state = VehicleState::Exited;
+                v.node_times.push(now);
+                self.events.push(Event {
+                    time: now,
+                    event_type: EventType::LinkExit,
+                    link_id: in_link,
+                    veh_id: veh,
+                    pipe,
+                });
+                return true;
+            }
+        };
+
+        match st.entry_bound(m, key, exit_pt, now) {
+            b @ Bound::Blocked => {
+                st.remember_entry_bound(key, veh, b);
+                return false;
+            }
+            b @ Bound::At(t) if t > now => {
+                st.remember_entry_bound(key, veh, b);
+                self.schedule_ring_ready(st, m, t);
+                return false;
+            }
+            Bound::At(_) => {}
+        }
+
+        self.scenario.links[in_link].pipes[usize::from(pipe)].waiting_queue.pop_front();
+        self.arm_discharge_gate(in_link, pipe, eff_phi);
+        {
+            let v = &mut self.scenario.vehicles[veh];
+            v.state = VehicleState::Moving;
+            // Passage through the node = leaving the approach.
+            v.node_times.push(now);
+        }
+        self.events.push(Event {
+            time: now,
+            event_type: EventType::LinkExit,
+            link_id: in_link,
+            veh_id: veh,
+            pipe,
+        });
+        st.on_ring.insert(veh, RingVehicle { last_pt: m, last_time: now, exit_pt, in_transit: true });
+        st.record(m, veh, now, false);
+        st.last_entry.insert(key, now);
+        self.schedule_ring_arrival(st, m, veh);
+        true
+    }
+
+    /// Arm the discharge headway of an incoming pipe after a vehicle left it
+    /// (same one-shot friction rule as `try_transfer_pipe_head`).
+    fn arm_discharge_gate(&mut self, link: LinkID, pipe: PipeIdx, eff_phi: f64) {
+        let p_in = &mut self.scenario.links[link].pipes[usize::from(pipe)];
+        if p_in.capacity > 0.0 {
+            p_in.next_available_exit_time = self.current_time + 1.0 / (p_in.capacity * eff_phi);
+            p_in.exit_gate_active = self.upstream_capacity || eff_phi < 1.0;
         }
     }
 }
@@ -837,7 +1865,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 1,
@@ -845,7 +1873,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1],
                     points: (1.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 2,
@@ -853,7 +1881,7 @@ mod tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None, junction: None,
                 },
             ],
             links: vec![
@@ -866,7 +1894,7 @@ mod tests {
             duration: 100_000.0,
             classes: vec!["car".to_string()],
             link_schedule: Vec::new(),
-            assignment_excluded: Vec::new(),
+            assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
         }
     }
 
@@ -1037,7 +2065,7 @@ mod tests {
                     incoming_links: vec![],
                     outgoing_links: vec![0],
                     points: (0.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 1,
@@ -1045,7 +2073,7 @@ mod tests {
                     incoming_links: vec![0],
                     outgoing_links: vec![1, 2],
                     points: (1.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 2,
@@ -1053,7 +2081,7 @@ mod tests {
                     incoming_links: vec![1],
                     outgoing_links: vec![],
                     points: (2.0, 0.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None, junction: None,
                 },
                 Node {
                     id: 3,
@@ -1061,7 +2089,7 @@ mod tests {
                     incoming_links: vec![2],
                     outgoing_links: vec![],
                     points: (2.0, 1.0),
-                    signals: vec![],
+                    signals: vec![], roundabout: None, junction: None,
                 },
             ],
             links: vec![
@@ -1075,7 +2103,7 @@ mod tests {
             duration: 100_000.0,
             classes: vec!["car".to_string(), "bus".to_string()],
             link_schedule: Vec::new(),
-            assignment_excluded: Vec::new(),
+            assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
         }
     }
 

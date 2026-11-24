@@ -160,6 +160,9 @@ pub fn compile_scenario_from_network_value(
 
     let mut nodes = Vec::new();
     let mut links = Vec::new();
+    // Raw `roundabout` objects, resolved once the topology is known.
+    let mut roundabouts: Vec<(usize, serde_json::Value)> = Vec::new();
+    let mut junctions: Vec<(usize, serde_json::Value)> = Vec::new();
 
     for feature in collection.features {
         let props = feature
@@ -184,6 +187,16 @@ pub fn compile_scenario_from_network_value(
                     "Exit" => NodeType::Exit,
                     _ => NodeType::Internal,
                 };
+                if type_str == "Roundabout" {
+                    let raw = props
+                        .get("roundabout")
+                        .cloned()
+                        .ok_or(anyhow!("Roundabout node {} missing its 'roundabout' object", id))?;
+                    roundabouts.push((id, raw));
+                }
+                if let Some(raw) = props.get("junction") {
+                    junctions.push((id, raw.clone()));
+                }
                 let x = coords
                     .first()
                     .copied()
@@ -198,7 +211,7 @@ pub fn compile_scenario_from_network_value(
                     incoming_links: Vec::new(),
                     outgoing_links: Vec::new(),
                     points: (x, y),
-                    signals: Vec::new(),
+                    signals: Vec::new(), roundabout: None, junction: None,
                 });
             }
             Value::LineString(coords) => {
@@ -283,6 +296,16 @@ pub fn compile_scenario_from_network_value(
             nodes[idx].incoming_links.push(link.id);
         }
     }
+    for (id, raw) in roundabouts {
+        let idx = node_idx_map[&id];
+        let spec = crate::roundabout::resolve_spec(&raw, &nodes[idx], &links)?;
+        nodes[idx].roundabout = Some(spec);
+    }
+    for (id, raw) in junctions {
+        let idx = node_idx_map[&id];
+        let spec = crate::junction::resolve_spec(&raw, &nodes[idx], &links)?;
+        nodes[idx].junction = Some(spec);
+    }
 
     // 2. Parse Demand from value
     let demand: Vec<Demand> =
@@ -307,7 +330,7 @@ pub fn compile_scenario_from_network_value(
         duration,
         classes,
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     })
 }
 

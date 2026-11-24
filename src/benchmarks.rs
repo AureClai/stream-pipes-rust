@@ -18,6 +18,11 @@
 //!    is enabled by the first exit and must lag it by exactly L/w.
 //! 5. **merge_throughput** — two entry branches feeding one bottleneck: the
 //!    combined discharge rate equals C (capacity is conserved through the merge).
+//!
+//! The later cases cover pipes, friction and the roundabout node
+//! (`roundabout_*`: ring free flow, entry capacity without conflict, Siegloch
+//! gap acceptance in a regular circulating stream, spillback storage on the
+//! ring).
 
 use crate::model::{FundamentalDiagram, Link, Node, NodeType, PipeSpec, Scenario, Vehicle};
 use crate::simulation::Simulation;
@@ -94,7 +99,7 @@ fn node(id: usize, node_type: NodeType, incoming: Vec<usize>, outgoing: Vec<usiz
         incoming_links: incoming,
         outgoing_links: outgoing,
         points: (id as f64, 0.0),
-        signals: vec![],
+        signals: vec![], roundabout: None, junction: None,
     }
 }
 
@@ -134,7 +139,7 @@ fn corridor(kx0: f64, c1: f64, starts: &[f64]) -> Scenario {
         duration: 1_000_000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 
@@ -177,7 +182,7 @@ fn merge(c_bottleneck: f64, per_branch: usize) -> Scenario {
         duration: 1_000_000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 
@@ -411,7 +416,7 @@ fn bus_lane_scenario() -> Scenario {
         duration: 1_000_000.0,
         classes: vec!["car".to_string(), "bus".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 
@@ -514,7 +519,7 @@ fn shoulder_exit_scenario(phi: f64) -> Scenario {
         duration: 1_000_000.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 
@@ -589,6 +594,332 @@ fn case_friction_throttle() -> Result<BenchmarkResult> {
         "s",
     ))
 }
+// ── Roundabout node ───────────────────────────────────────────────────────────
+
+/// One roundabout node 0 on a 100 m ring at 10 m/s (C = 0.5 veh/s), four arms
+/// at 0/25/50/75 m with 4 m islands — points X0 = 98, M0 = 2, X1 = 23,
+/// M1 = 27, X2 = 48, M2 = 52, X3 = 73, M3 = 77. Arm k: approach link 2k
+/// (100 m at 10 m/s, C = 1 veh/s) and exit link 2k + 1 (100 m at 10 m/s,
+/// capacity `exit_c[k]`). `trips`: (arm in, arm out, start).
+fn roundabout_scenario(
+    critical_gap: f64,
+    follow_up: f64,
+    exit_c: [f64; 4],
+    trips: &[(usize, usize, f64)],
+) -> Scenario {
+    use crate::model::{RoundaboutArm, RoundaboutSpec};
+    let fd = |c: f64, kx: f64| FundamentalDiagram { u: 10.0, w: 5.0, kx, c };
+    let mut nodes = vec![node(0, NodeType::Internal, vec![], vec![])];
+    let mut links = Vec::new();
+    let mut arms = Vec::new();
+    for k in 0..4 {
+        nodes.push(node(1 + 2 * k, NodeType::Entry, vec![], vec![2 * k]));
+        nodes.push(node(2 + 2 * k, NodeType::Exit, vec![2 * k + 1], vec![]));
+        nodes[0].incoming_links.push(2 * k);
+        nodes[0].outgoing_links.push(2 * k + 1);
+        links.push(Link::new(2 * k, 1 + 2 * k, 0, 100.0, 10.0, 1, 1.0, fd(1.0, 0.15), vec![]));
+        links.push(Link::new(2 * k + 1, 0, 2 + 2 * k, 100.0, 10.0, 1, exit_c[k], fd(exit_c[k], 0.15), vec![]));
+        arms.push(RoundaboutArm { in_link: Some(2 * k), out_link: Some(2 * k + 1), position: 25.0 * k as f64 });
+    }
+    nodes[0].roundabout = Some(RoundaboutSpec {
+        circumference: 100.0,
+        lanes: 1,
+        speed: 10.0,
+        fd: fd(0.5, 0.15),
+        critical_gap,
+        follow_up,
+        island: 4.0,
+        arms,
+    });
+    let vehicles = trips
+        .iter()
+        .enumerate()
+        .map(|(i, &(a, b, t))| Vehicle::new(i, 0, vec![2 * a, 2 * b + 1], t, 1 + 2 * a, 2 + 2 * b))
+        .collect();
+    Scenario {
+        nodes,
+        links,
+        vehicles,
+        demand: vec![],
+        start_time: 0.0,
+        duration: 100_000.0,
+        classes: vec!["car".to_string()],
+        link_schedule: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
+    }
+}
+
+fn case_roundabout_free_flow() -> Result<BenchmarkResult> {
+    let s = run(roundabout_scenario(4.0, 2.0, [10.0; 4], &[(0, 2, 0.0)]))?;
+    let v = &s.vehicles[0];
+    let measured = v.node_times.last().copied().unwrap_or(f64::NAN) - v.node_times[0];
+    Ok(result(
+        "roundabout_free_flow",
+        "Roundabout free-flow traversal",
+        "One vehicle through a roundabout node, approach and exit 100 m at 10 m/s, \
+         ring arc M0 → X2 = 46 m at 10 m/s. Theory: 10 + 4.6 + 10 = 24.6 s.",
+        10.0 + 46.0 / 10.0 + 10.0,
+        measured,
+        "s",
+    ))
+}
+
+fn case_roundabout_entry_capacity() -> Result<BenchmarkResult> {
+    let trips: Vec<_> = (0..8).map(|_| (0, 1, 0.0)).collect();
+    let s = run(roundabout_scenario(4.0, 2.5, [10.0; 4], &trips))?;
+    let measured = s
+        .vehicles
+        .iter()
+        .filter_map(|v| v.node_times.get(1).copied())
+        .fold(f64::NEG_INFINITY, f64::max);
+    Ok(result(
+        "roundabout_entry_capacity",
+        "Roundabout entry capacity, no conflict",
+        "8 vehicles queued on an approach, empty ring, t_f = 2.5 s > 1/C_ring = 2 s > \
+         1/C_approach. Theory: entries every t_f from the first arrival at 10 s; \
+         last at 10 + 7·2.5 = 27.5 s.",
+        10.0 + 7.0 * 2.5,
+        measured,
+        "s",
+    ))
+}
+
+fn case_roundabout_siegloch() -> Result<BenchmarkResult> {
+    // Circulating 3 → 1 every H = 12.5 s passes M0 at 12.5 + kH; a saturated
+    // queue on arm 0 (bound for arm 2) faces it.
+    let h = 12.5;
+    let mut trips: Vec<(usize, usize, f64)> = (0..40).map(|k| (3, 1, k as f64 * h)).collect();
+    trips.extend((0..250).map(|_| (0, 2, 0.0)));
+    let mut sim = Simulation::new(roundabout_scenario(6.0, 4.0, [10.0; 4], &trips));
+    sim.run().context("benchmark simulation failed")?;
+    let st = sim.roundabouts[0].as_ref().context("roundabout state")?;
+    let passages = &st.trace[st.geom.merge_point[0]];
+    let circ: Vec<f64> = passages.iter().filter(|p| p.circulating).map(|p| p.time).collect();
+    let gaps = 2..30;
+    let n_gaps = gaps.len();
+    let entered: usize = gaps
+        .map(|k| {
+            passages
+                .iter()
+                .filter(|p| !p.circulating && p.time > circ[k] && p.time < circ[k + 1])
+                .count()
+        })
+        .sum();
+    Ok(result(
+        "roundabout_siegloch",
+        "Roundabout gap acceptance (Siegloch)",
+        "Regular circulating stream every H = 12.5 s in front of a saturated entry, \
+         t_c = 6 s, t_f = 4 s (t_0 = 4 s). Theory: floor((H − t_0)/t_f) + 1 = 3 \
+         entries per gap.",
+        ((h - 4.0) / 4.0f64).floor() + 1.0,
+        entered as f64 / n_gaps as f64,
+        "veh/gap",
+    ))
+}
+
+fn case_roundabout_spillback() -> Result<BenchmarkResult> {
+    // Arm 2's exit discharges 0.1 veh/s; 60 vehicles 0 → 2 fill the ring
+    // between M0 and X2 (46 m · 0.15 = 6.9 → 7 slots) and wait there.
+    let trips: Vec<_> = (0..60).map(|k| (0, 2, k as f64 * 2.0)).collect();
+    let s = run(roundabout_scenario(4.0, 2.0, [10.0, 10.0, 0.1, 10.0], &trips))?;
+    let on_ring: Vec<(f64, f64)> = s
+        .vehicles
+        .iter()
+        .filter_map(|v| Some((*v.node_times.get(1)?, v.ring_exits.first()?.1)))
+        .collect();
+    let max_on_arc = on_ring
+        .iter()
+        .map(|&(t, _)| on_ring.iter().filter(|&&(a, b)| a <= t && b > t).count())
+        .max()
+        .unwrap_or(0);
+    Ok(result(
+        "roundabout_spillback",
+        "Roundabout spillback storage",
+        "A saturated exit (0.1 veh/s) makes its traffic queue on the ring back to \
+         the entry point 46 m upstream. Theory: the arc holds ceil(kx·d) = \
+         ceil(0.15·46) = 7 vehicles at most, and fills up.",
+        7.0,
+        max_on_arc as f64,
+        "veh",
+    ))
+}
+
+// ── Signals and tolls ─────────────────────────────────────────────────────────
+
+/// Entry(0) →[L0: 100 m at 10 m/s, saturation flow 0.5 veh/s]→ node 1
+/// →[L1: free]→ Exit(2); `n` vehicles released at t = 0 (they reach node 1
+/// every 2 s from 10 s).
+fn signal_scenario(n: usize, signals: crate::signals::SignalNetwork) -> Scenario {
+    let fd0 = FundamentalDiagram { u: 10.0, w: 5.0, kx: 0.15, c: 0.5 };
+    let free = FundamentalDiagram { u: 10.0, w: 5.0, kx: 10.0, c: 10.0 };
+    Scenario {
+        nodes: vec![
+            node(0, NodeType::Entry, vec![], vec![0]),
+            node(1, NodeType::Internal, vec![0], vec![1]),
+            node(2, NodeType::Exit, vec![1], vec![]),
+        ],
+        links: vec![
+            Link::new(0, 0, 1, 100.0, 10.0, 1, 0.5, fd0, vec![]),
+            Link::new(1, 1, 2, 100.0, 10.0, 1, 10.0, free, vec![]),
+        ],
+        vehicles: (0..n).map(|i| Vehicle::new(i, 0, vec![0, 1], 0.0, 0, 2)).collect(),
+        demand: vec![],
+        start_time: 0.0,
+        duration: 100_000.0,
+        classes: vec!["car".to_string()],
+        link_schedule: Vec::new(),
+        assignment_excluded: Vec::new(),
+        signals,
+        signal_log: Vec::new(),
+    }
+}
+
+fn one_group(cap: Option<u32>, cycle: f64, green: [f64; 2]) -> crate::signals::SignalNetwork {
+    use crate::signals::{FixedTimePlan, Movement, OffState, SignalGroup, SignalNetwork};
+    SignalNetwork {
+        groups: vec![SignalGroup {
+            id: "g".into(),
+            node: 1,
+            movements: vec![Movement { from: 0, to: None }],
+            vehicles_per_green: cap,
+            off: OffState::Green,
+            sneakers: 0,
+            clearance: 0.0,
+        }],
+        plans: vec![FixedTimePlan {
+            name: None,
+            from: 0.0,
+            until: 100_000.0,
+            cycle,
+            offset: 0.0,
+            groups: vec![],
+            greens: [("g".to_string(), vec![green])].into_iter().collect(),
+        }],
+        tolls: vec![],
+    }
+}
+
+fn node_passages(s: &Scenario) -> Vec<f64> {
+    let mut t: Vec<f64> = s.vehicles.iter().filter_map(|v| v.node_times.get(1).copied()).collect();
+    t.sort_by(f64::total_cmp);
+    t
+}
+
+fn case_signal_saturation() -> Result<BenchmarkResult> {
+    let s = run(signal_scenario(60, one_group(None, 60.0, [0.0, 20.0])))?;
+    let t = node_passages(&s);
+    // Greens [60, 80), [120, 140), [180, 200) are fully saturated.
+    let per_green = t.iter().filter(|&&x| (60.0..200.0).contains(&x)).count() as f64 / 3.0;
+    Ok(result(
+        "signal_saturation",
+        "Signal: discharge per green",
+        "Fixed-time signal, cycle 60 s, effective green 20 s, saturated approach with \
+         saturation flow s = 0.5 veh/s. Theory: ceil(g·s) = 10 vehicles per green.",
+        10.0,
+        per_green,
+        "veh/green",
+    ))
+}
+
+fn case_ramp_meter() -> Result<BenchmarkResult> {
+    let s = run(signal_scenario(20, one_group(Some(1), 6.0, [0.0, 2.0])))?;
+    let t = node_passages(&s);
+    let measured = (t[t.len() - 1] - t[0]) / (t.len() - 1) as f64;
+    Ok(result(
+        "ramp_meter",
+        "Ramp metering: one vehicle per green",
+        "Ramp signal, cycle 6 s, one vehicle per green, saturated ramp. Theory: \
+         one vehicle every 6 s (600 veh/h).",
+        6.0,
+        measured,
+        "s",
+    ))
+}
+
+fn case_toll_service() -> Result<BenchmarkResult> {
+    use crate::signals::{SignalNetwork, Toll};
+    let tolls = SignalNetwork {
+        tolls: vec![Toll { link: 0, pipes: None, service_time: 12.0, by_class: Default::default() }],
+        ..Default::default()
+    };
+    let s = run(signal_scenario(10, tolls))?;
+    let t = node_passages(&s);
+    Ok(result(
+        "toll_service",
+        "Toll lane: deterministic service",
+        "10 vehicles reach a toll lane (service 12 s) every 2 s from 10 s. Theory: \
+         departures at max(arrival, previous) + 12 s; the last at 10 + 10·12 = 130 s.",
+        130.0,
+        t[t.len() - 1],
+        "s",
+    ))
+}
+
+// ── Priority junction ─────────────────────────────────────────────────────────
+
+fn case_junction_siegloch() -> Result<BenchmarkResult> {
+    // T junction at node 0 (1000, 1000): major road west → east, minor
+    // approach from the south turning right (east). Approaches 100 m at
+    // 10 m/s; the minor right turn has t_c = 6 s, t_f = 4 s (t_0 = 4 s).
+    let centre = (1000.0, 1000.0);
+    let (west, east, south) = ((900.0, 1000.0), (1100.0, 1000.0), (1000.0, 900.0));
+    let fd_in = FundamentalDiagram { u: 10.0, w: 5.0, kx: 0.15, c: 0.5 };
+    let free = FundamentalDiagram { u: 10.0, w: 5.0, kx: 10.0, c: 10.0 };
+    let pt = |id, t, p| Node { points: p, ..node(id, t, vec![], vec![]) };
+    let mut nodes = vec![
+        pt(0, NodeType::Internal, centre),
+        pt(1, NodeType::Entry, west),
+        pt(2, NodeType::Exit, east),
+        pt(3, NodeType::Entry, south),
+    ];
+    let links = vec![
+        Link::new(0, 1, 0, 100.0, 10.0, 1, 0.5, fd_in.clone(), vec![west, centre]),
+        Link::new(1, 0, 2, 100.0, 10.0, 1, 10.0, free, vec![centre, east]),
+        Link::new(2, 3, 0, 100.0, 10.0, 1, 0.5, fd_in, vec![south, centre]),
+    ];
+    for l in &links {
+        nodes[l.node_up].outgoing_links.push(l.id);
+        nodes[l.node_down].incoming_links.push(l.id);
+    }
+    let raw = serde_json::json!({
+        "major": [0, 1],
+        "movements": [ { "from": 2, "to": 1, "critical_gap": 6.0, "follow_up": 4.0 } ]
+    });
+    nodes[0].junction = Some(crate::junction::resolve_spec(&raw, &nodes[0], &links)?);
+    let h = 12.5;
+    let mut vehicles: Vec<Vehicle> = (0..40).map(|k| Vehicle::new(k, 0, vec![0, 1], k as f64 * h, 1, 2)).collect();
+    vehicles.extend((0..250).map(|k| Vehicle::new(40 + k, 0, vec![2, 1], 0.0, 3, 2)));
+    let s = run(Scenario {
+        nodes,
+        links,
+        vehicles,
+        demand: vec![],
+        start_time: 0.0,
+        duration: 100_000.0,
+        classes: vec!["car".to_string()],
+        link_schedule: Vec::new(),
+        assignment_excluded: Vec::new(),
+        signals: Default::default(),
+        signal_log: Vec::new(),
+    })?;
+    let major: Vec<f64> = s.vehicles[..40].iter().map(|v| v.node_times[1]).collect();
+    let gaps = 2..30;
+    let n_gaps = gaps.len();
+    let entered: usize = gaps
+        .map(|k| s.vehicles[40..].iter().filter(|v| v.node_times[1] > major[k] && v.node_times[1] < major[k + 1]).count())
+        .sum();
+    Ok(result(
+        "junction_siegloch",
+        "Priority junction: gap acceptance (Siegloch)",
+        "Regular major stream every H = 12.5 s in front of a saturated minor right \
+         turn, t_c = 6 s, t_f = 4 s (t_0 = 4 s). Theory: floor((H − t_0)/t_f) + 1 = 3 \
+         departures per gap.",
+        ((h - 4.0) / 4.0f64).floor() + 1.0,
+        entered as f64 / n_gaps as f64,
+        "veh/gap",
+    ))
+}
+
 // ── Entry point ───────────────────────────────────────────────────────────────
 
 pub fn run_benchmarks() -> Result<Vec<BenchmarkResult>> {
@@ -603,6 +934,14 @@ pub fn run_benchmarks() -> Result<Vec<BenchmarkResult>> {
         case_shoulder_exit_wave()?,
         case_shoulder_exit_through()?,
         case_friction_throttle()?,
+        case_roundabout_free_flow()?,
+        case_roundabout_entry_capacity()?,
+        case_roundabout_siegloch()?,
+        case_roundabout_spillback()?,
+        case_signal_saturation()?,
+        case_ramp_meter()?,
+        case_toll_service()?,
+        case_junction_siegloch()?,
     ])
 }
 

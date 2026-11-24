@@ -1,0 +1,215 @@
+{
+  "groups": [
+    {
+      "id": "centre_boulevard",
+      "movements": [
+        {
+          "from": 10,
+          "to": 14
+        },
+        {
+          "from": 10,
+          "to": 7
+        },
+        {
+          "from": 15,
+          "to": 11
+        },
+        {
+          "from": 15,
+          "to": 16
+        }
+      ],
+      "node": 4
+    },
+    {
+      "id": "centre_left",
+      "movements": [
+        {
+          "from": 10,
+          "to": 16
+        },
+        {
+          "from": 15,
+          "to": 7
+        },
+        {
+          "from": 10,
+          "to": 11
+        },
+        {
+          "from": 15,
+          "to": 14
+        }
+      ],
+      "node": 4
+    },
+    {
+      "id": "centre_avenue",
+      "movements": [
+        {
+          "from": 6
+        },
+        {
+          "from": 17
+        }
+      ],
+      "node": 4
+    },
+    {
+      "id": "east_boulevard",
+      "movements": [
+        {
+          "from": 14
+        },
+        {
+          "from": 49
+        }
+      ],
+      "node": 5
+    },
+    {
+      "id": "east_cross",
+      "movements": [
+        {
+          "from": 8
+        },
+        {
+          "from": 19
+        }
+      ],
+      "node": 5
+    },
+    {
+      "id": "ramp",
+      "movements": [
+        {
+          "from": 50
+        }
+      ],
+      "node": 9,
+      "vehicles_per_green": 1
+    }
+  ],
+  "plans": [
+    {
+      "cycle": 80,
+      "from": 0,
+      "greens": {
+        "centre_avenue": [
+          [
+            48,
+            77
+          ]
+        ],
+        "centre_boulevard": [
+          [
+            0,
+            32
+          ]
+        ],
+        "centre_left": [
+          [
+            35,
+            45
+          ]
+        ]
+      },
+      "name": "first half hour",
+      "offset": 0,
+      "until": 1800
+    },
+    {
+      "cycle": 100,
+      "from": 1800,
+      "greens": {
+        "centre_avenue": [
+          [
+            60,
+            97
+          ]
+        ],
+        "centre_boulevard": [
+          [
+            0,
+            42
+          ]
+        ],
+        "centre_left": [
+          [
+            45,
+            57
+          ]
+        ]
+      },
+      "name": "second half hour",
+      "offset": 0,
+      "until": 3600
+    },
+    {
+      "cycle": 80,
+      "from": 0,
+      "greens": {
+        "east_boulevard": [
+          [
+            0,
+            45
+          ]
+        ],
+        "east_cross": [
+          [
+            48,
+            77
+          ]
+        ]
+      },
+      "name": "east, first half hour",
+      "offset": 22,
+      "until": 1800
+    },
+    {
+      "cycle": 100,
+      "from": 1800,
+      "greens": {
+        "east_boulevard": [
+          [
+            0,
+            58
+          ]
+        ],
+        "east_cross": [
+          [
+            61,
+            97
+          ]
+        ]
+      },
+      "name": "east, second half hour",
+      "offset": 22,
+      "until": 3600
+    },
+    {
+      "cycle": 4,
+      "from": 900,
+      "greens": {
+        "ramp": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "name": "ramp metering",
+      "until": 2700
+    }
+  ],
+  "tolls": [
+    {
+      "by_class": {
+        "bus": 2.0
+      },
+      "link": 40,
+      "service_time": 6.0
+    }
+  ]
+}

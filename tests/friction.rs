@@ -65,7 +65,7 @@ fn spillback_scenario(phi: f64, n_veh: usize) -> Scenario {
                 incoming_links: vec![],
                 outgoing_links: vec![0],
                 points: (0.0, 0.0),
-                signals: vec![],
+                signals: vec![], roundabout: None, junction: None,
             },
             Node {
                 id: 1,
@@ -73,7 +73,7 @@ fn spillback_scenario(phi: f64, n_veh: usize) -> Scenario {
                 incoming_links: vec![0],
                 outgoing_links: vec![1],
                 points: (200.0, 0.0),
-                signals: vec![],
+                signals: vec![], roundabout: None, junction: None,
             },
             Node {
                 id: 2,
@@ -81,7 +81,7 @@ fn spillback_scenario(phi: f64, n_veh: usize) -> Scenario {
                 incoming_links: vec![1],
                 outgoing_links: vec![],
                 points: (300.0, 0.0),
-                signals: vec![],
+                signals: vec![], roundabout: None, junction: None,
             },
         ],
         links: vec![l0, l1],
@@ -91,7 +91,7 @@ fn spillback_scenario(phi: f64, n_veh: usize) -> Scenario {
         duration: 7200.0,
         classes: vec!["car".to_string()],
         link_schedule: Vec::new(),
-        assignment_excluded: Vec::new(),
+        assignment_excluded: Vec::new(), signals: Default::default(), signal_log: Vec::new(),
     }
 }
 

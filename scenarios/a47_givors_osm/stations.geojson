@@ -1,0 +1,455 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7737382,
+     45.5901735
+    ]
+   },
+   "properties": {
+    "avatar_id": 2973,
+    "name": "2224",
+    "road": "Bretelle sortie",
+    "destination": "",
+    "link_id": 47,
+    "offset_m": 0.4
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7692243,
+     45.589788
+    ]
+   },
+   "properties": {
+    "avatar_id": 3068,
+    "name": "MYR69.62",
+    "road": "A0047",
+    "destination": "Vers Lyon",
+    "link_id": 6,
+    "offset_m": 0.2
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7684218,
+     45.5898812
+    ]
+   },
+   "properties": {
+    "avatar_id": 3069,
+    "name": "MYR69.63",
+    "road": "A0047",
+    "destination": "",
+    "link_id": 49,
+    "offset_m": 0.2
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7692196,
+     45.5896091
+    ]
+   },
+   "properties": {
+    "avatar_id": 3070,
+    "name": "MYR69.64",
+    "road": "A0047",
+    "destination": "",
+    "link_id": 15,
+    "offset_m": 0.1
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7687739,
+     45.5898389
+    ]
+   },
+   "properties": {
+    "avatar_id": 3071,
+    "name": "MYR69.61",
+    "road": "A0047",
+    "destination": "Vers St-Etienne",
+    "link_id": 30,
+    "offset_m": 0.2
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7511688,
+     45.5855686
+    ]
+   },
+   "properties": {
+    "avatar_id": 3109,
+    "name": "MYR69.51",
+    "road": "A0047",
+    "destination": "Vers St-Etienne",
+    "link_id": 34,
+    "offset_m": 0.3
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7512182,
+     45.5854963
+    ]
+   },
+   "properties": {
+    "avatar_id": 3110,
+    "name": "MYR69.52",
+    "road": "A0047",
+    "destination": "Vers Lyon",
+    "link_id": 3,
+    "offset_m": 1.0
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7558033,
+     45.5870277
+    ]
+   },
+   "properties": {
+    "avatar_id": 3119,
+    "name": "MYR69.41",
+    "road": "A0047",
+    "destination": "Vers St-Etienne",
+    "link_id": 33,
+    "offset_m": 0.6
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7558424,
+     45.5869545
+    ]
+   },
+   "properties": {
+    "avatar_id": 3120,
+    "name": "MYR69.42",
+    "road": "A0047",
+    "destination": "Vers Lyon",
+    "link_id": 4,
+    "offset_m": 0.4
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.6848613,
+     45.5568939
+    ]
+   },
+   "properties": {
+    "avatar_id": 3229,
+    "name": "MYR69.91",
+    "road": "A0047",
+    "destination": "Vers St-Etienne",
+    "link_id": 44,
+    "offset_m": 1.1
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7346908,
+     45.5793681
+    ]
+   },
+   "properties": {
+    "avatar_id": 3261,
+    "name": "MYR69.71",
+    "road": "A0047",
+    "destination": "Vers St-Etienne",
+    "link_id": 36,
+    "offset_m": 0.1
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7253931,
+     45.5784491
+    ]
+   },
+   "properties": {
+    "avatar_id": 3263,
+    "name": "MYR69.72",
+    "road": "A0047",
+    "destination": "Vers Lyon",
+    "link_id": 1,
+    "offset_m": 0.4
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7276684,
+     45.5792385
+    ]
+   },
+   "properties": {
+    "avatar_id": 3265,
+    "name": "MYR69.75",
+    "road": "69A904725",
+    "destination": "",
+    "link_id": 51,
+    "offset_m": 0.4
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7237189,
+     45.5775948
+    ]
+   },
+   "properties": {
+    "avatar_id": 3266,
+    "name": "MYR69.76",
+    "road": "69A904725",
+    "destination": "",
+    "link_id": 12,
+    "offset_m": 0.1
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7249046,
+     45.5787951
+    ]
+   },
+   "properties": {
+    "avatar_id": 3267,
+    "name": "MYR69.77",
+    "road": "69A904725",
+    "destination": "Vers St-Etienne",
+    "link_id": 52,
+    "offset_m": 0.6
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7264296,
+     45.5784428
+    ]
+   },
+   "properties": {
+    "avatar_id": 3268,
+    "name": "MYR69.78",
+    "road": "69A904725",
+    "destination": "Vers Lyon",
+    "link_id": 13,
+    "offset_m": 0.7
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7429815,
+     45.5828113
+    ]
+   },
+   "properties": {
+    "avatar_id": 3389,
+    "name": "MYR69.32",
+    "road": "A0047",
+    "destination": "Vers Lyon",
+    "link_id": 2,
+    "offset_m": 0.9
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7429426,
+     45.5828857
+    ]
+   },
+   "properties": {
+    "avatar_id": 3390,
+    "name": "MYR69.31",
+    "road": "A0047",
+    "destination": "Vers St-Etienne",
+    "link_id": 35,
+    "offset_m": 0.1
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7835004,
+     45.5879824
+    ]
+   },
+   "properties": {
+    "avatar_id": 3428,
+    "name": "MY469.A2",
+    "road": "A0047",
+    "destination": "Vers A7",
+    "link_id": 9,
+    "offset_m": 0.6
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7849926,
+     45.5879587
+    ]
+   },
+   "properties": {
+    "avatar_id": 3429,
+    "name": "MY469.A1",
+    "road": "A0047",
+    "destination": "Vers St-Etienne",
+    "link_id": 24,
+    "offset_m": 0.5
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7714577,
+     45.5896287
+    ]
+   },
+   "properties": {
+    "avatar_id": 3446,
+    "name": "MYR69.A4",
+    "road": "69A904710",
+    "destination": "",
+    "link_id": 16,
+    "offset_m": 0.7
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7724097,
+     45.5899654
+    ]
+   },
+   "properties": {
+    "avatar_id": 3447,
+    "name": "MYR69.A2",
+    "road": "A0047",
+    "destination": "Vers Lyon",
+    "link_id": 7,
+    "offset_m": 1.5
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7730927,
+     45.5903555
+    ]
+   },
+   "properties": {
+    "avatar_id": 3449,
+    "name": "MYR69.A5",
+    "road": "69A904710",
+    "destination": "",
+    "link_id": 48,
+    "offset_m": 0.9
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7736282,
+     45.5902126
+    ]
+   },
+   "properties": {
+    "avatar_id": 3450,
+    "name": "MYR69.A3",
+    "road": "69A904710",
+    "destination": "",
+    "link_id": 47,
+    "offset_m": 1.1
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     4.7733553,
+     45.5900785
+    ]
+   },
+   "properties": {
+    "avatar_id": 3451,
+    "name": "MYR69.A1",
+    "road": "A0047",
+    "destination": "Vers St-Etienne",
+    "link_id": 28,
+    "offset_m": 0.1
+   }
+  }
+ ]
+}
