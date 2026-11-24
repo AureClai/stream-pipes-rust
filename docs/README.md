@@ -9,6 +9,8 @@ Welcome to the `pipe-stream` (`stream-cli`) user documentation.
 3. [Demand & Routing](03-demand-and-routing.md) — OD demand with built-in assignment (`--assignment`) vs. supplying pre-routed vehicles from an external assignment model.
 4. [Dynamic Events](04-dynamic-events.md) — Mid-run parameter changes (capacity drops, lane closures, incidents) via `link_schedule` and patches.
 5. [Results & Verification](05-results-and-verification.md) — Interpreting `stream-cli run -o` outputs and auditing runs with `stream-cli verify`.
+6. [Traffic Signals & Tolls](06-signals.md) — Signal groups, fixed-time plans, ramp metering, and tolls.
+7. [Roundabouts](07-roundabouts.md) — Single-node roundabout modeling (LWR ring + Siegloch / HCM 6 gap acceptance).
 
 ## Reference
 

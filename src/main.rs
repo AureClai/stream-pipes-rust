@@ -6,7 +6,6 @@ use stream_core_rust::simulation::{MergeRule, Simulation};
 use stream_core_rust::validation::Validate;
 use stream_core_rust::assignment::assign_demand;
 use stream_core_rust::verification::{verify_scenario, CheckStatus};
-use std::collections::HashMap;
 use std::path::PathBuf;
 use std::time::Instant;
 use anyhow::Result;
@@ -128,7 +127,7 @@ fn main() -> Result<()> {
             
             println!("Build complete in {:.2?}.", start.elapsed());
         },
-        Commands::Run { input, output, assignment, merge } => {
+        Commands::Run { input, output, assignment, merge, bin_size } => {
             let merge = merge_rule(&merge)?;
             println!("Loading scenario from {:?}...", input);
             let start = Instant::now();
@@ -291,16 +290,5 @@ fn run_verify(
         println!("Verification passed.");
     }
     Ok(())
-}
-
-#[derive(Serialize)]
-struct RunOutput {
-    events_processed: usize,
-    duration_ms: u128,
-    vehicles_count: usize,
-    status: String,
-    link_stats: HashMap<LinkID, LinkStats>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pipe_stats: Option<HashMap<LinkID, Vec<PipeStats>>>,
 }
 
