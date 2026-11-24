@@ -1,10 +1,14 @@
 use clap::{Parser, Subcommand};
+use serde::Serialize;
+use stream_core_rust::analysis::{compute_link_stats, compute_pipe_stats, LinkStats, PipeStats};
 use stream_core_rust::benchmarks::run_benchmarks;
 use stream_core_rust::io::{load_scenario, compile_scenario};
+use stream_core_rust::model::LinkID;
 use stream_core_rust::simulation::Simulation;
 use stream_core_rust::validation::Validate;
 use stream_core_rust::assignment::assign_demand;
 use stream_core_rust::verification::{verify_scenario, CheckStatus};
+use std::collections::HashMap;
 use std::path::PathBuf;
 use std::time::Instant;
 use anyhow::Result;
@@ -31,6 +35,10 @@ enum Commands {
         /// Run assignment (generate & route vehicles from demand) before simulation
         #[arg(short, long)]
         assignment: bool,
+
+        /// Aggregation bin size in seconds for link/pipe statistics
+        #[arg(long, default_value_t = 60.0)]
+        bin_size: f64,
     },
     /// Compile a scenario from source files (GeoJSON + JSON) into a single artifact
     Build {
@@ -103,7 +111,7 @@ fn main() -> Result<()> {
             
             println!("Build complete in {:.2?}.", start.elapsed());
         },
-        Commands::Run { input, output, assignment } => {
+        Commands::Run { input, output, assignment, bin_size } => {
             println!("Loading scenario from {:?}...", input);
             let start = Instant::now();
             let mut scenario = load_scenario(&input)?;
@@ -130,11 +138,17 @@ fn main() -> Result<()> {
             println!("Running Simulation...");
             let sim_start = Instant::now();
             let events_processed = sim.run()?;
+            let duration_ms = sim_start.elapsed().as_millis();
             println!("Simulation complete in {:.2?}. Processed {} events.", sim_start.elapsed(), events_processed);
 
             if let Some(output_path) = output {
                 println!("Writing results to {:?}...", output_path);
-                // TODO: Result export
+                let results = build_run_output(&sim.scenario, events_processed, duration_ms, bin_size);
+                use std::io::Write;
+                let mut file = std::io::BufWriter::new(std::fs::File::create(&output_path)?);
+                serde_json::to_writer_pretty(&mut file, &results)?;
+                file.flush()?;
+                println!("Results written to {:?}.", output_path);
             }
         }
         Commands::Verify { input, assignment, bin_size, benchmarks, strict, output } => {
@@ -258,3 +272,35 @@ fn run_verify(
     }
     Ok(())
 }
+
+#[derive(Serialize)]
+struct RunOutput {
+    events_processed: usize,
+    duration_ms: u128,
+    vehicles_count: usize,
+    status: String,
+    link_stats: HashMap<LinkID, LinkStats>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pipe_stats: Option<HashMap<LinkID, Vec<PipeStats>>>,
+}
+
+fn build_run_output(
+    scenario: &stream_core_rust::model::Scenario,
+    events_processed: usize,
+    duration_ms: u128,
+    bin_size: f64,
+) -> RunOutput {
+    let link_stats = compute_link_stats(scenario, bin_size);
+    let has_pipes = scenario.links.iter().any(|l| l.pipes.len() > 1);
+    let pipe_stats = has_pipes.then(|| compute_pipe_stats(scenario, bin_size));
+
+    RunOutput {
+        events_processed,
+        duration_ms,
+        vehicles_count: scenario.vehicles.len(),
+        status: "success".to_string(),
+        link_stats,
+        pipe_stats,
+    }
+}
+

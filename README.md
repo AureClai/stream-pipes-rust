@@ -90,8 +90,10 @@ never fully served before the end of the simulation.
 | Command | Purpose |
 |---|---|
 | `stream-cli build --network N.geojson --demand D.json --config C.json -o scenario.json` | Compile source files into one validated scenario |
-| `stream-cli run -i scenario.json [--assignment]` | Simulate (with `--assignment`, generate and route vehicles from demand first) |
+| `stream-cli run -i scenario.json [--assignment] [--bin-size 60] [-o results.json]` | Simulate (with `--assignment`, generate and route vehicles from demand first) |
 | `stream-cli verify -i scenario.json [--assignment] [--bin-size 300] [--benchmarks] [-o report.json]` | Simulate, then run the verification apparatus |
+
+See [docs/](docs/README.md) for the full user guide and [JSON format reference](docs/JSON_FORMAT.md).
 
 ### Using it as a library
 
