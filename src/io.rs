@@ -1,11 +1,126 @@
 use crate::model::{
-    Demand, FundamentalDiagram, Link, Node, NodeType, PipeIdx, PipeSpec, Scenario, ALL_CLASSES,
+    Demand, FundamentalDiagram, Link, LinkID, Node, NodeID, NodeType, PipeIdx, PipeSpec, Scenario,
+    ALL_CLASSES,
 };
-use anyhow::{anyhow, Context, Result};
+use anyhow::{anyhow, bail, Context, Result};
 use geojson::{GeoJson, Value};
+use serde::Deserialize;
+use std::collections::HashMap;
 use std::fs::File;
 use std::io::BufReader;
 use std::path::Path;
+
+#[derive(Debug, Clone, Deserialize)]
+struct RawDemand {
+    period_start: f64,
+    period_end: f64,
+    #[serde(default)]
+    origin: Option<NodeID>,
+    #[serde(default)]
+    destination: Option<NodeID>,
+    #[serde(default)]
+    flow: Option<f64>,
+    #[serde(default)]
+    count: Option<f64>,
+    #[serde(default)]
+    class: Option<String>,
+    #[serde(default)]
+    path: Option<Vec<LinkID>>,
+}
+
+/// Parse `demand.json` entries into [`Demand`], inferring `origin`/`destination`
+/// from `path` endpoints when omitted and deriving `count` from `flow` (or vice
+/// versa) over `[period_start, period_end)`.
+pub(crate) fn parse_demand_value(
+    demand_val: serde_json::Value,
+    link_endpoints: &HashMap<LinkID, (NodeID, NodeID)>,
+) -> Result<Vec<Demand>> {
+    let raw_entries: Vec<RawDemand> =
+        serde_json::from_value(demand_val).context("Failed to parse demand JSON")?;
+    let mut demand = Vec::with_capacity(raw_entries.len());
+    for (idx, raw) in raw_entries.into_iter().enumerate() {
+        let (origin, destination) = if let Some(ref path) = raw.path {
+            let Some(&first) = path.first() else {
+                bail!("Demand entry {}: explicit 'path' must not be empty", idx);
+            };
+            let last = *path.last().expect("non-empty path has a last link");
+            let origin = match raw.origin {
+                Some(o) => o,
+                None => link_endpoints
+                    .get(&first)
+                    .map(|&(u, _)| u)
+                    .ok_or_else(|| {
+                        anyhow!(
+                            "Demand entry {}: cannot infer 'origin' because first link {} does not exist",
+                            idx,
+                            first
+                        )
+                    })?,
+            };
+            let destination = match raw.destination {
+                Some(d) => d,
+                None => link_endpoints
+                    .get(&last)
+                    .map(|&(_, v)| v)
+                    .ok_or_else(|| {
+                        anyhow!(
+                            "Demand entry {}: cannot infer 'destination' because last link {} does not exist",
+                            idx,
+                            last
+                        )
+                    })?,
+            };
+            (origin, destination)
+        } else {
+            let origin = raw.origin.ok_or_else(|| {
+                anyhow!(
+                    "Demand entry {}: missing required field 'origin' (or provide 'path')",
+                    idx
+                )
+            })?;
+            let destination = raw.destination.ok_or_else(|| {
+                anyhow!(
+                    "Demand entry {}: missing required field 'destination' (or provide 'path')",
+                    idx
+                )
+            })?;
+            (origin, destination)
+        };
+
+        let dur = raw.period_end - raw.period_start;
+        let (flow, count) = match (raw.flow, raw.count) {
+            (Some(f), Some(c)) => (f, c),
+            (Some(f), None) => {
+                let c = if dur > 0.0 { (f * dur) / 3600.0 } else { 0.0 };
+                (f, c)
+            }
+            (None, Some(c)) => {
+                let f = if dur > 0.0 { (c * 3600.0) / dur } else { 0.0 };
+                (f, c)
+            }
+            (None, None) => {
+                bail!(
+                    "Demand entry {} ({}→{}): must specify 'count' or 'flow'",
+                    idx,
+                    origin,
+                    destination
+                );
+            }
+        };
+
+        demand.push(Demand {
+            period_start: raw.period_start,
+            period_end: raw.period_end,
+            origin,
+            destination,
+            flow,
+            count,
+            class: raw.class,
+            path: raw.path,
+        });
+    }
+    Ok(demand)
+}
 
 /// Resolve a list of class names to a permission bitmask against the
 /// scenario's class list.
@@ -308,8 +423,11 @@ pub fn compile_scenario_from_network_value(
     }
 
     // 2. Parse Demand from value
-    let demand: Vec<Demand> =
-        serde_json::from_value(demand_val).context("Failed to parse demand JSON")?;
+    let link_endpoints: HashMap<LinkID, (NodeID, NodeID)> = links
+        .iter()
+        .map(|l| (l.id, (l.node_up, l.node_down)))
+        .collect();
+    let demand = parse_demand_value(demand_val, &link_endpoints)?;
 
     // 3. Parse Config from value
     let start_time = config_val
@@ -509,10 +627,12 @@ mod pipe_io_tests {
         }}"#,
             pipes = pipes_prop
         );
+        static COUNTER: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(0);
+        let seq = COUNTER.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
         let path = std::env::temp_dir().join(format!(
             "stream_pipes_io_test_{}_{}.geojson",
             std::process::id(),
-            pipes_prop.len()
+            seq
         ));
         std::fs::write(&path, json).unwrap();
         path
@@ -563,5 +683,42 @@ mod pipe_io_tests {
         let s = compile_scenario_from_values(&path, demand, config_with_classes()).unwrap();
         std::fs::remove_file(&path).ok();
         assert_eq!(s.demand[0].class.as_deref(), Some("bus"));
+        assert!(s.demand[0].path.is_none());
+    }
+
+    #[test]
+    fn route_based_demand_infers_od_and_count_from_flow() {
+        let path = write_temp_network(r#""pipes": [{"lanes": 3}]"#);
+        let demand = serde_json::json!([
+            {"period_start": 0, "period_end": 600, "flow": 120.0, "path": [0]}
+        ]);
+        let s = compile_scenario_from_values(&path, demand, config_with_classes()).unwrap();
+        std::fs::remove_file(&path).ok();
+        assert_eq!(s.demand.len(), 1);
+        assert_eq!(s.demand[0].origin, 0);
+        assert_eq!(s.demand[0].destination, 1);
+        assert!((s.demand[0].flow - 120.0).abs() < 1e-9);
+        assert!((s.demand[0].count - 20.0).abs() < 1e-9);
+        assert_eq!(s.demand[0].path.as_deref(), Some(&[0][..]));
+    }
+
+    #[test]
+    fn route_based_demand_rejects_empty_path_or_missing_od_without_path() {
+        let path = write_temp_network(r#""pipes": [{"lanes": 3}]"#);
+        let empty_path = serde_json::json!([
+            {"period_start": 0, "period_end": 60, "flow": 60.0, "path": []}
+        ]);
+        assert!(compile_scenario_from_values(&path, empty_path, config_with_classes()).is_err());
+
+        let no_origin = serde_json::json!([
+            {"period_start": 0, "period_end": 60, "destination": 1, "flow": 60.0}
+        ]);
+        assert!(compile_scenario_from_values(&path, no_origin, config_with_classes()).is_err());
+
+        let no_qty = serde_json::json!([
+            {"period_start": 0, "period_end": 60, "path": [0]}
+        ]);
+        assert!(compile_scenario_from_values(&path, no_qty, config_with_classes()).is_err());
+        std::fs::remove_file(&path).ok();
     }
 }

@@ -65,7 +65,7 @@ Planned milestones toward operational traffic studies and 1.0:
 
 ### CLI & Study Workflows
 - [x] **CVC & lightweight exports** — pre-computed entry/exit cumulative volume curves (CVC) per link and summary vehicle KPIs in `stream-cli run -o` (plus `--no-vehicles` for large networks)
-- [ ] **Route-based demand** — optional `path` field in `demand.json` to inject `(route, flow)` pairs from external assignment tools
+- [x] **Route-based demand** — optional `path` field in `demand.json` to inject `(route, flow)` pairs from external assignment tools
 - [ ] **CLI patches (`--patches`)** — expose the patch pipeline (`SetLink`, `ClosePipe`, `CloseLink`, `ScaleDemand`) directly on `stream-cli build` and `stream-cli run`
 - [ ] **Calibration & KPIs** — turning-movement counts, queue-length summaries, OD travel-time matrices, and GEH/RMSE checks against loop-detector observations
 

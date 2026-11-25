@@ -313,9 +313,6 @@ pub fn apply_patches(
         .and_then(|v| serde_json::from_value(v.clone()).ok())
         .unwrap_or_else(|| vec!["car".to_string()]);
 
-    let mut demand: Vec<Demand> =
-        serde_json::from_value(demand).context("Failed to parse demand JSON")?;
-
     // ── Index the base network ──
     let features = network
         .get_mut("features")
@@ -323,6 +320,7 @@ pub fn apply_patches(
         .ok_or_else(|| anyhow!("Network must be a GeoJSON FeatureCollection"))?;
 
     let mut base_links: HashMap<LinkID, BaseLink> = HashMap::new();
+    let mut link_endpoints: HashMap<LinkID, (NodeID, NodeID)> = HashMap::new();
     let mut node_ids: Vec<NodeID> = Vec::new();
     for feature in features.iter() {
         let geom_type = feature
@@ -349,11 +347,34 @@ pub fn apply_patches(
                     .and_then(|v| v.as_u64())
                     .ok_or_else(|| anyhow!("Link feature missing id"))?
                     as usize;
+                if let (Some(u), Some(v)) = (
+                    props.get("node_up").and_then(|x| x.as_u64()),
+                    props.get("node_down").and_then(|x| x.as_u64()),
+                ) {
+                    link_endpoints.insert(id, (u as usize, v as usize));
+                }
                 base_links.insert(id, parse_base_link(&props, id, &classes)?);
             }
             _ => {}
         }
     }
+    for p in patches {
+        for op in &p.ops {
+            if let PatchOp::AddLink { feature, .. } = op {
+                if let Some(props) = feature.get("properties") {
+                    if let (Some(id), Some(u), Some(v)) = (
+                        props.get("id").and_then(|x| x.as_u64()),
+                        props.get("node_up").and_then(|x| x.as_u64()),
+                        props.get("node_down").and_then(|x| x.as_u64()),
+                    ) {
+                        link_endpoints.insert(id as usize, (u as usize, v as usize));
+                    }
+                }
+            }
+        }
+    }
+
+    let mut demand = crate::io::parse_demand_value(demand, &link_endpoints)?;
 
     // ── Pass 1: compile-time ops (topology + demand), in (patch, op) order ──
     // Windowed AddLink activations are collected here and joined with pass 2.
@@ -894,6 +915,28 @@ mod tests {
         let d: Vec<Demand> = serde_json::from_value(out.demand).unwrap();
         assert!((d[0].flow - 540.0).abs() < 1e-9);
         assert!((d[0].count - 90.0).abs() < 1e-9);
+    }
+
+    #[test]
+    fn scale_demand_works_on_route_based_demand() {
+        let route_demand = serde_json::json!([
+            {"period_start": 0.0, "period_end": 600.0, "flow": 360.0, "path": [0]}
+        ]);
+        let p = patch(vec![PatchOp::ScaleDemand {
+            factor: 0.5,
+            origin: Some(0),
+            destination: Some(1),
+            class: None,
+            from: None,
+            until: None,
+        }]);
+        let out = apply_patches(network_json(), route_demand, &config_json(), &[p]).unwrap();
+        let d: Vec<Demand> = serde_json::from_value(out.demand).unwrap();
+        assert_eq!(d[0].origin, 0);
+        assert_eq!(d[0].destination, 1);
+        assert_eq!(d[0].path.as_deref(), Some(&[0][..]));
+        assert!((d[0].flow - 180.0).abs() < 1e-9);
+        assert!((d[0].count - 30.0).abs() < 1e-9);
     }
 
     #[test]

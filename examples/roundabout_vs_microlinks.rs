@@ -94,6 +94,7 @@ fn demand(q: f64, entry: impl Fn(usize) -> usize, exit: impl Fn(usize) -> usize)
                 flow: q / (ARMS - 1) as f64,
                 count,
                 class: None,
+                path: None,
             });
         }
     }

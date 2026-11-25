@@ -52,11 +52,12 @@ JSON array of `Demand` objects:
 |---|---|---|---|
 | `period_start` | `number` (`f64`) | required | Start of demand period (seconds). |
 | `period_end` | `number` (`f64`) | required | End of demand period (seconds). |
-| `origin` | `integer` (`usize`) | required | Origin `NodeID`. |
-| `destination` | `integer` (`usize`) | required | Destination `NodeID`. |
-| `flow` | `number` (`f64`) | required | Flow rate (veh/h). |
-| `count` | `number` (`f64`) | required | Number of vehicles to generate in `[period_start, period_end]`. |
+| `origin` | `integer` (`usize`) | required unless `path` is set | Origin `NodeID`. When omitted with `path`, inferred from `path[0].node_up`. |
+| `destination` | `integer` (`usize`) | required unless `path` is set | Destination `NodeID`. When omitted with `path`, inferred from `path[last].node_down`. |
+| `flow` | `number` (`f64`) | derived if `count` is set | Flow rate (veh/h). Derived as `count * 3600 / duration` when omitted. |
+| `count` | `number` (`f64`) | derived if `flow` is set | Number of vehicles to generate in `[period_start, period_end)`. Derived as `flow * duration / 3600` when omitted. |
 | `class` | `string \| null` | `null` | Vehicle class name (must exist in `config.json` `classes`). `null` or omitted uses class index `0`. |
+| `path` | `integer[] \| null` | `null` | Optional explicit route (ordered list of `LinkID`s). When provided, assignment injects vehicles along this exact route instead of computing shortest paths. |
 
 Example:
 ```json
@@ -68,6 +69,12 @@ Example:
     "destination": 2,
     "flow": 1000.0,
     "count": 1000.0
+  },
+  {
+    "period_start": 0.0,
+    "period_end": 3600.0,
+    "flow": 400.0,
+    "path": [0, 3, 2]
   }
 ]
 ```
