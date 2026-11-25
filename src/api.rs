@@ -12,10 +12,13 @@
 //! Inputs use the same schema as the files of a scenario folder
 //! (`network.geojson`, `demand.json`, `config.json`, `patches/*.json`).
 
-use crate::analysis::{compute_link_stats, compute_pipe_stats, LinkStats, PipeStats};
+use crate::analysis::{
+    compute_link_cvcs, compute_link_stats, compute_pipe_stats, compute_vehicle_kpis, LinkCvc,
+    LinkStats, PipeStats, VehicleKpis,
+};
 use crate::assignment::{assign_demand, NetworkGraph};
 use crate::io::compile_with_patches;
-use crate::model::{LinkID, NodeID, NodeType, PipeIdx, Scenario, VehicleState};
+use crate::model::{LinkID, NodeID, NodeType, PipeIdx, Scenario};
 use crate::patch::Patch;
 use crate::simulation::{MergeRule, Simulation};
 use crate::validation::Validate;
@@ -254,9 +257,15 @@ pub struct RunOutput {
     pub vehicles_total: usize,
     /// Vehicles that reached their destination within the horizon.
     pub vehicles_arrived: usize,
+    /// Pre-computed aggregate vehicle KPIs across all vehicles.
+    #[serde(default)]
+    pub vehicle_kpis: VehicleKpis,
     pub warnings: Vec<String>,
     /// Sorted by link id.
     pub link_stats: Vec<LinkStats>,
+    /// Pre-computed entry/exit cumulative volume curves per link, sorted by link id.
+    #[serde(default)]
+    pub link_cvcs: Vec<LinkCvc>,
     /// Per-pipe series of multi-pipe links only, sorted by (link, pipe).
     pub pipe_stats: Vec<PipeStats>,
     /// Empty unless `RunOptions::keep_vehicles`.
@@ -308,6 +317,10 @@ pub fn collect(
         compute_link_stats(&scenario, options.bin_size).into_values().collect();
     link_stats.sort_by_key(|s| s.link_id);
 
+    let mut link_cvcs: Vec<LinkCvc> =
+        compute_link_cvcs(&scenario, options.bin_size).into_values().collect();
+    link_cvcs.sort_by_key(|c| c.link_id);
+
     let multi: std::collections::HashSet<LinkID> =
         scenario.links.iter().filter(|l| l.pipes.len() > 1).map(|l| l.id).collect();
     let mut pipe_stats: Vec<PipeStats> = if multi.is_empty() {
@@ -321,8 +334,8 @@ pub fn collect(
     };
     pipe_stats.sort_by_key(|s| (s.link_id, s.pipe));
 
-    let vehicles_arrived =
-        scenario.vehicles.iter().filter(|v| v.state == VehicleState::Exited).count();
+    let vehicle_kpis = compute_vehicle_kpis(&scenario);
+    let vehicles_arrived = vehicle_kpis.arrived;
     let vehicles = if options.keep_vehicles {
         scenario
             .vehicles
@@ -353,8 +366,10 @@ pub fn collect(
         events_processed,
         vehicles_total: scenario.vehicles.len(),
         vehicles_arrived,
+        vehicle_kpis,
         warnings,
         link_stats,
+        link_cvcs,
         pipe_stats,
         vehicles,
     }
@@ -403,6 +418,11 @@ mod tests {
         }
         assert!(out.vehicles_arrived > 0);
         assert_eq!(out.link_stats.len(), sim.scenario.links.len());
+        assert_eq!(out.link_cvcs.len(), sim.scenario.links.len());
+        assert_eq!(out.vehicle_kpis.total, sim.scenario.vehicles.len());
+        assert_eq!(out.vehicle_kpis.arrived, out.vehicles_arrived);
+        assert!(out.vehicle_kpis.total_vkt_veh_km > 0.0);
+        assert!(out.vehicle_kpis.mean_speed_kmh > 0.0);
     }
 
     #[test]
@@ -416,9 +436,14 @@ mod tests {
     fn output_round_trips_through_json() {
         let inputs = ScenarioInputs::from_dir(dir("diverge"), &[]).unwrap();
         let out = run(&inputs, &RunOptions::default(), |_| true).unwrap();
+        assert!(out.vehicles.is_empty(), "keep_vehicles defaults to false");
+        assert_eq!(out.link_cvcs.len(), out.link_stats.len());
+        assert_eq!(out.vehicle_kpis.total, out.vehicles_total);
         let text = serde_json::to_string(&out).unwrap();
         let back: RunOutput = serde_json::from_str(&text).unwrap();
         assert_eq!(back.events_processed, out.events_processed);
         assert_eq!(back.link_stats.len(), out.link_stats.len());
+        assert_eq!(back.link_cvcs, out.link_cvcs);
+        assert_eq!(back.vehicle_kpis, out.vehicle_kpis);
     }
 }

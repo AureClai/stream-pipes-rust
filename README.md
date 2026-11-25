@@ -38,14 +38,14 @@ with its own capacity, storage and backward wave.
 
 ## Highlights
 
-| | |
-|---|---|
-| **Exact** | Discrete-event solution of LWR with a triangular fundamental diagram (Newell's simplified theory). No time step, no RNG: two runs are bit-identical. |
-| **Verified** | Eighteen closed-form benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, fractional-slot wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle; four roundabout cases: free flow, entry capacity, Siegloch gap acceptance, spillback on the ring; signal discharge per green, ramp-metering rate, toll service; and Siegloch gap acceptance at a priority junction) pass at machine precision. |
-| **Self-auditing** | `stream-cli verify` checks every link, pipe and node of any scenario (free-flow traversal, capacity, storage bound, backward wave, FD adherence, conservation, FIFO, demand served; roundabout rings, gap acceptance at priority junctions, no passage on red) and reports **pass / warn / fail / not-exercised**. |
-| **Validated** | Three instrumented corridors in two countries: 1 280 of 1 312 flow windows below GEH 5. NGSIM trajectories confirm the lane-commitment assumption. |
-| **Scenario variants** | *Patches* (lane closures, capacity drops, lane add/shrink, demand scaling, new links) compose a variant from a base network, with time windows. |
-| **Fast** | 380 to 3,400 times faster than the Python reference implementation of Stream, with identical trajectories where the node rules match ([benchmark](bench/RESULTS.md)); 4 to 430 times faster than SUMO meso and micro ([benchmark](bench/SUMO.md)). |
+|                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Exact**             | Discrete-event solution of LWR with a triangular fundamental diagram (Newell's simplified theory). No time step, no RNG: two runs are bit-identical.                                                                                                                                                                                                                                                                                                  |
+| **Verified**          | Eighteen closed-form benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, fractional-slot wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle; four roundabout cases: free flow, entry capacity, Siegloch gap acceptance, spillback on the ring; signal discharge per green, ramp-metering rate, toll service; and Siegloch gap acceptance at a priority junction) pass at machine precision. |
+| **Self-auditing**     | `stream-cli verify` checks every link, pipe and node of any scenario (free-flow traversal, capacity, storage bound, backward wave, FD adherence, conservation, FIFO, demand served; roundabout rings, gap acceptance at priority junctions, no passage on red) and reports **pass / warn / fail / not-exercised**.                                                                                                                                    |
+| **Validated**         | Three instrumented corridors in two countries: 1 280 of 1 312 flow windows below GEH 5. NGSIM trajectories confirm the lane-commitment assumption.                                                                                                                                                                                                                                                                                                    |
+| **Scenario variants** | _Patches_ (lane closures, capacity drops, lane add/shrink, demand scaling, new links) compose a variant from a base network, with time windows.                                                                                                                                                                                                                                                                                                       |
+| **Fast**              | 380 to 3,400 times faster than the Python reference implementation of Stream, with identical trajectories where the node rules match ([benchmark](bench/RESULTS.md)); 4 to 430 times faster than SUMO meso and micro ([benchmark](bench/SUMO.md)).                                                                                                                                                                                                    |
 
 ## Status
 
@@ -64,18 +64,21 @@ APIs and file formats may change before 1.0.
 Planned milestones toward operational traffic studies and 1.0:
 
 ### CLI & Study Workflows
-- [ ] **CVC & lightweight exports** — pre-computed entry/exit cumulative volume curves (CVC) per link and summary vehicle KPIs in `stream-cli run -o` (plus `--no-vehicles` for large networks)
+
+- [x] **CVC & lightweight exports** — pre-computed entry/exit cumulative volume curves (CVC) per link and summary vehicle KPIs in `stream-cli run -o` (plus `--no-vehicles` for large networks)
 - [ ] **Route-based demand** — optional `path` field in `demand.json` to inject `(route, flow)` pairs from external assignment tools
 - [ ] **CLI patches (`--patches`)** — expose the patch pipeline (`SetLink`, `ClosePipe`, `CloseLink`, `ScaleDemand`) directly on `stream-cli build` and `stream-cli run`
 - [ ] **Calibration & KPIs** — turning-movement counts, queue-length summaries, OD travel-time matrices, and GEH/RMSE checks against loop-detector observations
 
 ### Modeling & Physics
+
 - [ ] **Dynamic signal plans in JSON** — declarative actuated / queue-responsive controllers in `signals.json` (on top of the `signals::Controller` Rust trait)
 - [ ] **Signalized roundabouts** — signal groups and metering on roundabout entries/approaches
 - [ ] **Multi-class heterogeneity** — per-class free-flow speeds and PCU / vehicle-length factors
 - [ ] **Congestion-aware assignment** — iterative / time-dependent routing and built-in warm-up period handling
 
 ### Bindings & Tooling
+
 - [ ] **Python bindings** — complete the PyO3 `stream_core_rust` extension module
 - [ ] **Network import** — reusable OpenStreetMap / GIS preprocessing into validated `network.geojson`
 
@@ -105,11 +108,11 @@ never fully served before the end of the simulation.
 
 ### CLI
 
-| Command | Purpose |
-|---|---|
-| `stream-cli build --network N.geojson --demand D.json --config C.json -o scenario.json` | Compile source files into one validated scenario |
-| `stream-cli run -i scenario.json [--assignment] [--merge capacity] [--bin-size 60] [-o results.json]` | Simulate (with `--assignment`, generate and route vehicles from demand first) |
-| `stream-cli verify -i scenario.json [--assignment] [--bin-size 300] [--benchmarks] [-o report.json]` | Simulate, then run the verification apparatus |
+| Command                                                                                                               | Purpose                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `stream-cli build --network N.geojson --demand D.json --config C.json -o scenario.json`                               | Compile source files into one validated scenario                                                                        |
+| `stream-cli run -i scenario.json [--assignment] [--merge capacity] [--bin-size 60] [--no-vehicles] [-o results.json]` | Simulate (with `--assignment`, generate and route vehicles from demand first; `--no-vehicles` omits per-vehicle traces) |
+| `stream-cli verify -i scenario.json [--assignment] [--bin-size 300] [--benchmarks] [-o report.json]`                  | Simulate, then run the verification apparatus                                                                           |
 
 See [docs/](docs/README.md) for the full user guide and [JSON format reference](docs/JSON_FORMAT.md).
 
@@ -147,7 +150,7 @@ use stream_core_rust::api::{check, run, RunOptions, ScenarioInputs};
 let inputs = ScenarioInputs::from_dir("scenarios/a47_givors", &["gate".into()])?;
 let report = check(&inputs);            // errors and warnings, no simulation
 let out = run(&inputs, &RunOptions::default(), |_progress| true)?;
-// out.link_stats, out.pipe_stats, out.vehicles (with keep_vehicles)
+// out.link_stats, out.link_cvcs, out.pipe_stats, out.vehicle_kpis, out.vehicles (with keep_vehicles)
 ```
 
 `stream-cli run --output results.json` writes the same `RunOutput`.
@@ -178,9 +181,9 @@ resolved with three optional properties:
 
 ```jsonc
 {
-  "pipes":    [ { "lanes": 1 }, { "lanes": 2 }, { "lanes": 1, "classes": ["bus"] } ],
-  "moves":    { "12": [0], "13": [1, 2] },   // downstream link id → allowed pipes
-  "friction": 0.95                            // φ ∈ (0, 1]; 1 = no coupling
+  "pipes": [{ "lanes": 1 }, { "lanes": 2 }, { "lanes": 1, "classes": ["bus"] }],
+  "moves": { "12": [0], "13": [1, 2] }, // downstream link id → allowed pipes
+  "friction": 0.95, // φ ∈ (0, 1]; 1 = no coupling
 }
 ```
 
@@ -275,8 +278,8 @@ movements (it needs the link geometry to classify them):
   floor((g − t_0)/t_f) + 1 vehicles through, t_0 = t_c − t_f/2. Defaults:
   HCM 6 base critical headways and follow-up times.
 - With signals on the same node, a movement on red does not count as a
-  conflict: a left turn in a green phase is *permitted* (it gives way to
-  the opposing through), and *protected* while the opposing through is red.
+  conflict: a left turn in a green phase is _permitted_ (it gives way to
+  the opposing through), and _protected_ while the opposing through is red.
 
 ### Signals, ramp metering, tolls
 
@@ -287,18 +290,38 @@ signal groups, fixed-time plans and tolls:
 ```jsonc
 {
   "groups": [
-    { "id": "north_through", "node": 12, "movements": [ { "from": 30, "to": 31 } ] },
-    { "id": "north_left",    "node": 12, "movements": [ { "from": 30, "to": 35 } ] },
-    { "id": "ramp", "node": 40, "movements": [ { "from": 52 } ],    // every movement of link 52
-      "vehicles_per_green": 1, "off": "red" }
+    {
+      "id": "north_through",
+      "node": 12,
+      "movements": [{ "from": 30, "to": 31 }],
+    },
+    { "id": "north_left", "node": 12, "movements": [{ "from": 30, "to": 35 }] },
+    {
+      "id": "ramp",
+      "node": 40,
+      "movements": [{ "from": 52 }], // every movement of link 52
+      "vehicles_per_green": 1,
+      "off": "red",
+    },
   ],
   "plans": [
-    { "name": "am peak", "from": 25200, "until": 32400, "cycle": 90, "offset": 12,
-      "greens": { "north_through": [[0, 38]], "north_left": [[42, 55]] } }
+    {
+      "name": "am peak",
+      "from": 25200,
+      "until": 32400,
+      "cycle": 90,
+      "offset": 12,
+      "greens": { "north_through": [[0, 38]], "north_left": [[42, 55]] },
+    },
   ],
   "tolls": [
-    { "link": 70, "pipes": [0, 1], "service_time": 12.0, "by_class": { "bus": 4.0 } }
-  ]
+    {
+      "link": 70,
+      "pipes": [0, 1],
+      "service_time": 12.0,
+      "by_class": { "bus": 4.0 },
+    },
+  ],
 }
 ```
 
@@ -346,16 +369,16 @@ improve).
 
 ### Bundled scenarios
 
-| Scenario | What it shows |
-|---|---|
-| `bottleneck`, `diverge`, `grid`, `real_world` | Regression fixtures (golden checksums in `tests/scenarios.rs`) |
-| `m1_diverge`, `m60_stockport` | UK motorway corridors with WebTRIS detector data |
-| `a47_givors` | French urban motorway: single stream vs pipes, φ sweep (second preprint) |
-| `a47_givors_osm` | The same motorway rebuilt from OpenStreetMap and Cerema AVATAR, every interchange, screened data, capacity-proportional merges ([README](scenarios/a47_givors_osm/README.md)) |
-| `roundabout` | A four-arm roundabout as one `Roundabout` node, unbalanced turning flows |
-| `urban` | A synthetic town with every node mechanism: roundabout, priority junctions, signals with protected and permitted turns, ramp metering, toll, bus lane ([README](scenarios/urban/README.md)) |
-| `ngsim/` | Scripts to fetch NGSIM trajectories and measure lane commitment |
-| `ndw/` | Per-lane validation on Dutch NDW data (in preparation) |
+| Scenario                                      | What it shows                                                                                                                                                                               |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `bottleneck`, `diverge`, `grid`, `real_world` | Regression fixtures (golden checksums in `tests/scenarios.rs`)                                                                                                                              |
+| `m1_diverge`, `m60_stockport`                 | UK motorway corridors with WebTRIS detector data                                                                                                                                            |
+| `a47_givors`                                  | French urban motorway: single stream vs pipes, φ sweep (second preprint)                                                                                                                    |
+| `a47_givors_osm`                              | The same motorway rebuilt from OpenStreetMap and Cerema AVATAR, every interchange, screened data, capacity-proportional merges ([README](scenarios/a47_givors_osm/README.md))               |
+| `roundabout`                                  | A four-arm roundabout as one `Roundabout` node, unbalanced turning flows                                                                                                                    |
+| `urban`                                       | A synthetic town with every node mechanism: roundabout, priority junctions, signals with protected and permitted turns, ramp metering, toll, bus lane ([README](scenarios/urban/README.md)) |
+| `ngsim/`                                      | Scripts to fetch NGSIM trajectories and measure lane commitment                                                                                                                             |
+| `ndw/`                                        | Per-lane validation on Dutch NDW data (in preparation)                                                                                                                                      |
 
 ## Reproducing the paper
 
@@ -436,7 +459,7 @@ and, for the underlying single-stream model,
 Datasets keep their own licences:
 
 - **National Highways WebTRIS** (M1, M60): Open Government Licence v3.0.
-  *Contains National Highways data © National Highways.*
+  _Contains National Highways data © National Highways._
 - **NGSIM** (US DOT): public open data, fetched by script, not
   redistributed.
 - **Cerema AVATAR** (A47): open data from DIR Centre-Est registered in Cerema AVATAR.
