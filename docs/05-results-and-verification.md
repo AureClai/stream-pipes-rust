@@ -4,16 +4,21 @@
 
 ```bash
 stream-cli run -i scenario.json --assignment --bin-size 60 -o results.json
+# Omit per-vehicle trajectories on large networks:
+stream-cli run -i scenario.json --assignment --bin-size 60 --no-vehicles -o results.json
 ```
 
-The output JSON contains:
-- **Run metadata:** `events_processed`, `duration_ms`, `vehicles_count`, `status`.
+The output JSON (`RunOutput`) contains:
+- **Run metadata:** `api_version`, `engine_version`, `start_time`, `duration`, `bin_size`, `classes`, `events_processed`, `vehicles_total`, `vehicles_arrived`, `warnings`.
+- **`vehicle_kpis`:** Pre-computed summary KPIs (`total`, `entered`, `arrived`, `in_network`, `queued_at_entry`, `completion_rate`, `total_vkt_veh_km`, `total_vht_veh_h`, `total_entry_wait_veh_h`, `total_delay_veh_h`, `mean_travel_time_s`, `p50_travel_time_s`, `p95_travel_time_s`, `mean_free_flow_time_s`, `mean_delay_s`, `mean_entry_wait_s`, `max_entry_wait_s`, `mean_speed_kmh`).
 - **`link_stats`:** Binned time series (`t`, `values`) for every link:
   - `flow` (`veh/h`) — exit flow
   - `density` (`veh/km`) — Edie-style link density
   - `speed` (`km/h`) — space-mean speed (`flow / density`)
   - `kx_veh_km`, `capacity_veh_h` — theoretical bounds for reference
-- **`pipe_stats`:** Same time series per pipe (included automatically when any link has more than 1 pipe).
+- **`link_cvcs`:** Pre-computed entry and exit cumulative volume curves (`t`, `entry`, `exit`) per link sampled at bin boundaries from `start_time` to `start_time + duration`.
+- **`pipe_stats`:** Same time series per pipe (included automatically for links with more than 1 pipe).
+- **`vehicles`:** Per-vehicle trips and node passage timestamps (empty when `--no-vehicles` is passed).
 
 See [JSON Format Reference](JSON_FORMAT.md#21-simulation-results-stream-cli-run--o-file) for the full schema.
 

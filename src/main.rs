@@ -36,9 +36,13 @@ enum Commands {
         /// Merge rule at nodes: "in_order" (default) or "capacity"
         #[arg(long, default_value = "in_order")]
         merge: String,
-        /// Aggregation bin size in seconds for link/pipe statistics
+        /// Aggregation bin size in seconds for link/pipe statistics and CVCs
         #[arg(long, default_value_t = 60.0)]
         bin_size: f64,
+
+        /// Omit per-vehicle trajectories from the JSON output (for large networks)
+        #[arg(long)]
+        no_vehicles: bool,
     },
     /// Compile a scenario from source files (GeoJSON + JSON) into a single artifact
     Build {
@@ -127,7 +131,10 @@ fn main() -> Result<()> {
             
             println!("Build complete in {:.2?}.", start.elapsed());
         },
-        Commands::Run { input, output, assignment, merge, bin_size } => {
+        Commands::Run { input, output, assignment, merge, bin_size, no_vehicles } => {
+            if !(bin_size.is_finite() && bin_size >= 1.0) {
+                anyhow::bail!("bin_size must be a finite number of seconds >= 1");
+            }
             let merge = merge_rule(&merge)?;
             println!("Loading scenario from {:?}...", input);
             let start = Instant::now();
@@ -160,7 +167,12 @@ fn main() -> Result<()> {
 
             if let Some(output_path) = output {
                 println!("Writing results to {:?}...", output_path);
-                let options = RunOptions { assignment, bin_size, keep_vehicles: true, ..Default::default() };
+                let options = RunOptions {
+                    assignment,
+                    bin_size,
+                    keep_vehicles: !no_vehicles,
+                    ..Default::default()
+                };
                 let results = collect(sim.scenario, events_processed, Vec::new(), &options);
                 use std::io::Write;
                 let mut file = std::io::BufWriter::new(std::fs::File::create(&output_path)?);
@@ -290,5 +302,29 @@ fn run_verify(
         println!("Verification passed.");
     }
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn cli_run_parses_no_vehicles_flag() {
+        let default_cli = Cli::try_parse_from(["stream-cli", "run", "-i", "s.json"]).unwrap();
+        match default_cli.command {
+            Commands::Run { no_vehicles, bin_size, .. } => {
+                assert!(!no_vehicles);
+                assert_eq!(bin_size, 60.0);
+            }
+            _ => panic!("expected Run command"),
+        }
+
+        let light_cli =
+            Cli::try_parse_from(["stream-cli", "run", "-i", "s.json", "--no-vehicles"]).unwrap();
+        match light_cli.command {
+            Commands::Run { no_vehicles, .. } => assert!(no_vehicles),
+            _ => panic!("expected Run command"),
+        }
+    }
 }
 

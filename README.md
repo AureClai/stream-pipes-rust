@@ -64,7 +64,7 @@ APIs and file formats may change before 1.0.
 Planned milestones toward operational traffic studies and 1.0:
 
 ### CLI & Study Workflows
-- [ ] **CVC & lightweight exports** — pre-computed entry/exit cumulative volume curves (CVC) per link and summary vehicle KPIs in `stream-cli run -o` (plus `--no-vehicles` for large networks)
+- [x] **CVC & lightweight exports** — pre-computed entry/exit cumulative volume curves (CVC) per link and summary vehicle KPIs in `stream-cli run -o` (plus `--no-vehicles` for large networks)
 - [ ] **Route-based demand** — optional `path` field in `demand.json` to inject `(route, flow)` pairs from external assignment tools
 - [ ] **CLI patches (`--patches`)** — expose the patch pipeline (`SetLink`, `ClosePipe`, `CloseLink`, `ScaleDemand`) directly on `stream-cli build` and `stream-cli run`
 - [ ] **Calibration & KPIs** — turning-movement counts, queue-length summaries, OD travel-time matrices, and GEH/RMSE checks against loop-detector observations
@@ -108,7 +108,7 @@ never fully served before the end of the simulation.
 | Command | Purpose |
 |---|---|
 | `stream-cli build --network N.geojson --demand D.json --config C.json -o scenario.json` | Compile source files into one validated scenario |
-| `stream-cli run -i scenario.json [--assignment] [--merge capacity] [--bin-size 60] [-o results.json]` | Simulate (with `--assignment`, generate and route vehicles from demand first) |
+| `stream-cli run -i scenario.json [--assignment] [--merge capacity] [--bin-size 60] [--no-vehicles] [-o results.json]` | Simulate (with `--assignment`, generate and route vehicles from demand first; `--no-vehicles` omits per-vehicle traces) |
 | `stream-cli verify -i scenario.json [--assignment] [--bin-size 300] [--benchmarks] [-o report.json]` | Simulate, then run the verification apparatus |
 
 See [docs/](docs/README.md) for the full user guide and [JSON format reference](docs/JSON_FORMAT.md).
@@ -147,7 +147,7 @@ use stream_core_rust::api::{check, run, RunOptions, ScenarioInputs};
 let inputs = ScenarioInputs::from_dir("scenarios/a47_givors", &["gate".into()])?;
 let report = check(&inputs);            // errors and warnings, no simulation
 let out = run(&inputs, &RunOptions::default(), |_progress| true)?;
-// out.link_stats, out.pipe_stats, out.vehicles (with keep_vehicles)
+// out.link_stats, out.link_cvcs, out.pipe_stats, out.vehicle_kpis, out.vehicles (with keep_vehicles)
 ```
 
 `stream-cli run --output results.json` writes the same `RunOutput`.
