@@ -174,6 +174,7 @@ fn assignment_picks_the_faster_of_two_parallel_links() {
             flow: 360.0,
             count: 1.0,
             class: None,
+            path: None,
         }];
         assign_demand(&mut s).unwrap();
         assert_eq!(s.vehicles[0].path, vec![fast_id, 2], "slow link listed first: {slow_first}");
@@ -440,4 +441,57 @@ fn arm_inference_without_geometry_says_why() {
     let msg = err.to_string();
     assert!(msg.contains("geometry") || msg.contains("arms"), "unhelpful message: {msg}");
     assert!(!msg.contains("closer than the island"), "misleading message: {msg}");
+}
+
+/// Route-based demand injects vehicles along both routes of an OD pair
+/// (rather than collapsing everything onto the shortest free-flow path) and
+/// passes full simulation + verification.
+#[test]
+fn route_based_demand_splits_od_across_two_routes_and_verifies() {
+    // Diamond: Entry(0) -> Internal(1) via link 0 (short, 100m) or link 1 (long, 500m),
+    // then Internal(1) -> Exit(2) via link 2 (100m).
+    let (nodes, links) = network(
+        &[Entry, Internal, Exit],
+        vec![
+            link(0, 0, 1, 100.0, 1.0),
+            link(1, 0, 1, 500.0, 1.0),
+            link(2, 1, 2, 100.0, 1.0),
+        ],
+    );
+    let mut s = scenario(nodes, links, vec![]);
+    s.demand = vec![
+        Demand {
+            period_start: 0.0,
+            period_end: 600.0,
+            origin: 0,
+            destination: 2,
+            flow: 180.0,
+            count: 30.0,
+            class: None,
+            path: Some(vec![0, 2]),
+        },
+        Demand {
+            period_start: 0.0,
+            period_end: 600.0,
+            origin: 0,
+            destination: 2,
+            flow: 120.0,
+            count: 20.0,
+            class: None,
+            path: Some(vec![1, 2]),
+        },
+    ];
+    s.validate().expect("valid route-based demand");
+    assign_demand(&mut s).expect("assignment succeeds");
+    assert_eq!(s.vehicles.len(), 50);
+
+    let sim = run(s);
+    all_exited(&sim);
+    let on_short = sim.scenario.vehicles.iter().filter(|v| v.path == vec![0, 2]).count();
+    let on_long = sim.scenario.vehicles.iter().filter(|v| v.path == vec![1, 2]).count();
+    assert_eq!(on_short, 30);
+    assert_eq!(on_long, 20);
+
+    let report = stream_core_rust::verification::verify_scenario(&sim.scenario, 300.0);
+    assert_eq!(report.summary.checks_fail, 0, "verification failed: {:?}", report.summary);
 }

@@ -1,9 +1,114 @@
-use crate::model::{NodeType, Scenario};
+use crate::model::{Link, LinkID, NodeID, NodeType, Scenario};
 use anyhow::{bail, Result};
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 pub trait Validate {
     fn validate(&self) -> Result<()>;
+}
+
+/// Resolve an optional class name against `classes`, defaulting to class `0`.
+pub(crate) fn resolve_class_id(
+    classes: &[String],
+    class: Option<&str>,
+    context: &str,
+) -> Result<usize> {
+    match class {
+        Some(name) => classes.iter().position(|c| c == name).ok_or_else(|| {
+            anyhow::anyhow!(
+                "{}: unknown vehicle class '{}' (declared classes: {:?})",
+                context,
+                name,
+                classes
+            )
+        }),
+        None => Ok(0),
+    }
+}
+
+/// Validate that `path` connects `origin` to `destination` through known links
+/// and has at least one pipe usable by `class_id` on every link/movement.
+pub(crate) fn validate_route(
+    label: &str,
+    origin: NodeID,
+    destination: NodeID,
+    class_id: usize,
+    class_label: &str,
+    path: &[LinkID],
+    links_by_id: &HashMap<LinkID, &Link>,
+    node_ids: &HashSet<NodeID>,
+    allow_empty: bool,
+) -> Result<()> {
+    if !node_ids.contains(&origin) {
+        bail!("{}: missing Origin Node {}", label, origin);
+    }
+    if !node_ids.contains(&destination) {
+        bail!("{}: missing Destination Node {}", label, destination);
+    }
+    if path.is_empty() {
+        if allow_empty {
+            return Ok(());
+        }
+        bail!("{}: explicit path must not be empty", label);
+    }
+
+    for &lid in path {
+        if !links_by_id.contains_key(&lid) {
+            bail!("{}: path references missing Link {}", label, lid);
+        }
+    }
+
+    // Connected path from the origin to the destination: the engine
+    // moves a vehicle onto its next link at the node where it stands,
+    // so a gap in the path would teleport it.
+    let first = path[0];
+    let last = *path.last().expect("non-empty path");
+    if links_by_id[&first].node_up != origin {
+        bail!(
+            "{}: path starts at node {} (link {}) but its origin is node {}",
+            label,
+            links_by_id[&first].node_up,
+            first,
+            origin
+        );
+    }
+    if links_by_id[&last].node_down != destination {
+        bail!(
+            "{}: path ends at node {} (link {}) but its destination is node {}",
+            label,
+            links_by_id[&last].node_down,
+            last,
+            destination
+        );
+    }
+    for w in path.windows(2) {
+        if links_by_id[&w[0]].node_down != links_by_id[&w[1]].node_up {
+            bail!(
+                "{}: path is not connected: link {} ends at node {} but link {} starts at node {}",
+                label,
+                w[0],
+                links_by_id[&w[0]].node_down,
+                w[1],
+                links_by_id[&w[1]].node_up
+            );
+        }
+    }
+
+    // Class/movement reachability: every path link must have a pipe
+    // usable by the class for its onward movement, otherwise vehicles
+    // would silently gridlock their pipe at run time.
+    for (i, &lid) in path.iter().enumerate() {
+        let next = path.get(i + 1).copied();
+        if !links_by_id[&lid].serves(class_id, next) {
+            bail!(
+                "{} (class '{}'): link {} has no pipe usable by this class{}",
+                label,
+                class_label,
+                lid,
+                next.map_or(String::new(), |n| format!(" for the movement toward link {}", n)),
+            );
+        }
+    }
+    Ok(())
 }
 
 impl Validate for Scenario {
@@ -178,80 +283,46 @@ impl Validate for Scenario {
             );
         }
 
+        let links_by_id: HashMap<LinkID, &Link> =
+            self.links.iter().map(|l| (l.id, l)).collect();
+
         // 3. Validate Vehicles
         for veh in &self.vehicles {
-            if !node_ids.contains(&veh.origin) {
-                bail!("Vehicle {} has missing Origin Node {}", veh.id, veh.origin);
-            }
-            if !node_ids.contains(&veh.destination) {
-                bail!(
-                    "Vehicle {} has missing Destination Node {}",
-                    veh.id,
-                    veh.destination
-                );
-            }
+            let class_label = self
+                .classes
+                .get(veh.class_id)
+                .map(String::as_str)
+                .unwrap_or("unknown");
+            validate_route(
+                &format!("Vehicle {}", veh.id),
+                veh.origin,
+                veh.destination,
+                veh.class_id,
+                class_label,
+                &veh.path,
+                &links_by_id,
+                &node_ids,
+                true,
+            )?;
+        }
 
-            for &lid in &veh.path {
-                if !link_ids.contains(&lid) {
-                    bail!("Vehicle {} path references missing Link {}", veh.id, lid);
-                }
-            }
-            // Connected path from the origin to the destination: the engine
-            // moves a vehicle onto its next link at the node where it stands,
-            // so a gap in the path would teleport it.
-            if let (Some(&first), Some(&last)) = (veh.path.first(), veh.path.last()) {
-                let link = |id: usize| &self.links[id];
-                if link(first).node_up != veh.origin {
-                    bail!(
-                        "Vehicle {}: path starts at node {} (link {}) but its origin is node {}",
-                        veh.id,
-                        link(first).node_up,
-                        first,
-                        veh.origin
-                    );
-                }
-                if link(last).node_down != veh.destination {
-                    bail!(
-                        "Vehicle {}: path ends at node {} (link {}) but its destination is node {}",
-                        veh.id,
-                        link(last).node_down,
-                        last,
-                        veh.destination
-                    );
-                }
-                for w in veh.path.windows(2) {
-                    if link(w[0]).node_down != link(w[1]).node_up {
-                        bail!(
-                            "Vehicle {}: path is not connected: link {} ends at node {} but link {} starts at node {}",
-                            veh.id,
-                            w[0],
-                            link(w[0]).node_down,
-                            w[1],
-                            link(w[1]).node_up
-                        );
-                    }
-                }
-            }
-
-            // Class/movement reachability: every path link must have a pipe
-            // usable by the vehicle's class for its onward movement, otherwise
-            // the vehicle would silently gridlock its pipe at run time.
-            for (i, &lid) in veh.path.iter().enumerate() {
-                let next = veh.path.get(i + 1).copied();
-                let ok = self
-                    .links
-                    .iter()
-                    .find(|l| l.id == lid)
-                    .is_some_and(|l| l.serves(veh.class_id, next));
-                if !ok {
-                    bail!(
-                        "Vehicle {} (class {}) cannot traverse link {}: no pipe allows this class{}",
-                        veh.id,
-                        veh.class_id,
-                        lid,
-                        next.map_or(String::new(), |n| format!(" for the movement toward link {}", n)),
-                    );
-                }
+        // 3b. Validate explicit routes on route-based demand entries
+        for (i, dem) in self.demand.iter().enumerate() {
+            if let Some(path) = &dem.path {
+                let label = format!("Demand {} ({}→{})", i, dem.origin, dem.destination);
+                let class_id = resolve_class_id(&self.classes, dem.class.as_deref(), &label)?;
+                let class_label = &self.classes[class_id];
+                validate_route(
+                    &label,
+                    dem.origin,
+                    dem.destination,
+                    class_id,
+                    class_label,
+                    path,
+                    &links_by_id,
+                    &node_ids,
+                    false,
+                )?;
             }
         }
 
@@ -453,7 +524,41 @@ mod tests {
             flow: 100.0,
             count: 100.0,
             class: None,
+            path: None,
         });
         assert!(s.validate().is_ok());
+    }
+
+    #[test]
+    fn route_based_demand_validates_connectivity_and_endpoints() {
+        let mut s = valid_scenario();
+        s.demand.push(Demand {
+            period_start: 0.0,
+            period_end: 3600.0,
+            origin: 0,
+            destination: 2,
+            flow: 100.0,
+            count: 100.0,
+            class: None,
+            path: Some(vec![0, 1]),
+        });
+        assert!(s.validate().is_ok());
+
+        // Empty path rejected
+        s.demand[0].path = Some(vec![]);
+        assert!(s.validate().is_err());
+
+        // Wrong origin rejected
+        s.demand[0].path = Some(vec![1]);
+        assert!(s.validate().is_err());
+
+        // Missing link rejected
+        s.demand[0].path = Some(vec![0, 99]);
+        assert!(s.validate().is_err());
+
+        // Unknown class rejected
+        s.demand[0].path = Some(vec![0, 1]);
+        s.demand[0].class = Some("tram".to_string());
+        assert!(s.validate().is_err());
     }
 }

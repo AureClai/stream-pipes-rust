@@ -163,7 +163,14 @@ pub fn check(inputs: &ScenarioInputs) -> CheckReport {
         if d.count <= 0.0 {
             continue;
         }
-        if graph.shortest_path(d.origin, d.destination).is_none() {
+        if let Some(path) = &d.path {
+            if let Some(&closed) = path.iter().find(|lid| scenario.assignment_excluded.contains(lid)) {
+                report.warnings.push(format!(
+                    "demand {}→{}: explicit path uses closed link {}, its {} vehicle(s) will not be generated",
+                    d.origin, d.destination, closed, d.count
+                ));
+            }
+        } else if graph.shortest_path(d.origin, d.destination).is_none() {
             report.warnings.push(format!(
                 "demand {}→{}: no route, its {} vehicle(s) will not be generated",
                 d.origin, d.destination, d.count
@@ -445,5 +452,39 @@ mod tests {
         assert_eq!(back.link_stats.len(), out.link_stats.len());
         assert_eq!(back.link_cvcs, out.link_cvcs);
         assert_eq!(back.vehicle_kpis, out.vehicle_kpis);
+    }
+
+    #[test]
+    fn route_based_demand_runs_through_api_and_warns_on_closed_link() {
+        let mut inputs = ScenarioInputs::from_dir(dir("diverge"), &[]).unwrap();
+        inputs.demand = serde_json::json!([
+            {"period_start": 0.0, "period_end": 1800.0, "flow": 360.0, "path": [0, 1]},
+            {"period_start": 0.0, "period_end": 1800.0, "flow": 180.0, "path": [0, 2]}
+        ]);
+        let r = check(&inputs);
+        assert!(r.ok(), "{:?}", r.errors);
+        assert!((r.demand_vehicles - 270.0).abs() < 1e-9);
+
+        let out = run(&inputs, &RunOptions { keep_vehicles: true, ..Default::default() }, |_| true).unwrap();
+        assert_eq!(out.vehicles_total, 270);
+        assert_eq!(out.vehicles.iter().filter(|v| v.path == vec![0, 1]).count(), 180);
+        assert_eq!(out.vehicles.iter().filter(|v| v.path == vec![0, 2]).count(), 90);
+
+        inputs.patches.push(crate::patch::Patch {
+            name: "close-branch-1".into(),
+            description: String::new(),
+            ops: vec![crate::patch::PatchOp::CloseLink {
+                link: 1,
+                from: None,
+                until: None,
+            }],
+        });
+        let r_closed = check(&inputs);
+        assert!(r_closed.ok(), "{:?}", r_closed.errors);
+        assert!(
+            r_closed.warnings.iter().any(|w| w.contains("closed link 1")),
+            "expected warning for closed link 1, got {:?}",
+            r_closed.warnings
+        );
     }
 }

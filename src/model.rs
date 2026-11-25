@@ -720,6 +720,11 @@ pub struct Demand {
     /// `None` = first class.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub class: Option<String>,
+    /// Optional explicit route (sequence of `LinkID`s). When `Some`,
+    /// `assign_demand` injects vehicles along this exact path instead of
+    /// computing shortest paths.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub path: Option<Vec<LinkID>>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
