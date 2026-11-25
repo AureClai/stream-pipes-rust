@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: User Documentation
+    url: https://github.com/AureClai/stream-pipes-rust/blob/master/docs/README.md
+    about: Guide and JSON format reference for pipe-stream
+  - name: Roadmap & Known Limitations
+    url: https://github.com/AureClai/stream-pipes-rust#roadmap
+    about: Planned milestones and intentional modeling scope
+  - name: Security Vulnerability Reporting
+    url: https://github.com/AureClai/stream-pipes-rust/security/advisories/new
+    about: Please report security issues privately rather than opening a public issue

@@ -1,0 +1,32 @@
+name: Documentation, scenario, or validation report
+description: Report unclear docs, schema gaps, bundled scenario issues, or field-validation questions
+title: "[Docs/Scenario]: "
+labels: ["documentation", "status: triage"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Topic
+      options:
+        - User guide (docs/)
+        - JSON format reference (docs/JSON_FORMAT.md)
+        - README / examples
+        - Bundled scenario or dataset
+        - Benchmark / paper reproduction
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Relevant file, page, or scenario
+      placeholder: "e.g., docs/06-signals.md or scenarios/a47_givors_osm"
+
+  - type: textarea
+    id: details
+    attributes:
+      label: What is missing, unclear, or inaccurate?
+      description: Describe the issue and, if applicable, suggest a clarification.
+    validations:
+      required: true

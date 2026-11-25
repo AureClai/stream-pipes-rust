@@ -1,0 +1,87 @@
+name: Bug report
+description: Report a simulation bug, physics discrepancy, verification failure, or crash
+title: "[Bug]: "
+labels: ["bug", "status: triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue in **pipe-stream** (`stream-pipes-rust`)!
+        Please share enough detail to reproduce the behavior deterministically.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which part of the project is affected?
+      options:
+        - Core solver / link & pipe physics
+        - Roundabouts
+        - Priority junctions
+        - Signals, ramp metering, or tolls
+        - Verification or analytic benchmarks
+        - Assignment / routing
+        - Patches / dynamic events
+        - CLI (stream-cli)
+        - HTTP server (stream-server)
+        - Python bindings (pyo3)
+        - Library API (stream_core_rust)
+        - Scenarios / datasets
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what went wrong.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: |
+        Exact CLI command, Rust snippet, or scenario inputs (`network.geojson`, `demand.json`, `config.json`, `signals.json`, patches).
+        If possible, include the `--merge` mode (`in_order` or `capacity`) and whether `--assignment` was used.
+      placeholder: |
+        ```bash
+        cargo run --release --no-default-features --bin stream-cli -- \
+          verify -i scenarios/example.json --assignment -o report.json
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_vs_actual
+    attributes:
+      label: Expected vs. actual behavior
+      description: What did you expect to happen, and what happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: verify_output
+    attributes:
+      label: "`stream-cli verify` / error output"
+      description: Paste any failing check from `stream-cli verify`, panic backtrace, or compiler/runtime error.
+      render: text
+
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit SHA
+      description: e.g., `v0.1.2` or output of `git rev-parse --short HEAD`
+      placeholder: "0.1.2"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS and Rust toolchain version (`rustc --version`, requires Rust >= 1.82)
+      placeholder: "Ubuntu 24.04 / rustc 1.82.0"
+    validations:
+      required: true

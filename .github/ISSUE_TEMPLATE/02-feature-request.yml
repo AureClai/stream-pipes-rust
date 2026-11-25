@@ -1,0 +1,58 @@
+name: Feature or modeling proposal
+description: Suggest a new traffic modeling capability, CLI workflow, verification check, or binding improvement
+title: "[Feature]: "
+labels: ["enhancement", "status: triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for proposing an improvement to **pipe-stream**!
+        Before opening a proposal, please check the [Roadmap](https://github.com/AureClai/stream-pipes-rust#roadmap) and [Limitations](https://github.com/AureClai/stream-pipes-rust#limitations) in the README to see if it is already planned or intentionally out of scope.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Modeling & physics
+        - CLI & study workflows
+        - Verification & benchmarks
+        - Library API / embedder support
+        - Python bindings (pyo3)
+        - HTTP server (stream-server)
+        - Network import / GIS preprocessing
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What traffic engineering, research, or workflow problem does this solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the desired behavior, JSON schema changes, or Rust/CLI interface.
+    validations:
+      required: true
+
+  - type: textarea
+    id: modeling_constraints
+    attributes:
+      label: Physics, determinism, and verification considerations
+      description: |
+        If this affects simulation physics or node rules, note how it interacts with:
+        - Determinism (event-exact, no RNG)
+        - Single-pipe backward compatibility
+        - Conservation, FIFO, FD adherence, or new `verify` checks
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives or workarounds considered
+      description: Any alternative designs or existing workarounds.

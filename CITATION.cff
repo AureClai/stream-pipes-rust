@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: "If you use pipe-stream in academic or engineering work, please cite the repository and accompanying papers."
+title: "pipe-stream (stream-pipes-rust): Event-based mesoscopic LWR traffic model with per-lane pipes"
+type: software
+authors:
+  - family-names: Clairais
+    given-names: "Aurélien"
+    email: aureclai.dev@gmail.com
+repository-code: "https://github.com/AureClai/stream-pipes-rust"
+license: "MIT OR Apache-2.0"
+version: 0.1.2
+keywords:
+  - traffic-simulation
+  - kinematic-wave
+  - lwr
+  - mesoscopic
+  - per-lane
+  - rust
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22957996
+    description: "A Pipe-Stream Event-Based Mesoscopic LWR Model with Per-Lane Resolution and Class-Restricted Lanes"
+  - type: doi
+    value: 10.5281/zenodo.23017416
+    description: "Shipping the Means of Refutation: Executable Verification and Field Validation of a Lane-Resolved Mesoscopic LWR Model (Version 1)"
+references:
+  - type: article
+    title: "A Pipe-Stream Event-Based Mesoscopic LWR Model with Per-Lane Resolution and Class-Restricted Lanes"
+    authors:
+      - family-names: Clairais
+        given-names: "Aurélien"
+    year: 2026
+    doi: 10.5281/zenodo.22957996
+    url: "https://doi.org/10.5281/zenodo.22957996"
+  - type: article
+    title: "Shipping the Means of Refutation: Executable Verification and Field Validation of a Lane-Resolved Mesoscopic LWR Model (Version 1)"
+    authors:
+      - family-names: Clairais
+        given-names: "Aurélien"
+    year: 2026
+    doi: 10.5281/zenodo.23017416
+    url: "https://doi.org/10.5281/zenodo.23017416"
+  - type: software
+    title: "Stream (single-stream event-based mesoscopic LWR traffic model)"
+    authors:
+      - name: "Cerema Centre-Est"
+      - family-names: Clairais
+        given-names: "Aurélien"
+      - family-names: Hans
+        given-names: Etienne
+      - family-names: Duret
+        given-names: "Aurélien"
+    url: "https://gitlab.cerema.fr/centre-est/mobilite/Stream/stream-python"
