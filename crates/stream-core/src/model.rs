@@ -349,6 +349,7 @@ pub struct Link {
 }
 
 impl Link {
+    #[allow(clippy::too_many_arguments)]
     pub fn new(
         id: LinkID,
         node_up: NodeID,

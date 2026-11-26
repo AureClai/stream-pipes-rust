@@ -790,8 +790,9 @@ fn check_junction(scenario: &Scenario, node_id: NodeID, spec: &crate::junction::
     // stopping (arrival = passage): those a minor vehicle must not cut in
     // front of. One stuck at the line (behind a turning vehicle, a full
     // exit) is no threat.
+    type LaneDeparture = (f64, f64, Option<LinkID>, f64);
     let mut arrivals: HashMap<(LinkID, LinkID), Vec<f64>> = HashMap::new();
-    let mut lanes: HashMap<(LinkID, PipeIdx), Vec<(f64, f64, Option<LinkID>, f64)>> = HashMap::new();
+    let mut lanes: HashMap<(LinkID, PipeIdx), Vec<LaneDeparture>> = HashMap::new();
     for veh in &scenario.vehicles {
         for (i, &lid) in veh.path.iter().enumerate() {
             let Some(link) = scenario.links.get(lid) else { continue };
@@ -824,9 +825,9 @@ fn check_junction(scenario: &Scenario, node_id: NodeID, spec: &crate::junction::
         let state = scenario
             .signal_log
             .iter()
-            .filter(|r| r.group == g && r.time <= t)
-            .last()
-            .map_or(true, |r| r.green);
+            .rfind(|r| r.group == g && r.time <= t)
+            .map(|r| r.green)
+            .unwrap_or(true);
         !state
     };
     let mut checked = 0usize;

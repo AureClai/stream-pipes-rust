@@ -72,8 +72,8 @@ body:
     id: version
     attributes:
       label: Version or commit SHA
-      description: e.g., `v0.1.2` or output of `git rev-parse --short HEAD`
-      placeholder: "0.1.2"
+      description: e.g., `v1.0.0` or output of `git rev-parse --short HEAD`
+      placeholder: "1.0.0"
     validations:
       required: true
 

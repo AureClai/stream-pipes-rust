@@ -188,10 +188,13 @@ fn angle_gap(a: f64, b: f64) -> f64 {
     d.min(std::f64::consts::TAU - d)
 }
 
+/// Inferred roundabout arm `(in_link, out_link, bearing)` returned by [`infer_arms`].
+pub type InferredArm = (Option<LinkID>, Option<LinkID>, f64);
+
 /// Pair the node's incoming and outgoing links into arms by bearing: each
 /// entry takes the closest free exit within 45°; the rest are one-way arms.
-/// Returns (in, out, bearing), unsorted.
-pub fn infer_arms(node: &Node, links: &[Link]) -> Result<Vec<(Option<LinkID>, Option<LinkID>, f64)>> {
+/// Returns `(in, out, bearing)`, unsorted.
+pub fn infer_arms(node: &Node, links: &[Link]) -> Result<Vec<InferredArm>> {
     let find = |lid: LinkID| links.iter().find(|l| l.id == lid);
     let mut ins: Vec<(LinkID, f64)> = Vec::new();
     for &lid in &node.incoming_links {

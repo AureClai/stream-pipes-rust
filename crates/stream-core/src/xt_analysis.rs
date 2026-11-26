@@ -10,14 +10,20 @@
 //!    passage time at each boundary.
 //!
 //! 2. **Interior CVC** (Newell's variational formula) — for any interior
-//!    position x the passage time of vehicle n is:
-//!      t_n(x) = max( CVCin[n] + x/u,              ← demand (free-flow wave)
-//!                    CVCout[n−kx·(L−x)] + (L−x)/w ) ← supply (backward wave)
+//!    position `x` the passage time of vehicle `n` is:
 //!
-//! 3. **Edie's formulas** per (dx, dt) cell:
-//!      q = ΣΔx / (dx · dt)   flow    [veh/s → veh/h]
-//!      k = ΣΔt / (dx · dt)   density [veh/m → veh/km]
-//!      v = q / k              space-mean speed [m/s → km/h]
+//!    ```text
+//!    t_n(x) = max( CVCin[n] + x/u,                  <- demand (free-flow wave)
+//!                  CVCout[n - kx*(L - x)] + (L-x)/w ) <- supply (backward wave)
+//!    ```
+//!
+//! 3. **Edie's formulas** per `(dx, dt)` cell:
+//!
+//!    ```text
+//!    q = sum(dx) / (dx * dt)   flow    [veh/s -> veh/h]
+//!    k = sum(dt) / (dx * dt)   density [veh/m -> veh/km]
+//!    v = q / k                 space-mean speed [m/s -> km/h]
+//!    ```
 //!
 //! ## Performance
 //!
@@ -95,7 +101,7 @@ impl XTDiagram {
         Some(
             self.speed
                 .iter()
-                .map(|row| (row[ti] / self.u_kmh).min(1.0).max(0.0))
+                .map(|row| (row[ti] / self.u_kmh).clamp(0.0, 1.0))
                 .collect(),
         )
     }

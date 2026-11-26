@@ -190,7 +190,7 @@ fn progress_to_py(py: Python<'_>, p: Progress) -> PyResult<PyObject> {
     Ok(dict.into_py(py))
 }
 
-/// Interactive handle to a compiled [`Simulation`] in Python.
+/// Interactive handle to a compiled `Simulation` in Python.
 #[pyclass(name = "Simulation")]
 pub struct PySimulation {
     inner: CoreSimulation,
@@ -631,7 +631,6 @@ fn run_benchmarks(py: Python<'_>) -> PyResult<PyObject> {
     serialize_to_py(py, &results)
 }
 
-/// Compare an existing simulated [`Scenario`] result? Exposed via `Simulation.compare_observations`.
 /// Register the `stream_core_rust` Python module bindings.
 pub fn register(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add("__version__", env!("CARGO_PKG_VERSION"))?;

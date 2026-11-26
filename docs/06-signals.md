@@ -1,7 +1,5 @@
 # 6. Traffic Signals & Tolls
 
-> Note: Traffic signals and tolls are implemented on the `feat/signals` branch and compiled with `stream-cli build --signals signals.json`.
-
 A `signals.json` file defines **signal groups**, **fixed-time plans**, and **tolls** at network nodes and links.
 
 ## CLI Usage

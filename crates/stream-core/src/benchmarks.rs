@@ -23,6 +23,17 @@
 //! (`roundabout_*`: ring free flow, entry capacity without conflict, Siegloch
 //! gap acceptance in a regular circulating stream, spillback storage on the
 //! ring).
+//!
+//! ## Example
+//!
+//! ```
+//! use stream_core::benchmarks::run_benchmarks;
+//! use stream_core::verification::CheckStatus;
+//!
+//! let results = run_benchmarks().unwrap();
+//! assert_eq!(results.len(), 18);
+//! assert!(results.iter().all(|r| r.status == CheckStatus::Pass));
+//! ```
 
 use crate::model::{FundamentalDiagram, Link, Node, NodeType, PipeSpec, Scenario, Vehicle};
 use crate::simulation::Simulation;
@@ -612,13 +623,13 @@ fn roundabout_scenario(
     let mut nodes = vec![node(0, NodeType::Internal, vec![], vec![])];
     let mut links = Vec::new();
     let mut arms = Vec::new();
-    for k in 0..4 {
+    for (k, &cap) in exit_c.iter().enumerate() {
         nodes.push(node(1 + 2 * k, NodeType::Entry, vec![], vec![2 * k]));
         nodes.push(node(2 + 2 * k, NodeType::Exit, vec![2 * k + 1], vec![]));
         nodes[0].incoming_links.push(2 * k);
         nodes[0].outgoing_links.push(2 * k + 1);
         links.push(Link::new(2 * k, 1 + 2 * k, 0, 100.0, 10.0, 1, 1.0, fd(1.0, 0.15), vec![]));
-        links.push(Link::new(2 * k + 1, 0, 2 + 2 * k, 100.0, 10.0, 1, exit_c[k], fd(exit_c[k], 0.15), vec![]));
+        links.push(Link::new(2 * k + 1, 0, 2 + 2 * k, 100.0, 10.0, 1, cap, fd(cap, 0.15), vec![]));
         arms.push(RoundaboutArm { in_link: Some(2 * k), out_link: Some(2 * k + 1), position: 25.0 * k as f64 });
     }
     nodes[0].roundabout = Some(RoundaboutSpec {

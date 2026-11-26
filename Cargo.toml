@@ -12,7 +12,7 @@ exclude = [
 ]
 
 [workspace.package]
-version = "0.1.2"
+version = "1.0.0"
 edition = "2021"
 rust-version = "1.82"
 license = "MIT OR Apache-2.0"
@@ -56,6 +56,14 @@ repository.workspace = true
 readme = "README.md"
 keywords = ["traffic", "simulation", "kinematic-wave", "lwr", "mesoscopic"]
 categories = ["science", "simulation"]
+exclude = [
+    "/whitepaper",
+    "/bench/results",
+    "/.venv-bench",
+    "/scenarios/ngsim/data",
+    "/dist",
+    "/target",
+]
 
 [lib]
 name = "stream_core_rust"

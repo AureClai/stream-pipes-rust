@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22957996.svg)](https://doi.org/10.5281/zenodo.22957996)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23017416.svg)](https://doi.org/10.5281/zenodo.23017416)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/AureClai/stream-pipes-rust/graphs/commit-activity)
 [![made-with-rust](https://img.shields.io/badge/Made%20with-Rust-1f425f.svg)](https://www.rust-lang.org/)
 
 # pipe-stream
@@ -56,7 +56,7 @@ server, and Python bindings (`stream_core_rust`) are working and tested. Not yet
 - Time-dependent assignment, all-way stops, and stochastic merges (see
   [Limitations](#limitations)).
 
-APIs and file formats may change before 1.0.
+Public `stream-core` APIs (`API_VERSION = 1`) and scenario JSON schemas follow the stabilized v1 contract.
 
 ## Roadmap
 
@@ -69,7 +69,7 @@ Planned milestones from a fast, self-verifying Dynamic Network Loading (DNL) cor
 - [x] **CLI patches (`--patches`)** — expose the patch pipeline (`SetLink`, `ClosePipe`, `CloseLink`, `ScaleDemand`, `AddNode`, `AddLink`, `AddDemand`) on `stream-cli build`, `run`, and `verify`
 - [x] **Study KPIs & reference comparison** — export turning-movement counts, queue/spillback summaries, OD travel-time skims, and expose `reference` (GEH/RMSE checks against `observed.json`) in `stream-cli`
 - [x] **Python bindings (`stream-py`)** — complete the PyO3 `stream_core_rust` extension module (`check`, `run`, `verify`, in-memory route-based demand, and Python `Controller` hooks)
-- [ ] **1.0 API & schema stabilization** — freeze `stream-core` public API and JSON schemas, add doc-tests, and finalize crate packaging
+- [x] **1.0 API & schema stabilization** — freeze `stream-core` public API and JSON schemas, add doc-tests, and finalize crate packaging
 
 ### 1.1+ — Control, Calibration Tooling & Companion Crates
 - [ ] **Declarative actuated signals in JSON** — presets (gap-out, ALINEA) in `signals.json` on top of `FixedTimePlan` and the `signals::Controller` Rust trait
@@ -475,7 +475,12 @@ Datasets keep their own licences:
 
 ## License
 
-Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
+Dual-licensed under either of:
+
+- MIT License ([LICENSE-MIT](LICENSE-MIT))
+- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
+
+at your option.
 
 pipe-stream derives from
 **[Stream](https://gitlab.cerema.fr/centre-est/mobilite/Stream/stream-python)**

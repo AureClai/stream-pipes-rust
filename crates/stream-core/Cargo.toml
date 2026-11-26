@@ -7,6 +7,9 @@ description = "Core event-based mesoscopic LWR traffic simulation engine with pe
 license.workspace = true
 authors.workspace = true
 repository.workspace = true
+readme = "../../README.md"
+keywords = ["traffic", "simulation", "kinematic-wave", "lwr", "mesoscopic"]
+categories = ["science", "simulation"]
 
 [dependencies]
 serde = { workspace = true }
