@@ -51,4 +51,4 @@ stream-cli run -i scenario.json --assignment --bin-size 60 -o results.json
 - Omit `--assignment` if `scenario.json` already contains pre-routed `vehicles`.
 - `--bin-size` sets the aggregation window in seconds (default: `60.0`).
 
-See [JSON Format Reference](JSON_FORMAT.md) for the exact structure of every file.
+See [JSON Format Reference](09-json-format.md) for the exact structure of every file.

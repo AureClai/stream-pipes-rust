@@ -9,7 +9,7 @@ body:
       label: Topic
       options:
         - User guide (docs/)
-        - JSON format reference (docs/JSON_FORMAT.md)
+        - JSON format reference (docs/09-json-format.md)
         - README / examples
         - Bundled scenario or dataset
         - Benchmark / paper reproduction

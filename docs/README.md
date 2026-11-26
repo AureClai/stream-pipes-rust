@@ -12,7 +12,4 @@ Welcome to the `pipe-stream` (`stream-cli`) user documentation.
 6. [Traffic Signals & Tolls](06-signals.md) — Signal groups, fixed-time plans, ramp metering, and tolls.
 7. [Roundabouts](07-roundabouts.md) — Single-node roundabout modeling (LWR ring + Siegloch / HCM 6 gap acceptance).
 8. [Python Bindings](08-python.md) — Installing with `pip` / `maturin`, in-memory workflows, verification, and Python controllers.
-
-## Reference
-
-- [JSON Format Reference](JSON_FORMAT.md) — Complete field-by-field schema for all input and output JSON/GeoJSON files.
+9. [JSON Format Reference](09-json-format.md) — Complete field-by-field schema for all input and output JSON/GeoJSON files.

@@ -114,7 +114,7 @@ never fully served before the end of the simulation.
 | `stream-cli run -i <scenario.json\|dir> [--patches P...] [--assignment] [--merge capacity] [--bin-size 60] [--no-vehicles] [-o results.json]` | Simulate (with `--assignment`, generate and route vehicles from demand first; `--no-vehicles` omits per-vehicle traces) |
 | `stream-cli verify -i <scenario.json\|dir> [--patches P...] [--observed obs.json] [--assignment] [--bin-size 300] [--benchmarks] [-o report.json]` | Simulate, then run the verification apparatus (and optional GEH/RMSE reference comparison) |
 
-See [docs/](docs/README.md) for the full user guide and [JSON format reference](docs/JSON_FORMAT.md).
+See [docs/](docs/README.md) for the full user guide and [JSON format reference](docs/09-json-format.md).
 
 ### Using it as a library
 
