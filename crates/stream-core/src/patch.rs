@@ -13,7 +13,8 @@
 //! never needs the base network and window ends revert naturally.
 
 use crate::model::{
-    Demand, LinkAttrs, LinkID, LinkStateChange, NodeID, PipeIdx, PipeSpec, ALL_CLASSES,
+    Demand, Link, LinkAttrs, LinkID, LinkStateChange, NodeID, PipeIdx, PipeSpec, Scenario,
+    ALL_CLASSES,
 };
 use anyhow::{anyhow, Context, Result};
 use serde::{Deserialize, Serialize};
@@ -129,6 +130,20 @@ struct BaseLink {
 }
 
 impl BaseLink {
+    fn from_link(link: &Link) -> Self {
+        Self {
+            speed: link.speed,
+            capacity: link.capacity,
+            fd_u: link.fd.u,
+            fd_w: link.fd.w,
+            fd_kx: link.fd.kx,
+            fd_c: link.fd.c,
+            num_lanes: link.num_lanes,
+            friction: link.friction,
+            pipe_specs: link.pipe_specs.clone(),
+            moves: link.moves.clone(),
+        }
+    }
     fn n_pipes(&self) -> usize {
         self.pipe_specs.len().max(1)
     }
@@ -477,42 +492,18 @@ pub fn apply_patches(
                     from,
                     until,
                 } => {
-                    if !factor.is_finite() || *factor < 0.0 {
-                        return Err(anyhow!("{}: scale_demand factor must be ≥ 0", ctx()));
-                    }
-                    let w_from = from.unwrap_or(f64::NEG_INFINITY);
-                    let w_until = until.unwrap_or(f64::INFINITY);
-                    let mut matched = 0usize;
-                    for d in demand.iter_mut() {
-                        if origin.is_some_and(|o| o != d.origin) {
-                            continue;
-                        }
-                        if destination.is_some_and(|dst| dst != d.destination) {
-                            continue;
-                        }
-                        if let Some(name) = class {
-                            let d_class = d.class.as_deref().unwrap_or(&classes[0]);
-                            if d_class != name {
-                                continue;
-                            }
-                        }
-                        // Period must intersect the window.
-                        if d.period_end <= w_from || d.period_start >= w_until {
-                            continue;
-                        }
-                        if d.period_start < w_from || d.period_end > w_until {
-                            warnings.push(format!(
-                                "{}: demand entry {}→{} [{}, {}] only partially overlaps the scaling window — the whole entry is scaled",
-                                ctx(), d.origin, d.destination, d.period_start, d.period_end
-                            ));
-                        }
-                        d.flow *= factor;
-                        d.count *= factor;
-                        matched += 1;
-                    }
-                    if matched == 0 {
-                        warnings.push(format!("{}: scale_demand matched no demand entries", ctx()));
-                    }
+                    scale_demand_entries(
+                        &mut demand,
+                        &classes,
+                        &ctx(),
+                        *factor,
+                        *origin,
+                        *destination,
+                        class.as_deref(),
+                        *from,
+                        *until,
+                        &mut warnings,
+                    )?;
                 }
                 PatchOp::AddDemand { demand: d } => demand.push(d.clone()),
                 // Windowed ops handled in pass 2.
@@ -523,6 +514,84 @@ pub fn apply_patches(
     }
 
     // ── Pass 2: windowed ops → per-link window lists, in (patch, op) order ──
+    let (schedule, assignment_excluded) = resolve_windowed_ops(
+        &base_links,
+        start,
+        end,
+        patches,
+        pending_windows,
+        &mut warnings,
+    )?;
+
+    Ok(CompiledPatches {
+        network,
+        demand: serde_json::to_value(demand).context("Failed to re-serialize demand")?,
+        schedule,
+        assignment_excluded,
+        warnings,
+    })
+}
+
+#[allow(clippy::too_many_arguments)]
+fn scale_demand_entries(
+    demand: &mut [Demand],
+    classes: &[String],
+    ctx: &str,
+    factor: f64,
+    origin: Option<NodeID>,
+    destination: Option<NodeID>,
+    class: Option<&str>,
+    from: Option<f64>,
+    until: Option<f64>,
+    warnings: &mut Vec<String>,
+) -> Result<()> {
+    if !factor.is_finite() || factor < 0.0 {
+        return Err(anyhow!("{}: scale_demand factor must be ≥ 0", ctx));
+    }
+    let w_from = from.unwrap_or(f64::NEG_INFINITY);
+    let w_until = until.unwrap_or(f64::INFINITY);
+    let mut matched = 0usize;
+    for d in demand.iter_mut() {
+        if origin.is_some_and(|o| o != d.origin) {
+            continue;
+        }
+        if destination.is_some_and(|dst| dst != d.destination) {
+            continue;
+        }
+        if let Some(name) = class {
+            let d_class = d.class.as_deref().unwrap_or(&classes[0]);
+            if d_class != name {
+                continue;
+            }
+        }
+        // Period must intersect the window.
+        if d.period_end <= w_from || d.period_start >= w_until {
+            continue;
+        }
+        if d.period_start < w_from || d.period_end > w_until {
+            warnings.push(format!(
+                "{}: demand entry {}→{} [{}, {}] only partially overlaps the scaling window — the whole entry is scaled",
+                ctx, d.origin, d.destination, d.period_start, d.period_end
+            ));
+        }
+        d.flow *= factor;
+        d.count *= factor;
+        matched += 1;
+    }
+    if matched == 0 {
+        warnings.push(format!("{}: scale_demand matched no demand entries", ctx));
+    }
+    Ok(())
+}
+
+fn resolve_windowed_ops(
+    base_links: &HashMap<LinkID, BaseLink>,
+    start: f64,
+    end: f64,
+    patches: &[Patch],
+    pending_windows: Vec<(LinkID, Window)>,
+    warnings: &mut Vec<String>,
+) -> Result<(Vec<LinkStateChange>, Vec<LinkID>)> {
     let mut windows: HashMap<LinkID, Vec<Window>> = HashMap::new();
     let mut assignment_excluded: Vec<LinkID> = Vec::new();
 
@@ -602,7 +671,7 @@ pub fn apply_patches(
                             return Err(anyhow!("{}: num_lanes must be ≥ 1", what));
                         }
                     }
-                    let Some((f, u)) = clamp_window(from, until, &what, &mut warnings)? else {
+                    let Some((f, u)) = clamp_window(from, until, &what, warnings)? else {
                         continue;
                     };
                     let mut attrs = set.clone();
@@ -632,7 +701,7 @@ pub fn apply_patches(
                             base.n_pipes()
                         ));
                     }
-                    let Some((f, u)) = clamp_window(from, until, &what, &mut warnings)? else {
+                    let Some((f, u)) = clamp_window(from, until, &what, warnings)? else {
                         continue;
                     };
                     windows.entry(*link).or_default().push(Window {
@@ -646,7 +715,7 @@ pub fn apply_patches(
                     if !base_links.contains_key(link) {
                         return Err(anyhow!("{}: unknown link {}", what, link));
                     }
-                    let Some((f, u)) = clamp_window(from, until, &what, &mut warnings)? else {
+                    let Some((f, u)) = clamp_window(from, until, &what, warnings)? else {
                         continue;
                     };
                     if f <= start && u >= end && !assignment_excluded.contains(link) {
@@ -709,13 +778,100 @@ pub fn apply_patches(
         );
     }
 
-    Ok(CompiledPatches {
-        network,
-        demand: serde_json::to_value(demand).context("Failed to re-serialize demand")?,
-        schedule,
-        assignment_excluded,
-        warnings,
-    })
+    Ok((schedule, assignment_excluded))
+}
+
+/// Apply demand and windowed link-attribute patches directly onto an already-compiled
+/// [`Scenario`]. Topology ops (`add_node`, `add_link`) are rejected here because they
+/// require source inputs (`stream-cli build --patches` or directory mode).
+pub fn apply_patches_to_scenario(scenario: &mut Scenario, patches: &[Patch]) -> Result<Vec<String>> {
+    if patches.is_empty() {
+        return Ok(Vec::new());
+    }
+    let mut warnings = Vec::new();
+    if !scenario.link_schedule.is_empty() {
+        warnings.push(
+            "scenario already contains pre-compiled link_schedule entries; additional patch windows overlay from base link attributes"
+                .to_string(),
+        );
+    }
+
+    let base_links: HashMap<LinkID, BaseLink> = scenario
+        .links
+        .iter()
+        .map(|l| (l.id, BaseLink::from_link(l)))
+        .collect();
+    let start = scenario.start_time;
+    let end = scenario.start_time + scenario.duration;
+
+    let mut had_demand_op = false;
+    for patch in patches {
+        let ctx = format!("patch '{}'", patch.name);
+        for op in &patch.ops {
+            match op {
+                PatchOp::AddNode { .. } | PatchOp::AddLink { .. } => {
+                    return Err(anyhow!(
+                        "{}: add_node and add_link require source inputs (pass --patches to `stream-cli build`, or pass a scenario directory to `-i`)",
+                        ctx
+                    ));
+                }
+                PatchOp::ScaleDemand {
+                    factor,
+                    origin,
+                    destination,
+                    class,
+                    from,
+                    until,
+                } => {
+                    had_demand_op = true;
+                    scale_demand_entries(
+                        &mut scenario.demand,
+                        &scenario.classes,
+                        &ctx,
+                        *factor,
+                        *origin,
+                        *destination,
+                        class.as_deref(),
+                        *from,
+                        *until,
+                        &mut warnings,
+                    )?;
+                }
+                PatchOp::AddDemand { demand: d } => {
+                    had_demand_op = true;
+                    scenario.demand.push(d.clone());
+                }
+                PatchOp::SetLink { .. } | PatchOp::ClosePipe { .. } | PatchOp::CloseLink { .. } => {
+                }
+            }
+        }
+    }
+    if had_demand_op && !scenario.vehicles.is_empty() {
+        warnings.push(
+            "scenario already contains pre-generated vehicles; demand patches only affect new vehicles generated with --assignment"
+                .to_string(),
+        );
+    }
+
+    let (schedule, assignment_excluded) =
+        resolve_windowed_ops(&base_links, start, end, patches, Vec::new(), &mut warnings)?;
+
+    if !schedule.is_empty() {
+        scenario.link_schedule.extend(schedule);
+        scenario.link_schedule.sort_by(|a, b| {
+            a.time
+                .partial_cmp(&b.time)
+                .expect("finite schedule times")
+                .then(a.link_id.cmp(&b.link_id))
+        });
+    }
+    if !assignment_excluded.is_empty() {
+        scenario.assignment_excluded.extend(assignment_excluded);
+        scenario.assignment_excluded.sort_unstable();
+        scenario.assignment_excluded.dedup();
+    }
+
+    Ok(warnings)
 }
 
 #[cfg(test)]
@@ -1014,5 +1170,67 @@ mod tests {
         let back = serde_json::to_string(&p).unwrap();
         let p2: Patch = serde_json::from_str(&back).unwrap();
         assert_eq!(p2.name, p.name);
+    }
+
+    #[test]
+    fn apply_patches_to_scenario_matches_compile_time_windows() {
+        let mut scenario = crate::io::compile_scenario_from_network_value(
+            network_json(),
+            demand_json(),
+            config_json(),
+        )
+        .unwrap();
+
+        let p = patch(vec![
+            PatchOp::SetLink {
+                link: 0,
+                from: Some(600.0),
+                until: Some(1200.0),
+                set: LinkAttrs {
+                    capacity: Some(0.5),
+                    fd_c: Some(0.25),
+                    ..Default::default()
+                },
+            },
+            PatchOp::ScaleDemand {
+                factor: 0.5,
+                origin: None,
+                destination: None,
+                class: None,
+                from: None,
+                until: None,
+            },
+        ]);
+
+        let compiled = apply_patches(network_json(), demand_json(), &config_json(), &[p.clone()]).unwrap();
+        let warnings = apply_patches_to_scenario(&mut scenario, &[p]).unwrap();
+
+        assert_eq!(scenario.link_schedule.len(), compiled.schedule.len());
+        assert_eq!(scenario.link_schedule[0].time, 600.0);
+        assert_eq!(scenario.link_schedule[0].attrs.capacity, Some(0.5));
+        assert_eq!(scenario.link_schedule[1].time, 1200.0);
+        assert_eq!(scenario.link_schedule[1].attrs.capacity, Some(1.0));
+        assert!((scenario.demand[0].count - 30.0).abs() < 1e-9);
+        assert!(warnings.iter().any(|w| w.contains("assignment is static")));
+    }
+
+    #[test]
+    fn apply_patches_to_scenario_rejects_topology_ops() {
+        let mut scenario = crate::io::compile_scenario_from_network_value(
+            network_json(),
+            demand_json(),
+            config_json(),
+        )
+        .unwrap();
+        let p = patch(vec![PatchOp::AddNode {
+            id: 2,
+            node_type: None,
+            x: 2.0,
+            y: 0.0,
+        }]);
+        let err = apply_patches_to_scenario(&mut scenario, &[p])
+            .unwrap_err()
+            .to_string();
+        assert!(err.contains("add_node"), "got: {err}");
     }
 }

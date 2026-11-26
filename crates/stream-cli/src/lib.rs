@@ -1,14 +1,16 @@
+use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
-use stream_core::api::{collect, RunOptions};
+use std::path::{Path, PathBuf};
+use std::time::Instant;
+use stream_core::api::{collect, compile as compile_inputs, RunOptions, ScenarioInputs};
+use stream_core::assignment::assign_demand;
 use stream_core::benchmarks::run_benchmarks;
-use stream_core::io::{load_scenario, compile_scenario};
+use stream_core::io::{compile_with_patches, load_scenario};
+use stream_core::model::Scenario;
+use stream_core::patch::{apply_patches_to_scenario, Patch};
 use stream_core::simulation::{MergeRule, Simulation};
 use stream_core::validation::Validate;
-use stream_core::assignment::assign_demand;
 use stream_core::verification::{verify_scenario, CheckStatus};
-use std::path::PathBuf;
-use std::time::Instant;
-use anyhow::Result;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -19,10 +21,10 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Run a simulation from a compiled scenario JSON
+    /// Run a simulation from a compiled scenario JSON or a scenario directory
     Run {
-        /// Path to the input scenario JSON file
-        #[arg(short, long, value_name = "FILE")]
+        /// Path to a compiled scenario JSON file or a scenario directory
+        #[arg(short, long, value_name = "PATH")]
         input: PathBuf,
 
         /// Path to output results JSON file (optional)
@@ -33,9 +35,10 @@ enum Commands {
         #[arg(short, long)]
         assignment: bool,
 
-        /// Merge rule at nodes: "in_order" (default) or "capacity"
-        #[arg(long, default_value = "in_order")]
-        merge: String,
+        /// Merge rule at nodes: "in_order" (default, or from config.json in dir mode) or "capacity"
+        #[arg(long)]
+        merge: Option<String>,
+
         /// Aggregation bin size in seconds for link/pipe statistics and CVCs
         #[arg(long, default_value_t = 60.0)]
         bin_size: f64,
@@ -43,24 +46,32 @@ enum Commands {
         /// Omit per-vehicle trajectories from the JSON output (for large networks)
         #[arg(long)]
         no_vehicles: bool,
+
+        /// Patch JSON files (or patch names under `<dir>/patches/<name>.json` when `-i` is a directory)
+        #[arg(long, value_name = "PATCH", num_args = 1..)]
+        patches: Vec<PathBuf>,
     },
     /// Compile a scenario from source files (GeoJSON + JSON) into a single artifact
     Build {
         /// Path to network.geojson
         #[arg(long)]
         network: PathBuf,
-        
+
         /// Path to demand.json
         #[arg(long)]
         demand: PathBuf,
-        
+
         /// Path to config.json
         #[arg(long)]
         config: PathBuf,
-        
+
         /// Path to signals.json (signal groups, plans, tolls; optional)
         #[arg(long)]
         signals: Option<PathBuf>,
+
+        /// Patch JSON files to apply in order
+        #[arg(long, value_name = "FILE", num_args = 1..)]
+        patches: Vec<PathBuf>,
 
         /// Output path for scenario.json
         #[arg(short, long)]
@@ -71,8 +82,8 @@ enum Commands {
     /// Exit code is non-zero when any check fails, and when the run
     /// exercised nothing at all (absence of evidence is not a pass).
     Verify {
-        /// Path to the input scenario JSON file (compiled artifact)
-        #[arg(short, long, value_name = "FILE")]
+        /// Path to a compiled scenario JSON file or a scenario directory
+        #[arg(short, long, value_name = "PATH")]
         input: PathBuf,
 
         /// Run assignment (generate & route vehicles from demand) before simulation
@@ -97,9 +108,13 @@ enum Commands {
         #[arg(short, long, value_name = "FILE")]
         output: Option<PathBuf>,
 
-        /// Merge rule at nodes: "in_order" (default) or "capacity"
-        #[arg(long, default_value = "in_order")]
-        merge: String,
+        /// Merge rule at nodes: "in_order" (default, or from config.json in dir mode) or "capacity"
+        #[arg(long)]
+        merge: Option<String>,
+
+        /// Patch JSON files (or patch names under `<dir>/patches/<name>.json` when `-i` is a directory)
+        #[arg(long, value_name = "PATCH", num_args = 1..)]
+        patches: Vec<PathBuf>,
     },
 }
 
@@ -107,53 +122,162 @@ fn merge_rule(name: &str) -> Result<MergeRule> {
     MergeRule::from_config(&serde_json::json!({ "merge": name }))
 }
 
+fn read_json(path: &Path) -> Result<serde_json::Value> {
+    let text = std::fs::read_to_string(path)
+        .with_context(|| format!("cannot read {}", path.display()))?;
+    serde_json::from_str(&text).with_context(|| format!("invalid JSON in {}", path.display()))
+}
+
+fn load_patch_file(path: &Path) -> Result<Patch> {
+    let text = std::fs::read_to_string(path)
+        .with_context(|| format!("cannot read patch {}", path.display()))?;
+    serde_json::from_str(&text).with_context(|| format!("invalid patch JSON in {}", path.display()))
+}
+
+fn resolve_patches(patch_args: &[PathBuf], base_dir: Option<&Path>) -> Result<Vec<Patch>> {
+    patch_args
+        .iter()
+        .map(|arg| {
+            if arg.exists() {
+                return load_patch_file(arg);
+            }
+            if let Some(dir) = base_dir {
+                let candidate = dir.join("patches").join(arg);
+                if candidate.exists() {
+                    return load_patch_file(&candidate);
+                }
+                if arg.extension().is_none() {
+                    let with_ext = dir.join("patches").join(format!("{}.json", arg.display()));
+                    if with_ext.exists() {
+                        return load_patch_file(&with_ext);
+                    }
+                    anyhow::bail!(
+                        "patch '{}' not found (checked '{}' and '{}')",
+                        arg.display(),
+                        candidate.display(),
+                        with_ext.display()
+                    );
+                }
+                anyhow::bail!(
+                    "patch '{}' not found (checked '{}')",
+                    arg.display(),
+                    candidate.display()
+                );
+            }
+            load_patch_file(arg)
+        })
+        .collect()
+}
+
+fn load_scenario_for_cli(
+    input: &Path,
+    patch_args: &[PathBuf],
+    merge_flag: Option<&str>,
+) -> Result<(Scenario, MergeRule, Vec<String>)> {
+    if input.is_dir() {
+        let mut inputs = ScenarioInputs::from_dir(input, &[])?;
+        inputs.patches = resolve_patches(patch_args, Some(input))?;
+        let merge = match merge_flag {
+            Some(name) => merge_rule(name)?,
+            None => MergeRule::from_config(&inputs.config)?,
+        };
+        let (scenario, warnings) = compile_inputs(&inputs)?;
+        return Ok((scenario, merge, warnings));
+    }
+
+    let merge = match merge_flag {
+        Some(name) => merge_rule(name)?,
+        None => MergeRule::InOrder,
+    };
+    let mut scenario = load_scenario(input)?;
+    let patches = resolve_patches(patch_args, None)?;
+    let warnings = apply_patches_to_scenario(&mut scenario, &patches)?;
+    scenario.validate()?;
+    Ok((scenario, merge, warnings))
+}
+
+fn print_patch_warnings(warnings: &[String]) {
+    for w in warnings {
+        println!("Warning: {}", w);
+    }
+}
+
 pub fn run() -> Result<()> {
     let cli = Cli::parse();
 
     match cli.command {
-        Commands::Build { network, demand, config, signals, output } => {
+        Commands::Build {
+            network,
+            demand,
+            config,
+            signals,
+            patches,
+            output,
+        } => {
             println!("Compiling scenario...");
             let start = Instant::now();
-            let mut scenario = compile_scenario(network, demand, config)?;
+            let network_val = read_json(&network)?;
+            let demand_val = read_json(&demand)?;
+            let config_val = read_json(&config)?;
+            let loaded_patches = resolve_patches(&patches, None)?;
+            let (mut scenario, warnings) =
+                compile_with_patches(network_val, demand_val, config_val, &loaded_patches)?;
+            print_patch_warnings(&warnings);
+
             if let Some(path) = signals {
-                let value: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(&path)?)?;
+                let value = read_json(&path)?;
                 scenario.signals = stream_core::signals::compile(value, &scenario)?;
             }
-            
+
             println!("Validating...");
             scenario.validate()?;
-            
+
             println!("Saving to {:?}...", output);
             use std::io::Write;
             let mut file = std::io::BufWriter::new(std::fs::File::create(output)?);
             serde_json::to_writer_pretty(&mut file, &scenario)?;
             file.flush()?;
-            
+
             println!("Build complete in {:.2?}.", start.elapsed());
-        },
-        Commands::Run { input, output, assignment, merge, bin_size, no_vehicles } => {
+        }
+        Commands::Run {
+            input,
+            output,
+            assignment,
+            merge,
+            bin_size,
+            no_vehicles,
+            patches,
+        } => {
             if !(bin_size.is_finite() && bin_size >= 1.0) {
                 anyhow::bail!("bin_size must be a finite number of seconds >= 1");
             }
-            let merge = merge_rule(&merge)?;
             println!("Loading scenario from {:?}...", input);
             let start = Instant::now();
-            let mut scenario = load_scenario(&input)?;
-            println!("Loaded in {:.2?}. Vehicles: {}, Demand: {}, Links: {}, Nodes: {}", 
-                start.elapsed(), scenario.vehicles.len(), scenario.demand.len(), scenario.links.len(), scenario.nodes.len());
-
-            println!("Validating scenario...");
-            scenario.validate()?;
-            println!("Validation passed.");
+            let (mut scenario, merge, warnings) =
+                load_scenario_for_cli(&input, &patches, merge.as_deref())?;
+            print_patch_warnings(&warnings);
+            println!(
+                "Loaded in {:.2?}. Vehicles: {}, Demand: {}, Links: {}, Nodes: {}",
+                start.elapsed(),
+                scenario.vehicles.len(),
+                scenario.demand.len(),
+                scenario.links.len(),
+                scenario.nodes.len()
+            );
 
             if assignment {
                 println!("Running Assignment & Generation...");
                 let assign_start = Instant::now();
-                
+
                 let added_vehicles = assign_demand(&mut scenario)?;
-                
-                println!("Assignment complete in {:.2?}. Added {} vehicles. Total Vehicles: {}.", 
-                    assign_start.elapsed(), added_vehicles, scenario.vehicles.len());
+
+                println!(
+                    "Assignment complete in {:.2?}. Added {} vehicles. Total Vehicles: {}.",
+                    assign_start.elapsed(),
+                    added_vehicles,
+                    scenario.vehicles.len()
+                );
             }
 
             println!("Initializing Simulation...");
@@ -163,7 +287,11 @@ pub fn run() -> Result<()> {
             println!("Running Simulation...");
             let sim_start = Instant::now();
             let events_processed = sim.run()?;
-            println!("Simulation complete in {:.2?}. Processed {} events.", sim_start.elapsed(), events_processed);
+            println!(
+                "Simulation complete in {:.2?}. Processed {} events.",
+                sim_start.elapsed(),
+                events_processed
+            );
 
             if let Some(output_path) = output {
                 println!("Writing results to {:?}...", output_path);
@@ -173,15 +301,33 @@ pub fn run() -> Result<()> {
                     keep_vehicles: !no_vehicles,
                     ..Default::default()
                 };
-                let results = collect(sim.scenario, events_processed, Vec::new(), &options);
+                let results = collect(sim.scenario, events_processed, warnings, &options);
                 use std::io::Write;
                 let mut file = std::io::BufWriter::new(std::fs::File::create(&output_path)?);
                 serde_json::to_writer(&mut file, &results)?;
                 file.flush()?;
             }
         }
-        Commands::Verify { input, assignment, bin_size, benchmarks, strict, output, merge } => {
-            run_verify(input, assignment, bin_size, benchmarks, strict, output, merge_rule(&merge)?)?;
+        Commands::Verify {
+            input,
+            assignment,
+            bin_size,
+            benchmarks,
+            strict,
+            output,
+            merge,
+            patches,
+        } => {
+            run_verify(
+                input,
+                assignment,
+                bin_size,
+                benchmarks,
+                strict,
+                output,
+                merge,
+                patches,
+            )?;
         }
     }
 
@@ -192,6 +338,7 @@ pub fn run() -> Result<()> {
 /// pass/warn/fail/not-exercised report. Exit contract: Err (non-zero exit)
 /// only when a check or benchmark FAILS — warnings and not-exercised do not
 /// fail the run, matching the CheckStatus semantics.
+#[allow(clippy::too_many_arguments)]
 fn run_verify(
     input: PathBuf,
     assignment: bool,
@@ -199,11 +346,13 @@ fn run_verify(
     benchmarks: bool,
     strict: bool,
     output: Option<PathBuf>,
-    merge: MergeRule,
+    merge: Option<String>,
+    patches: Vec<PathBuf>,
 ) -> Result<()> {
     println!("Loading scenario from {:?}...", input);
-    let mut scenario = load_scenario(&input)?;
-    scenario.validate()?;
+    let (mut scenario, merge, warnings) =
+        load_scenario_for_cli(&input, &patches, merge.as_deref())?;
+    print_patch_warnings(&warnings);
     if assignment {
         let added = assign_demand(&mut scenario)?;
         println!("Assignment: {} vehicles generated.", added);
@@ -217,8 +366,13 @@ fn run_verify(
     let s = &report.summary;
     println!(
         "Verification: {} elements — {} pass, {} warn, {} fail, {} not-exercised ({} checks, {} failing).",
-        s.elements_checked, s.elements_pass, s.elements_warn, s.elements_fail,
-        s.elements_not_exercised, s.checks_total, s.checks_fail
+        s.elements_checked,
+        s.elements_pass,
+        s.elements_warn,
+        s.elements_fail,
+        s.elements_not_exercised,
+        s.checks_total,
+        s.checks_fail
     );
     for element in &report.elements {
         if matches!(element.status, CheckStatus::Fail | CheckStatus::Warn) {
@@ -238,20 +392,19 @@ fn run_verify(
     if benchmarks {
         println!("Analytic benchmarks:");
         for b in run_benchmarks()? {
-            // The benchmarks are event-exact, so anything short of Pass is a
-            // defect: a Warn here is an undiagnosed deviation, not acceptable
-            // accuracy, and must not leave the command reporting success.
             if b.status != CheckStatus::Pass {
                 benchmark_failures += 1;
             }
-            // Report the gap in ulps as well as percent: "0.000%" is a rounded
-            // print and cannot distinguish exact agreement from a deviation
-            // twelve orders of magnitude above rounding, which is the whole
-            // claim being made here.
             let ulps = (b.measured.to_bits() as i64 - b.analytic.to_bits() as i64).abs();
             println!(
                 "  [{:?}] {} — analytic {} {u}, measured {} {u} ({:.3}% error, {} ulp)",
-                b.status, b.name, b.analytic, b.measured, b.error_pct, ulps, u = b.unit
+                b.status,
+                b.name,
+                b.analytic,
+                b.measured,
+                b.error_pct,
+                ulps,
+                u = b.unit
             );
         }
     }
@@ -272,9 +425,6 @@ fn run_verify(
         );
     }
 
-    // Absence of evidence is not evidence of correctness — the principle the
-    // status vocabulary exists to enforce. A run that exercised nothing has
-    // verified nothing, and must not exit 0 reporting success.
     let exercised = s.elements_checked.saturating_sub(s.elements_not_exercised);
     if s.elements_checked > 0 && exercised == 0 {
         anyhow::bail!(
@@ -312,9 +462,17 @@ mod tests {
     fn cli_run_parses_no_vehicles_flag() {
         let default_cli = Cli::try_parse_from(["stream-cli", "run", "-i", "s.json"]).unwrap();
         match default_cli.command {
-            Commands::Run { no_vehicles, bin_size, .. } => {
+            Commands::Run {
+                no_vehicles,
+                bin_size,
+                patches,
+                merge,
+                ..
+            } => {
                 assert!(!no_vehicles);
                 assert_eq!(bin_size, 60.0);
+                assert!(patches.is_empty());
+                assert!(merge.is_none());
             }
             _ => panic!("expected Run command"),
         }
@@ -326,5 +484,63 @@ mod tests {
             _ => panic!("expected Run command"),
         }
     }
-}
 
+    #[test]
+    fn cli_parses_patches_on_build_run_and_verify() {
+        let build = Cli::try_parse_from([
+            "stream-cli",
+            "build",
+            "--network",
+            "n.geojson",
+            "--demand",
+            "d.json",
+            "--config",
+            "c.json",
+            "--patches",
+            "p1.json",
+            "p2.json",
+            "-o",
+            "out.json",
+        ])
+        .unwrap();
+        match build.command {
+            Commands::Build { patches, .. } => {
+                assert_eq!(patches, vec![PathBuf::from("p1.json"), PathBuf::from("p2.json")]);
+            }
+            _ => panic!("expected Build"),
+        }
+
+        let run_cmd = Cli::try_parse_from([
+            "stream-cli",
+            "run",
+            "-i",
+            "scenarios/a47_givors_osm",
+            "--patches",
+            "gate",
+            "--assignment",
+        ])
+        .unwrap();
+        match run_cmd.command {
+            Commands::Run { patches, .. } => assert_eq!(patches, vec![PathBuf::from("gate")]),
+            _ => panic!("expected Run"),
+        }
+
+        let verify_cmd = Cli::try_parse_from([
+            "stream-cli",
+            "verify",
+            "-i",
+            "s.json",
+            "--patches",
+            "a.json",
+            "--patches",
+            "b.json",
+        ])
+        .unwrap();
+        match verify_cmd.command {
+            Commands::Verify { patches, .. } => {
+                assert_eq!(patches, vec![PathBuf::from("a.json"), PathBuf::from("b.json")]);
+            }
+            _ => panic!("expected Verify"),
+        }
+    }
+}

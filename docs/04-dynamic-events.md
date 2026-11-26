@@ -40,4 +40,23 @@ In `scenario.json`, add entries to `link_schedule` (sorted by `(time, link_id)`)
 
 At `t = 1800 s`, link `3` drops to half capacity, and at `t = 4200 s` it is restored to its nominal values.
 
-> **Note:** The underlying `patch` module (`SetLink`, `ClosePipe`, `CloseLink`) compiles time windows `[from, until)` into `link_schedule` automatically when used via `stream-server` or the Rust library (`compile_with_patches`). Exposing `--patches` directly on `stream-cli` is planned; until then, populate `link_schedule` in `scenario.json`.
+## CLI Usage (`--patches`)
+
+You can pass one or more patch JSON files directly to `stream-cli build`, `run`, or `verify`:
+
+```bash
+# Bake patches into a compiled scenario.json (supports all PatchOp types, including add_node / add_link)
+stream-cli build \
+  --network network.geojson --demand demand.json --config config.json \
+  --patches patches/closure.json patches/demand_peak.json \
+  -o scenario.json
+
+# Or run/verify directly from a scenario directory using patch names in patches/<name>.json
+stream-cli run -i scenarios/a47_givors_osm --patches gate --assignment -o results.json
+stream-cli verify -i scenarios/a47_givors_osm --patches gate --assignment
+
+# Or apply demand/windowed patches on top of an existing scenario.json
+stream-cli run -i scenario.json --patches patches/incident.json --assignment -o results.json
+```
+
+> **Note:** In directory mode (`-i <DIR>`), `--merge` defaults to `config.json`'s `"merge"` setting unless overridden on the CLI. Topology patches (`add_node`, `add_link`) require source inputs (`stream-cli build --patches` or directory mode `-i <DIR>`).
