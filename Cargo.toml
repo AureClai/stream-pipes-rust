@@ -7,6 +7,12 @@ members = [
     "crates/stream-server",
     "crates/stream-py",
 ]
+default-members = [
+    ".",
+    "crates/stream-core",
+    "crates/stream-cli",
+    "crates/stream-server",
+]
 exclude = [
     "scenarios/a47_givors_osm/build",
 ]

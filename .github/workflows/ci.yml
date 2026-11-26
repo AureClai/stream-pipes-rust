@@ -24,6 +24,11 @@ jobs:
         with:
           toolchain: ${{ matrix.rust }}
 
+      - name: Set up Python 3.12 for PyO3 workspace check
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - uses: Swatinem/rust-cache@v2
 
       - name: Run workspace test suite (no-default-features)
