@@ -13,8 +13,9 @@
 //! (`network.geojson`, `demand.json`, `config.json`, `patches/*.json`).
 
 use crate::analysis::{
-    compute_link_cvcs, compute_link_stats, compute_pipe_stats, compute_vehicle_kpis, LinkCvc,
-    LinkStats, PipeStats, VehicleKpis,
+    compute_link_cvcs, compute_link_stats, compute_od_skims, compute_pipe_stats,
+    compute_queue_summaries, compute_turning_counts, compute_vehicle_kpis, LinkCvc,
+    LinkQueueSummary, LinkStats, OdSkim, PipeStats, TurningMovementCount, VehicleKpis,
 };
 use crate::assignment::{assign_demand, NetworkGraph};
 use crate::io::compile_with_patches;
@@ -275,6 +276,15 @@ pub struct RunOutput {
     pub link_cvcs: Vec<LinkCvc>,
     /// Per-pipe series of multi-pipe links only, sorted by (link, pipe).
     pub pipe_stats: Vec<PipeStats>,
+    /// Turning-movement counts across traversed node pairs, sorted by `(node_id, from_link, to_link)`.
+    #[serde(default)]
+    pub turning_counts: Vec<TurningMovementCount>,
+    /// Per-link occupancy, spillback duration, and delay summaries, sorted by `link_id`.
+    #[serde(default)]
+    pub queue_summaries: Vec<LinkQueueSummary>,
+    /// Origin-destination travel-time skims, sorted by `(origin, destination)`.
+    #[serde(default)]
+    pub od_skims: Vec<OdSkim>,
     /// Empty unless `RunOptions::keep_vehicles`.
     #[serde(default)]
     pub vehicles: Vec<VehicleResult>,
@@ -343,6 +353,9 @@ pub fn collect(
 
     let vehicle_kpis = compute_vehicle_kpis(&scenario);
     let vehicles_arrived = vehicle_kpis.arrived;
+    let turning_counts = compute_turning_counts(&scenario);
+    let queue_summaries = compute_queue_summaries(&scenario);
+    let od_skims = compute_od_skims(&scenario);
     let vehicles = if options.keep_vehicles {
         scenario
             .vehicles
@@ -378,6 +391,9 @@ pub fn collect(
         link_stats,
         link_cvcs,
         pipe_stats,
+        turning_counts,
+        queue_summaries,
+        od_skims,
         vehicles,
     }
 }
@@ -456,6 +472,18 @@ mod tests {
         assert_eq!(back.link_stats.len(), out.link_stats.len());
         assert_eq!(back.link_cvcs, out.link_cvcs);
         assert_eq!(back.vehicle_kpis, out.vehicle_kpis);
+        assert_eq!(back.turning_counts, out.turning_counts);
+        assert_eq!(back.queue_summaries.len(), out.queue_summaries.len());
+        for (a, b) in back.queue_summaries.iter().zip(out.queue_summaries.iter()) {
+            assert_eq!(a.link_id, b.link_id);
+            assert_eq!(a.max_occupancy, b.max_occupancy);
+            assert_eq!(a.end_occupancy, b.end_occupancy);
+            assert!((a.total_delay_veh_h - b.total_delay_veh_h).abs() < 1e-12);
+        }
+        assert_eq!(back.od_skims.len(), out.od_skims.len());
+        assert!(!out.turning_counts.is_empty());
+        assert_eq!(out.queue_summaries.len(), out.link_stats.len());
+        assert!(!out.od_skims.is_empty());
     }
 
     #[test]

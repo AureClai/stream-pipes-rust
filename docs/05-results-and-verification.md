@@ -18,6 +18,9 @@ The output JSON (`RunOutput`) contains:
   - `kx_veh_km`, `capacity_veh_h` — theoretical bounds for reference
 - **`link_cvcs`:** Pre-computed entry and exit cumulative volume curves (`t`, `entry`, `exit`) per link sampled at bin boundaries from `start_time` to `start_time + duration`.
 - **`pipe_stats`:** Same time series per pipe (included automatically for links with more than 1 pipe).
+- **`turning_counts`:** Turning-movement volumes (`node_id`, `from_link`, `to_link`, `count`, `flow_veh_h`, `share`).
+- **`queue_summaries`:** Per-link peak occupancy, end occupancy, occupancy ratio, spillback duration, and traversal delay.
+- **`od_skims`:** Origin-destination travel-time skims (`mean`, `p50`, `p95`, total time including entry wait, free-flow time, delay).
 - **`vehicles`:** Per-vehicle trips and node passage timestamps (empty when `--no-vehicles` is passed).
 
 See [JSON Format Reference](JSON_FORMAT.md#21-simulation-results-stream-cli-run--o-file) for the full schema.
@@ -41,4 +44,5 @@ Each link, pipe, node, and entry is checked against LWR theory and assigned a st
 | **Entry** | `demand_served` (fraction of scheduled vehicles that entered the network) |
 
 - Use `--strict` to fail if any element was `not_exercised` (useful for test suites).
-- Use `--benchmarks` to also run the 10 closed-form analytic LWR benchmarks.
+- Use `--benchmarks` to also run the 18 closed-form analytic LWR benchmarks.
+- Use `--observed <FILE>` (or `--observed observed.json` in directory mode `-i <DIR>`) to compare simulated flows and speeds against field observations (`GEH`, `flow_rmse_veh_h`, `flow_mean_geh`, `speed_rmse_kmh`).

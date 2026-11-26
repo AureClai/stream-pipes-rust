@@ -865,6 +865,7 @@ version = "0.1.2"
 dependencies = [
  "anyhow",
  "clap",
+ "serde",
  "serde_json",
  "stream-core",
 ]
