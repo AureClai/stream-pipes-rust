@@ -23,7 +23,7 @@ The output JSON (`RunOutput`) contains:
 - **`od_skims`:** Origin-destination travel-time skims (`mean`, `p50`, `p95`, total time including entry wait, free-flow time, delay).
 - **`vehicles`:** Per-vehicle trips and node passage timestamps (empty when `--no-vehicles` is passed).
 
-See [JSON Format Reference](JSON_FORMAT.md#21-simulation-results-stream-cli-run--o-file) for the full schema.
+See [JSON Format Reference](09-json-format.md#21-simulation-results-stream-cli-run--o-file) for the full schema.
 
 ---
 

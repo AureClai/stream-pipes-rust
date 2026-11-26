@@ -50,10 +50,9 @@ with its own capacity, storage and backward wave.
 ## Status
 
 Research software accompanying a paper in preparation (see
-[Citing](#citing)). The core engine, CLI, verification apparatus and HTTP
-server are working and tested. Not yet available:
+[Citing](#citing)). The core engine, CLI, verification apparatus, HTTP
+server, and Python bindings (`stream_core_rust`) are working and tested. Not yet available:
 
-- **Python bindings**: the PyO3 module is a stub for now.
 - Time-dependent assignment, all-way stops, and stochastic merges (see
   [Limitations](#limitations)).
 
@@ -69,7 +68,7 @@ Planned milestones from a fast, self-verifying Dynamic Network Loading (DNL) cor
 - [x] **Route-based demand** — optional `path` field in `demand.json` to inject `(route, flow)` pairs from external assignment tools
 - [x] **CLI patches (`--patches`)** — expose the patch pipeline (`SetLink`, `ClosePipe`, `CloseLink`, `ScaleDemand`, `AddNode`, `AddLink`, `AddDemand`) on `stream-cli build`, `run`, and `verify`
 - [x] **Study KPIs & reference comparison** — export turning-movement counts, queue/spillback summaries, OD travel-time skims, and expose `reference` (GEH/RMSE checks against `observed.json`) in `stream-cli`
-- [ ] **Python bindings (`stream-py`)** — complete the PyO3 `stream_core_rust` extension module (`check`, `run`, `verify`, in-memory route-based demand, and Python `Controller` hooks)
+- [x] **Python bindings (`stream-py`)** — complete the PyO3 `stream_core_rust` extension module (`check`, `run`, `verify`, in-memory route-based demand, and Python `Controller` hooks)
 - [ ] **1.0 API & schema stabilization** — freeze `stream-core` public API and JSON schemas, add doc-tests, and finalize crate packaging
 
 ### 1.1+ — Control, Calibration Tooling & Companion Crates
@@ -115,7 +114,7 @@ never fully served before the end of the simulation.
 | `stream-cli run -i <scenario.json\|dir> [--patches P...] [--assignment] [--merge capacity] [--bin-size 60] [--no-vehicles] [-o results.json]` | Simulate (with `--assignment`, generate and route vehicles from demand first; `--no-vehicles` omits per-vehicle traces) |
 | `stream-cli verify -i <scenario.json\|dir> [--patches P...] [--observed obs.json] [--assignment] [--bin-size 300] [--benchmarks] [-o report.json]` | Simulate, then run the verification apparatus (and optional GEH/RMSE reference comparison) |
 
-See [docs/](docs/README.md) for the full user guide and [JSON format reference](docs/JSON_FORMAT.md).
+See [docs/](docs/README.md) for the full user guide and [JSON format reference](docs/09-json-format.md).
 
 ### Using it as a library
 
@@ -162,6 +161,32 @@ workspace crates). Analysis modules are pure functions over a finished scenario:
 `analysis` (binned flow, density and speed per link and per pipe),
 `xt_analysis` (space-time diagrams), `diagnostics`, `verification`, and
 `reference` (GEH against observed counts).
+
+### Using it from Python
+
+Install directly with `pip` (requires Rust ≥ 1.82) or [maturin](https://www.maturin.rs/):
+
+```bash
+pip install .
+# or for local development:
+pip install maturin && maturin develop --release
+```
+
+```python
+import stream_core_rust as sc
+
+report = sc.check(dir="scenarios/diverge")
+out = sc.run(dir="scenarios/diverge", bin_size=60.0)
+# out["vehicle_kpis"], out["link_stats"], out["link_cvcs"],
+# out["turning_counts"], out["queue_summaries"], out["od_skims"]
+
+ver = sc.verify(dir="scenarios/urban", benchmarks=True)
+```
+
+You can also pass in-memory `network` / `demand` / `config` dicts (including
+route-based `path` entries) and attach Python `Controller` objects using
+`Command.switch`, `Command.wake_at`, and `Command.set_vehicles_per_green`.
+See [docs/08-python.md](docs/08-python.md) for the full Python guide.
 
 ## Scenario format
 

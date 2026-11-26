@@ -42,6 +42,9 @@ jobs:
           cargo check -p stream-server
           cargo check --no-default-features --features server --bin stream-server
 
+      - name: Check Python bindings feature
+        run: cargo check --features python
+
       - name: Run built-in verification & analytic benchmarks
         if: matrix.rust == 'stable'
         run: |

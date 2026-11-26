@@ -2,6 +2,7 @@
 /.claude
 # Local only: paper, model notes, AI context
 __pycache__/
+.pytest_cache/
 /ROADMAP.md
 /MIGRATION_PLAN.md
 /compare_cvc.py

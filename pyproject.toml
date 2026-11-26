@@ -1,0 +1,31 @@
+[build-system]
+requires = ["maturin>=1.7,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "stream-pipes"
+version = "0.1.2"
+description = "Event-based mesoscopic LWR traffic model with per-lane pipes, class-restricted lanes and built-in verification"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT OR Apache-2.0" }
+authors = [{ name = "Aurélien Clairais", email = "aureclai.dev@gmail.com" }]
+keywords = ["traffic", "simulation", "kinematic-wave", "lwr", "mesoscopic"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Rust",
+  "Topic :: Scientific/Engineering",
+]
+
+[project.urls]
+Repository = "https://github.com/AureClai/stream-pipes-rust"
+
+[tool.maturin]
+features = ["python"]
+python-source = "python"
+module-name = "stream_core_rust._native"
+bindings = "pyo3"
