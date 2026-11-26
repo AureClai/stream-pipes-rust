@@ -1,4 +1,4 @@
-use crate::model::{Link, LinkID, PipeIdx, Scenario, VehicleState};
+use crate::model::{Link, LinkID, NodeID, PipeIdx, Scenario, Vehicle, VehicleState};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -350,6 +350,376 @@ pub fn compute_link_cvcs(scenario: &Scenario, bin_size: f64) -> HashMap<LinkID, 
     cvcs
 }
 
+/// Turning-movement volume across one node (`from_link -> to_link`), aggregated
+/// over the simulation horizon.
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+pub struct TurningMovementCount {
+    pub node_id: NodeID,
+    pub from_link: LinkID,
+    pub to_link: LinkID,
+    /// Vehicles that completed `from_link` and entered `to_link` during the run.
+    pub count: usize,
+    /// Equivalent hourly flow over `scenario.duration` (`count * 3600 / duration`, veh/h).
+    pub flow_veh_h: f64,
+    /// Split share of `from_link`'s total outgoing crossings at `node_id` in `[0, 1]`.
+    pub share: f64,
+}
+
+/// Compute turning-movement counts across all traversed node pairs `(from_link -> to_link)`,
+/// sorted by `(node_id, from_link, to_link)`.
+pub fn compute_turning_counts(scenario: &Scenario) -> Vec<TurningMovementCount> {
+    let link_down_map: HashMap<LinkID, NodeID> =
+        scenario.links.iter().map(|l| (l.id, l.node_down)).collect();
+
+    let mut counts: HashMap<(NodeID, LinkID, LinkID), usize> = HashMap::new();
+    let mut from_totals: HashMap<(NodeID, LinkID), usize> = HashMap::new();
+
+    for veh in &scenario.vehicles {
+        for i in 0..veh.path.len().saturating_sub(1) {
+            if veh.link_exit_time(i).is_none() {
+                break;
+            }
+            let from_link = veh.path[i];
+            let to_link = veh.path[i + 1];
+            let Some(&node_id) = link_down_map.get(&from_link) else {
+                continue;
+            };
+            *counts.entry((node_id, from_link, to_link)).or_insert(0) += 1;
+            *from_totals.entry((node_id, from_link)).or_insert(0) += 1;
+        }
+    }
+
+    let duration_h = if scenario.duration > 0.0 {
+        scenario.duration / 3600.0
+    } else {
+        0.0
+    };
+
+    let mut out: Vec<TurningMovementCount> = counts
+        .into_iter()
+        .map(|((node_id, from_link, to_link), count)| {
+            let total = from_totals.get(&(node_id, from_link)).copied().unwrap_or(0);
+            TurningMovementCount {
+                node_id,
+                from_link,
+                to_link,
+                count,
+                flow_veh_h: if duration_h > 0.0 {
+                    count as f64 / duration_h
+                } else {
+                    0.0
+                },
+                share: if total > 0 {
+                    count as f64 / total as f64
+                } else {
+                    0.0
+                },
+            }
+        })
+        .collect();
+    out.sort_by_key(|c| (c.node_id, c.from_link, c.to_link));
+    out
+}
+
+/// Queueing, occupancy, and spillback summary for one link over `[start_time, end_time]`.
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+pub struct LinkQueueSummary {
+    pub link_id: LinkID,
+    /// Peak simultaneous vehicles present on the link during the horizon.
+    pub max_occupancy: usize,
+    /// Vehicles remaining on the link at the end of the horizon.
+    pub end_occupancy: usize,
+    /// Whole-link theoretical storage capacity (`kx * num_lanes * length`, veh; 0 if `kx <= 0`).
+    pub storage_veh: f64,
+    /// `max_occupancy / storage_veh` (0.0 when storage is unlimited).
+    pub max_occupancy_ratio: f64,
+    /// Total duration (s) during which at least one pipe on the link was at jam storage.
+    pub spillback_duration_s: f64,
+    /// Mean traversal delay over free-flow (`L / fd.u`) across completed link traversals (s).
+    pub mean_delay_s: f64,
+    /// Sum of traversal delays across completed link traversals (veh·h).
+    pub total_delay_veh_h: f64,
+}
+
+/// Sweep `(t, delta)` events (exits `-1` ordered before entries `+1` at equal times)
+/// to measure peak occupancy and total duration where `occ >= threshold` (when `Some`).
+fn sweep_occupancy(events: &mut [(f64, i32)], horizon_end: f64, threshold: Option<usize>) -> (usize, Vec<(f64, f64)>) {
+    events.sort_by(|a, b| {
+        a.0.partial_cmp(&b.0)
+            .unwrap_or(std::cmp::Ordering::Equal)
+            .then(a.1.cmp(&b.1)) // -1 (exit) before +1 (entry) at identical t
+    });
+    let mut occ: isize = 0;
+    let mut max_occ: usize = 0;
+    let mut full_intervals: Vec<(f64, f64)> = Vec::new();
+    let mut full_start: Option<f64> = None;
+
+    for &(t, delta) in events.iter() {
+        occ = (occ + delta as isize).max(0);
+        let uocc = occ as usize;
+        max_occ = max_occ.max(uocc);
+        if let Some(cap) = threshold {
+            if uocc >= cap && full_start.is_none() {
+                full_start = Some(t);
+            } else if uocc < cap {
+                if let Some(s) = full_start.take() {
+                    if t > s {
+                        full_intervals.push((s, t));
+                    }
+                }
+            }
+        }
+    }
+    if let Some(s) = full_start {
+        if horizon_end > s {
+            full_intervals.push((s, horizon_end));
+        }
+    }
+    (max_occ, full_intervals)
+}
+
+/// Compute union duration of `[start, end)` intervals.
+fn union_duration(mut intervals: Vec<(f64, f64)>) -> f64 {
+    if intervals.is_empty() {
+        return 0.0;
+    }
+    intervals.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap_or(std::cmp::Ordering::Equal));
+    let mut total = 0.0;
+    let (mut cur_s, mut cur_e) = intervals[0];
+    for (s, e) in intervals.into_iter().skip(1) {
+        if s <= cur_e {
+            cur_e = cur_e.max(e);
+        } else {
+            total += (cur_e - cur_s).max(0.0);
+            cur_s = s;
+            cur_e = e;
+        }
+    }
+    total + (cur_e - cur_s).max(0.0)
+}
+
+/// Compute per-link occupancy, spillback duration, and traversal delay summaries,
+/// sorted by `link_id`.
+pub fn compute_queue_summaries(scenario: &Scenario) -> Vec<LinkQueueSummary> {
+    let start_time = scenario.start_time;
+    let horizon_end = scenario.start_time + scenario.duration.max(0.0);
+
+    // Per link: link events, per-pipe events, end occupancy, delay sum, completed count.
+    struct Acc {
+        link_events: Vec<(f64, i32)>,
+        pipe_events: Vec<Vec<(f64, i32)>>,
+        end_occupancy: usize,
+        delay_s_sum: f64,
+        completed: usize,
+    }
+
+    let link_idx: HashMap<LinkID, usize> = scenario
+        .links
+        .iter()
+        .enumerate()
+        .map(|(i, l)| (l.id, i))
+        .collect();
+    let mut accs: Vec<Acc> = scenario
+        .links
+        .iter()
+        .map(|l| Acc {
+            link_events: Vec::new(),
+            pipe_events: vec![Vec::new(); l.pipes.len().max(1)],
+            end_occupancy: 0,
+            delay_s_sum: 0.0,
+            completed: 0,
+        })
+        .collect();
+
+    for veh in &scenario.vehicles {
+        for (i, &lid) in veh.path.iter().enumerate() {
+            let Some(t_in) = veh.link_entry_time(i) else {
+                break;
+            };
+            let Some(&li) = link_idx.get(&lid) else {
+                continue;
+            };
+            let link = &scenario.links[li];
+            let acc = &mut accs[li];
+            let pipe = usize::from(veh.pipes_taken.get(i).copied().unwrap_or(0))
+                .min(acc.pipe_events.len() - 1);
+
+            let t_in_c = t_in.clamp(start_time, horizon_end);
+            acc.link_events.push((t_in_c, 1));
+            acc.pipe_events[pipe].push((t_in_c, 1));
+
+            match veh.link_exit_time(i) {
+                Some(t_out) => {
+                    let t_out_c = t_out.clamp(start_time, horizon_end);
+                    acc.link_events.push((t_out_c, -1));
+                    acc.pipe_events[pipe].push((t_out_c, -1));
+                    if t_out > horizon_end {
+                        acc.end_occupancy += 1;
+                    }
+                    let ff = if link.fd.u > 0.0 {
+                        link.length / link.fd.u
+                    } else {
+                        0.0
+                    };
+                    acc.delay_s_sum += (t_out - t_in - ff).max(0.0);
+                    acc.completed += 1;
+                }
+                None => {
+                    acc.end_occupancy += 1;
+                }
+            }
+        }
+    }
+
+    let mut out: Vec<LinkQueueSummary> = scenario
+        .links
+        .iter()
+        .zip(accs.iter_mut())
+        .map(|(link, acc)| {
+            let (max_occupancy, _) = sweep_occupancy(&mut acc.link_events, horizon_end, None);
+            let mut full_intervals = Vec::new();
+            for (p, pev) in acc.pipe_events.iter_mut().enumerate() {
+                let cap = link
+                    .pipes
+                    .get(p)
+                    .map(|pipe| pipe.storage_veh)
+                    .unwrap_or_else(|| link.storage_veh());
+                if cap.is_some() {
+                    let (_, intervals) = sweep_occupancy(pev, horizon_end, cap);
+                    full_intervals.extend(intervals);
+                }
+            }
+            let storage_veh = if link.fd.kx > 0.0 {
+                link.storage_exact()
+            } else {
+                0.0
+            };
+            LinkQueueSummary {
+                link_id: link.id,
+                max_occupancy,
+                end_occupancy: acc.end_occupancy,
+                storage_veh,
+                max_occupancy_ratio: if storage_veh > 0.0 {
+                    max_occupancy as f64 / storage_veh
+                } else {
+                    0.0
+                },
+                spillback_duration_s: union_duration(full_intervals),
+                mean_delay_s: if acc.completed > 0 {
+                    acc.delay_s_sum / acc.completed as f64
+                } else {
+                    0.0
+                },
+                total_delay_veh_h: acc.delay_s_sum / 3600.0,
+            }
+        })
+        .collect();
+    out.sort_by_key(|q| q.link_id);
+    out
+}
+
+/// Origin-destination travel-time skim summary for one `(origin, destination)` pair.
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+pub struct OdSkim {
+    pub origin: NodeID,
+    pub destination: NodeID,
+    /// Scheduled vehicles for this OD pair.
+    pub vehicles_total: usize,
+    /// Vehicles that reached `destination` within the simulation horizon.
+    pub vehicles_arrived: usize,
+    /// Mean in-network travel time (`t_exit - t_enter`, s) of arrived vehicles.
+    pub mean_travel_time_s: f64,
+    /// Median (50th percentile) in-network travel time (s) of arrived vehicles.
+    pub p50_travel_time_s: f64,
+    /// 95th percentile in-network travel time (s) of arrived vehicles.
+    pub p95_travel_time_s: f64,
+    /// Mean total travel time including entry-queue wait (`t_exit - start_time`, s).
+    pub mean_total_time_s: f64,
+    /// Mean free-flow travel time (s) of arrived vehicles.
+    pub mean_free_flow_time_s: f64,
+    /// Mean in-network delay over free-flow (s) of arrived vehicles.
+    pub mean_delay_s: f64,
+}
+
+/// Returns `(travel_s, total_s, ff_s, delay_s, dist_m)` for a vehicle that exited.
+fn exited_vehicle_metrics(
+    veh: &Vehicle,
+    link_map: &HashMap<LinkID, &Link>,
+) -> Option<(f64, f64, f64, f64, f64)> {
+    if veh.state != VehicleState::Exited || veh.node_times.is_empty() {
+        return None;
+    }
+    let t_enter = veh.node_times[0];
+    let t_exit = *veh.node_times.last()?;
+    let travel_s = (t_exit - t_enter).max(0.0);
+    let total_s = (t_exit - veh.start_time).max(0.0);
+    let mut dist_m = 0.0f64;
+    let mut ff_s = 0.0f64;
+    for &lid in &veh.path {
+        if let Some(link) = link_map.get(&lid) {
+            dist_m += link.length;
+            if link.speed > 0.0 {
+                ff_s += link.length / link.speed;
+            }
+        }
+    }
+    let delay_s = (travel_s - ff_s).max(0.0);
+    Some((travel_s, total_s, ff_s, delay_s, dist_m))
+}
+
+/// Compute origin-destination travel-time skims across all vehicles, sorted by `(origin, destination)`.
+pub fn compute_od_skims(scenario: &Scenario) -> Vec<OdSkim> {
+    let link_map: HashMap<LinkID, &Link> = scenario.links.iter().map(|l| (l.id, l)).collect();
+
+    #[derive(Default)]
+    struct OdAcc {
+        total: usize,
+        arrived: usize,
+        travel_times: Vec<f64>,
+        travel_sum: f64,
+        total_sum: f64,
+        ff_sum: f64,
+        delay_sum: f64,
+    }
+
+    let mut groups: HashMap<(NodeID, NodeID), OdAcc> = HashMap::new();
+    for veh in &scenario.vehicles {
+        let acc = groups.entry((veh.origin, veh.destination)).or_default();
+        acc.total += 1;
+        if let Some((travel_s, total_s, ff_s, delay_s, _)) = exited_vehicle_metrics(veh, &link_map) {
+            acc.arrived += 1;
+            acc.travel_times.push(travel_s);
+            acc.travel_sum += travel_s;
+            acc.total_sum += total_s;
+            acc.ff_sum += ff_s;
+            acc.delay_sum += delay_s;
+        }
+    }
+
+    let mut out: Vec<OdSkim> = groups
+        .into_iter()
+        .map(|((origin, destination), mut acc)| {
+            acc.travel_times
+                .sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+            let n = acc.arrived as f64;
+            OdSkim {
+                origin,
+                destination,
+                vehicles_total: acc.total,
+                vehicles_arrived: acc.arrived,
+                mean_travel_time_s: if acc.arrived > 0 { acc.travel_sum / n } else { 0.0 },
+                p50_travel_time_s: percentile_sorted(&acc.travel_times, 50.0),
+                p95_travel_time_s: percentile_sorted(&acc.travel_times, 95.0),
+                mean_total_time_s: if acc.arrived > 0 { acc.total_sum / n } else { 0.0 },
+                mean_free_flow_time_s: if acc.arrived > 0 { acc.ff_sum / n } else { 0.0 },
+                mean_delay_s: if acc.arrived > 0 { acc.delay_sum / n } else { 0.0 },
+            }
+        })
+        .collect();
+    out.sort_by_key(|s| (s.origin, s.destination));
+    out
+}
+
 /// Summary vehicle and network-wide performance KPIs computed across all
 /// vehicles in a simulated scenario.
 #[derive(Serialize, Deserialize, Debug, Clone, Default, PartialEq)]
@@ -451,21 +821,8 @@ pub fn compute_vehicle_kpis(scenario: &Scenario) -> VehicleKpis {
             }
         }
 
-        if veh.state == VehicleState::Exited {
+        if let Some((travel_s, _, ff_s, delay_s, dist_m)) = exited_vehicle_metrics(veh, &link_map) {
             arrived += 1;
-            let t_exit = *veh.node_times.last().unwrap_or(&t_enter);
-            let travel_s = (t_exit - t_enter).max(0.0);
-            let mut dist_m = 0.0f64;
-            let mut ff_s = 0.0f64;
-            for &lid in &veh.path {
-                if let Some(link) = link_map.get(&lid) {
-                    dist_m += link.length;
-                    if link.speed > 0.0 {
-                        ff_s += link.length / link.speed;
-                    }
-                }
-            }
-            let delay_s = (travel_s - ff_s).max(0.0);
             arrived_travel_times.push(travel_s);
             arrived_travel_s_sum += travel_s;
             arrived_ff_s_sum += ff_s;
@@ -700,5 +1057,106 @@ mod pipe_stats_tests {
         assert!((k2.total_vkt_veh_km - 0.1).abs() < 1e-12);
         assert!((k2.total_vht_veh_h - 13.0 / 3600.0).abs() < 1e-12);
         assert!((k2.mean_travel_time_s - 10.0).abs() < 1e-12);
+    }
+
+    #[test]
+    fn turning_counts_queue_summaries_and_od_skims() {
+        // Diverge: Entry(0) -> L0 (100 m, u=10, c=1) -> Internal(1) -> L1 (to Exit 2) / L2 (to Exit 3).
+        let fd = FundamentalDiagram {
+            u: 10.0,
+            w: 5.0,
+            kx: 0.2,
+            c: 1.0,
+        };
+        let node = |id, node_type, inc, out| crate::model::Node {
+            id,
+            node_type,
+            incoming_links: inc,
+            outgoing_links: out,
+            points: (id as f64, 0.0),
+            signals: vec![],
+            roundabout: None,
+            junction: None,
+        };
+        let mut l1 = Link::new(1, 1, 2, 100.0, 10.0, 1, 1.0, fd.clone(), vec![]);
+        l1.pipe_specs = vec![];
+        let mut l2 = Link::new(2, 1, 3, 200.0, 10.0, 1, 0.5, FundamentalDiagram { c: 0.5, ..fd.clone() }, vec![]);
+        l2.pipe_specs = vec![];
+        // L0 (100 m, u=10 -> 10 s transit, kx=0.05 -> storage 5 veh, c=2.0) holds multiple vehicles simultaneously.
+        let mut l0 = Link::new(
+            0,
+            0,
+            1,
+            100.0,
+            10.0,
+            1,
+            2.0,
+            FundamentalDiagram {
+                kx: 0.05,
+                c: 2.0,
+                ..fd
+            },
+            vec![],
+        );
+        l0.pipe_specs = vec![];
+
+        let sc = Scenario {
+            nodes: vec![
+                node(0, crate::model::NodeType::Entry, vec![], vec![0]),
+                node(1, crate::model::NodeType::Internal, vec![0], vec![1, 2]),
+                node(2, crate::model::NodeType::Exit, vec![1], vec![]),
+                node(3, crate::model::NodeType::Exit, vec![2], vec![]),
+            ],
+            links: vec![l0, l1, l2],
+            vehicles: vec![
+                Vehicle::new(0, 0, vec![0, 1], 0.0, 0, 2),
+                Vehicle::new(1, 0, vec![0, 1], 0.5, 0, 2),
+                Vehicle::new(2, 0, vec![0, 2], 1.0, 0, 3),
+                Vehicle::new(3, 0, vec![0, 2], 1.5, 0, 3),
+                Vehicle::new(4, 0, vec![0, 2], 2.0, 0, 3),
+            ],
+            demand: vec![],
+            start_time: 0.0,
+            duration: 600.0,
+            classes: vec!["car".to_string()],
+            link_schedule: Vec::new(),
+            assignment_excluded: Vec::new(),
+            signals: Default::default(),
+            signal_log: Vec::new(),
+        };
+
+        let mut sim = Simulation::new(sc);
+        sim.run().unwrap();
+
+        let turns = compute_turning_counts(&sim.scenario);
+        assert_eq!(turns.len(), 2);
+        assert_eq!(turns[0].node_id, 1);
+        assert_eq!(turns[0].from_link, 0);
+        assert_eq!(turns[0].to_link, 1);
+        assert_eq!(turns[0].count, 2);
+        assert!((turns[0].share - 0.4).abs() < 1e-12);
+        assert_eq!(turns[1].to_link, 2);
+        assert_eq!(turns[1].count, 3);
+        assert!((turns[1].share - 0.6).abs() < 1e-12);
+        assert!((turns[1].flow_veh_h - 18.0).abs() < 1e-12);
+
+        let queues = compute_queue_summaries(&sim.scenario);
+        assert_eq!(queues.len(), 3);
+        // L2 (c = 0.5 veh/s = 2 s headway) throttles entry at node 1, queueing vehicles on L0.
+        assert!(queues[0].mean_delay_s > 0.0);
+        assert_eq!(queues[0].max_occupancy, 5);
+        assert!(queues[0].spillback_duration_s > 0.0);
+        assert_eq!(queues[0].end_occupancy, 0);
+
+        let skims = compute_od_skims(&sim.scenario);
+        assert_eq!(skims.len(), 2);
+        assert_eq!(skims[0].origin, 0);
+        assert_eq!(skims[0].destination, 2);
+        assert_eq!(skims[0].vehicles_total, 2);
+        assert_eq!(skims[0].vehicles_arrived, 2);
+        assert!((skims[0].mean_free_flow_time_s - 20.0).abs() < 1e-12);
+        assert_eq!(skims[1].destination, 3);
+        assert_eq!(skims[1].vehicles_arrived, 3);
+        assert!(skims[1].mean_delay_s > 0.0);
     }
 }

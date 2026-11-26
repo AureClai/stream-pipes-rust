@@ -68,7 +68,7 @@ Planned milestones from a fast, self-verifying Dynamic Network Loading (DNL) cor
 - [x] **CVC & lightweight exports** — pre-computed entry/exit cumulative volume curves (CVC) per link and summary vehicle KPIs in `stream-cli run -o` (plus `--no-vehicles` for large networks)
 - [x] **Route-based demand** — optional `path` field in `demand.json` to inject `(route, flow)` pairs from external assignment tools
 - [x] **CLI patches (`--patches`)** — expose the patch pipeline (`SetLink`, `ClosePipe`, `CloseLink`, `ScaleDemand`, `AddNode`, `AddLink`, `AddDemand`) on `stream-cli build`, `run`, and `verify`
-- [ ] **Study KPIs & reference comparison** — export turning-movement counts, queue/spillback summaries, OD travel-time skims, and expose `reference` (GEH/RMSE checks against `observed.json`) in `stream-cli`
+- [x] **Study KPIs & reference comparison** — export turning-movement counts, queue/spillback summaries, OD travel-time skims, and expose `reference` (GEH/RMSE checks against `observed.json`) in `stream-cli`
 - [ ] **Python bindings (`stream-py`)** — complete the PyO3 `stream_core_rust` extension module (`check`, `run`, `verify`, in-memory route-based demand, and Python `Controller` hooks)
 - [ ] **1.0 API & schema stabilization** — freeze `stream-core` public API and JSON schemas, add doc-tests, and finalize crate packaging
 
@@ -113,7 +113,7 @@ never fully served before the end of the simulation.
 |---|---|
 | `stream-cli build --network N.geojson --demand D.json --config C.json [--signals S.json] [--patches P...] -o scenario.json` | Compile source files (and optional signals/patches) into one validated scenario |
 | `stream-cli run -i <scenario.json\|dir> [--patches P...] [--assignment] [--merge capacity] [--bin-size 60] [--no-vehicles] [-o results.json]` | Simulate (with `--assignment`, generate and route vehicles from demand first; `--no-vehicles` omits per-vehicle traces) |
-| `stream-cli verify -i <scenario.json\|dir> [--patches P...] [--assignment] [--bin-size 300] [--benchmarks] [-o report.json]` | Simulate, then run the verification apparatus |
+| `stream-cli verify -i <scenario.json\|dir> [--patches P...] [--observed obs.json] [--assignment] [--bin-size 300] [--benchmarks] [-o report.json]` | Simulate, then run the verification apparatus (and optional GEH/RMSE reference comparison) |
 
 See [docs/](docs/README.md) for the full user guide and [JSON format reference](docs/JSON_FORMAT.md).
 

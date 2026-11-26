@@ -217,6 +217,9 @@ stream-cli run -i scenario.json [--assignment] [--bin-size 60] [--no-vehicles] -
 | `link_stats` | `LinkStats[]` | Per-link binned series, sorted by `link_id`. |
 | `link_cvcs` | `LinkCvc[]` | Pre-computed entry/exit cumulative volume curves per link, sorted by `link_id`. |
 | `pipe_stats` | `PipeStats[]` | Per-pipe series for multi-pipe links only, sorted by `(link_id, pipe)`. |
+| `turning_counts` | `TurningMovementCount[]` | Turning-movement volumes across traversed `(node_id, from_link, to_link)` pairs. |
+| `queue_summaries` | `LinkQueueSummary[]` | Per-link peak occupancy, spillback duration, and traversal delay summaries. |
+| `od_skims` | `OdSkim[]` | Origin-destination travel-time and delay skims, sorted by `(origin, destination)`. |
 | `vehicles` | `VehicleResult[]` | Per-vehicle trip trajectories (empty `[]` when `--no-vehicles` is passed). |
 
 > Note: `stream-server` uses `RunResponse` (map-keyed `link_stats` / `pipe_stats` plus `scenario_name`, `patches_applied`, `warnings`, and `run_at_unix`).
@@ -276,6 +279,45 @@ stream-cli run -i scenario.json [--assignment] [--bin-size 60] [--no-vehicles] -
 | `speed` | `TimeSeries` | Binned pipe space-mean speed (km/h). |
 | `kx_veh_km` | `number` (`f64`) | Pipe jam density (`fd.kx * pipe.lanes * 1000`, veh/km). |
 | `capacity_veh_h` | `number` (`f64`) | Pipe capacity (`pipe.capacity * 3600`, veh/h). |
+
+#### `TurningMovementCount`
+
+| Field | Type | Description |
+|---|---|---|
+| `node_id` | `integer` (`usize`) | Node crossed (`from_link.node_down`). |
+| `from_link` | `integer` (`usize`) | Incoming link ID. |
+| `to_link` | `integer` (`usize`) | Outgoing link ID. |
+| `count` | `integer` (`usize`) | Vehicles crossing from `from_link` to `to_link`. |
+| `flow_veh_h` | `number` (`f64`) | Equivalent hourly flow over `duration` (veh/h). |
+| `share` | `number` (`f64`) | Fraction of `from_link` crossings taking `to_link`. |
+
+#### `LinkQueueSummary`
+
+| Field | Type | Description |
+|---|---|---|
+| `link_id` | `integer` (`usize`) | Link ID. |
+| `max_occupancy` | `integer` (`usize`) | Peak simultaneous vehicles on the link. |
+| `end_occupancy` | `integer` (`usize`) | Vehicles remaining on the link at horizon end. |
+| `storage_veh` | `number` (`f64`) | Whole-link theoretical storage capacity (`kx * num_lanes * length`, veh). |
+| `max_occupancy_ratio` | `number` (`f64`) | `max_occupancy / storage_veh` (`0.0` if storage is unlimited). |
+| `spillback_duration_s` | `number` (`f64`) | Total seconds where any pipe on the link reached jam storage. |
+| `mean_delay_s` | `number` (`f64`) | Mean traversal delay over free flow (`L / fd.u`, s). |
+| `total_delay_veh_h` | `number` (`f64`) | Total traversal delay across completed traversals (veh·h). |
+
+#### `OdSkim`
+
+| Field | Type | Description |
+|---|---|---|
+| `origin` | `integer` (`usize`) | Origin node ID. |
+| `destination` | `integer` (`usize`) | Destination node ID. |
+| `vehicles_total` | `integer` (`usize`) | Scheduled vehicles for this OD pair. |
+| `vehicles_arrived` | `integer` (`usize`) | Vehicles that reached `destination` within the horizon. |
+| `mean_travel_time_s` | `number` (`f64`) | Mean in-network travel time of arrived vehicles (s). |
+| `p50_travel_time_s` | `number` (`f64`) | Median in-network travel time (s). |
+| `p95_travel_time_s` | `number` (`f64`) | 95th percentile in-network travel time (s). |
+| `mean_total_time_s` | `number` (`f64`) | Mean total travel time including entry-queue wait (s). |
+| `mean_free_flow_time_s` | `number` (`f64`) | Mean free-flow travel time (s). |
+| `mean_delay_s` | `number` (`f64`) | Mean in-network delay over free flow (s). |
 
 #### `TimeSeries`
 

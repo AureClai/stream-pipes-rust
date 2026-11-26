@@ -2,15 +2,17 @@ use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use std::path::{Path, PathBuf};
 use std::time::Instant;
+use serde::Serialize;
 use stream_core::api::{collect, compile as compile_inputs, RunOptions, ScenarioInputs};
 use stream_core::assignment::assign_demand;
 use stream_core::benchmarks::run_benchmarks;
 use stream_core::io::{compile_with_patches, load_scenario};
 use stream_core::model::Scenario;
 use stream_core::patch::{apply_patches_to_scenario, Patch};
+use stream_core::reference::{compare_with_observations, ObservedRecord, ReferenceReport};
 use stream_core::simulation::{MergeRule, Simulation};
 use stream_core::validation::Validate;
-use stream_core::verification::{verify_scenario, CheckStatus};
+use stream_core::verification::{verify_scenario, CheckStatus, VerificationReport};
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -115,6 +117,10 @@ enum Commands {
         /// Patch JSON files (or patch names under `<dir>/patches/<name>.json` when `-i` is a directory)
         #[arg(long, value_name = "PATCH", num_args = 1..)]
         patches: Vec<PathBuf>,
+
+        /// Observed field measurements JSON (`observed.json`) for GEH / RMSE comparison
+        #[arg(long, value_name = "FILE")]
+        observed: Option<PathBuf>,
     },
 }
 
@@ -317,6 +323,7 @@ pub fn run() -> Result<()> {
             output,
             merge,
             patches,
+            observed,
         } => {
             run_verify(
                 input,
@@ -327,11 +334,42 @@ pub fn run() -> Result<()> {
                 output,
                 merge,
                 patches,
+                observed,
             )?;
         }
     }
 
     Ok(())
+}
+
+#[derive(Serialize)]
+struct VerifyWithReference<'a> {
+    #[serde(flatten)]
+    verification: &'a VerificationReport,
+    reference: &'a ReferenceReport,
+}
+
+fn load_observed_records(arg: &Path, input: &Path) -> Result<Vec<ObservedRecord>> {
+    let path = if arg.exists() {
+        arg.to_path_buf()
+    } else if input.is_dir() {
+        let candidate = input.join(arg);
+        if candidate.exists() {
+            candidate
+        } else {
+            anyhow::bail!(
+                "observed file '{}' not found (also checked '{}')",
+                arg.display(),
+                candidate.display()
+            );
+        }
+    } else {
+        arg.to_path_buf()
+    };
+    let text = std::fs::read_to_string(&path)
+        .with_context(|| format!("cannot read observed file {}", path.display()))?;
+    serde_json::from_str(&text)
+        .with_context(|| format!("invalid observed JSON in {}", path.display()))
 }
 
 /// Run a scenario through the built-in verification apparatus and print the
@@ -348,7 +386,12 @@ fn run_verify(
     output: Option<PathBuf>,
     merge: Option<String>,
     patches: Vec<PathBuf>,
+    observed: Option<PathBuf>,
 ) -> Result<()> {
+    let observed_records = match observed.as_deref() {
+        Some(obs) => Some(load_observed_records(obs, &input)?),
+        None => None,
+    };
     println!("Loading scenario from {:?}...", input);
     let (mut scenario, merge, warnings) =
         load_scenario_for_cli(&input, &patches, merge.as_deref())?;
@@ -409,10 +452,57 @@ fn run_verify(
         }
     }
 
+    let reference_report = observed_records.as_deref().map(|recs| {
+        let rr = compare_with_observations(&sim.scenario, recs);
+        println!(
+            "Reference ({} checks): {} pass, {} warn, {} fail.",
+            rr.checks.len(),
+            rr.n_pass,
+            rr.n_warn,
+            rr.n_fail
+        );
+        if let Some(rmse) = rr.flow_rmse_veh_h {
+            println!(
+                "  Flow: RMSE = {:.1} veh/h, mean GEH = {:.2}",
+                rmse,
+                rr.flow_mean_geh.unwrap_or(0.0)
+            );
+        }
+        if let Some(rmse) = rr.speed_rmse_kmh {
+            println!("  Speed: RMSE = {:.1} km/h", rmse);
+        }
+        for c in &rr.checks {
+            if matches!(c.status, CheckStatus::Fail | CheckStatus::Warn) {
+                println!(
+                    "  [{:?}] link {} {} [{:.0}, {:.0}): obs {:.1}, sim {:.1} (err {:.1}%{})",
+                    c.status,
+                    c.link_id,
+                    c.label.as_deref().unwrap_or(""),
+                    c.t_start,
+                    c.t_end,
+                    c.observed,
+                    c.simulated,
+                    c.error_pct,
+                    c.geh.map(|g| format!(", GEH {:.2}", g)).unwrap_or_default()
+                );
+            }
+        }
+        rr
+    });
+
     if let Some(output_path) = output {
         use std::io::Write;
         let mut file = std::io::BufWriter::new(std::fs::File::create(&output_path)?);
-        serde_json::to_writer_pretty(&mut file, &report)?;
+        match &reference_report {
+            Some(ref_rep) => {
+                let combined = VerifyWithReference {
+                    verification: &report,
+                    reference: ref_rep,
+                };
+                serde_json::to_writer_pretty(&mut file, &combined)?;
+            }
+            None => serde_json::to_writer_pretty(&mut file, &report)?,
+        }
         file.flush()?;
         println!("Report written to {:?}.", output_path);
     }
@@ -534,11 +624,16 @@ mod tests {
             "a.json",
             "--patches",
             "b.json",
+            "--observed",
+            "obs.json",
         ])
         .unwrap();
         match verify_cmd.command {
-            Commands::Verify { patches, .. } => {
+            Commands::Verify {
+                patches, observed, ..
+            } => {
                 assert_eq!(patches, vec![PathBuf::from("a.json"), PathBuf::from("b.json")]);
+                assert_eq!(observed, Some(PathBuf::from("obs.json")));
             }
             _ => panic!("expected Verify"),
         }

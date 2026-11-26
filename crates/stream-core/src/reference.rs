@@ -73,6 +73,15 @@ pub struct ReferenceReport {
     pub n_pass: usize,
     pub n_warn: usize,
     pub n_fail: usize,
+    /// Root-mean-square error across all flow checks (veh/h), if any.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub flow_rmse_veh_h: Option<f64>,
+    /// Mean GEH across all flow checks, if any.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub flow_mean_geh: Option<f64>,
+    /// Root-mean-square error across all speed checks (km/h), if any.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub speed_rmse_kmh: Option<f64>,
 }
 
 fn geh(m: f64, o: f64) -> f64 {
@@ -201,10 +210,34 @@ pub fn compare_with_observations(
     }
 
     let count = |s: CheckStatus| checks.iter().filter(|c| c.status == s).count();
+    let rmse = |kind: ReferenceKind| -> Option<f64> {
+        let mut sum_sq = 0.0;
+        let mut n = 0usize;
+        for c in checks.iter().filter(|c| c.kind == kind) {
+            let d = c.simulated - c.observed;
+            sum_sq += d * d;
+            n += 1;
+        }
+        (n > 0).then(|| (sum_sq / n as f64).sqrt())
+    };
+    let flow_mean_geh = {
+        let mut sum = 0.0;
+        let mut n = 0usize;
+        for c in checks.iter().filter(|c| c.kind == ReferenceKind::Flow) {
+            if let Some(g) = c.geh {
+                sum += g;
+                n += 1;
+            }
+        }
+        (n > 0).then(|| sum / n as f64)
+    };
     ReferenceReport {
         n_pass: count(CheckStatus::Pass),
         n_warn: count(CheckStatus::Warn),
         n_fail: count(CheckStatus::Fail),
+        flow_rmse_veh_h: rmse(ReferenceKind::Flow),
+        flow_mean_geh,
+        speed_rmse_kmh: rmse(ReferenceKind::Speed),
         checks,
     }
 }
@@ -257,13 +290,14 @@ mod tests {
 
     #[test]
     fn matching_observation_passes_geh_and_speed() {
-        // 36 vehicles spaced 10 s → flow 360 veh/h; free flow → 36 km/h.
+        // 36 vehicles spaced 10 s enter at 0..=350 and exit at 10..=360 → 360 veh/h in [10, 370);
+        // free flow → 36 km/h.
         let mut sim = Simulation::new(free_flow_scenario(36, 10.0));
         sim.run().unwrap();
         let records = vec![ObservedRecord {
             link_id: 0,
-            t_start: 0.0,
-            t_end: 360.0,
+            t_start: 10.0,
+            t_end: 370.0,
             flow_veh_h: Some(360.0),
             speed_kmh: Some(36.0),
             label: Some("synthetic detector".into()),
@@ -272,6 +306,9 @@ mod tests {
         assert_eq!(report.checks.len(), 2);
         assert_eq!(report.n_fail, 0, "{:#?}", report.checks);
         assert_eq!(report.n_pass, 2, "{:#?}", report.checks);
+        assert!(report.flow_rmse_veh_h.unwrap() < 1e-9);
+        assert!(report.flow_mean_geh.unwrap() < 1e-9);
+        assert!(report.speed_rmse_kmh.unwrap() < 1e-9);
     }
 
     #[test]
@@ -280,13 +317,15 @@ mod tests {
         sim.run().unwrap();
         let records = vec![ObservedRecord {
             link_id: 0,
-            t_start: 0.0,
-            t_end: 360.0,
-            flow_veh_h: Some(1800.0), // observed 5× the simulated flow
+            t_start: 10.0,
+            t_end: 370.0,
+            flow_veh_h: Some(1800.0), // observed 5× the simulated flow (360 veh/h)
             speed_kmh: None,
             label: None,
         }];
         let report = compare_with_observations(&sim.scenario, &records);
         assert_eq!(report.n_fail, 1, "{:#?}", report.checks);
+        assert!((report.flow_rmse_veh_h.unwrap() - 1440.0).abs() < 1e-9);
+        assert!(report.speed_rmse_kmh.is_none());
     }
 }
