@@ -124,8 +124,10 @@ def screen_s1(df: pd.DataFrame, corridor: dict) -> list[dict]:
     findings = []
     daily = (
         df.assign(day=df["timestamp"].dt.date)
+        .groupby(["site_id", "day", "timestamp"], as_index=False)["flow_veh_h"]
+        .sum()
         .groupby(["site_id", "day"], as_index=False)["flow_veh_h"]
-        .mean()  # mean veh/h over the day; scaled totals cancel in the ratio
+        .mean()  # mean carriageway veh/h over the day; scaled totals cancel in the ratio
     )
     for cw in corridor.get("carriageways", []):
         ins = daily[daily["site_id"].isin(cw["in_sites"])]

@@ -21,6 +21,20 @@
 //! - **Speed**: simulated space-mean speed over the window = L / mean travel
 //!   time of vehicles entering the link within the window, in km/h. Compared
 //!   by relative error (< 10% pass, < 25% warn).
+//!
+//! ## Example
+//!
+//! ```
+//! use stream_core::reference::ObservedRecord;
+//!
+//! let records: Vec<ObservedRecord> = serde_json::from_str(r#"[
+//!     { "link_id": 0, "t_start": 0.0, "t_end": 3600.0, "flow_veh_h": 1200.0 }
+//! ]"#).unwrap();
+//!
+//! assert_eq!(records.len(), 1);
+//! assert_eq!(records[0].flow_veh_h, Some(1200.0));
+//! assert!(records[0].speed_kmh.is_none());
+//! ```
 
 use crate::model::{LinkID, Scenario};
 use crate::verification::CheckStatus;
@@ -38,8 +52,11 @@ pub struct ObservedRecord {
     /// Window start / end in absolute simulation seconds.
     pub t_start: f64,
     pub t_end: f64,
+    #[serde(default)]
     pub flow_veh_h: Option<f64>,
+    #[serde(default)]
     pub speed_kmh: Option<f64>,
+    #[serde(default)]
     pub label: Option<String>,
 }
 

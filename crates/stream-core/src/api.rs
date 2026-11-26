@@ -11,6 +11,50 @@
 //!
 //! Inputs use the same schema as the files of a scenario folder
 //! (`network.geojson`, `demand.json`, `config.json`, `patches/*.json`).
+//!
+//! ## Example
+//!
+//! ```
+//! use serde_json::json;
+//! use stream_core::api::{check, run, API_VERSION, RunOptions, ScenarioInputs};
+//!
+//! let network = json!({
+//!     "type": "FeatureCollection",
+//!     "features": [
+//!         {
+//!             "type": "Feature",
+//!             "geometry": { "type": "Point", "coordinates": [0.0, 0.0] },
+//!             "properties": { "id": 0, "type": "Entry" }
+//!         },
+//!         {
+//!             "type": "Feature",
+//!             "geometry": { "type": "Point", "coordinates": [200.0, 0.0] },
+//!             "properties": { "id": 1, "type": "Exit" }
+//!         },
+//!         {
+//!             "type": "Feature",
+//!             "geometry": { "type": "LineString", "coordinates": [[0.0, 0.0], [200.0, 0.0]] },
+//!             "properties": {
+//!                 "id": 0, "node_up": 0, "node_down": 1,
+//!                 "length": 200.0, "speed": 10.0, "lanes": 1, "capacity": 0.5,
+//!                 "fd_u": 10.0, "fd_w": 5.0, "fd_kx": 0.15, "fd_c": 0.5
+//!             }
+//!         }
+//!     ]
+//! });
+//! let demand = json!([
+//!     { "period_start": 0.0, "period_end": 100.0, "origin": 0, "destination": 1, "count": 10 }
+//! ]);
+//! let config = json!({ "start_time": 0.0, "duration": 300.0 });
+//!
+//! let inputs = ScenarioInputs { network, demand, config, signals: None, patches: vec![] };
+//! assert!(check(&inputs).ok());
+//!
+//! let out = run(&inputs, &RunOptions::default(), |_| true).unwrap();
+//! assert_eq!(out.api_version, API_VERSION);
+//! assert_eq!(out.vehicles_total, 10);
+//! assert_eq!(out.vehicles_arrived, 10);
+//! ```
 
 use crate::analysis::{
     compute_link_cvcs, compute_link_stats, compute_od_skims, compute_pipe_stats,
@@ -52,6 +96,14 @@ impl ScenarioInputs {
     /// Read a scenario folder (`network.geojson`, `demand.json`,
     /// `config.json`, and `signals.json` when present) plus the named
     /// patches from its `patches/` folder.
+    ///
+    /// ```no_run
+    /// use stream_core::api::{run, RunOptions, ScenarioInputs};
+    ///
+    /// let inputs = ScenarioInputs::from_dir("scenarios/diverge", &[]).unwrap();
+    /// let out = run(&inputs, &RunOptions::default(), |_| true).unwrap();
+    /// println!("arrived: {}/{}", out.vehicles_arrived, out.vehicles_total);
+    /// ```
     pub fn from_dir(dir: impl AsRef<Path>, patch_names: &[String]) -> Result<Self> {
         let dir = dir.as_ref();
         let read = |name: &str| -> Result<serde_json::Value> {
@@ -208,6 +260,7 @@ fn count_nodes(s: &Scenario, t: NodeType) -> usize {
 // ── run ──────────────────────────────────────────────────────────────────────
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(default)]
 pub struct RunOptions {
     /// Generate and route vehicles from the demand before simulating.
     pub assignment: bool,
@@ -518,5 +571,14 @@ mod tests {
             "expected warning for closed link 1, got {:?}",
             r_closed.warnings
         );
+    }
+
+    #[test]
+    fn run_options_partial_json_uses_defaults() {
+        let opts: RunOptions = serde_json::from_str(r#"{"bin_size": 60.0}"#).unwrap();
+        assert!(opts.assignment);
+        assert!((opts.bin_size - 60.0).abs() < 1e-12);
+        assert!(!opts.upstream_capacity);
+        assert!(!opts.keep_vehicles);
     }
 }

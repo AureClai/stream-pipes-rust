@@ -1,0 +1,1306 @@
+{
+  "name": "gate",
+  "description": "Downstream off-ramp metering from NDW 1-min detector speeds < 60 km/h on vwa0780ra L1 stop-bar (Link 14) and vwa080517 stop-bar (Link 15).",
+  "ops": [
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 50580.0,
+      "until": 50640.0,
+      "set": {
+        "fd_c": 0.2833,
+        "capacity": 0.2833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 50640.0,
+      "until": 50700.0,
+      "set": {
+        "fd_c": 0.2667,
+        "capacity": 0.2667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 50700.0,
+      "until": 50760.0,
+      "set": {
+        "fd_c": 0.2667,
+        "capacity": 0.2667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 50760.0,
+      "until": 50820.0,
+      "set": {
+        "fd_c": 0.2667,
+        "capacity": 0.2667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 50820.0,
+      "until": 50880.0,
+      "set": {
+        "fd_c": 0.2667,
+        "capacity": 0.2667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 50880.0,
+      "until": 50940.0,
+      "set": {
+        "fd_c": 0.2167,
+        "capacity": 0.2167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 50880.0,
+      "until": 50940.0,
+      "set": {
+        "fd_c": 0.25,
+        "capacity": 0.25
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 50940.0,
+      "until": 51000.0,
+      "set": {
+        "fd_c": 0.2167,
+        "capacity": 0.2167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 50940.0,
+      "until": 51000.0,
+      "set": {
+        "fd_c": 0.25,
+        "capacity": 0.25
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 51000.0,
+      "until": 51060.0,
+      "set": {
+        "fd_c": 0.1667,
+        "capacity": 0.1667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 51000.0,
+      "until": 51060.0,
+      "set": {
+        "fd_c": 0.25,
+        "capacity": 0.25
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 51060.0,
+      "until": 51120.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 51060.0,
+      "until": 51120.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 51180.0,
+      "until": 51240.0,
+      "set": {
+        "fd_c": 0.2667,
+        "capacity": 0.2667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 51240.0,
+      "until": 51300.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 51780.0,
+      "until": 51840.0,
+      "set": {
+        "fd_c": 0.2,
+        "capacity": 0.2
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 51840.0,
+      "until": 51900.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 54420.0,
+      "until": 54480.0,
+      "set": {
+        "fd_c": 0.3,
+        "capacity": 0.3
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 54480.0,
+      "until": 54540.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 54540.0,
+      "until": 54600.0,
+      "set": {
+        "fd_c": 0.2167,
+        "capacity": 0.2167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 54600.0,
+      "until": 54660.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 54960.0,
+      "until": 55020.0,
+      "set": {
+        "fd_c": 0.1667,
+        "capacity": 0.1667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 55020.0,
+      "until": 55080.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 55380.0,
+      "until": 55440.0,
+      "set": {
+        "fd_c": 0.2167,
+        "capacity": 0.2167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 55440.0,
+      "until": 55500.0,
+      "set": {
+        "fd_c": 0.1667,
+        "capacity": 0.1667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 55500.0,
+      "until": 55560.0,
+      "set": {
+        "fd_c": 0.2167,
+        "capacity": 0.2167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 55560.0,
+      "until": 55620.0,
+      "set": {
+        "fd_c": 0.1333,
+        "capacity": 0.1333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 55620.0,
+      "until": 55680.0,
+      "set": {
+        "fd_c": 0.1833,
+        "capacity": 0.1833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 55680.0,
+      "until": 55740.0,
+      "set": {
+        "fd_c": 0.1333,
+        "capacity": 0.1333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 55740.0,
+      "until": 55800.0,
+      "set": {
+        "fd_c": 0.15,
+        "capacity": 0.15
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 55800.0,
+      "until": 55860.0,
+      "set": {
+        "fd_c": 0.15,
+        "capacity": 0.15
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 55860.0,
+      "until": 55920.0,
+      "set": {
+        "fd_c": 0.15,
+        "capacity": 0.15
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 55920.0,
+      "until": 55980.0,
+      "set": {
+        "fd_c": 0.2667,
+        "capacity": 0.2667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 55980.0,
+      "until": 56040.0,
+      "set": {
+        "fd_c": 0.2,
+        "capacity": 0.2
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56040.0,
+      "until": 56100.0,
+      "set": {
+        "fd_c": 0.15,
+        "capacity": 0.15
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 56040.0,
+      "until": 56100.0,
+      "set": {
+        "fd_c": 0.3167,
+        "capacity": 0.3167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56100.0,
+      "until": 56160.0,
+      "set": {
+        "fd_c": 0.1333,
+        "capacity": 0.1333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 56100.0,
+      "until": 56160.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56160.0,
+      "until": 56220.0,
+      "set": {
+        "fd_c": 0.1333,
+        "capacity": 0.1333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56220.0,
+      "until": 56280.0,
+      "set": {
+        "fd_c": 0.0833,
+        "capacity": 0.0833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56280.0,
+      "until": 56340.0,
+      "set": {
+        "fd_c": 0.1,
+        "capacity": 0.1
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56340.0,
+      "until": 56400.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 56400.0,
+      "until": 56460.0,
+      "set": {
+        "fd_c": 0.25,
+        "capacity": 0.25
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56460.0,
+      "until": 56520.0,
+      "set": {
+        "fd_c": 0.2333,
+        "capacity": 0.2333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 56460.0,
+      "until": 56520.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56520.0,
+      "until": 56580.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56580.0,
+      "until": 56640.0,
+      "set": {
+        "fd_c": 0.1833,
+        "capacity": 0.1833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56640.0,
+      "until": 56700.0,
+      "set": {
+        "fd_c": 0.15,
+        "capacity": 0.15
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56700.0,
+      "until": 56760.0,
+      "set": {
+        "fd_c": 0.15,
+        "capacity": 0.15
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56760.0,
+      "until": 56820.0,
+      "set": {
+        "fd_c": 0.15,
+        "capacity": 0.15
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 56760.0,
+      "until": 56820.0,
+      "set": {
+        "fd_c": 0.3333,
+        "capacity": 0.3333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56820.0,
+      "until": 56880.0,
+      "set": {
+        "fd_c": 0.1833,
+        "capacity": 0.1833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 56820.0,
+      "until": 56880.0,
+      "set": {
+        "fd_c": 0.1333,
+        "capacity": 0.1333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56880.0,
+      "until": 56940.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 56880.0,
+      "until": 56940.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 56940.0,
+      "until": 57000.0,
+      "set": {
+        "fd_c": 0.2333,
+        "capacity": 0.2333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 57000.0,
+      "until": 57060.0,
+      "set": {
+        "fd_c": 0.1333,
+        "capacity": 0.1333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 57060.0,
+      "until": 57120.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 57600.0,
+      "until": 57660.0,
+      "set": {
+        "fd_c": 0.3833,
+        "capacity": 0.3833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 57660.0,
+      "until": 57720.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 57780.0,
+      "until": 57840.0,
+      "set": {
+        "fd_c": 0.2,
+        "capacity": 0.2
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 57780.0,
+      "until": 57840.0,
+      "set": {
+        "fd_c": 0.3167,
+        "capacity": 0.3167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 57840.0,
+      "until": 57900.0,
+      "set": {
+        "fd_c": 0.0667,
+        "capacity": 0.0667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 57840.0,
+      "until": 57900.0,
+      "set": {
+        "fd_c": 0.25,
+        "capacity": 0.25
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 57900.0,
+      "until": 57960.0,
+      "set": {
+        "fd_c": 0.1333,
+        "capacity": 0.1333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 57900.0,
+      "until": 57960.0,
+      "set": {
+        "fd_c": 0.2333,
+        "capacity": 0.2333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 57960.0,
+      "until": 58020.0,
+      "set": {
+        "fd_c": 0.1833,
+        "capacity": 0.1833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 57960.0,
+      "until": 58020.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58020.0,
+      "until": 58080.0,
+      "set": {
+        "fd_c": 0.2167,
+        "capacity": 0.2167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58080.0,
+      "until": 58140.0,
+      "set": {
+        "fd_c": 0.1167,
+        "capacity": 0.1167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58140.0,
+      "until": 58200.0,
+      "set": {
+        "fd_c": 0.2667,
+        "capacity": 0.2667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 58140.0,
+      "until": 58200.0,
+      "set": {
+        "fd_c": 0.2333,
+        "capacity": 0.2333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58200.0,
+      "until": 58260.0,
+      "set": {
+        "fd_c": 0.1,
+        "capacity": 0.1
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 58200.0,
+      "until": 58260.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58260.0,
+      "until": 58320.0,
+      "set": {
+        "fd_c": 0.1167,
+        "capacity": 0.1167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58320.0,
+      "until": 58380.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58380.0,
+      "until": 58440.0,
+      "set": {
+        "fd_c": 0.2667,
+        "capacity": 0.2667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58440.0,
+      "until": 58500.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58560.0,
+      "until": 58620.0,
+      "set": {
+        "fd_c": 0.2667,
+        "capacity": 0.2667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58620.0,
+      "until": 58680.0,
+      "set": {
+        "fd_c": 0.2167,
+        "capacity": 0.2167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58680.0,
+      "until": 58740.0,
+      "set": {
+        "fd_c": 0.1167,
+        "capacity": 0.1167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58740.0,
+      "until": 58800.0,
+      "set": {
+        "fd_c": 0.15,
+        "capacity": 0.15
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 58740.0,
+      "until": 58800.0,
+      "set": {
+        "fd_c": 0.4,
+        "capacity": 0.4
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58800.0,
+      "until": 58860.0,
+      "set": {
+        "fd_c": 0.1333,
+        "capacity": 0.1333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 58800.0,
+      "until": 58860.0,
+      "set": {
+        "fd_c": 0.2833,
+        "capacity": 0.2833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58860.0,
+      "until": 58920.0,
+      "set": {
+        "fd_c": 0.1667,
+        "capacity": 0.1667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 58860.0,
+      "until": 58920.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58920.0,
+      "until": 58980.0,
+      "set": {
+        "fd_c": 0.0833,
+        "capacity": 0.0833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 58980.0,
+      "until": 59040.0,
+      "set": {
+        "fd_c": 0.2333,
+        "capacity": 0.2333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59040.0,
+      "until": 59100.0,
+      "set": {
+        "fd_c": 0.0667,
+        "capacity": 0.0667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 59040.0,
+      "until": 59100.0,
+      "set": {
+        "fd_c": 0.4167,
+        "capacity": 0.4167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59100.0,
+      "until": 59160.0,
+      "set": {
+        "fd_c": 0.2,
+        "capacity": 0.2
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 59100.0,
+      "until": 59160.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59160.0,
+      "until": 59220.0,
+      "set": {
+        "fd_c": 0.1167,
+        "capacity": 0.1167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 59160.0,
+      "until": 59220.0,
+      "set": {
+        "fd_c": 0.3167,
+        "capacity": 0.3167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59220.0,
+      "until": 59280.0,
+      "set": {
+        "fd_c": 0.1833,
+        "capacity": 0.1833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 59220.0,
+      "until": 59280.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59280.0,
+      "until": 59340.0,
+      "set": {
+        "fd_c": 0.15,
+        "capacity": 0.15
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59340.0,
+      "until": 59400.0,
+      "set": {
+        "fd_c": 0.1333,
+        "capacity": 0.1333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59400.0,
+      "until": 59460.0,
+      "set": {
+        "fd_c": 0.1167,
+        "capacity": 0.1167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59460.0,
+      "until": 59520.0,
+      "set": {
+        "fd_c": 0.1,
+        "capacity": 0.1
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59520.0,
+      "until": 59580.0,
+      "set": {
+        "fd_c": 0.15,
+        "capacity": 0.15
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 59520.0,
+      "until": 59580.0,
+      "set": {
+        "fd_c": 0.2667,
+        "capacity": 0.2667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59580.0,
+      "until": 59640.0,
+      "set": {
+        "fd_c": 0.1333,
+        "capacity": 0.1333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 59580.0,
+      "until": 59640.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59640.0,
+      "until": 59700.0,
+      "set": {
+        "fd_c": 0.1,
+        "capacity": 0.1
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 59640.0,
+      "until": 59700.0,
+      "set": {
+        "fd_c": 0.2833,
+        "capacity": 0.2833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59700.0,
+      "until": 59760.0,
+      "set": {
+        "fd_c": 0.2833,
+        "capacity": 0.2833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 59700.0,
+      "until": 59760.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59760.0,
+      "until": 59820.0,
+      "set": {
+        "fd_c": 0.1333,
+        "capacity": 0.1333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59820.0,
+      "until": 59880.0,
+      "set": {
+        "fd_c": 0.2167,
+        "capacity": 0.2167
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59880.0,
+      "until": 59940.0,
+      "set": {
+        "fd_c": 0.1667,
+        "capacity": 0.1667
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 59940.0,
+      "until": 60000.0,
+      "set": {
+        "fd_c": 0.25,
+        "capacity": 0.25
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 59940.0,
+      "until": 60000.0,
+      "set": {
+        "fd_c": 0.3,
+        "capacity": 0.3
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 60000.0,
+      "until": 60060.0,
+      "set": {
+        "fd_c": 0.1,
+        "capacity": 0.1
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 60000.0,
+      "until": 60060.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 60060.0,
+      "until": 60120.0,
+      "set": {
+        "fd_c": 0.25,
+        "capacity": 0.25
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 60120.0,
+      "until": 60180.0,
+      "set": {
+        "fd_c": 0.0833,
+        "capacity": 0.0833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 60180.0,
+      "until": 60240.0,
+      "set": {
+        "fd_c": 0.15,
+        "capacity": 0.15
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 60240.0,
+      "until": 60300.0,
+      "set": {
+        "fd_c": 0.1333,
+        "capacity": 0.1333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 60300.0,
+      "until": 60360.0,
+      "set": {
+        "fd_c": 0.25,
+        "capacity": 0.25
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 60300.0,
+      "until": 60360.0,
+      "set": {
+        "fd_c": 0.35,
+        "capacity": 0.35
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 60360.0,
+      "until": 60420.0,
+      "set": {
+        "fd_c": 0.15,
+        "capacity": 0.15
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 60360.0,
+      "until": 60420.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 60420.0,
+      "until": 60480.0,
+      "set": {
+        "fd_c": 0.1833,
+        "capacity": 0.1833
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 14,
+      "from": 60480.0,
+      "until": 60540.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 60540.0,
+      "until": 60600.0,
+      "set": {
+        "fd_c": 0.35,
+        "capacity": 0.35
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 60600.0,
+      "until": 60660.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 60720.0,
+      "until": 60780.0,
+      "set": {
+        "fd_c": 0.4333,
+        "capacity": 0.4333
+      }
+    },
+    {
+      "op": "set_link",
+      "link": 15,
+      "from": 60780.0,
+      "until": 60840.0,
+      "set": {
+        "fd_c": 0.55,
+        "capacity": 0.55
+      }
+    }
+  ]
+}

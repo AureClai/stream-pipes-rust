@@ -349,6 +349,7 @@ pub struct Link {
 }
 
 impl Link {
+    #[allow(clippy::too_many_arguments)]
     pub fn new(
         id: LinkID,
         node_up: NodeID,
@@ -467,6 +468,17 @@ impl Link {
         }
         if let Some(v) = attrs.num_lanes {
             self.num_lanes = v;
+        }
+        // Keep single-pipe `capacity` and multi-pipe `fd.c` synchronized when a
+        // patch supplies only one of them without overriding the other.
+        if attrs.capacity.is_none() && attrs.fd_c.is_some() && self.pipe_specs.is_empty() {
+            self.capacity = self.fd.c * f64::from(self.num_lanes);
+        } else if attrs.capacity.is_some()
+            && attrs.fd_c.is_none()
+            && !self.pipe_specs.is_empty()
+            && self.num_lanes > 0
+        {
+            self.fd.c = self.capacity / f64::from(self.num_lanes);
         }
         if let Some(v) = attrs.friction {
             self.friction = v;

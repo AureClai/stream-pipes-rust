@@ -27,6 +27,7 @@ pub(crate) fn resolve_class_id(
 
 /// Validate that `path` connects `origin` to `destination` through known links
 /// and has at least one pipe usable by `class_id` on every link/movement.
+#[allow(clippy::too_many_arguments)]
 pub(crate) fn validate_route(
     label: &str,
     origin: NodeID,

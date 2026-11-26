@@ -1,0 +1,170 @@
+{
+  "inventory": {
+    "sites": 29,
+    "lanes_per_site": {
+      "GEO0C_Z_RWSTI358373": [
+        "lane1"
+      ],
+      "GEO0K_K_RWSTI358186": [
+        "lane1"
+      ],
+      "RWS01_MONIBAS_0150vwa0780ra": [
+        "lane1",
+        "lane2"
+      ],
+      "RWS01_MONIBAS_0151hrr0725ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0729ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0732ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0735ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0737ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0739ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0740ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0742ra": [
+        "lane1",
+        "lane2",
+        "lane3",
+        "lane4"
+      ],
+      "RWS01_MONIBAS_0151hrr0746ra": [
+        "lane1",
+        "lane2",
+        "lane3",
+        "lane4"
+      ],
+      "RWS01_MONIBAS_0151hrr0750ra": [
+        "lane1",
+        "lane2",
+        "lane3",
+        "lane4"
+      ],
+      "RWS01_MONIBAS_0151hrr0753ra": [
+        "lane1",
+        "lane2",
+        "lane3",
+        "lane4"
+      ],
+      "RWS01_MONIBAS_0151hrr0758ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0764ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0770ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0773ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0776ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0778ra_1": [
+        "lane1",
+        "lane2",
+        "lane3",
+        "lane4",
+        "lane5"
+      ],
+      "RWS01_MONIBAS_0151hrr0782ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0784ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0790ra": [
+        "lane1",
+        "lane2",
+        "lane3",
+        "lane4"
+      ],
+      "RWS01_MONIBAS_0151hrr0794ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0797ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0801ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0806ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0808ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ],
+      "RWS01_MONIBAS_0151hrr0812ra": [
+        "lane1",
+        "lane2",
+        "lane3"
+      ]
+    },
+    "period": [
+      "2026-11-26 14:00:00+00:00",
+      "2026-11-26 16:56:00+00:00"
+    ],
+    "rows": 14952
+  },
+  "s1": "run",
+  "findings": [
+    {
+      "check": "S1_closure",
+      "carriageway": "eastbound_papendrecht",
+      "day": "2026-11-26",
+      "imbalance_pct": 1.083,
+      "status": "fail"
+    }
+  ],
+  "accepted_series_sha256": "550268886e11b9c1ae01f294ef5c5f83aa10f44796d7b2a9bc9364ad2923b649"
+}

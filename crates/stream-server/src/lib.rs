@@ -717,7 +717,7 @@ async fn save_observed(
         return Err(AppError::NotFound(format!("Project '{}' not found", name)));
     }
     for (i, r) in records.iter().enumerate() {
-        if !(r.t_end > r.t_start) {
+        if r.t_end <= r.t_start || r.t_end.is_nan() || r.t_start.is_nan() {
             return Err(AppError::BadRequest(format!(
                 "Observed record {}: t_end must be > t_start",
                 i

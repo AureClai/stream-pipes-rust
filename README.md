@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22957996.svg)](https://doi.org/10.5281/zenodo.22957996)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23017416.svg)](https://doi.org/10.5281/zenodo.23017416)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/AureClai/stream-pipes-rust/graphs/commit-activity)
 [![made-with-rust](https://img.shields.io/badge/Made%20with-Rust-1f425f.svg)](https://www.rust-lang.org/)
 
 # pipe-stream
@@ -43,7 +43,7 @@ with its own capacity, storage and backward wave.
 | **Exact** | Discrete-event solution of LWR with a triangular fundamental diagram (Newell's simplified theory). No time step, no RNG: two runs are bit-identical. |
 | **Verified** | Eighteen closed-form benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, fractional-slot wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle; four roundabout cases: free flow, entry capacity, Siegloch gap acceptance, spillback on the ring; signal discharge per green, ramp-metering rate, toll service; and Siegloch gap acceptance at a priority junction) pass at machine precision. |
 | **Self-auditing** | `stream-cli verify` checks every link, pipe and node of any scenario (free-flow traversal, capacity, storage bound, backward wave, FD adherence, conservation, FIFO, demand served; roundabout rings, gap acceptance at priority junctions, no passage on red) and reports **pass / warn / fail / not-exercised**. |
-| **Validated** | Three instrumented corridors in two countries: 1 280 of 1 312 flow windows below GEH 5. NGSIM trajectories confirm the lane-commitment assumption. |
+| **Validated** | Four instrumented corridors across three countries (`M1`, `M60`, `A47` — 1 280 / 1 312 flow windows GEH < 5; plus Dutch `A15` Papendrecht per-lane validation — 420 / 476 windows GEH < 5, ~93 % excluding one undercounting field gantry). NGSIM trajectories confirm the lane-commitment assumption. |
 | **Scenario variants** | *Patches* (lane closures, capacity drops, lane add/shrink, demand scaling, new links) compose a variant from a base network, with time windows. |
 | **Fast** | 380 to 3,400 times faster than the Python reference implementation of Stream, with identical trajectories where the node rules match ([benchmark](bench/RESULTS.md)); 4 to 430 times faster than SUMO meso and micro ([benchmark](bench/SUMO.md)). |
 
@@ -56,7 +56,7 @@ server, and Python bindings (`stream_core_rust`) are working and tested. Not yet
 - Time-dependent assignment, all-way stops, and stochastic merges (see
   [Limitations](#limitations)).
 
-APIs and file formats may change before 1.0.
+Public `stream-core` APIs (`API_VERSION = 1`) and scenario JSON schemas follow the stabilized v1 contract.
 
 ## Roadmap
 
@@ -69,7 +69,7 @@ Planned milestones from a fast, self-verifying Dynamic Network Loading (DNL) cor
 - [x] **CLI patches (`--patches`)** — expose the patch pipeline (`SetLink`, `ClosePipe`, `CloseLink`, `ScaleDemand`, `AddNode`, `AddLink`, `AddDemand`) on `stream-cli build`, `run`, and `verify`
 - [x] **Study KPIs & reference comparison** — export turning-movement counts, queue/spillback summaries, OD travel-time skims, and expose `reference` (GEH/RMSE checks against `observed.json`) in `stream-cli`
 - [x] **Python bindings (`stream-py`)** — complete the PyO3 `stream_core_rust` extension module (`check`, `run`, `verify`, in-memory route-based demand, and Python `Controller` hooks)
-- [ ] **1.0 API & schema stabilization** — freeze `stream-core` public API and JSON schemas, add doc-tests, and finalize crate packaging
+- [x] **1.0 API & schema stabilization** — freeze `stream-core` public API and JSON schemas, add doc-tests, and finalize crate packaging
 
 ### 1.1+ — Control, Calibration Tooling & Companion Crates
 - [ ] **Declarative actuated signals in JSON** — presets (gap-out, ALINEA) in `signals.json` on top of `FixedTimePlan` and the `signals::Controller` Rust trait
@@ -385,7 +385,7 @@ improve).
 | `roundabout` | A four-arm roundabout as one `Roundabout` node, unbalanced turning flows |
 | `urban` | A synthetic town with every node mechanism: roundabout, priority junctions, signals with protected and permitted turns, ramp metering, toll, bus lane ([README](scenarios/urban/README.md)) |
 | `ngsim/` | Scripts to fetch NGSIM trajectories and measure lane commitment |
-| `ndw/` | Per-lane validation on Dutch NDW data (in preparation) |
+| `a15_papendrecht`, `ndw/` | Dutch A15 Papendrecht per-lane motorway corridor with live 1-min NDW open data, off-ramp spillback isolation, and `E1–E3` scripts |
 
 ## Reproducing the paper
 
@@ -475,7 +475,12 @@ Datasets keep their own licences:
 
 ## License
 
-Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
+Dual-licensed under either of:
+
+- MIT License ([LICENSE-MIT](LICENSE-MIT))
+- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
+
+at your option.
 
 pipe-stream derives from
 **[Stream](https://gitlab.cerema.fr/centre-est/mobilite/Stream/stream-python)**

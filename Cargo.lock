@@ -1086,7 +1086,7 @@ checksum = "6ce2be8dc25455e1f91df71bfa12ad37d7af1092ae736f3a6cd0e37bc7810596"
 
 [[package]]
 name = "stream-cli"
-version = "0.1.2"
+version = "1.0.0"
 dependencies = [
  "anyhow",
  "clap",
@@ -1097,7 +1097,7 @@ dependencies = [
 
 [[package]]
 name = "stream-core"
-version = "0.1.2"
+version = "1.0.0"
 dependencies = [
  "anyhow",
  "geo-types",
@@ -1111,7 +1111,7 @@ dependencies = [
 
 [[package]]
 name = "stream-pipes-rust"
-version = "0.1.2"
+version = "1.0.0"
 dependencies = [
  "anyhow",
  "pyo3",
@@ -1125,7 +1125,7 @@ dependencies = [
 
 [[package]]
 name = "stream-py"
-version = "0.1.2"
+version = "1.0.0"
 dependencies = [
  "anyhow",
  "pyo3",
@@ -1136,7 +1136,7 @@ dependencies = [
 
 [[package]]
 name = "stream-server"
-version = "0.1.2"
+version = "1.0.0"
 dependencies = [
  "anyhow",
  "axum",

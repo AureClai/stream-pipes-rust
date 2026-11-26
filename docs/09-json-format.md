@@ -334,7 +334,7 @@ Example (`results.json` excerpt):
 ```json
 {
   "api_version": 1,
-  "engine_version": "0.1.2",
+  "engine_version": "1.0.0",
   "start_time": 0.0,
   "duration": 3600.0,
   "bin_size": 60.0,

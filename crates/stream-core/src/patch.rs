@@ -11,6 +11,22 @@
 //! that instant, in (patch order, op order) — later wins. Each emitted entry
 //! is self-contained (it carries every ever-touched field), so the runtime
 //! never needs the base network and window ends revert naturally.
+//!
+//! ## Example
+//!
+//! ```
+//! use stream_core::patch::{Patch, PatchOp};
+//!
+//! let patch: Patch = serde_json::from_str(r#"{
+//!     "name": "lane-closure",
+//!     "ops": [
+//!         { "op": "close_pipe", "link": 0, "pipe": 1, "from": 300.0, "until": 600.0 }
+//!     ]
+//! }"#).unwrap();
+//!
+//! assert_eq!(patch.name, "lane-closure");
+//! assert!(matches!(patch.ops[0], PatchOp::ClosePipe { link: 0, pipe: 1, .. }));
+//! ```
 
 use crate::model::{
     Demand, Link, LinkAttrs, LinkID, LinkStateChange, NodeID, PipeIdx, PipeSpec, Scenario,
@@ -1202,7 +1218,7 @@ mod tests {
             },
         ]);
 
-        let compiled = apply_patches(network_json(), demand_json(), &config_json(), &[p.clone()]).unwrap();
+        let compiled = apply_patches(network_json(), demand_json(), &config_json(), std::slice::from_ref(&p)).unwrap();
         let warnings = apply_patches_to_scenario(&mut scenario, &[p]).unwrap();
 
         assert_eq!(scenario.link_schedule.len(), compiled.schedule.len());
@@ -1232,5 +1248,26 @@ mod tests {
             .unwrap_err()
             .to_string();
         assert!(err.contains("add_node"), "got: {err}");
+    }
+
+    #[test]
+    fn set_link_fd_c_syncs_default_pipe_capacity() {
+        let mut scenario = crate::io::compile_scenario_from_network_value(
+            network_json(),
+            demand_json(),
+            config_json(),
+        )
+        .unwrap();
+        let link = &mut scenario.links[0];
+        assert!(link.pipe_specs.is_empty());
+        link.materialize_pipes();
+
+        link.apply_attrs(&LinkAttrs {
+            fd_c: Some(0.15),
+            ..Default::default()
+        });
+        link.refresh_pipes_in_place(None);
+        assert!((link.capacity - 0.15 * f64::from(link.num_lanes)).abs() < 1e-12);
+        assert!((link.pipes[0].capacity - 0.15 * f64::from(link.num_lanes)).abs() < 1e-12);
     }
 }
