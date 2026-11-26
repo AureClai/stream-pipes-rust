@@ -5,8 +5,6 @@ use crate::roundabout::{Bound, PointKind, RingVehicle, RoundaboutState};
 use crate::signals::{Aspect, Command, ControlView, Controller, SignalRuntime, SwitchRecord};
 use crate::junction::JunctionState;
 use anyhow::Result;
-#[cfg(feature = "python")]
-use pyo3::prelude::*;
 use std::cmp::Ordering;
 use std::collections::BinaryHeap;
 
@@ -265,7 +263,6 @@ impl PartialOrd for Event {
     }
 }
 
-#[cfg_attr(feature = "python", pyclass)]
 pub struct Simulation {
     pub scenario: Scenario,
     pub events: BinaryHeap<Event>,
@@ -297,13 +294,6 @@ pub struct Simulation {
     /// Priority-junction state per node id (None for other nodes).
     pub junctions: Vec<Option<Box<JunctionState>>>,
     junctions_active: bool,
-}
-
-#[cfg(feature = "python")]
-#[pymethods]
-impl Simulation {
-    // TODO: Implement methods exposed to Python (load, run, etc.)
-    // For now, just pure Rust methods or internal logic
 }
 
 impl Simulation {

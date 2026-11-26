@@ -1,0 +1,17 @@
+[package]
+name = "stream-py"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "PyO3 Python extension bindings for pipe-stream"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[lib]
+name = "stream_py"
+crate-type = ["rlib"]
+
+[dependencies]
+stream-core = { workspace = true }
+pyo3 = { workspace = true }

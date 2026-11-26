@@ -61,23 +61,27 @@ APIs and file formats may change before 1.0.
 
 ## Roadmap
 
-Planned milestones toward operational traffic studies and 1.0:
+Planned milestones from a fast, self-verifying Dynamic Network Loading (DNL) core toward a modular 4-step / multimodal ecosystem:
 
-### CLI & Study Workflows
+### 1.0 — Core Engine, Study Exports & Bindings
+- [x] **Multi-crate workspace** — split pure engine (`crates/stream-core`), CLI (`crates/stream-cli`), HTTP server (`crates/stream-server`), and Python bindings (`crates/stream-py`) while preserving the root `stream_core_rust` / `stream-pipes-rust` facade
 - [x] **CVC & lightweight exports** — pre-computed entry/exit cumulative volume curves (CVC) per link and summary vehicle KPIs in `stream-cli run -o` (plus `--no-vehicles` for large networks)
 - [x] **Route-based demand** — optional `path` field in `demand.json` to inject `(route, flow)` pairs from external assignment tools
-- [ ] **CLI patches (`--patches`)** — expose the patch pipeline (`SetLink`, `ClosePipe`, `CloseLink`, `ScaleDemand`) directly on `stream-cli build` and `stream-cli run`
-- [ ] **Calibration & KPIs** — turning-movement counts, queue-length summaries, OD travel-time matrices, and GEH/RMSE checks against loop-detector observations
+- [ ] **CLI patches (`--patches`)** — expose the patch pipeline (`SetLink`, `ClosePipe`, `CloseLink`, `ScaleDemand`, `AddNode`, `AddLink`, `AddDemand`) on `stream-cli build`, `run`, and `verify`
+- [ ] **Study KPIs & reference comparison** — export turning-movement counts, queue/spillback summaries, OD travel-time skims, and expose `reference` (GEH/RMSE checks against `observed.json`) in `stream-cli`
+- [ ] **Python bindings (`stream-py`)** — complete the PyO3 `stream_core_rust` extension module (`check`, `run`, `verify`, in-memory route-based demand, and Python `Controller` hooks)
+- [ ] **1.0 API & schema stabilization** — freeze `stream-core` public API and JSON schemas, add doc-tests, and finalize crate packaging
 
-### Modeling & Physics
-- [ ] **Dynamic signal plans in JSON** — declarative actuated / queue-responsive controllers in `signals.json` (on top of the `signals::Controller` Rust trait)
-- [ ] **Signalized roundabouts** — signal groups and metering on roundabout entries/approaches
-- [ ] **Multi-class heterogeneity** — per-class free-flow speeds and PCU / vehicle-length factors
-- [ ] **Congestion-aware assignment** — iterative / time-dependent routing and built-in warm-up period handling
+### 1.1+ — Control, Calibration Tooling & Companion Crates
+- [ ] **Declarative actuated signals in JSON** — presets (gap-out, ALINEA) in `signals.json` on top of `FixedTimePlan` and the `signals::Controller` Rust trait
+- [ ] **Signalized roundabouts** — signal groups and entry/ring metering once validated against empirical field data
+- [ ] **Calibration helpers** — parameter-fitting and OD/FD adjustment tooling outside the core simulation kernel
+- [ ] **Congestion-aware assignment (`stream-dta`, separate crate)** — iterative equilibrium / DTA loop over `stream-core` and route-based demand, preserving single-run DNL speed
+- [ ] **Network import (`stream-osm`, separate crate)** — reusable OpenStreetMap / GIS preprocessing into validated `network.geojson`
 
-### Bindings & Tooling
-- [ ] **Python bindings** — complete the PyO3 `stream_core_rust` extension module
-- [ ] **Network import** — reusable OpenStreetMap / GIS preprocessing into validated `network.geojson`
+### 2.0 — Multimodal Pipe-Stream & Public Transport
+- [ ] **Multi-class heterogeneity** — per-class free-flow speeds and PCU / vehicle-length storage factors
+- [ ] **Public transport in traffic** — bus dwell stops cutting flow on pipes (inducing overtaking and friction φ) and tram intersection priority / preemption
 
 ## Getting started
 
@@ -152,8 +156,9 @@ let out = run(&inputs, &RunOptions::default(), |_progress| true)?;
 
 `stream-cli run --output results.json` writes the same `RunOutput`.
 
-The library crate is named `stream_core_rust`, after the engine it was forked
-from. Analysis modules are pure functions over a finished scenario:
+The library crate is named `stream_core_rust` (re-exporting `crates/stream-core`,
+with `crates/stream-cli`, `crates/stream-server`, and `crates/stream-py` as
+workspace crates). Analysis modules are pure functions over a finished scenario:
 `analysis` (binned flow, density and speed per link and per pipe),
 `xt_analysis` (space-time diagrams), `diagnostics`, `verification`, and
 `reference` (GEH against observed counts).

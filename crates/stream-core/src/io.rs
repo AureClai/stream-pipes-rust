@@ -480,6 +480,8 @@ mod tests {
 
     fn scenario_dir(name: &str) -> std::path::PathBuf {
         std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+            .join("..")
+            .join("..")
             .join("scenarios")
             .join(name)
     }
