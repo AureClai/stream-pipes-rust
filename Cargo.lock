@@ -902,7 +902,10 @@ dependencies = [
 name = "stream-py"
 version = "0.1.2"
 dependencies = [
+ "anyhow",
  "pyo3",
+ "serde",
+ "serde_json",
  "stream-core",
 ]
 
