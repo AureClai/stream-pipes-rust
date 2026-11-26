@@ -164,11 +164,12 @@ workspace crates). Analysis modules are pure functions over a finished scenario:
 
 ### Using it from Python
 
-Build and install the extension module with [maturin](https://www.maturin.rs/):
+Install directly with `pip` (requires Rust ≥ 1.82) or [maturin](https://www.maturin.rs/):
 
 ```bash
-pip install maturin
-maturin develop --release
+pip install .
+# or for local development:
+pip install maturin && maturin develop --release
 ```
 
 ```python
@@ -185,6 +186,7 @@ ver = sc.verify(dir="scenarios/urban", benchmarks=True)
 You can also pass in-memory `network` / `demand` / `config` dicts (including
 route-based `path` entries) and attach Python `Controller` objects using
 `Command.switch`, `Command.wake_at`, and `Command.set_vehicles_per_green`.
+See [docs/08-python.md](docs/08-python.md) for the full Python guide.
 
 ## Scenario format
 

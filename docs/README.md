@@ -11,6 +11,7 @@ Welcome to the `pipe-stream` (`stream-cli`) user documentation.
 5. [Results & Verification](05-results-and-verification.md) — Interpreting `stream-cli run -o` outputs and auditing runs with `stream-cli verify`.
 6. [Traffic Signals & Tolls](06-signals.md) — Signal groups, fixed-time plans, ramp metering, and tolls.
 7. [Roundabouts](07-roundabouts.md) — Single-node roundabout modeling (LWR ring + Siegloch / HCM 6 gap acceptance).
+8. [Python Bindings](08-python.md) — Installing with `pip` / `maturin`, in-memory workflows, verification, and Python controllers.
 
 ## Reference
 
