@@ -860,20 +860,60 @@ dependencies = [
 ]
 
 [[package]]
-name = "stream-pipes-rust"
+name = "stream-cli"
 version = "0.1.2"
 dependencies = [
  "anyhow",
- "axum",
  "clap",
+ "serde_json",
+ "stream-core",
+]
+
+[[package]]
+name = "stream-core"
+version = "0.1.2"
+dependencies = [
+ "anyhow",
  "geo-types",
  "geojson",
  "petgraph",
- "pyo3",
  "rayon",
  "serde",
  "serde_json",
  "thiserror 1.0.69",
+]
+
+[[package]]
+name = "stream-pipes-rust"
+version = "0.1.2"
+dependencies = [
+ "anyhow",
+ "pyo3",
+ "serde",
+ "serde_json",
+ "stream-cli",
+ "stream-core",
+ "stream-py",
+ "stream-server",
+]
+
+[[package]]
+name = "stream-py"
+version = "0.1.2"
+dependencies = [
+ "pyo3",
+ "stream-core",
+]
+
+[[package]]
+name = "stream-server"
+version = "0.1.2"
+dependencies = [
+ "anyhow",
+ "axum",
+ "serde",
+ "serde_json",
+ "stream-core",
  "tokio",
  "tower 0.4.13",
  "tower-http",

@@ -1,0 +1,15 @@
+[package]
+name = "stream-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "Command-line interface for pipe-stream (build, run, verify)"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+stream-core = { workspace = true }
+clap = { workspace = true }
+anyhow = { workspace = true }
+serde_json = { workspace = true }

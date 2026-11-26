@@ -1,0 +1,19 @@
+[package]
+name = "stream-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "Core event-based mesoscopic LWR traffic simulation engine with per-lane pipes and built-in verification"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+petgraph = { workspace = true }
+geo-types = { workspace = true }
+geojson = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+rayon = { workspace = true }

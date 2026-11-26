@@ -1,19 +1,4 @@
-pub mod api;
-pub mod model;
-pub mod simulation;
-pub mod assignment;
-pub mod io;
-pub mod validation;
-pub mod analysis;
-pub mod diagnostics;
-pub mod xt_analysis;
-pub mod verification;
-pub mod benchmarks;
-pub mod patch;
-pub mod roundabout;
-pub mod signals;
-pub mod junction;
-pub mod reference;
+pub use stream_core::*;
 
 #[cfg(feature = "python")]
 use pyo3::prelude::*;
@@ -21,6 +6,5 @@ use pyo3::prelude::*;
 #[cfg(feature = "python")]
 #[pymodule]
 fn stream_core_rust(m: &Bound<'_, PyModule>) -> PyResult<()> {
-    m.add_class::<simulation::Simulation>()?;
-    Ok(())
+    stream_py::register(m)
 }

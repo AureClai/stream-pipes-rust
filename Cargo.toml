@@ -1,17 +1,58 @@
-[package]
-# Fork of stream-core-rust: pipe-stream (meso-per-lane) prototype.
-# The lib name stays `stream_core_rust` so module imports are unchanged.
-name = "stream-pipes-rust"
+[workspace]
+resolver = "2"
+members = [
+    ".",
+    "crates/stream-core",
+    "crates/stream-cli",
+    "crates/stream-server",
+    "crates/stream-py",
+]
+exclude = [
+    "scenarios/a47_givors_osm/build",
+]
+
+[workspace.package]
 version = "0.1.2"
 edition = "2021"
-# Option::is_none_or (stable since 1.82) is used in the solver; the lockfile is
-# format v4 (Cargo 1.78+). Declared so an older toolchain fails with a version
-# message instead of an unrelated compile error.
 rust-version = "1.82"
-description = "Event-based mesoscopic LWR traffic model with per-lane pipes, class-restricted lanes and built-in verification"
 license = "MIT OR Apache-2.0"
 authors = ["Aurélien Clairais <aureclai.dev@gmail.com>"]
 repository = "https://github.com/AureClai/stream-pipes-rust"
+
+[workspace.dependencies]
+stream-core = { path = "crates/stream-core" }
+stream-cli = { path = "crates/stream-cli" }
+stream-server = { path = "crates/stream-server" }
+stream-py = { path = "crates/stream-py" }
+
+pyo3 = { version = "0.22.0", features = ["extension-module"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+petgraph = "0.6"
+geo-types = "0.7"
+geojson = "0.24"
+thiserror = "1.0"
+anyhow = "1.0"
+clap = { version = "4.4", features = ["derive"] }
+rayon = "1.10"
+
+axum = "0.7"
+tokio = { version = "1.0", features = ["full"] }
+tower-http = { version = "0.5", features = ["cors"] }
+tower = "0.4"
+
+# Retro-compatible root facade package so existing embedders (`stream_core_rust`),
+# CLI commands (`cargo run --bin stream-cli`), benchmarks (`--example bench_runner`),
+# and integration tests (`tests/*.rs`) continue working unchanged.
+[package]
+name = "stream-pipes-rust"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "Event-based mesoscopic LWR traffic model with per-lane pipes, class-restricted lanes and built-in verification"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
 readme = "README.md"
 keywords = ["traffic", "simulation", "kinematic-wave", "lwr", "mesoscopic"]
 categories = ["science", "simulation"]
@@ -30,26 +71,20 @@ path = "src/server.rs"
 required-features = ["server"]
 
 [dependencies]
-pyo3 = { version = "0.22.0", features = ["extension-module"], optional = true }
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-petgraph = "0.6"
-geo-types = "0.7"
-geojson = "0.24"
-thiserror = "1.0"
-anyhow = "1.0"
-clap = { version = "4.4", features = ["derive"] }
-rayon = "1.10"
+stream-core = { workspace = true }
+stream-cli = { workspace = true }
+stream-server = { workspace = true, optional = true }
+stream-py = { workspace = true, optional = true }
+pyo3 = { workspace = true, optional = true }
+anyhow = { workspace = true }
 
-# Server dependencies
-axum = { version = "0.7", optional = true }
-tokio = { version = "1.0", features = ["full"], optional = true }
-tower-http = { version = "0.5", features = ["cors"], optional = true }
-tower = { version = "0.4", optional = true }
+[dev-dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
 
 [features]
 # No default features: the engine is embedded by other crates (the RustGIS
-# plugin), which must not pull in the Python extension.
+# plugin), which must not pull in the Python extension or HTTP server.
 default = []
-python = ["dep:pyo3"]
-server = ["dep:axum", "dep:tokio", "dep:tower-http", "dep:tower"]
+python = ["dep:pyo3", "dep:stream-py"]
+server = ["dep:stream-server"]

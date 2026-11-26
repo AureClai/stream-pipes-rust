@@ -1,0 +1,19 @@
+[package]
+name = "stream-server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "Local HTTP JSON server for pipe-stream scenarios and verification"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+stream-core = { workspace = true }
+axum = { workspace = true }
+tokio = { workspace = true }
+tower-http = { workspace = true }
+tower = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
