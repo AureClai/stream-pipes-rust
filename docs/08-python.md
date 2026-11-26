@@ -180,3 +180,5 @@ Top-level functions:
 - `run(..., assignment=True, merge=None, upstream_capacity=False, bin_size=60.0, keep_vehicles=False, controllers=None, progress=None) -> dict`
 - `verify(..., assignment=True, merge=None, upstream_capacity=False, bin_size=300.0, benchmarks=False, observed=None, controllers=None) -> dict`
 - `run_benchmarks() -> list[dict]`
+
+See [python/examples/](../python/examples) for complete runnable scripts (`ramp_metering_alinea.py`, `in_memory_dta.py`).

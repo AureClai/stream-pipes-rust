@@ -10,7 +10,8 @@ these benchmarks were run against the copy at
 
 Results: [RESULTS.md](RESULTS.md) (Stream Python), [SUMO.md](SUMO.md)
 (Eclipse SUMO, micro and meso) and [DIVERGE.md](DIVERGE.md) (what each engine
-does to the mainline beside a blocked off-ramp).
+does to the mainline beside a blocked off-ramp). For Python bindings timing
+(`sim.run()` vs full `sc.run()` marshaling), see `bench/bench_python_overhead.py`.
 
 ## Method
 
