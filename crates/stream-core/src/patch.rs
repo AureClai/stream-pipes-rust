@@ -1249,4 +1249,25 @@ mod tests {
             .to_string();
         assert!(err.contains("add_node"), "got: {err}");
     }
+
+    #[test]
+    fn set_link_fd_c_syncs_default_pipe_capacity() {
+        let mut scenario = crate::io::compile_scenario_from_network_value(
+            network_json(),
+            demand_json(),
+            config_json(),
+        )
+        .unwrap();
+        let link = &mut scenario.links[0];
+        assert!(link.pipe_specs.is_empty());
+        link.materialize_pipes();
+
+        link.apply_attrs(&LinkAttrs {
+            fd_c: Some(0.15),
+            ..Default::default()
+        });
+        link.refresh_pipes_in_place(None);
+        assert!((link.capacity - 0.15 * f64::from(link.num_lanes)).abs() < 1e-12);
+        assert!((link.pipes[0].capacity - 0.15 * f64::from(link.num_lanes)).abs() < 1e-12);
+    }
 }

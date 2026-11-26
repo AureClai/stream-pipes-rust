@@ -43,7 +43,7 @@ with its own capacity, storage and backward wave.
 | **Exact** | Discrete-event solution of LWR with a triangular fundamental diagram (Newell's simplified theory). No time step, no RNG: two runs are bit-identical. |
 | **Verified** | Eighteen closed-form benchmarks (free flow, bottleneck discharge, queue delay, spillback wave, fractional-slot wave, merge, bus-lane immunity, shoulder-exit wave and through flow, friction throttle; four roundabout cases: free flow, entry capacity, Siegloch gap acceptance, spillback on the ring; signal discharge per green, ramp-metering rate, toll service; and Siegloch gap acceptance at a priority junction) pass at machine precision. |
 | **Self-auditing** | `stream-cli verify` checks every link, pipe and node of any scenario (free-flow traversal, capacity, storage bound, backward wave, FD adherence, conservation, FIFO, demand served; roundabout rings, gap acceptance at priority junctions, no passage on red) and reports **pass / warn / fail / not-exercised**. |
-| **Validated** | Three instrumented corridors in two countries: 1 280 of 1 312 flow windows below GEH 5. NGSIM trajectories confirm the lane-commitment assumption. |
+| **Validated** | Four instrumented corridors across three countries (`M1`, `M60`, `A47` — 1 280 / 1 312 flow windows GEH < 5; plus Dutch `A15` Papendrecht per-lane validation — 420 / 476 windows GEH < 5, ~93 % excluding one undercounting field gantry). NGSIM trajectories confirm the lane-commitment assumption. |
 | **Scenario variants** | *Patches* (lane closures, capacity drops, lane add/shrink, demand scaling, new links) compose a variant from a base network, with time windows. |
 | **Fast** | 380 to 3,400 times faster than the Python reference implementation of Stream, with identical trajectories where the node rules match ([benchmark](bench/RESULTS.md)); 4 to 430 times faster than SUMO meso and micro ([benchmark](bench/SUMO.md)). |
 
@@ -385,7 +385,7 @@ improve).
 | `roundabout` | A four-arm roundabout as one `Roundabout` node, unbalanced turning flows |
 | `urban` | A synthetic town with every node mechanism: roundabout, priority junctions, signals with protected and permitted turns, ramp metering, toll, bus lane ([README](scenarios/urban/README.md)) |
 | `ngsim/` | Scripts to fetch NGSIM trajectories and measure lane commitment |
-| `ndw/` | Per-lane validation on Dutch NDW data (in preparation) |
+| `a15_papendrecht`, `ndw/` | Dutch A15 Papendrecht per-lane motorway corridor with live 1-min NDW open data, off-ramp spillback isolation, and `E1–E3` scripts |
 
 ## Reproducing the paper
 

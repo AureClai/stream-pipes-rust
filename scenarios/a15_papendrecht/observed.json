@@ -1,0 +1,3810 @@
+[
+ {
+  "link_id": 0,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 3588.0,
+  "speed_kmh": 94.6,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 3432.0,
+  "speed_kmh": 97.6,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 3300.0,
+  "speed_kmh": 94.5,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 756.0,
+  "speed_kmh": 61.6,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 180.0,
+  "speed_kmh": 82.4,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 2436.0,
+  "speed_kmh": 96.0,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 2460.0,
+  "speed_kmh": 98.3,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 180.0,
+  "speed_kmh": 95.4,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 3132.0,
+  "speed_kmh": 98.2,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 3240.0,
+  "speed_kmh": 98.8,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 3720.0,
+  "speed_kmh": 95.8,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 936.0,
+  "speed_kmh": 55.0,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 2268.0,
+  "speed_kmh": 94.6,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 50700.0,
+  "t_end": 51000.0,
+  "flow_veh_h": 1884.0,
+  "speed_kmh": 92.9,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 3456.0,
+  "speed_kmh": 101.9,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 3552.0,
+  "speed_kmh": 102.2,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 3192.0,
+  "speed_kmh": 100.3,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 432.0,
+  "speed_kmh": 69.6,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 228.0,
+  "speed_kmh": 87.7,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 2820.0,
+  "speed_kmh": 100.8,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 2784.0,
+  "speed_kmh": 103.6,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 216.0,
+  "speed_kmh": 89.4,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 3120.0,
+  "speed_kmh": 100.5,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 3036.0,
+  "speed_kmh": 101.1,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 2988.0,
+  "speed_kmh": 99.3,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 912.0,
+  "speed_kmh": 60.1,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 2256.0,
+  "speed_kmh": 98.8,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 51000.0,
+  "t_end": 51300.0,
+  "flow_veh_h": 2316.0,
+  "speed_kmh": 97.7,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 3552.0,
+  "speed_kmh": 102.1,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 3624.0,
+  "speed_kmh": 102.9,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 3276.0,
+  "speed_kmh": 102.8,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 444.0,
+  "speed_kmh": 90.1,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 216.0,
+  "speed_kmh": 95.7,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 2676.0,
+  "speed_kmh": 102.4,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 2592.0,
+  "speed_kmh": 105.0,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 132.0,
+  "speed_kmh": 93.1,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 2676.0,
+  "speed_kmh": 102.3,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 2736.0,
+  "speed_kmh": 102.5,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 2712.0,
+  "speed_kmh": 101.8,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 792.0,
+  "speed_kmh": 67.0,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 1896.0,
+  "speed_kmh": 103.2,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 51300.0,
+  "t_end": 51600.0,
+  "flow_veh_h": 1968.0,
+  "speed_kmh": 103.1,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 4104.0,
+  "speed_kmh": 101.7,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 3924.0,
+  "speed_kmh": 103.0,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 3468.0,
+  "speed_kmh": 103.5,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 444.0,
+  "speed_kmh": 93.8,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 288.0,
+  "speed_kmh": 92.9,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 3000.0,
+  "speed_kmh": 104.4,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 3096.0,
+  "speed_kmh": 105.3,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 132.0,
+  "speed_kmh": 88.4,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 3336.0,
+  "speed_kmh": 102.8,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 3432.0,
+  "speed_kmh": 102.3,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 3492.0,
+  "speed_kmh": 102.7,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 852.0,
+  "speed_kmh": 63.8,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 2508.0,
+  "speed_kmh": 102.6,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 51600.0,
+  "t_end": 51900.0,
+  "flow_veh_h": 2532.0,
+  "speed_kmh": 101.8,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 3636.0,
+  "speed_kmh": 100.2,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 3588.0,
+  "speed_kmh": 101.8,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 3420.0,
+  "speed_kmh": 102.1,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 384.0,
+  "speed_kmh": 83.8,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 228.0,
+  "speed_kmh": 92.9,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 3096.0,
+  "speed_kmh": 103.2,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 3120.0,
+  "speed_kmh": 104.9,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 132.0,
+  "speed_kmh": 87.3,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 3228.0,
+  "speed_kmh": 102.8,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 3072.0,
+  "speed_kmh": 103.6,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 3024.0,
+  "speed_kmh": 104.3,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 672.0,
+  "speed_kmh": 64.8,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 2448.0,
+  "speed_kmh": 105.5,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 51900.0,
+  "t_end": 52200.0,
+  "flow_veh_h": 2424.0,
+  "speed_kmh": 105.4,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 3324.0,
+  "speed_kmh": 102.4,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 3588.0,
+  "speed_kmh": 101.7,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 3168.0,
+  "speed_kmh": 102.9,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 360.0,
+  "speed_kmh": 91.8,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 228.0,
+  "speed_kmh": 97.6,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 2928.0,
+  "speed_kmh": 102.9,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 2868.0,
+  "speed_kmh": 105.9,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 216.0,
+  "speed_kmh": 84.7,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 3192.0,
+  "speed_kmh": 102.5,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 3288.0,
+  "speed_kmh": 101.6,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 3360.0,
+  "speed_kmh": 102.8,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 552.0,
+  "speed_kmh": 68.1,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 2664.0,
+  "speed_kmh": 103.3,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 52200.0,
+  "t_end": 52500.0,
+  "flow_veh_h": 2736.0,
+  "speed_kmh": 102.6,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 4212.0,
+  "speed_kmh": 99.5,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 4056.0,
+  "speed_kmh": 100.4,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 3600.0,
+  "speed_kmh": 99.8,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 372.0,
+  "speed_kmh": 86.6,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 216.0,
+  "speed_kmh": 88.0,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 3408.0,
+  "speed_kmh": 100.6,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 3336.0,
+  "speed_kmh": 102.0,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 204.0,
+  "speed_kmh": 86.3,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 3456.0,
+  "speed_kmh": 100.8,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 3408.0,
+  "speed_kmh": 100.2,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 3312.0,
+  "speed_kmh": 100.5,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 684.0,
+  "speed_kmh": 65.8,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 2604.0,
+  "speed_kmh": 102.4,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 52500.0,
+  "t_end": 52800.0,
+  "flow_veh_h": 2616.0,
+  "speed_kmh": 102.8,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 4032.0,
+  "speed_kmh": 98.8,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 4152.0,
+  "speed_kmh": 99.5,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3708.0,
+  "speed_kmh": 99.8,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 384.0,
+  "speed_kmh": 85.0,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 240.0,
+  "speed_kmh": 87.9,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3408.0,
+  "speed_kmh": 101.5,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3468.0,
+  "speed_kmh": 103.5,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 288.0,
+  "speed_kmh": 80.2,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3864.0,
+  "speed_kmh": 101.0,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3948.0,
+  "speed_kmh": 99.5,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 4056.0,
+  "speed_kmh": 101.2,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 972.0,
+  "speed_kmh": 64.5,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3180.0,
+  "speed_kmh": 103.1,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 52800.0,
+  "t_end": 53100.0,
+  "flow_veh_h": 3240.0,
+  "speed_kmh": 103.3,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 4464.0,
+  "speed_kmh": 100.0,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 4320.0,
+  "speed_kmh": 100.7,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 3936.0,
+  "speed_kmh": 102.4,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 444.0,
+  "speed_kmh": 89.8,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 300.0,
+  "speed_kmh": 93.7,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 3600.0,
+  "speed_kmh": 102.2,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 3528.0,
+  "speed_kmh": 103.4,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 240.0,
+  "speed_kmh": 82.0,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 3708.0,
+  "speed_kmh": 100.7,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 3840.0,
+  "speed_kmh": 100.6,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 3660.0,
+  "speed_kmh": 101.7,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 744.0,
+  "speed_kmh": 64.4,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 2832.0,
+  "speed_kmh": 103.8,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 53100.0,
+  "t_end": 53400.0,
+  "flow_veh_h": 2820.0,
+  "speed_kmh": 103.3,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 4092.0,
+  "speed_kmh": 99.4,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 4308.0,
+  "speed_kmh": 99.7,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 3948.0,
+  "speed_kmh": 101.0,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 456.0,
+  "speed_kmh": 87.7,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 240.0,
+  "speed_kmh": 96.6,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 3540.0,
+  "speed_kmh": 100.4,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 3492.0,
+  "speed_kmh": 102.3,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 132.0,
+  "speed_kmh": 86.2,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 3768.0,
+  "speed_kmh": 100.3,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 3852.0,
+  "speed_kmh": 100.7,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 3852.0,
+  "speed_kmh": 101.5,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 864.0,
+  "speed_kmh": 63.3,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 3000.0,
+  "speed_kmh": 102.2,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 53400.0,
+  "t_end": 53700.0,
+  "flow_veh_h": 2976.0,
+  "speed_kmh": 102.3,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 4488.0,
+  "speed_kmh": 100.2,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 4452.0,
+  "speed_kmh": 100.7,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 3888.0,
+  "speed_kmh": 100.6,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 456.0,
+  "speed_kmh": 79.0,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 204.0,
+  "speed_kmh": 90.8,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 3348.0,
+  "speed_kmh": 102.5,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 3432.0,
+  "speed_kmh": 104.4,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 180.0,
+  "speed_kmh": 91.2,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 3636.0,
+  "speed_kmh": 102.0,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 3480.0,
+  "speed_kmh": 101.6,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 3588.0,
+  "speed_kmh": 102.5,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 696.0,
+  "speed_kmh": 66.9,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2868.0,
+  "speed_kmh": 103.5,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 53700.0,
+  "t_end": 54000.0,
+  "flow_veh_h": 2988.0,
+  "speed_kmh": 103.4,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 4968.0,
+  "speed_kmh": 98.1,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 4800.0,
+  "speed_kmh": 98.2,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 4440.0,
+  "speed_kmh": 99.1,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 576.0,
+  "speed_kmh": 81.5,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 216.0,
+  "speed_kmh": 98.3,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 4044.0,
+  "speed_kmh": 99.7,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 3960.0,
+  "speed_kmh": 101.3,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 216.0,
+  "speed_kmh": 86.3,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 4032.0,
+  "speed_kmh": 100.8,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 4140.0,
+  "speed_kmh": 99.7,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 4080.0,
+  "speed_kmh": 100.5,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 756.0,
+  "speed_kmh": 67.0,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 3132.0,
+  "speed_kmh": 101.3,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 54000.0,
+  "t_end": 54300.0,
+  "flow_veh_h": 3084.0,
+  "speed_kmh": 101.0,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 4152.0,
+  "speed_kmh": 101.5,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 4272.0,
+  "speed_kmh": 101.0,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 4056.0,
+  "speed_kmh": 101.3,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 684.0,
+  "speed_kmh": 87.7,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 264.0,
+  "speed_kmh": 90.4,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 3396.0,
+  "speed_kmh": 101.8,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 3504.0,
+  "speed_kmh": 103.2,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 192.0,
+  "speed_kmh": 88.8,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 3936.0,
+  "speed_kmh": 101.1,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 3984.0,
+  "speed_kmh": 101.4,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 4020.0,
+  "speed_kmh": 101.4,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 828.0,
+  "speed_kmh": 63.7,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 3372.0,
+  "speed_kmh": 101.4,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 54300.0,
+  "t_end": 54600.0,
+  "flow_veh_h": 3432.0,
+  "speed_kmh": 101.1,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 4368.0,
+  "speed_kmh": 99.0,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 4416.0,
+  "speed_kmh": 100.0,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 3768.0,
+  "speed_kmh": 100.3,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 420.0,
+  "speed_kmh": 86.3,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 276.0,
+  "speed_kmh": 94.7,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 3456.0,
+  "speed_kmh": 101.7,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 3456.0,
+  "speed_kmh": 103.8,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 252.0,
+  "speed_kmh": 88.6,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 3492.0,
+  "speed_kmh": 103.0,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 3540.0,
+  "speed_kmh": 103.0,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 3684.0,
+  "speed_kmh": 103.3,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 780.0,
+  "speed_kmh": 66.9,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 2772.0,
+  "speed_kmh": 104.0,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 54600.0,
+  "t_end": 54900.0,
+  "flow_veh_h": 2868.0,
+  "speed_kmh": 104.6,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 5004.0,
+  "speed_kmh": 95.4,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 5076.0,
+  "speed_kmh": 97.8,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 4224.0,
+  "speed_kmh": 97.9,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 624.0,
+  "speed_kmh": 83.1,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 348.0,
+  "speed_kmh": 89.2,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 3744.0,
+  "speed_kmh": 98.7,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 3684.0,
+  "speed_kmh": 101.0,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 132.0,
+  "speed_kmh": 90.9,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 3972.0,
+  "speed_kmh": 100.4,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 3924.0,
+  "speed_kmh": 100.5,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 3804.0,
+  "speed_kmh": 100.4,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 804.0,
+  "speed_kmh": 64.3,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 3132.0,
+  "speed_kmh": 102.0,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 54900.0,
+  "t_end": 55200.0,
+  "flow_veh_h": 3192.0,
+  "speed_kmh": 101.5,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 4548.0,
+  "speed_kmh": 100.2,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 4500.0,
+  "speed_kmh": 99.9,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 4032.0,
+  "speed_kmh": 97.7,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 720.0,
+  "speed_kmh": 56.9,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 216.0,
+  "speed_kmh": 82.1,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 3432.0,
+  "speed_kmh": 101.2,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 3348.0,
+  "speed_kmh": 102.7,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 168.0,
+  "speed_kmh": 86.5,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 3648.0,
+  "speed_kmh": 101.0,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 3744.0,
+  "speed_kmh": 100.7,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 3864.0,
+  "speed_kmh": 100.9,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 792.0,
+  "speed_kmh": 64.3,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 3048.0,
+  "speed_kmh": 101.2,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 55200.0,
+  "t_end": 55500.0,
+  "flow_veh_h": 3096.0,
+  "speed_kmh": 101.1,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 4308.0,
+  "speed_kmh": 100.3,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 4380.0,
+  "speed_kmh": 101.2,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 4056.0,
+  "speed_kmh": 92.2,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 588.0,
+  "speed_kmh": 28.5,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 312.0,
+  "speed_kmh": 78.8,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 3660.0,
+  "speed_kmh": 98.5,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 3672.0,
+  "speed_kmh": 102.5,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 180.0,
+  "speed_kmh": 90.7,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 3936.0,
+  "speed_kmh": 102.6,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 3888.0,
+  "speed_kmh": 102.3,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 3900.0,
+  "speed_kmh": 102.9,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 864.0,
+  "speed_kmh": 64.8,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2868.0,
+  "speed_kmh": 105.2,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 55500.0,
+  "t_end": 55800.0,
+  "flow_veh_h": 2880.0,
+  "speed_kmh": 104.8,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 4632.0,
+  "speed_kmh": 98.1,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 4488.0,
+  "speed_kmh": 101.1,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 4284.0,
+  "speed_kmh": 95.3,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 660.0,
+  "speed_kmh": 37.3,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 264.0,
+  "speed_kmh": 78.4,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 3444.0,
+  "speed_kmh": 100.1,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 3408.0,
+  "speed_kmh": 103.2,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 192.0,
+  "speed_kmh": 86.2,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 3732.0,
+  "speed_kmh": 101.9,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 3744.0,
+  "speed_kmh": 100.9,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 3756.0,
+  "speed_kmh": 101.8,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 780.0,
+  "speed_kmh": 61.7,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 2988.0,
+  "speed_kmh": 102.9,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 55800.0,
+  "t_end": 56100.0,
+  "flow_veh_h": 3024.0,
+  "speed_kmh": 102.6,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 4152.0,
+  "speed_kmh": 97.1,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 4152.0,
+  "speed_kmh": 98.5,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 3528.0,
+  "speed_kmh": 97.2,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 396.0,
+  "speed_kmh": 49.7,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 240.0,
+  "speed_kmh": 87.2,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 3252.0,
+  "speed_kmh": 99.8,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 3180.0,
+  "speed_kmh": 102.5,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 180.0,
+  "speed_kmh": 85.4,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 3420.0,
+  "speed_kmh": 101.8,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 3420.0,
+  "speed_kmh": 102.2,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 3396.0,
+  "speed_kmh": 102.8,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 780.0,
+  "speed_kmh": 66.6,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 2736.0,
+  "speed_kmh": 103.1,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 56100.0,
+  "t_end": 56400.0,
+  "flow_veh_h": 2736.0,
+  "speed_kmh": 102.4,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 4944.0,
+  "speed_kmh": 95.8,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 5244.0,
+  "speed_kmh": 95.8,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 4656.0,
+  "speed_kmh": 93.9,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 624.0,
+  "speed_kmh": 52.7,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 324.0,
+  "speed_kmh": 82.2,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 4080.0,
+  "speed_kmh": 96.1,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 4116.0,
+  "speed_kmh": 97.5,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 108.0,
+  "speed_kmh": 84.0,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 4332.0,
+  "speed_kmh": 97.5,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 4176.0,
+  "speed_kmh": 97.6,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 4104.0,
+  "speed_kmh": 99.1,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 816.0,
+  "speed_kmh": 64.4,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 3012.0,
+  "speed_kmh": 100.1,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 56400.0,
+  "t_end": 56700.0,
+  "flow_veh_h": 2988.0,
+  "speed_kmh": 100.2,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 5160.0,
+  "speed_kmh": 95.0,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 5040.0,
+  "speed_kmh": 96.3,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 4392.0,
+  "speed_kmh": 93.5,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 564.0,
+  "speed_kmh": 39.4,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 420.0,
+  "speed_kmh": 82.0,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 3900.0,
+  "speed_kmh": 96.7,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 3888.0,
+  "speed_kmh": 99.3,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 192.0,
+  "speed_kmh": 85.8,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 4104.0,
+  "speed_kmh": 97.6,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 4080.0,
+  "speed_kmh": 97.9,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 4128.0,
+  "speed_kmh": 97.5,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 840.0,
+  "speed_kmh": 61.8,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 3336.0,
+  "speed_kmh": 99.8,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 56700.0,
+  "t_end": 57000.0,
+  "flow_veh_h": 3444.0,
+  "speed_kmh": 99.8,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 5040.0,
+  "speed_kmh": 95.4,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 4932.0,
+  "speed_kmh": 96.3,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 4332.0,
+  "speed_kmh": 97.3,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 552.0,
+  "speed_kmh": 69.6,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 420.0,
+  "speed_kmh": 86.3,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 3768.0,
+  "speed_kmh": 98.4,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 3828.0,
+  "speed_kmh": 99.2,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 60.0,
+  "speed_kmh": 85.4,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 3996.0,
+  "speed_kmh": 99.5,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 4104.0,
+  "speed_kmh": 99.7,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 4116.0,
+  "speed_kmh": 100.1,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 756.0,
+  "speed_kmh": 67.3,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 3324.0,
+  "speed_kmh": 100.6,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 57000.0,
+  "t_end": 57300.0,
+  "flow_veh_h": 3336.0,
+  "speed_kmh": 99.7,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 4956.0,
+  "speed_kmh": 97.3,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 5004.0,
+  "speed_kmh": 96.9,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 4584.0,
+  "speed_kmh": 98.5,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 432.0,
+  "speed_kmh": 88.6,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 432.0,
+  "speed_kmh": 92.5,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 3984.0,
+  "speed_kmh": 98.4,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 3972.0,
+  "speed_kmh": 98.9,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 120.0,
+  "speed_kmh": 87.4,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 4272.0,
+  "speed_kmh": 98.6,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 4248.0,
+  "speed_kmh": 97.5,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 4176.0,
+  "speed_kmh": 98.2,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 792.0,
+  "speed_kmh": 66.0,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 3420.0,
+  "speed_kmh": 97.7,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 57300.0,
+  "t_end": 57600.0,
+  "flow_veh_h": 3480.0,
+  "speed_kmh": 97.9,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 4764.0,
+  "speed_kmh": 98.7,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 4872.0,
+  "speed_kmh": 99.2,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 4488.0,
+  "speed_kmh": 96.8,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 612.0,
+  "speed_kmh": 69.0,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 444.0,
+  "speed_kmh": 84.7,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 3768.0,
+  "speed_kmh": 99.3,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 3780.0,
+  "speed_kmh": 100.9,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 156.0,
+  "speed_kmh": 91.1,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 3864.0,
+  "speed_kmh": 99.7,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 3924.0,
+  "speed_kmh": 100.4,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 4044.0,
+  "speed_kmh": 100.5,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 960.0,
+  "speed_kmh": 59.2,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 3060.0,
+  "speed_kmh": 101.1,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 57600.0,
+  "t_end": 57900.0,
+  "flow_veh_h": 3000.0,
+  "speed_kmh": 102.3,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 4344.0,
+  "speed_kmh": 98.4,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 4488.0,
+  "speed_kmh": 98.6,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 4092.0,
+  "speed_kmh": 89.6,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 660.0,
+  "speed_kmh": 27.8,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 420.0,
+  "speed_kmh": 73.3,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 3420.0,
+  "speed_kmh": 96.8,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 3300.0,
+  "speed_kmh": 100.4,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 180.0,
+  "speed_kmh": 88.3,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 3612.0,
+  "speed_kmh": 100.9,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 3588.0,
+  "speed_kmh": 99.9,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 3720.0,
+  "speed_kmh": 99.8,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 828.0,
+  "speed_kmh": 59.5,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 2772.0,
+  "speed_kmh": 101.2,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 57900.0,
+  "t_end": 58200.0,
+  "flow_veh_h": 2760.0,
+  "speed_kmh": 101.1,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 4836.0,
+  "speed_kmh": 95.5,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 4728.0,
+  "speed_kmh": 96.9,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 4116.0,
+  "speed_kmh": 94.9,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 492.0,
+  "speed_kmh": 50.3,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 456.0,
+  "speed_kmh": 83.1,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 3432.0,
+  "speed_kmh": 96.2,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 3372.0,
+  "speed_kmh": 98.1,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 228.0,
+  "speed_kmh": 91.3,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 3468.0,
+  "speed_kmh": 97.9,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 3552.0,
+  "speed_kmh": 98.8,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 3504.0,
+  "speed_kmh": 99.8,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 732.0,
+  "speed_kmh": 62.0,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 2712.0,
+  "speed_kmh": 100.5,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 58200.0,
+  "t_end": 58500.0,
+  "flow_veh_h": 2820.0,
+  "speed_kmh": 100.2,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 4692.0,
+  "speed_kmh": 96.1,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 4788.0,
+  "speed_kmh": 95.3,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 4212.0,
+  "speed_kmh": 91.6,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 708.0,
+  "speed_kmh": 45.9,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 396.0,
+  "speed_kmh": 76.1,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 3372.0,
+  "speed_kmh": 97.5,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 3420.0,
+  "speed_kmh": 100.2,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 144.0,
+  "speed_kmh": 86.5,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 3840.0,
+  "speed_kmh": 98.2,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 3936.0,
+  "speed_kmh": 97.6,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 3960.0,
+  "speed_kmh": 97.4,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 1140.0,
+  "speed_kmh": 61.3,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 2964.0,
+  "speed_kmh": 100.4,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 58500.0,
+  "t_end": 58800.0,
+  "flow_veh_h": 3036.0,
+  "speed_kmh": 100.7,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 4728.0,
+  "speed_kmh": 98.0,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 4848.0,
+  "speed_kmh": 97.6,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 4416.0,
+  "speed_kmh": 76.3,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 492.0,
+  "speed_kmh": 12.5,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 540.0,
+  "speed_kmh": 67.8,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 3456.0,
+  "speed_kmh": 92.6,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 3408.0,
+  "speed_kmh": 97.9,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 108.0,
+  "speed_kmh": 90.2,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 3468.0,
+  "speed_kmh": 100.4,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 3360.0,
+  "speed_kmh": 99.5,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 3372.0,
+  "speed_kmh": 99.1,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 960.0,
+  "speed_kmh": 58.4,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 2412.0,
+  "speed_kmh": 100.3,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 58800.0,
+  "t_end": 59100.0,
+  "flow_veh_h": 2352.0,
+  "speed_kmh": 100.6,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 4440.0,
+  "speed_kmh": 97.8,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 4296.0,
+  "speed_kmh": 100.0,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3744.0,
+  "speed_kmh": 77.3,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 564.0,
+  "speed_kmh": 16.6,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 408.0,
+  "speed_kmh": 65.6,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3132.0,
+  "speed_kmh": 93.4,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3108.0,
+  "speed_kmh": 99.4,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 144.0,
+  "speed_kmh": 90.4,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3336.0,
+  "speed_kmh": 99.5,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3468.0,
+  "speed_kmh": 100.4,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 3576.0,
+  "speed_kmh": 100.1,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 972.0,
+  "speed_kmh": 56.2,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 2592.0,
+  "speed_kmh": 100.7,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 59100.0,
+  "t_end": 59400.0,
+  "flow_veh_h": 2604.0,
+  "speed_kmh": 97.5,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 4800.0,
+  "speed_kmh": 96.1,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 4908.0,
+  "speed_kmh": 97.8,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 4392.0,
+  "speed_kmh": 76.5,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 432.0,
+  "speed_kmh": 10.9,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 528.0,
+  "speed_kmh": 65.1,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 3540.0,
+  "speed_kmh": 94.4,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 3612.0,
+  "speed_kmh": 98.9,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 144.0,
+  "speed_kmh": 92.8,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 3756.0,
+  "speed_kmh": 100.3,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 3636.0,
+  "speed_kmh": 99.9,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 3576.0,
+  "speed_kmh": 100.3,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 792.0,
+  "speed_kmh": 61.5,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 2604.0,
+  "speed_kmh": 99.1,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 59400.0,
+  "t_end": 59700.0,
+  "flow_veh_h": 2712.0,
+  "speed_kmh": 97.0,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 4536.0,
+  "speed_kmh": 99.7,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 4620.0,
+  "speed_kmh": 98.2,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 4368.0,
+  "speed_kmh": 73.6,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 756.0,
+  "speed_kmh": 24.1,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 468.0,
+  "speed_kmh": 72.9,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 3624.0,
+  "speed_kmh": 91.8,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 3576.0,
+  "speed_kmh": 97.0,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 168.0,
+  "speed_kmh": 87.6,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 3720.0,
+  "speed_kmh": 99.2,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 3840.0,
+  "speed_kmh": 99.2,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 3912.0,
+  "speed_kmh": 98.7,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 864.0,
+  "speed_kmh": 60.9,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 3084.0,
+  "speed_kmh": 99.1,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 59700.0,
+  "t_end": 60000.0,
+  "flow_veh_h": 3012.0,
+  "speed_kmh": 98.6,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 4752.0,
+  "speed_kmh": 96.6,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 4752.0,
+  "speed_kmh": 96.0,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 4092.0,
+  "speed_kmh": 84.3,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 516.0,
+  "speed_kmh": 14.4,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 576.0,
+  "speed_kmh": 72.3,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 3288.0,
+  "speed_kmh": 96.3,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 3468.0,
+  "speed_kmh": 100.5,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 156.0,
+  "speed_kmh": 87.3,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 3684.0,
+  "speed_kmh": 100.3,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 3744.0,
+  "speed_kmh": 99.9,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 3720.0,
+  "speed_kmh": 100.0,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 900.0,
+  "speed_kmh": 61.8,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 2796.0,
+  "speed_kmh": 101.5,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 60000.0,
+  "t_end": 60300.0,
+  "flow_veh_h": 2892.0,
+  "speed_kmh": 100.6,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 4800.0,
+  "speed_kmh": 96.4,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 4596.0,
+  "speed_kmh": 100.0,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 4332.0,
+  "speed_kmh": 91.2,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 624.0,
+  "speed_kmh": 37.3,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 396.0,
+  "speed_kmh": 79.1,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 3660.0,
+  "speed_kmh": 97.3,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 3636.0,
+  "speed_kmh": 101.4,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 120.0,
+  "speed_kmh": 89.4,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 3816.0,
+  "speed_kmh": 101.7,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 3828.0,
+  "speed_kmh": 101.5,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 3816.0,
+  "speed_kmh": 101.2,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 1044.0,
+  "speed_kmh": 61.9,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 2748.0,
+  "speed_kmh": 104.6,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 60300.0,
+  "t_end": 60600.0,
+  "flow_veh_h": 2760.0,
+  "speed_kmh": 103.8,
+  "label": "0808ra (A15 E)"
+ },
+ {
+  "link_id": 0,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 4728.0,
+  "speed_kmh": 96.1,
+  "label": "0764ra (A15 W)"
+ },
+ {
+  "link_id": 1,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 4968.0,
+  "speed_kmh": 96.1,
+  "label": "0770ra"
+ },
+ {
+  "link_id": 2,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 4704.0,
+  "speed_kmh": 98.2,
+  "label": "0778ra_1 (5L approach)"
+ },
+ {
+  "link_id": 3,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 540.0,
+  "speed_kmh": 88.0,
+  "label": "vwa0780ra L1 (N3 queue)"
+ },
+ {
+  "link_id": 4,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 396.0,
+  "speed_kmh": 91.5,
+  "label": "vwa0780ra L2 (N3 free)"
+ },
+ {
+  "link_id": 5,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 3996.0,
+  "speed_kmh": 98.3,
+  "label": "0782ra"
+ },
+ {
+  "link_id": 6,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 3792.0,
+  "speed_kmh": 98.8,
+  "label": "0784ra"
+ },
+ {
+  "link_id": 7,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 156.0,
+  "speed_kmh": 87.8,
+  "label": "vwb078800 (on-ramp)"
+ },
+ {
+  "link_id": 8,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 3960.0,
+  "speed_kmh": 96.6,
+  "label": "0790ra (4L merge)"
+ },
+ {
+  "link_id": 9,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 3912.0,
+  "speed_kmh": 96.5,
+  "label": "0794ra"
+ },
+ {
+  "link_id": 10,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 3852.0,
+  "speed_kmh": 96.4,
+  "label": "0797ra"
+ },
+ {
+  "link_id": 11,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 1032.0,
+  "speed_kmh": 61.9,
+  "label": "vwa080517 (Sliedrecht off)"
+ },
+ {
+  "link_id": 12,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 2796.0,
+  "speed_kmh": 99.0,
+  "label": "0806ra"
+ },
+ {
+  "link_id": 13,
+  "t_start": 60600.0,
+  "t_end": 60900.0,
+  "flow_veh_h": 2760.0,
+  "speed_kmh": 99.6,
+  "label": "0808ra (A15 E)"
+ }
+]

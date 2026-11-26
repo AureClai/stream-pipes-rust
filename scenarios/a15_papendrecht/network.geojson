@@ -1,0 +1,929 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.681,
+          51.849
+        ]
+      },
+      "properties": {
+        "id": 0,
+        "type": "Entry",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.6892,
+          51.8458
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7024,
+          51.8415
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7058,
+          51.8406
+        ]
+      },
+      "properties": {
+        "id": 3,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7077,
+          51.8398
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7075,
+          51.8404
+        ]
+      },
+      "properties": {
+        "id": 5,
+        "type": "Exit",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7106,
+          51.8395
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7176,
+          51.8379
+        ]
+      },
+      "properties": {
+        "id": 7,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7152,
+          51.8381
+        ]
+      },
+      "properties": {
+        "id": 8,
+        "type": "Entry",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7226,
+          51.8368
+        ]
+      },
+      "properties": {
+        "id": 9,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7272,
+          51.8357
+        ]
+      },
+      "properties": {
+        "id": 10,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7375,
+          51.8332
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7405,
+          51.8322
+        ]
+      },
+      "properties": {
+        "id": 12,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.7432,
+          51.8318
+        ]
+      },
+      "properties": {
+        "id": 13,
+        "type": "Internal",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.749,
+          51.8303
+        ]
+      },
+      "properties": {
+        "id": 14,
+        "type": "Exit",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.70775,
+          51.8399
+        ]
+      },
+      "properties": {
+        "id": 15,
+        "type": "Exit",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.74105,
+          51.832
+        ]
+      },
+      "properties": {
+        "id": 16,
+        "type": "Exit",
+        "signals": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.681,
+            51.849
+          ],
+          [
+            4.6892,
+            51.8458
+          ]
+        ]
+      },
+      "properties": {
+        "id": 0,
+        "node_up": 0,
+        "node_down": 1,
+        "length": 666.2,
+        "speed": 27.339,
+        "lanes": 3,
+        "capacity": 1.8,
+        "fd_u": 27.339,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.6,
+        "label": "0764ra (A15 W)",
+        "ndw_site": "RWS01_MONIBAS_0151hrr0764ra",
+        "pipes": [
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.6892,
+            51.8458
+          ],
+          [
+            4.7024,
+            51.8415
+          ]
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "node_up": 1,
+        "node_down": 2,
+        "length": 1025.1,
+        "speed": 27.573,
+        "lanes": 3,
+        "capacity": 1.8,
+        "fd_u": 27.573,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.6,
+        "label": "0770ra",
+        "ndw_site": "RWS01_MONIBAS_0151hrr0770ra",
+        "pipes": [
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7024,
+            51.8415
+          ],
+          [
+            4.7058,
+            51.8406
+          ]
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "node_up": 2,
+        "node_down": 3,
+        "length": 254.1,
+        "speed": 26.403,
+        "lanes": 5,
+        "capacity": 3.0,
+        "fd_u": 26.403,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.6,
+        "label": "0778ra_1 (5L approach)",
+        "ndw_site": "RWS01_MONIBAS_0151hrr0778ra_1",
+        "pipes": [
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ],
+        "friction": 0.95,
+        "moves": {
+          "4": [
+            0
+          ],
+          "3": [
+            1
+          ],
+          "5": [
+            2,
+            3,
+            4
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7058,
+            51.8406
+          ],
+          [
+            4.7077,
+            51.8398
+          ]
+        ]
+      },
+      "properties": {
+        "id": 3,
+        "node_up": 3,
+        "node_down": 4,
+        "length": 158.0,
+        "speed": 23.121,
+        "lanes": 1,
+        "capacity": 0.55,
+        "fd_u": 23.121,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.55,
+        "label": "vwa0780ra L1 (N3 queue)",
+        "ndw_site": "RWS01_MONIBAS_0150vwa0780ra",
+        "pipes": [
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7058,
+            51.8406
+          ],
+          [
+            4.7075,
+            51.8404
+          ]
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "node_up": 3,
+        "node_down": 5,
+        "length": 118.9,
+        "speed": 23.774,
+        "lanes": 1,
+        "capacity": 0.55,
+        "fd_u": 23.774,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.55,
+        "label": "vwa0780ra L2 (N3 free)",
+        "ndw_site": "RWS01_MONIBAS_0150vwa0780ra",
+        "pipes": [
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7058,
+            51.8406
+          ],
+          [
+            4.7106,
+            51.8395
+          ]
+        ]
+      },
+      "properties": {
+        "id": 5,
+        "node_up": 3,
+        "node_down": 6,
+        "length": 351.7,
+        "speed": 27.506,
+        "lanes": 3,
+        "capacity": 1.8,
+        "fd_u": 27.506,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.6,
+        "label": "0782ra",
+        "ndw_site": "RWS01_MONIBAS_0151hrr0782ra",
+        "pipes": [
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7106,
+            51.8395
+          ],
+          [
+            4.7176,
+            51.8379
+          ]
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "node_up": 6,
+        "node_down": 7,
+        "length": 512.8,
+        "speed": 28.184,
+        "lanes": 3,
+        "capacity": 1.8,
+        "fd_u": 28.184,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.6,
+        "label": "0784ra",
+        "ndw_site": "RWS01_MONIBAS_0151hrr0784ra",
+        "pipes": [
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7152,
+            51.8381
+          ],
+          [
+            4.7176,
+            51.8379
+          ]
+        ]
+      },
+      "properties": {
+        "id": 7,
+        "node_up": 8,
+        "node_down": 7,
+        "length": 166.4,
+        "speed": 24.646,
+        "lanes": 1,
+        "capacity": 0.5,
+        "fd_u": 24.646,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.5,
+        "label": "vwb078800 (on-ramp)",
+        "ndw_site": "GEO0K_K_RWSTI358186",
+        "pipes": [
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7176,
+            51.8379
+          ],
+          [
+            4.7226,
+            51.8368
+          ]
+        ]
+      },
+      "properties": {
+        "id": 8,
+        "node_up": 7,
+        "node_down": 9,
+        "length": 364.7,
+        "speed": 27.912,
+        "lanes": 4,
+        "capacity": 2.4,
+        "fd_u": 27.912,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.6,
+        "label": "0790ra (4L merge)",
+        "ndw_site": "RWS01_MONIBAS_0151hrr0790ra",
+        "pipes": [
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7226,
+            51.8368
+          ],
+          [
+            4.7272,
+            51.8357
+          ]
+        ]
+      },
+      "properties": {
+        "id": 9,
+        "node_up": 9,
+        "node_down": 10,
+        "length": 338.9,
+        "speed": 27.874,
+        "lanes": 3,
+        "capacity": 1.8,
+        "fd_u": 27.874,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.6,
+        "label": "0794ra",
+        "ndw_site": "RWS01_MONIBAS_0151hrr0794ra",
+        "pipes": [
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7272,
+            51.8357
+          ],
+          [
+            4.7375,
+            51.8332
+          ]
+        ]
+      },
+      "properties": {
+        "id": 10,
+        "node_up": 10,
+        "node_down": 11,
+        "length": 760.4,
+        "speed": 27.918,
+        "lanes": 3,
+        "capacity": 1.8,
+        "fd_u": 27.918,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.6,
+        "label": "0797ra",
+        "ndw_site": "RWS01_MONIBAS_0151hrr0797ra",
+        "pipes": [
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ],
+        "moves": {
+          "11": [
+            0
+          ],
+          "12": [
+            0,
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7375,
+            51.8332
+          ],
+          [
+            4.7405,
+            51.8322
+          ]
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "node_up": 11,
+        "node_down": 12,
+        "length": 234.2,
+        "speed": 18.127,
+        "lanes": 1,
+        "capacity": 0.55,
+        "fd_u": 18.127,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.55,
+        "label": "vwa080517 (Sliedrecht off)",
+        "ndw_site": "GEO0C_Z_RWSTI358373",
+        "pipes": [
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7375,
+            51.8332
+          ],
+          [
+            4.7432,
+            51.8318
+          ]
+        ]
+      },
+      "properties": {
+        "id": 12,
+        "node_up": 11,
+        "node_down": 13,
+        "length": 421.5,
+        "speed": 28.178,
+        "lanes": 3,
+        "capacity": 1.8,
+        "fd_u": 28.178,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.6,
+        "label": "0806ra",
+        "ndw_site": "RWS01_MONIBAS_0151hrr0806ra",
+        "pipes": [
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7432,
+            51.8318
+          ],
+          [
+            4.749,
+            51.8303
+          ]
+        ]
+      },
+      "properties": {
+        "id": 13,
+        "node_up": 13,
+        "node_down": 14,
+        "length": 432.0,
+        "speed": 28.038,
+        "lanes": 3,
+        "capacity": 1.8,
+        "fd_u": 28.038,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.6,
+        "label": "0808ra (A15 E)",
+        "ndw_site": "RWS01_MONIBAS_0151hrr0808ra",
+        "pipes": [
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          },
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7077,
+            51.8398
+          ],
+          [
+            4.70775,
+            51.8399
+          ]
+        ]
+      },
+      "properties": {
+        "id": 14,
+        "node_up": 4,
+        "node_down": 15,
+        "length": 11.6,
+        "speed": 23.121,
+        "lanes": 1,
+        "capacity": 0.55,
+        "fd_u": 23.121,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.55,
+        "label": "N3 stop-bar gate (L1)",
+        "ndw_site": "RWS01_MONIBAS_0150vwa0780ra",
+        "pipes": [
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.7405,
+            51.8322
+          ],
+          [
+            4.74105,
+            51.832
+          ]
+        ]
+      },
+      "properties": {
+        "id": 15,
+        "node_up": 12,
+        "node_down": 16,
+        "length": 43.9,
+        "speed": 18.127,
+        "lanes": 1,
+        "capacity": 0.55,
+        "fd_u": 18.127,
+        "fd_w": 5.0,
+        "fd_kx": 0.14,
+        "fd_c": 0.55,
+        "label": "Sliedrecht gate",
+        "ndw_site": "GEO0C_Z_RWSTI358373",
+        "pipes": [
+          {
+            "lanes": 1
+          }
+        ]
+      }
+    }
+  ]
+}

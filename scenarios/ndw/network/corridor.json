@@ -1,0 +1,17 @@
+{
+  "name": "A15-east-Papendrecht-km76.4-80.8",
+  "carriageways": [
+    {
+      "name": "eastbound_papendrecht",
+      "in_sites": [
+        "RWS01_MONIBAS_0151hrr0764ra",
+        "GEO0K_K_RWSTI358186"
+      ],
+      "out_sites": [
+        "RWS01_MONIBAS_0150vwa0780ra",
+        "GEO0C_Z_RWSTI358373",
+        "RWS01_MONIBAS_0151hrr0808ra"
+      ]
+    }
+  ]
+}

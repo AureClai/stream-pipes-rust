@@ -59,4 +59,4 @@ stream-cli verify -i scenarios/a47_givors_osm --patches gate --assignment
 stream-cli run -i scenario.json --patches patches/incident.json --assignment -o results.json
 ```
 
-> **Note:** In directory mode (`-i <DIR>`), `--merge` defaults to `config.json`'s `"merge"` setting unless overridden on the CLI. Topology patches (`add_node`, `add_link`) require source inputs (`stream-cli build --patches` or directory mode `-i <DIR>`).
+> **Note:** In directory mode (`-i <DIR>`), `--merge` defaults to `config.json`'s `"merge"` setting unless overridden on the CLI. Topology patches (`add_node`, `add_link`) require source inputs (`stream-cli build --patches` or directory mode `-i <DIR>`). When patching only `fd_c` or only `capacity`, `apply_attrs` keeps the sibling field synchronized; note that `fd_c`/`capacity` limits throttle entry into downstream links, so gating traffic leaving at an `Exit` node requires a downstream stop-bar link (as in `scenarios/a47_givors_osm` and `scenarios/a15_papendrecht`).
