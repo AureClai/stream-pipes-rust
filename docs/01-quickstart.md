@@ -2,15 +2,19 @@
 
 `stream-cli` is the standalone command-line executable for compiling, simulating, and verifying traffic scenarios.
 
-## Building `stream-cli`
+## Installing `stream-cli`
+
+Download a pre-built archive for Linux, Windows, or macOS from the [GitHub Releases](https://github.com/AureClai/stream-pipes-rust/releases) page and place `stream-cli` (`stream-cli.exe` on Windows) on your `PATH`.
+
+### Building from source
 
 Requires a stable Rust toolchain (edition 2021, Rust >= 1.82).
 
 ```bash
-cargo build --release --no-default-features --bin stream-cli
+cargo build --release --bin stream-cli
 ```
 
-`--no-default-features` skips the optional Python extension module. On Windows, the compiled executable is at:
+On Windows, the compiled executable is at:
 
 ```text
 target\release\stream-cli.exe
@@ -32,7 +36,7 @@ stream-cli build \
 
 ### 2. Verify physics & conservation
 
-Run the simulation together with the built-in LWR verification checks (and optionally the 10 closed-form analytic benchmarks):
+Run the simulation together with the built-in LWR verification checks (and optionally the 18 closed-form analytic benchmarks):
 
 ```bash
 stream-cli verify -i scenario.json --assignment --benchmarks -o report.json

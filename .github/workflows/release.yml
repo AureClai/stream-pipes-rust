@@ -1,0 +1,159 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python-wheels:
+    name: Wheel (${{ matrix.name }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: linux-x86_64
+            os: ubuntu-latest
+            args: --release --out dist --sdist
+          - name: linux-aarch64
+            os: ubuntu-24.04-arm
+            args: --release --out dist
+          - name: windows-x64
+            os: windows-latest
+            args: --release --out dist
+          - name: macos-arm64
+            os: macos-latest
+            args: --release --out dist --target aarch64-apple-darwin
+          - name: macos-x86_64
+            os: macos-latest
+            args: --release --out dist --target x86_64-apple-darwin
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build wheel
+        uses: PyO3/maturin-action@v1
+        with:
+          command: build
+          args: ${{ matrix.args }}
+          manylinux: auto
+
+      - name: Smoke-test native wheel
+        if: matrix.name != 'macos-x86_64'
+        shell: bash
+        run: |
+          python -m pip install --no-index --find-links dist stream-pipes-sim
+          python -m pip install pytest
+          pytest python/tests/test_bindings.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: python-dist-${{ matrix.name }}
+          path: dist/
+
+  binaries:
+    name: Binaries (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+            ext: ""
+            archive: tar.gz
+          - os: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-musl
+            ext: ""
+            archive: tar.gz
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            ext: ".exe"
+            archive: zip
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            ext: ""
+            archive: tar.gz
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            ext: ""
+            archive: tar.gz
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          targets: ${{ matrix.target }}
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Build stream-cli and stream-server
+        run: |
+          cargo build --release --no-default-features --target ${{ matrix.target }} --bin stream-cli
+          cargo build --release --no-default-features --features server --target ${{ matrix.target }} --bin stream-server
+
+      - name: Smoke-test native binary
+        if: matrix.target != 'x86_64-apple-darwin'
+        shell: bash
+        run: |
+          target/${{ matrix.target }}/release/stream-cli${{ matrix.ext }} \
+            verify -i scenarios/diverge.json --assignment --benchmarks
+
+      - name: Package release archive
+        shell: bash
+        run: |
+          mkdir -p pkg release-assets
+          cp target/${{ matrix.target }}/release/stream-cli${{ matrix.ext }} pkg/
+          cp target/${{ matrix.target }}/release/stream-server${{ matrix.ext }} pkg/
+          cp README.md LICENSE-MIT LICENSE-APACHE NOTICE pkg/
+          if [ "${{ matrix.archive }}" = "zip" ]; then
+            7z a "release-assets/pipe-stream-${{ matrix.target }}.zip" ./pkg/*
+          else
+            tar -C pkg -czf "release-assets/pipe-stream-${{ matrix.target }}.tar.gz" .
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bin-${{ matrix.target }}
+          path: release-assets/
+
+  publish:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [python-wheels, binaries]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Collect wheels and binary archives
+        run: |
+          mkdir -p wheels release-files
+          find artifacts/python-dist-* -type f -exec cp {} wheels/ \;
+          find artifacts/bin-* -type f -exec cp {} release-files/ \;
+          (cd release-files && sha256sum * > SHA256SUMS.txt)
+
+      - name: Publish Python package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: wheels/
+
+      - name: Create GitHub Release with executables
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            release-files/*
+            wheels/*.whl

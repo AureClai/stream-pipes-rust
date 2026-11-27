@@ -84,20 +84,22 @@ Planned milestones from a fast, self-verifying Dynamic Network Loading (DNL) cor
 
 ## Getting started
 
-Requires a stable Rust toolchain (edition 2021).
+Download pre-built `stream-cli` and `stream-server` executables from the [GitHub Releases](https://github.com/AureClai/stream-pipes-rust/releases) page, or build from source with a stable Rust toolchain (edition 2021, Rust ≥ 1.82):
 
 ```bash
 git clone https://github.com/AureClai/stream-pipes-rust.git
 cd stream-pipes-rust
 
-# Build the CLI. --no-default-features skips the (stub) Python extension.
-cargo build --release --no-default-features --bin stream-cli
+# Build the CLI from source
+cargo build --release --bin stream-cli
 ```
 
 Run the eighteen analytic benchmarks and verify a bundled scenario:
 
 ```bash
-cargo run --release --no-default-features --bin stream-cli -- \
+stream-cli verify -i scenarios/diverge.json --assignment --benchmarks -o report.json
+# or from source:
+cargo run --release --bin stream-cli -- \
     verify -i scenarios/diverge.json --assignment --benchmarks -o report.json
 ```
 
@@ -164,7 +166,13 @@ workspace crates). Analysis modules are pure functions over a finished scenario:
 
 ### Using it from Python
 
-Install directly with `pip` (requires Rust ≥ 1.82) or [maturin](https://www.maturin.rs/):
+Install pre-built wheels directly from PyPI (Python ≥ 3.9, no Rust toolchain required):
+
+```bash
+pip install stream-pipes-sim
+```
+
+Or build from a local clone (requires Rust ≥ 1.82):
 
 ```bash
 pip install .

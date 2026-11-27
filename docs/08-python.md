@@ -1,10 +1,20 @@
-# 8. Python Bindings (`stream-pipes` / `stream_core_rust`)
+# 8. Python Bindings (`stream-pipes-sim` / `stream_core_rust`)
 
-`stream-pipes` provides native PyO3 Python bindings (`import stream_core_rust`) backed by the Rust simulation engine. Because the extension is built with `abi3-py39`, a single compiled wheel works across Python 3.9 and newer without Python-side serialization overhead.
+`stream-pipes-sim` provides native PyO3 Python bindings (`import stream_core_rust`) backed by the Rust simulation engine. Because the extension is built with `abi3-py39`, a single compiled wheel works across Python 3.9 and newer without Python-side serialization overhead.
 
 ---
 
 ## Installation
+
+### From PyPI (recommended, no Rust required)
+
+Requires Python ≥ 3.9:
+
+```bash
+pip install stream-pipes-sim
+```
+
+The distribution name on PyPI is `stream-pipes-sim`; the Python import name is `stream_core_rust`.
 
 ### From a local clone (with `pip` or `maturin`)
 
@@ -24,8 +34,6 @@ maturin develop --release
 ```bash
 pip install "git+https://github.com/AureClai/stream-pipes-rust.git"
 ```
-
-> **Note:** Pre-built wheels on PyPI (`pip install stream-pipes` without a Rust compiler) will be available once wheels are published on release. Package distribution name is `stream-pipes`; Python import name is `stream_core_rust`.
 
 ---
 
