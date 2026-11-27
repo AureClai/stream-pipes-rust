@@ -29,3 +29,6 @@ features = ["python"]
 python-source = "python"
 module-name = "stream_core_rust._native"
 bindings = "pyo3"
+include = [
+  { path = "crates/stream-server/**/*", format = "sdist" },
+]
